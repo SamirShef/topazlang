@@ -1,7 +1,7 @@
 # Topaz
 The Topaz programming language. Safety and speed!
 
-See source code documentation in [here](https://SamirShef.github.io/topazlang/docs/html/index.html)
+See source code documentation in [here](https://samirshef.github.io/topazlang/)
 
 ## Usage
 ```bash
