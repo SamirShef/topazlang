@@ -1,0 +1,7 @@
+<map id="/mnt/disk_ext4_0/topazlang/include/exception/exception.hpp" name="/mnt/disk_ext4_0/topazlang/include/exception/exception.hpp">
+<area shape="rect" id="Node000001" title="Header file for defining thrown exceptions by the compiler." alt="" coords="98,5,309,48"/>
+<area shape="rect" id="Node000002" href="$exception_8cpp.html" title="exception.hpp implementation" alt="" coords="5,96,194,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,60,126,97,122,93,166,56"/>
+<area shape="rect" id="Node000003" href="$lexer_8cpp.html" title="lexer.hpp implementation" alt="" coords="218,96,400,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,56,286,93,282,97,238,60"/>
+</map>

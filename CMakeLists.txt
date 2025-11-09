@@ -8,6 +8,8 @@ message(STATUS "LLVM libraries: ${LLVM_LIBRARY_DIRS}")
 
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
+add_compile_options(-w)
+
 add_executable(topazc ${SOURCES})
 
 target_include_directories(topazc PRIVATE ${LLVM_INCLUDE_DIRS})

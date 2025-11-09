@@ -1,0 +1,25 @@
+<map id="Lexer::advance" name="Lexer::advance">
+<area shape="rect" id="Node000001" title="Method for skipping current character from source code and returns it." alt="" coords="497,157,608,184"/>
+<area shape="rect" id="Node000002" href="$classLexer.html#a8e7a060feea59b6a096676f74ca9cce3" title="Method for skipping comments." alt="" coords="278,5,432,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="533,146,497,98,474,74,448,53,411,35,413,30,451,48,477,70,501,95,537,142"/>
+<area shape="rect" id="Node000003" href="$classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="103,157,213,184"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="527,149,492,120,448,97,397,82,355,78,313,82,262,97,235,109,210,126,173,159,170,155,207,122,232,105,260,92,312,77,355,72,398,77,450,92,495,116,530,145"/>
+<area shape="rect" id="Node000005" href="$classLexer.html#a1831613248412010bfd02e87f9e8582d" title="Method for tokenizing character literal." alt="" coords="261,107,449,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="482,155,409,137,411,131,483,150"/>
+<area shape="rect" id="Node000006" href="$classLexer.html#af26984da969b4bd1dbc65d07977b4438" title="Method for tokenizing identifier token." alt="" coords="292,157,419,184"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="482,173,419,173,419,168,482,168"/>
+<area shape="rect" id="Node000007" href="$classLexer.html#a3a21d278a491d885602a77073f050b4b" title="Method for tokenizing number literal." alt="" coords="266,208,444,235"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="483,191,411,210,409,205,482,186"/>
+<area shape="rect" id="Node000008" href="$classLexer.html#ada8d48ea48d4aad8af8ed61965f7c3c0" title="Method for tokenizing operator." alt="" coords="290,259,421,285"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="527,196,492,224,451,249,421,261,419,256,448,244,489,219,524,192"/>
+<area shape="rect" id="Node000009" href="$classLexer.html#a23f4e2fe208765d7a603d78f508705ad" title="Method for tokenizing string literal." alt="" coords="272,309,438,336"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="539,199,503,250,479,277,451,300,428,311,425,306,448,295,475,273,499,247,534,196"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,40,262,53,232,78,206,107,170,158,165,155,202,104,229,74,260,48,283,36"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,157,55,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="87,173,55,173,55,168,87,168"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="286,140,213,159,212,154,285,135"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="276,173,213,173,213,168,276,168"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="285,206,212,187,213,182,286,201"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="275,255,260,249,210,218,172,187,176,182,213,214,262,244,277,251"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="269,305,259,300,227,273,200,241,164,186,169,183,204,238,231,269,263,295,271,300"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="Lexer::skip_comments" name="Lexer::skip_comments">
+<area shape="rect" id="Node000001" title="Method for skipping comments." alt="" coords="5,31,159,57"/>
+<area shape="rect" id="Node000002" href="$classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="207,5,317,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,31,191,26,192,31,159,36"/>
+<area shape="rect" id="Node000003" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="365,31,454,57"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="159,41,349,41,349,47,159,47"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="318,26,350,31,349,36,317,31"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="502,31,619,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="455,41,487,41,487,47,455,47"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="667,23,834,65"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="619,41,651,41,651,47,619,47"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="/mnt/disk_ext4_0/topazlang/src/main.cpp" name="/mnt/disk_ext4_0/topazlang/src/main.cpp">
+<area shape="rect" id="Node000001" title="Compiler entry point." alt="" coords="324,5,505,48"/>
+<area shape="rect" id="Node000002" href="$lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="86,96,249,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="351,51,222,93,220,88,350,46"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="274,96,355,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="390,51,343,88,340,84,387,47"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="378,96,450,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="417,49,417,80,412,80,412,49"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="474,96,539,123"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="440,47,482,84,479,88,436,51"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="563,96,622,123"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="461,46,552,87,550,92,459,51"/>
+<area shape="rect" id="Node000003" href="$token_8hpp.html" title="Header file for defining the token." alt="" coords="36,171,115,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,125,105,163,101,159,150,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="139,171,196,197"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="170,123,170,155,165,155,165,123"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="220,171,267,197"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="183,121,221,158,218,162,179,125"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,245,66,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="71,199,52,233,47,230,66,197"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="90,245,144,272"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="85,197,105,231,100,233,80,199"/>
+</map>

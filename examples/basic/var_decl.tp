@@ -1,0 +1,4 @@
+let float: a = 10.1f;
+let int: b = 100;
+let long: c = 100_000_000;
+let char: d = 'A';
