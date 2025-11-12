@@ -1,5 +1,5 @@
 # Topaz
-The Topaz programming language. Safety and speed!
+The Topaz programming language. Memory safety and speed!
 
 See source code documentation in [here](https://samirshef.github.io/topazlang/)
 
