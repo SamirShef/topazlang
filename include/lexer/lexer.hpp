@@ -26,6 +26,7 @@ private:
         {"long", TOK_LONG},
         {"float", TOK_FLOAT},
         {"double", TOK_DOUBLE},
+        {"bool", TOK_BOOL},
         {"let", TOK_LET},
         {"fun", TOK_FUN},
         {"if", TOK_IF},

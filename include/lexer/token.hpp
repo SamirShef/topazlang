@@ -17,6 +17,7 @@ typedef enum : uint8_t {
     TOK_LONG,                               /**< 'long' type keyword */
     TOK_FLOAT,                              /**< 'float' type keyword */
     TOK_DOUBLE,                             /**< 'double' type keyword */
+    TOK_BOOL,                               /**< 'bool' type keyword */
     
     TOK_LET,                                /**< 'let' keyword for variable definition */
     TOK_FUN,                                /**< 'fun' keyword for function definition */
@@ -64,7 +65,8 @@ typedef enum : uint8_t {
     TOK_OP_LBRACE,                          /**< '{' operator */
     TOK_OP_RBRACE,                          /**< '}' operator */
     TOK_OP_LBRACKET,                        /**< '[' operator */
-    TOK_OP_RBRACKET                         /**< ']' operator */
+    TOK_OP_RBRACKET,                        /**< ']' operator */
+    TOK_OP_QUESTION                         /**< '?' operator */
 } TokenType;
 
 /**
