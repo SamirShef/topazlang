@@ -1,0 +1,10 @@
+<map id="Parser::match" name="Parser::match">
+<area shape="rect" id="Node000001" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="5,29,109,56"/>
+<area shape="rect" id="Node000002" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="157,29,252,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,40,141,40,141,45,109,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="179,30,174,21,177,11,188,5,204,3,222,5,232,12,229,16,220,10,204,8,189,10,181,14,179,20,183,28"/>
+<area shape="rect" id="Node000003" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="300,29,416,56"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="252,40,284,40,284,45,252,45"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="464,21,632,64"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="417,40,449,40,449,45,417,45"/>
+</map>

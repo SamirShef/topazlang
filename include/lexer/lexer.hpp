@@ -33,7 +33,8 @@ private:
         {"if", TOK_IF},
         {"else", TOK_ELSE},
         {"for", TOK_FOR},
-        {"while", TOK_WHILE}
+        {"while", TOK_WHILE},
+        {"const", TOK_CONST}
     };
 
 public:

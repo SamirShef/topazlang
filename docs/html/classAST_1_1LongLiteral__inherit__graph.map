@@ -1,0 +1,7 @@
+<map id="AST::LongLiteral" name="AST::LongLiteral">
+<area shape="rect" id="Node000001" title="Long literal." alt="" coords="5,155,123,181"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Literal.html" title="Base class of literal." alt="" coords="19,80,109,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,122,67,154,61,154,61,122"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1Expr.html" title="Base class of expression." alt="" coords="23,5,105,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,48,67,80,61,80,61,48"/>
+</map>

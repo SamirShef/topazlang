@@ -31,7 +31,7 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     consume(TOK_OP_COLON, ss.str(), peek().line);
 
     ss.str("");
-    ss << "Expected \033[0m':'\033[31m between type and variable name.\nSymbol '\033[0m" << peek().value << "'\033[31m is keyword. Please replase it with unique identifier";
+    ss << "Expected \033[0m':'\033[31m between type and variable name.\nToken '\033[0m" << peek().value << "'\033[31m is keyword. Please replase it with unique identifier";
     std::string name = consume(TOK_ID, ss.str(), peek().line).value;
     AST::ExprPtr expr = nullptr;
     if (pos == tokens_count) {
@@ -229,6 +229,53 @@ Token Parser::consume(TokenType type, std::string err_msg, uint32_t line) {
 
 AST::Type Parser::consume_type() {
     Token token = peek();
-    pos++;
-    return AST::Type(AST::TYPE_INT, token.value);
+    bool is_const = false;
+    bool is_nullable = false;
+    if (match(TOK_CONST)) {
+        is_const = true;
+    }
+    switch (peek().type) {
+        case TOK_CHAR:
+        case TOK_SHORT:
+        case TOK_INT:
+        case TOK_LONG:
+        case TOK_FLOAT:
+        case TOK_DOUBLE:
+        case TOK_BOOL: {
+            Token type = peek();
+            pos++;
+            if (match(TOK_OP_QUESTION)) {
+                is_nullable = true;
+            }
+            return AST::Type(ttype_to_tvalue(type.type), type.value, is_const, is_nullable);
+        }
+        default: {
+            std::stringstream ss;
+            ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
+            throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+        }
+    }
+}
+
+AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
+    switch (type) {
+        case TOK_CHAR:
+            return AST::TYPE_CHAR;
+        case TOK_SHORT:
+            return AST::TYPE_SHORT;
+        case TOK_INT:
+            return AST::TYPE_INT;
+        case TOK_LONG:
+            return AST::TYPE_LONG;
+        case TOK_FLOAT:
+            return AST::TYPE_FLOAT;
+        case TOK_DOUBLE:
+            return AST::TYPE_DOUBLE;
+        case TOK_BOOL:
+            return AST::TYPE_BOOL;
+        default:
+            std::stringstream ss;
+            ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
+            throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+    }
 }

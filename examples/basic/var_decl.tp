@@ -1,4 +1,4 @@
 let float: a = 10.1f;
 let int: b = 100;
-let long: c = 100_000_000;
+let long?: c = 100_000_000;             // Nullable type (coming soon)
 let char: d = 'A';

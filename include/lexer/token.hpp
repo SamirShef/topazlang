@@ -26,6 +26,7 @@ typedef enum : uint8_t {
     TOK_ELSE,                               /**< 'else' keyword for else branch in conditionally expression operator */
     TOK_FOR,                                /**< 'for' keyword for `for` cycle definition */
     TOK_WHILE,                              /**< 'while' keyword for `while` cycle definition */
+    TOK_CONST,                              /**< 'const' keyword */
 
     TOK_ID,                                 /**< Identifier */
     TOK_SHORT_LIT,                          /**< Integer (16 bits) literal */
@@ -79,7 +80,7 @@ struct Token {
 
     uint32_t line;                          /**< Token line coordinate */
     uint32_t column;                        /**< Token column coordinate */
-    uint32_t pos;                           /**< First token character position from source */
+    uint32_t pos;                           /**< Position of the first token character from source */
     std::string file_name;                  /**< Name of the file containing the token */
 
     Token(TokenType t, std::string v, uint32_t l, uint32_t c, uint32_t p, std::string fn) : type(t), value(v), line(l), column(c), pos(p), file_name(fn) {}

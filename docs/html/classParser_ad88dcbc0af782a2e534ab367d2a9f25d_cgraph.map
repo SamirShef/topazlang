@@ -1,0 +1,14 @@
+<map id="Parser::consume" name="Parser::consume">
+<area shape="rect" id="Node000001" title="Method for verifying the type of the current token." alt="" coords="5,56,126,83"/>
+<area shape="rect" id="Node000002" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="174,5,277,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,53,166,35,167,40,111,58"/>
+<area shape="rect" id="Node000003" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="325,56,420,83"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="126,67,309,67,309,72,126,72"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="468,81,585,108"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="126,74,220,84,325,92,453,94,453,99,325,97,219,89,126,79"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="267,30,318,48,316,53,266,35"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="347,57,342,47,346,38,356,32,373,29,391,32,400,39,397,43,389,37,373,35,358,37,350,41,348,47,352,54"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="421,75,453,80,453,85,420,80"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="633,73,800,116"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="585,92,617,92,617,97,585,97"/>
+</map>

@@ -44,6 +44,13 @@ namespace AST {
         
         Type(TypeValue t, std::string n, bool ic = false, bool ip = false, bool in = false) : type(t), name(n), is_const(ic), is_ptr(ip), is_nullable(in) {}
 
+        /**
+         * @brief Method for convert type to string
+         *
+         * This method converting AST::Type to std::string. For example constant nullable int in Topaz will be converted as 'const int?'
+         *
+         * @return The type converted to string
+         */
         std::string to_str() {
             std::stringstream ss;
             ss << (is_const ? "const " : "") << (is_ptr ? "*" : "") << name << (is_nullable ? "? " : "");
@@ -178,20 +185,30 @@ namespace AST {
         ~StringLiteral() override = default;
     };
 
+    /**
+     * @brief Binary expression container
+     *
+     * Is the container of binary expression (aka <left_operand> <operator> <right_operand>)
+     */
     class BinaryExpr : public Expr {
     public:
-        TokenType op;
-        ExprPtr left_expr;
-        ExprPtr right_expr;
+        TokenType op;                                           /**< Binary operator (+, -, *, /, &&, ||, !=, ==, >, >=, <, <=) */
+        ExprPtr left_expr;                                      /**< Expression of left operand */
+        ExprPtr right_expr;                                     /**< Expression of right operand */
 
         BinaryExpr(TokenType o, ExprPtr le, ExprPtr re, uint32_t l) : op(o), left_expr(std::move(le)), right_expr(std::move(re)), Expr(l) {}
         ~BinaryExpr() override = default;
     };
 
+    /**
+     * @brief Unary expression container
+     *
+     * Is the container of unary expression (aka <operator> <operand>)
+     */
     class UnaryExpr : public Expr {
     public:
-        TokenType op;
-        ExprPtr expr;
+        TokenType op;                                           /**< Unary operator (-, !) */
+        ExprPtr expr;                                           /**< Expression of operand */
 
         UnaryExpr(TokenType o, ExprPtr e, uint32_t l) : op(o), expr(std::move(e)), Expr(l) {}
         ~UnaryExpr() override = default;
@@ -204,9 +221,9 @@ namespace AST {
      */
     class VarDeclStmt : public Stmt {
     public:
-        Type type;                          /**< Variable type */
-        ExprPtr expr;                       /**< Variable initialization expression (maybe nullptr) */
-        std::string name;                   /**< Variable name */
+        Type type;                                              /**< Variable type */
+        ExprPtr expr;                                           /**< Variable initialization expression (maybe nullptr) */
+        std::string name;                                       /**< Variable name */
 
         VarDeclStmt(Type t, ExprPtr e, std::string n, uint32_t l) : type(t), expr(std::move(e)), name(n), Stmt(l) {}
         ~VarDeclStmt() override = default;

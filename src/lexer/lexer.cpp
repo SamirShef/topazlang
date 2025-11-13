@@ -81,7 +81,7 @@ Token Lexer::tokenize_number_lit() {
                 throw_excpetion(SUB_LEXER, "Invalid number literal: twice dot", line, file_name);
             }
             else if (pos < source_len && peek(1) == '_') {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: '_' cannot be immediately after the dot", line, file_name);
+                throw_excpetion(SUB_LEXER, "Invalid number literal: \033[0m'_'\033[31m cannot be immediately after the dot", line, file_name);
             }
             else if (pos < source_len && !isdigit(peek(1))) {
                 throw_excpetion(SUB_LEXER, "Invalid number literal: dot cannot be the end", line, file_name);
@@ -98,13 +98,13 @@ Token Lexer::tokenize_number_lit() {
             return Token(TOK_FLOAT_LIT, value, tmp_l, tmp_c, tmp_p, file_name);
         case 's':
             if (has_dot) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix 's' does not match for floating point literal", line, file_name);
+                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix \033[0m's'\033[31m does not match for floating point literal", line, file_name);
             }
             advance();
             return Token(TOK_SHORT_LIT, value, tmp_l, tmp_c, tmp_p, file_name);
         case 'l':
             if (has_dot) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix 'l' does not match for floating point literal", line, file_name);
+                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix \033[0m'l'\033[31m does not match for floating point literal", line, file_name);
             }
             advance();
             return Token(TOK_LONG_LIT, value, tmp_l, tmp_c, tmp_p, file_name);
@@ -231,13 +231,13 @@ Token Lexer::tokenize_op() {
                 advance();
                 return Token(TOK_OP_L_AND, "&&", tmp_l, tmp_c, tmp_p, file_name);
             }
-            throw_excpetion(SUB_LEXER, "Operator '&' (bitwise and) is unsupported", line, file_name);
+            throw_excpetion(SUB_LEXER, "Operator '&' (aka bitwise and) is unsupported", line, file_name);
         case '|':
             if (peek() == '|') {
                 advance();
                 return Token(TOK_OP_L_OR, "||", tmp_l, tmp_c, tmp_p, file_name);
             }
-            throw_excpetion(SUB_LEXER, "Operator '|' (bitwise or) is unsupported", line, file_name);
+            throw_excpetion(SUB_LEXER, "Operator '|' (aka bitwise or) is unsupported", line, file_name);
         case ',':
             return Token(TOK_OP_COMMA, ",", tmp_l, tmp_c, tmp_p, file_name);
         case '.':
@@ -258,9 +258,11 @@ Token Lexer::tokenize_op() {
             return Token(TOK_OP_LBRACKET, "[", tmp_l, tmp_c, tmp_p, file_name);
         case ']':
             return Token(TOK_OP_RBRACKET, "]", tmp_l, tmp_c, tmp_p, file_name);
+        case '?':
+            return Token(TOK_OP_QUESTION, "?", tmp_l, tmp_c, tmp_p, file_name);
         default:
             std::stringstream ss;
-            ss << "Unsupported operator: " << c;
+            ss << "Unsupported operator: \033[0m'" << c << "'";
             throw_excpetion(SUB_LEXER, ss.str(), line, file_name);
     }
 }
@@ -300,7 +302,7 @@ const char Lexer::get_escape_sequence() {
             return '\?';
         default:
             std::stringstream ss;
-            ss << "Unsupported escape sequence: \\" << c;
+            ss << "Unsupported escape sequence: \033[0m'\\" << c;
             throw_excpetion(SUB_LEXER, ss.str(), line, file_name);
     }
 }

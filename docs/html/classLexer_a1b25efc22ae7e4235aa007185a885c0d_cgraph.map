@@ -1,10 +1,12 @@
 <map id="Lexer::get_escape_sequence" name="Lexer::get_escape_sequence">
 <area shape="rect" id="Node000001" title="Method for getting escape&#45;sequence in string or character literal." alt="" coords="5,31,197,57"/>
-<area shape="rect" id="Node000002" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="245,5,334,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,28,229,24,230,29,197,34"/>
-<area shape="rect" id="Node000003" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="382,31,498,57"/>
-<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="197,41,367,41,367,47,197,47"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,24,367,29,366,34,334,29"/>
-<area shape="rect" id="Node000004" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="546,23,714,65"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="499,41,531,41,531,47,499,47"/>
+<area shape="rect" id="Node000002" href="$classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="245,5,355,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,29,229,25,230,30,197,34"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="540,31,657,57"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="197,41,525,41,525,47,197,47"/>
+<area shape="rect" id="Node000003" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="403,5,492,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,16,387,16,387,21,356,21"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="493,24,526,29,525,34,492,29"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="705,23,872,65"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="657,41,689,41,689,47,657,47"/>
 </map>
