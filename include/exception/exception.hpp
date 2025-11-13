@@ -4,6 +4,7 @@
  * @brief Header file for defining thrown exceptions by the compiler
  */
 
+#pragma once
 #include <cstdint>
 #include <string>
 

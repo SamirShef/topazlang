@@ -4,6 +4,7 @@
  * @brief Header file for defining the lexer
  */
 
+#pragma once
 #include "token.hpp"
 #include <vector>
 #include <map>

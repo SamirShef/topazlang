@@ -4,6 +4,7 @@
  * @brief Header file for defining the token
  */
 
+#pragma once
 #include <cstdint>
 #include <string>
 
@@ -78,7 +79,8 @@ struct Token {
 
     uint32_t line;                          /**< Token line coordinate */
     uint32_t column;                        /**< Token column coordinate */
+    uint32_t pos;                           /**< First token character position from source */
     std::string file_name;                  /**< Name of the file containing the token */
 
-    Token(TokenType t, std::string v, uint32_t l, uint32_t c, std::string fn) : type(t), value(v), line(l), column(c), file_name(fn) {}
+    Token(TokenType t, std::string v, uint32_t l, uint32_t c, uint32_t p, std::string fn) : type(t), value(v), line(l), column(c), pos(p), file_name(fn) {}
 };

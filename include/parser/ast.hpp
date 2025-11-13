@@ -4,13 +4,16 @@
  * @brief Header file for defining AST tree elements
  */
 
-#include <cmath>
+#pragma once
+#include "../lexer/token.hpp"
 #include <cstdint>
-#include <memory>
-#include <string>
+#include <sstream>
 #include <uchar.h>
 #include <utility>
 #include <variant>
+#include <string>
+#include <memory>
+#include <cmath>
 
 namespace AST {
     /**
@@ -34,11 +37,18 @@ namespace AST {
      */
     struct Type {
         TypeValue type;                         /**< Enum type */
+        std::string name;                       /**< String name of type */
         bool is_const;                          /**< Flag 'is constant type' */
         bool is_ptr;                            /**< Flag 'is raw pointer type' */
         bool is_nullable;                       /**< Flag 'is nullable type' */
         
-        Type(TypeValue t, bool ic = false, bool ip = false, bool in = false) : type(t), is_const(ic), is_ptr(ip), is_nullable(in) {}
+        Type(TypeValue t, std::string n, bool ic = false, bool ip = false, bool in = false) : type(t), name(n), is_const(ic), is_ptr(ip), is_nullable(in) {}
+
+        std::string to_str() {
+            std::stringstream ss;
+            ss << (is_const ? "const " : "") << (is_ptr ? "*" : "") << name << (is_nullable ? "? " : "");
+            return ss.str();
+        }
     };
 
     /**
@@ -101,7 +111,7 @@ namespace AST {
      */
     class CharacterLiteral : public Literal {
     public:
-        CharacterLiteral(char8_t v, uint32_t l) : Literal(Type(TYPE_CHAR), Value(v), l) {}
+        CharacterLiteral(char8_t v, uint32_t l) : Literal(Type(TYPE_CHAR, "char"), Value(v), l) {}
         ~CharacterLiteral() override = default;
     };
 
@@ -110,7 +120,7 @@ namespace AST {
      */
     class ShortLiteral : public Literal {
     public:
-        ShortLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_SHORT), Value(v), l) {}
+        ShortLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_SHORT, "short"), Value(v), l) {}
         ~ShortLiteral() override = default;
     };
 
@@ -119,7 +129,7 @@ namespace AST {
      */
     class IntLiteral : public Literal {
     public:
-        IntLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_INT), Value(v), l) {}
+        IntLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_INT, "int"), Value(v), l) {}
         ~IntLiteral() override = default;
     };
 
@@ -128,7 +138,7 @@ namespace AST {
      */
     class LongLiteral : public Literal {
     public:
-        LongLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_LONG), Value(v), l) {}
+        LongLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_LONG, "long"), Value(v), l) {}
         ~LongLiteral() override = default;
     };
 
@@ -137,7 +147,7 @@ namespace AST {
      */
     class FloatLiteral : public Literal {
     public:
-        FloatLiteral(float_t v, uint32_t l) : Literal(Type(TYPE_FLOAT), Value(v), l) {}
+        FloatLiteral(float_t v, uint32_t l) : Literal(Type(TYPE_FLOAT, "float"), Value(v), l) {}
         ~FloatLiteral() override = default;
     };
 
@@ -146,7 +156,7 @@ namespace AST {
      */
     class DoubleLiteral : public Literal {
     public:
-        DoubleLiteral(double_t v, uint32_t l) : Literal(Type(TYPE_DOUBLE), Value(v), l) {}
+        DoubleLiteral(double_t v, uint32_t l) : Literal(Type(TYPE_DOUBLE, "double"), Value(v), l) {}
         ~DoubleLiteral() override = default;
     };
 
@@ -155,7 +165,7 @@ namespace AST {
      */
     class BoolLiteral : public Literal {
     public:
-        BoolLiteral(bool v, uint32_t l) : Literal(Type(TYPE_BOOL), Value(v), l) {}
+        BoolLiteral(bool v, uint32_t l) : Literal(Type(TYPE_BOOL, "bool"), Value(v), l) {}
         ~BoolLiteral() override = default;
     };
 
@@ -164,8 +174,27 @@ namespace AST {
      */
     class StringLiteral : public Literal {
     public:
-        StringLiteral(std::string v, uint32_t l) : Literal(Type(TYPE_STRING_LIT), Value(v), l) {}
+        StringLiteral(std::string v, uint32_t l) : Literal(Type(TYPE_STRING_LIT, "string"), Value(v), l) {}
         ~StringLiteral() override = default;
+    };
+
+    class BinaryExpr : public Expr {
+    public:
+        TokenType op;
+        ExprPtr left_expr;
+        ExprPtr right_expr;
+
+        BinaryExpr(TokenType o, ExprPtr le, ExprPtr re, uint32_t l) : op(o), left_expr(std::move(le)), right_expr(std::move(re)), Expr(l) {}
+        ~BinaryExpr() override = default;
+    };
+
+    class UnaryExpr : public Expr {
+    public:
+        TokenType op;
+        ExprPtr expr;
+
+        UnaryExpr(TokenType o, ExprPtr e, uint32_t l) : op(o), expr(std::move(e)), Expr(l) {}
+        ~UnaryExpr() override = default;
     };
 
     // STATEMENTS
