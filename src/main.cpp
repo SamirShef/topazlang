@@ -4,6 +4,7 @@
  * @brief Compiler entry point
  */
 
+#include "../include/parser/parser.hpp"
 #include "../include/lexer/lexer.hpp"
 #include <filesystem>
 #include <iostream>
@@ -29,5 +30,8 @@ int main(int argc, char *argv[]) {
     for (const Token& token : tokens) {
         std::cout << (int)token.type << " : '" << token.value << "' (" << token.line << ':' << token.column << ")\n";
     }
+
+    Parser parser(content, tokens);
+    std::vector<AST::StmtPtr> stmts = parser.parse();
     return 0;
 }

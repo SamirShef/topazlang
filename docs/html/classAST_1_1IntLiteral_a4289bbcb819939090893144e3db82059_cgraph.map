@@ -1,0 +1,7 @@
+<map id="AST::IntLiteral::IntLiteral" name="AST::IntLiteral::IntLiteral">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Literal.html#a840909663a94e9512d393f5cab0aa003" title=" " alt="" coords="216,5,348,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,16,200,16,200,21,168,21"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1Expr.html#af1af0d3b7d82a25dc389d24e8e4b49bf" title=" " alt="" coords="396,5,512,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="348,16,380,16,380,21,348,21"/>
+</map>

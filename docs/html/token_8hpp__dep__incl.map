@@ -1,9 +1,17 @@
 <map id="/mnt/disk_ext4_0/topazlang/include/lexer/token.hpp" name="/mnt/disk_ext4_0/topazlang/include/lexer/token.hpp">
-<area shape="rect" id="Node000001" title="Header file for defining the token." alt="" coords="108,5,289,48"/>
-<area shape="rect" id="Node000002" href="$lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="108,96,289,139"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,64,201,96,196,96,196,64"/>
-<area shape="rect" id="Node000003" href="$lexer_8cpp.html" title="lexer.hpp implementation" alt="" coords="5,187,187,229"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="165,151,122,188,118,184,162,147"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html" title="Compiler entry point." alt="" coords="211,187,392,229"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="236,147,279,184,276,188,232,151"/>
+<area shape="rect" id="Node000001" title="Header file for defining the token." alt="" coords="128,5,309,48"/>
+<area shape="rect" id="Node000002" href="$lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="231,96,412,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,56,299,93,296,97,252,60"/>
+<area shape="rect" id="Node000007" href="$ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="25,96,207,139"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="185,60,142,97,138,93,182,56"/>
+<area shape="rect" id="Node000003" href="$parser_8hpp.html" title="Header file for defining parser." alt="" coords="64,187,245,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,149,195,189,192,184,268,144"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html" title="Compiler entry point." alt="" coords="211,277,392,320"/>
+<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="320,154,306,277,301,277,315,154"/>
+<area shape="rect" id="Node000006" href="$lexer_8cpp.html" title="lexer.hpp implementation" alt="" coords="339,187,520,229"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="360,146,406,184,402,188,356,151"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="203,235,269,275,266,279,200,240"/>
+<area shape="rect" id="Node000005" href="$parser_8cpp.html" title=" " alt="" coords="5,277,187,320"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="135,244,112,279,107,276,130,241"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="134,152,148,185,143,187,129,154"/>
 </map>

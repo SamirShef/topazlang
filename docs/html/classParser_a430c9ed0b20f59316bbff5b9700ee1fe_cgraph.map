@@ -1,0 +1,18 @@
+<map id="Parser::consume_type" name="Parser::consume_type">
+<area shape="rect" id="Node000001" title="Method for verifyng the Topaz type by current tokens." alt="" coords="5,81,158,108"/>
+<area shape="rect" id="Node000002" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="232,5,336,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,78,231,36,232,41,120,83"/>
+<area shape="rect" id="Node000003" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="410,56,505,83"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="158,87,394,71,395,76,158,92"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="553,107,670,133"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="109,106,154,127,206,143,295,153,384,152,467,144,537,133,538,138,468,149,384,157,294,158,205,148,152,132,107,111"/>
+<area shape="rect" id="Node000006" href="$classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="206,107,362,133"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="159,102,191,106,190,111,158,107"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,30,396,49,394,54,332,35"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="431,57,426,47,429,38,440,32,458,29,476,32,486,39,483,43,474,37,458,35,442,37,434,41,432,47,436,54"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="502,81,555,99,553,104,500,86"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="718,99,885,141"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="670,117,702,117,702,123,670,123"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="332,103,394,85,396,90,333,109"/>
+<area shape="poly" id="edge10_Node000006_Node000004" title=" " alt="" coords="363,117,538,117,538,123,363,123"/>
+</map>

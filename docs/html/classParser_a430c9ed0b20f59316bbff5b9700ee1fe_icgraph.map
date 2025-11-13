@@ -1,0 +1,11 @@
+<map id="Parser::consume_type" name="Parser::consume_type">
+<area shape="rect" id="Node000001" title="Method for verifyng the Topaz type by current tokens." alt="" coords="667,5,819,32"/>
+<area shape="rect" id="Node000002" href="$classParser.html#a4e39379d0213f8f2cb8b10abe8110d77" title="Method for parsing variable declaration." alt="" coords="430,5,619,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="651,21,619,21,619,16,651,16"/>
+<area shape="rect" id="Node000003" href="$classParser.html#a0470ee6b00dadc211d17e46adae86a5d" title="Method for parsing only one statement." alt="" coords="250,5,382,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,21,383,21,383,16,415,16"/>
+<area shape="rect" id="Node000004" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>

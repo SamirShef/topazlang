@@ -8,12 +8,14 @@ var token_8hpp =
       [ "TOK_LONG", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ab15ee14be3a4cf391a973ec4d461af45", null ],
       [ "TOK_FLOAT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0add470148bc49b9406cab8014f1a05e1a", null ],
       [ "TOK_DOUBLE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8b5daef5ae7f3bb296c4781cd8afcae6", null ],
+      [ "TOK_BOOL", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8102b4aa92389b7d651cfe75e46daab4", null ],
       [ "TOK_LET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a24119f1efcc3d4d91c590e8427354f45", null ],
       [ "TOK_FUN", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ad64b49c7c9e2a245d659eb4379d9d2e2", null ],
       [ "TOK_IF", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a28dd4809849b70364665cce314940bff", null ],
       [ "TOK_ELSE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0adc2d9632ea8598c447cca671691c3e21", null ],
       [ "TOK_FOR", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a704c56c00b5aa61d6341e95d773fa8c7", null ],
       [ "TOK_WHILE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa75ee6e7bd8eaf3b787c97626e78bf71", null ],
+      [ "TOK_CONST", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ac6e2af1f642b1310b927ff0e1a58f003", null ],
       [ "TOK_ID", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb", null ],
       [ "TOK_SHORT_LIT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753", null ],
       [ "TOK_INT_LIT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a65e2adf0849bb50d11157a09c76829d2", null ],
@@ -52,6 +54,7 @@ var token_8hpp =
       [ "TOK_OP_LBRACE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a381bac20ee98cbe929b98c00af4c1432", null ],
       [ "TOK_OP_RBRACE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a54e098a85815b53a1678b5aa9718aa04", null ],
       [ "TOK_OP_LBRACKET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a10da7d2f4e27c4474d1a4ac86ea92777", null ],
-      [ "TOK_OP_RBRACKET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a015688b48b2e187a9b8fa0c040a5114a", null ]
+      [ "TOK_OP_RBRACKET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a015688b48b2e187a9b8fa0c040a5114a", null ],
+      [ "TOK_OP_QUESTION", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa2e3c96fe8f9fd88e3c6ba1256bd544e", null ]
     ] ]
 ];

@@ -1,0 +1,8 @@
+<map id="Parser::peek" name="Parser::peek">
+<area shape="rect" id="Node000001" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="5,29,101,56"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="26,30,22,21,25,11,36,5,53,3,72,5,82,12,79,16,70,10,53,8,37,10,29,14,27,20,31,28"/>
+<area shape="rect" id="Node000002" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="149,29,265,56"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="101,40,133,40,133,45,101,45"/>
+<area shape="rect" id="Node000003" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="313,21,480,64"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="265,40,298,40,298,45,265,45"/>
+</map>

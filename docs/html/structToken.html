@@ -80,7 +80,7 @@ $(function(){initNavTree('structToken.html','','structToken-members'); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7a3c68e439c4ec728e6ccb29e3281ca0" id="r_a7a3c68e439c4ec728e6ccb29e3281ca0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a3c68e439c4ec728e6ccb29e3281ca0">Token</a> (<a class="el" href="token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0">TokenType</a> t, std::string v, uint32_t l, uint32_t c, std::string fn)</td></tr>
+<tr class="memitem:af5c9c4faecfae6c8211b9788f5b72788" id="r_af5c9c4faecfae6c8211b9788f5b72788"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5c9c4faecfae6c8211b9788f5b72788">Token</a> (<a class="el" href="token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0">TokenType</a> t, std::string v, uint32_t l, uint32_t c, uint32_t p, std::string fn)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -88,15 +88,16 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a4b7142147b8598f8e24c404928d9263b" id="r_a4b7142147b8598f8e24c404928d9263b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b7142147b8598f8e24c404928d9263b">value</a></td></tr>
 <tr class="memitem:a8dd1118074a344a4971ace35a08716d1" id="r_a8dd1118074a344a4971ace35a08716d1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dd1118074a344a4971ace35a08716d1">line</a></td></tr>
 <tr class="memitem:ac6c12c25d41c190f8fd65f8f7d5f9343" id="r_ac6c12c25d41c190f8fd65f8f7d5f9343"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6c12c25d41c190f8fd65f8f7d5f9343">column</a></td></tr>
+<tr class="memitem:a9163ffe984d122b5e07ca5818b3068c0" id="r_a9163ffe984d122b5e07ca5818b3068c0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9163ffe984d122b5e07ca5818b3068c0">pos</a></td></tr>
 <tr class="memitem:a9f01006e6f306b5034e66e0887320c24" id="r_a9f01006e6f306b5034e66e0887320c24"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f01006e6f306b5034e66e0887320c24">file_name</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structToken.html" title="Token structure.">Token</a> structure. </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00073">73</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00077">77</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7a3c68e439c4ec728e6ccb29e3281ca0" name="a7a3c68e439c4ec728e6ccb29e3281ca0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a3c68e439c4ec728e6ccb29e3281ca0">&#9670;&#160;</a></span>Token()</h2>
+<a id="af5c9c4faecfae6c8211b9788f5b72788" name="af5c9c4faecfae6c8211b9788f5b72788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5c9c4faecfae6c8211b9788f5b72788">&#9670;&#160;</a></span>Token()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,6 +128,11 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>fn</em></span>&#160;)</td>
         </tr>
       </table>
@@ -137,7 +143,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00081">81</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00086">86</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>
@@ -155,7 +161,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p><a class="el" href="structToken.html" title="Token structure.">Token</a> column coordinate </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00078">78</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00082">82</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>
@@ -172,7 +178,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Name of the file containing the token </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00079">79</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00084">84</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +195,24 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p><a class="el" href="structToken.html" title="Token structure.">Token</a> line coordinate </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00077">77</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00081">81</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a9163ffe984d122b5e07ca5818b3068c0" name="a9163ffe984d122b5e07ca5818b3068c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9163ffe984d122b5e07ca5818b3068c0">&#9670;&#160;</a></span>pos</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Token::pos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Position of the first token character from source </p>
+
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00083">83</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>
@@ -206,7 +229,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p><a class="el" href="structToken.html" title="Token structure.">Token</a> type </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00074">74</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00078">78</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>
@@ -223,7 +246,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p><a class="el" href="structToken.html" title="Token structure.">Token</a> value </p>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00075">75</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00079">79</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>

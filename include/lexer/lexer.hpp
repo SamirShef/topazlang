@@ -4,6 +4,7 @@
  * @brief Header file for defining the lexer
  */
 
+#pragma once
 #include "token.hpp"
 #include <vector>
 #include <map>
@@ -26,12 +27,14 @@ private:
         {"long", TOK_LONG},
         {"float", TOK_FLOAT},
         {"double", TOK_DOUBLE},
+        {"bool", TOK_BOOL},
         {"let", TOK_LET},
         {"fun", TOK_FUN},
         {"if", TOK_IF},
         {"else", TOK_ELSE},
         {"for", TOK_FOR},
-        {"while", TOK_WHILE}
+        {"while", TOK_WHILE},
+        {"const", TOK_CONST}
     };
 
 public:
