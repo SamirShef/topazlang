@@ -76,17 +76,20 @@ $(function(){initNavTree('token_8hpp.html','',''); });
 <p>Header file for defining the token.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for token.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="token_8hpp__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hpp" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hpp" id="a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hpp">
-<area shape="rect" title="Header file for defining the token." alt="" coords="5,5,187,48"/>
-<area shape="rect" title=" " alt="" coords="26,96,86,123"/>
-<area shape="poly" title=" " alt="" coords="88,50,71,83,67,81,83,47"/>
-<area shape="rect" title=" " alt="" coords="111,96,164,123"/>
-<area shape="poly" title=" " alt="" coords="109,47,126,81,122,83,104,50"/>
+<area shape="rect" title="Header file for defining the token." alt="" coords="33,5,214,48"/>
+<area shape="rect" title=" " alt="" coords="5,96,66,123"/>
+<area shape="poly" title=" " alt="" coords="103,51,62,87,59,83,99,47"/>
+<area shape="rect" title=" " alt="" coords="89,96,158,123"/>
+<area shape="poly" title=" " alt="" coords="126,49,126,80,121,80,121,49"/>
+<area shape="rect" title=" " alt="" coords="182,96,236,123"/>
+<area shape="poly" title=" " alt="" coords="147,47,186,83,183,87,144,51"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -94,21 +97,26 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="token_8hpp__dep__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hppdep" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hppdep" id="a_2mnt_2disk__ext4__0_2topazlang_2include_2lexer_2token_8hppdep">
-<area shape="rect" title="Header file for defining the token." alt="" coords="128,5,309,48"/>
-<area shape="rect" href="lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="231,96,412,139"/>
-<area shape="poly" title=" " alt="" coords="256,56,299,93,296,97,252,60"/>
-<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="25,96,207,139"/>
-<area shape="poly" title=" " alt="" coords="185,60,142,97,138,93,182,56"/>
-<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="64,187,245,229"/>
-<area shape="poly" title=" " alt="" coords="270,149,195,189,192,184,268,144"/>
-<area shape="rect" href="main_8cpp.html" title="Compiler entry point." alt="" coords="211,277,392,320"/>
-<area shape="poly" title=" " alt="" coords="320,154,306,277,301,277,315,154"/>
-<area shape="rect" href="lexer_8cpp.html" title="lexer.hpp implementation" alt="" coords="339,187,520,229"/>
-<area shape="poly" title=" " alt="" coords="360,146,406,184,402,188,356,151"/>
-<area shape="poly" title=" " alt="" coords="203,235,269,275,266,279,200,240"/>
-<area shape="rect" href="parser_8cpp.html" title=" " alt="" coords="5,277,187,320"/>
-<area shape="poly" title=" " alt="" coords="135,244,112,279,107,276,130,241"/>
-<area shape="poly" title=" " alt="" coords="134,152,148,185,143,187,129,154"/>
+<area shape="rect" title="Header file for defining the token." alt="" coords="329,5,511,48"/>
+<area shape="rect" href="lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="432,96,613,139"/>
+<area shape="poly" title=" " alt="" coords="457,56,500,93,497,97,454,60"/>
+<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="227,96,408,139"/>
+<area shape="poly" title=" " alt="" coords="386,60,343,97,340,93,383,56"/>
+<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="227,187,408,229"/>
+<area shape="poly" title=" " alt="" coords="462,148,367,188,364,184,459,143"/>
+<area shape="rect" href="main_8cpp.html" title="Compiler entry point." alt="" coords="211,368,392,411"/>
+<area shape="poly" title=" " alt="" coords="531,153,534,191,532,236,522,281,512,302,499,322,477,343,451,360,393,380,392,375,448,355,474,339,495,318,508,300,517,279,527,235,529,192,526,154"/>
+<area shape="rect" href="lexer_8cpp.html" title="lexer.hpp implementation" alt="" coords="560,187,741,229"/>
+<area shape="poly" title=" " alt="" coords="566,145,622,184,619,188,563,150"/>
+<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="32,277,229,320"/>
+<area shape="poly" title=" " alt="" coords="261,239,175,279,173,274,259,234"/>
+<area shape="poly" title=" " alt="" coords="304,244,295,278,293,326,299,367,294,368,288,326,289,277,299,243"/>
+<area shape="rect" href="parser_8cpp.html" title=" " alt="" coords="304,277,485,320"/>
+<area shape="poly" title=" " alt="" coords="347,239,379,275,375,279,343,243"/>
+<area shape="rect" href="codegen_8cpp.html" title=" " alt="" coords="5,368,187,411"/>
+<area shape="poly" title=" " alt="" coords="120,335,106,369,102,367,115,333"/>
+<area shape="poly" title=" " alt="" coords="185,325,263,365,260,370,183,330"/>
+<area shape="poly" title=" " alt="" coords="320,154,320,186,315,186,315,154"/>
 </map>
 </div>
 </div>
@@ -140,16 +148,16 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0aa75ee6e7bd8eaf3b787c97626e78bf71">TOK_WHILE</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0ac6e2af1f642b1310b927ff0e1a58f003">TOK_CONST</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb">TOK_ID</a>
-, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753">TOK_SHORT_LIT</a>
+, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83">TOK_CHARACTER_LIT</a>
 , <br />
-&#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a65e2adf0849bb50d11157a09c76829d2">TOK_INT_LIT</a>
+&#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753">TOK_SHORT_LIT</a>
+, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a65e2adf0849bb50d11157a09c76829d2">TOK_INT_LIT</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0add121cb4268c346f24ad40778011ee10">TOK_LONG_LIT</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0abe15f94862feda190bd2da8bb91da463">TOK_FLOAT_LIT</a>
-, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0ac1c9ab7f4f972e8d9fbd22d43bcc65fc">TOK_DOUBLE_LIT</a>
 , <br />
-&#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0af612741cf2ea5715f7a7f206749b7977">TOK_BOOLEAN_LIT</a>
+&#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0ac1c9ab7f4f972e8d9fbd22d43bcc65fc">TOK_DOUBLE_LIT</a>
+, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0af612741cf2ea5715f7a7f206749b7977">TOK_BOOLEAN_LIT</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a408eaa4a6edbb3e73f6b2736b1a724e4">TOK_STRING_LIT</a>
-, <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83">TOK_CHARACTER_LIT</a>
 , <a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0aa32bf1c6d5c55a1307f94ccef8449147">TOK_OP_PLUS</a>
 , <br />
 &#160;&#160;<a class="el" href="#afa91e1934f818659a4e2b0c8ce1214b0a77e9982354786daefcd7bdae8ce886da">TOK_OP_PLUS_EQ</a>
@@ -242,6 +250,8 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb" name="afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb"></a>TOK_ID&#160;</td><td class="fielddoc"><p>Identifier </p>
 </td></tr>
+<tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83" name="afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83"></a>TOK_CHARACTER_LIT&#160;</td><td class="fielddoc"><p>Character literal </p>
+</td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753" name="afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753"></a>TOK_SHORT_LIT&#160;</td><td class="fielddoc"><p>Integer (16 bits) literal </p>
 </td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a65e2adf0849bb50d11157a09c76829d2" name="afa91e1934f818659a4e2b0c8ce1214b0a65e2adf0849bb50d11157a09c76829d2"></a>TOK_INT_LIT&#160;</td><td class="fielddoc"><p>Integer (32 bits) literal </p>
@@ -255,8 +265,6 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0af612741cf2ea5715f7a7f206749b7977" name="afa91e1934f818659a4e2b0c8ce1214b0af612741cf2ea5715f7a7f206749b7977"></a>TOK_BOOLEAN_LIT&#160;</td><td class="fielddoc"><p>Boolean literal </p>
 </td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a408eaa4a6edbb3e73f6b2736b1a724e4" name="afa91e1934f818659a4e2b0c8ce1214b0a408eaa4a6edbb3e73f6b2736b1a724e4"></a>TOK_STRING_LIT&#160;</td><td class="fielddoc"><p>String literal </p>
-</td></tr>
-<tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83" name="afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83"></a>TOK_CHARACTER_LIT&#160;</td><td class="fielddoc"><p>Character literal </p>
 </td></tr>
 <tr><td class="fieldname"><a id="afa91e1934f818659a4e2b0c8ce1214b0aa32bf1c6d5c55a1307f94ccef8449147" name="afa91e1934f818659a4e2b0c8ce1214b0aa32bf1c6d5c55a1307f94ccef8449147"></a>TOK_OP_PLUS&#160;</td><td class="fielddoc"><p>'+' operator </p>
 </td></tr>
@@ -322,7 +330,7 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00014">14</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="token_8hpp_source.html#l00015">15</a> of file <a class="el" href="token_8hpp_source.html">token.hpp</a>.</p>
 
 </div>
 </div>

@@ -1,23 +1,24 @@
 <map id="/mnt/disk_ext4_0/topazlang/include/parser/ast.hpp" name="/mnt/disk_ext4_0/topazlang/include/parser/ast.hpp">
-<area shape="rect" id="Node000001" title="Header file for defining AST tree elements." alt="" coords="257,5,438,48"/>
-<area shape="rect" id="Node000002" href="$token_8hpp.html" title="Header file for defining the token." alt="" coords="25,96,147,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,51,142,94,141,88,279,46"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="10,171,71,197"/>
-<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="256,36,185,44,113,57,52,74,30,85,15,98,9,111,10,126,24,157,19,159,4,127,4,110,11,94,27,81,50,69,112,51,185,39,256,31"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="103,171,157,197"/>
-<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="296,51,254,72,212,98,178,129,150,160,146,157,174,125,208,94,251,67,294,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="222,96,291,123"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="326,51,284,88,280,84,322,47"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="315,96,379,123"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="350,49,350,80,345,80,345,49"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="404,96,456,123"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="370,47,408,83,404,87,367,51"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="480,96,540,123"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="390,46,472,86,470,91,388,51"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="564,96,632,123"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="413,46,550,90,548,95,411,51"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="656,96,713,123"/>
-<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="439,45,642,93,640,98,438,50"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="80,125,59,159,54,156,76,122"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="96,122,117,156,112,159,91,125"/>
+<area shape="rect" id="Node000001" title="Header file for defining AST tree elements." alt="" coords="232,5,413,48"/>
+<area shape="rect" id="Node000002" href="$token_8hpp.html" title="Header file for defining the token." alt="" coords="93,96,215,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="280,51,195,91,193,87,278,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,171,66,197"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="232,35,191,43,148,55,108,73,72,98,53,125,42,156,37,154,48,123,68,94,105,68,146,50,189,38,231,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="104,171,172,197"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="232,45,141,67,105,81,83,98,78,113,83,129,95,145,110,159,106,163,91,148,78,131,73,113,79,94,102,77,139,62,230,39"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="212,171,265,197"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="310,50,281,97,252,158,247,155,276,95,306,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="290,96,354,123"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="325,49,325,80,320,80,320,49"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="379,96,431,123"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="345,47,383,83,379,87,342,51"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="455,96,515,123"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="365,46,447,86,445,91,363,51"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="539,96,607,123"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="388,46,525,90,523,95,386,51"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="631,96,688,123"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="414,45,616,93,615,98,412,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,125,70,165,68,160,132,121"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="154,124,147,156,142,155,149,123"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="171,121,214,158,210,162,167,125"/>
 </map>

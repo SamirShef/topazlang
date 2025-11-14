@@ -1,13 +1,15 @@
 <map id="/mnt/disk_ext4_0/topazlang/include/lexer/lexer.hpp" name="/mnt/disk_ext4_0/topazlang/include/lexer/lexer.hpp">
-<area shape="rect" id="Node000001" title="Header file for defining the lexer." alt="" coords="77,5,258,48"/>
-<area shape="rect" id="Node000002" href="$token_8hpp.html" title="Header file for defining the token." alt="" coords="36,96,115,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,51,103,88,99,84,142,47"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="139,96,196,123"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="170,49,170,80,165,80,165,49"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="220,96,267,123"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="189,47,223,83,219,86,185,50"/>
+<area shape="rect" id="Node000001" title="Header file for defining the lexer." alt="" coords="125,5,306,48"/>
+<area shape="rect" id="Node000002" href="$token_8hpp.html" title="Header file for defining the token." alt="" coords="84,96,163,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,51,151,88,147,84,190,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="187,96,244,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="218,49,218,80,213,80,213,49"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="268,96,315,123"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="237,47,271,83,267,86,233,50"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,171,66,197"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="71,125,52,158,47,156,66,122"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="90,171,144,197"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="85,122,105,156,100,159,80,125"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="110,125,64,163,61,159,106,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="89,171,158,197"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="126,123,126,155,121,155,121,123"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="182,171,236,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="140,121,185,159,181,163,137,125"/>
 </map>

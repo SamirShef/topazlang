@@ -18,6 +18,7 @@ var annotated_dup =
       [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
       [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ]
     ] ],
+    [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],
     [ "Lexer", "classLexer.html", "classLexer" ],
     [ "Parser", "classParser.html", "classParser" ],
     [ "Token", "structToken.html", "structToken" ]
