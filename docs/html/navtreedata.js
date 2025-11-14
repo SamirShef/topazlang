@@ -59,7 +59,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structToken.html"
+"structAST_1_1Type.html#ae8e3856c0bbe0d8dcc09392cc05b54a3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

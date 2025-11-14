@@ -80,7 +80,7 @@ $(function(){initNavTree('classParser.html','','classParser-members'); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06253a8eaf87b9fa546b42d91bc07d79" id="r_a06253a8eaf87b9fa546b42d91bc07d79"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06253a8eaf87b9fa546b42d91bc07d79">Parser</a> (std::string src, std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt; t)</td></tr>
+<tr class="memitem:abc8f9ebc6d42b34014a0011ec7951652" id="r_abc8f9ebc6d42b34014a0011ec7951652"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc8f9ebc6d42b34014a0011ec7951652">Parser</a> (std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt; t)</td></tr>
 <tr class="memitem:a46a674e4cff457fc9502b327ee9be73c" id="r_a46a674e4cff457fc9502b327ee9be73c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">AST::StmtPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46a674e4cff457fc9502b327ee9be73c">parse</a> ()</td></tr>
 <tr class="memdesc:a46a674e4cff457fc9502b327ee9be73c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for parsing tokens into <a class="el" href="namespaceAST.html">AST</a> tree.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -121,7 +121,6 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a14119fb6e8ceafdf884b1de6483682c0" id="r_a14119fb6e8ceafdf884b1de6483682c0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14119fb6e8ceafdf884b1de6483682c0">source</a></td></tr>
 <tr class="memitem:a247983c66efec033f5dab3d57a71baf9" id="r_a247983c66efec033f5dab3d57a71baf9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a247983c66efec033f5dab3d57a71baf9">tokens</a></td></tr>
 <tr class="memitem:aba68ea149a82220afc0902aa34963731" id="r_aba68ea149a82220afc0902aa34963731"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba68ea149a82220afc0902aa34963731">tokens_count</a></td></tr>
 <tr class="memitem:a555cedebfa75c5c2c4e9e014ab8f759f" id="r_a555cedebfa75c5c2c4e9e014ab8f759f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a555cedebfa75c5c2c4e9e014ab8f759f">pos</a></td></tr>
@@ -131,8 +130,8 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00014">14</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a06253a8eaf87b9fa546b42d91bc07d79" name="a06253a8eaf87b9fa546b42d91bc07d79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06253a8eaf87b9fa546b42d91bc07d79">&#9670;&#160;</a></span>Parser()</h2>
+<a id="abc8f9ebc6d42b34014a0011ec7951652" name="abc8f9ebc6d42b34014a0011ec7951652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc8f9ebc6d42b34014a0011ec7951652">&#9670;&#160;</a></span>Parser()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,12 +142,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">Parser::Parser </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>src</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -158,7 +153,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00022">22</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00021">21</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
 
 </div>
 </div>
@@ -259,7 +254,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,97,383,97,383,92,415,92"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,81,202,108"/>
 <area shape="poly" title=" " alt="" coords="234,97,203,97,203,92,234,92"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,81,55,108"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,81,55,108"/>
 <area shape="poly" title=" " alt="" coords="87,97,55,97,55,92,87,92"/>
 </map>
 </div>
@@ -329,7 +324,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,21,383,21,383,16,415,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -430,7 +425,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="500,190,333,355,329,351,497,186"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,353,202,380"/>
 <area shape="poly" title=" " alt="" coords="234,369,203,369,203,364,234,364"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,353,55,380"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,353,55,380"/>
 <area shape="poly" title=" " alt="" coords="87,369,55,369,55,364,87,364"/>
 <area shape="poly" title=" " alt="" coords="2471,65,2099,65,929,65,876,68,821,75,717,98,626,127,559,153,557,148,624,122,715,93,820,70,875,63,929,60,2099,60,2471,60"/>
 </map>
@@ -542,7 +537,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classParser_a46a674e4cff457fc9502b327ee9be73c_icgraph.png" border="0" usemap="#aclassParser_a46a674e4cff457fc9502b327ee9be73c_icgraph" loading="lazy" alt=""/></div>
 <map name="aclassParser_a46a674e4cff457fc9502b327ee9be73c_icgraph" id="aclassParser_a46a674e4cff457fc9502b327ee9be73c_icgraph">
 <area shape="rect" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -660,7 +655,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="568,21,517,21,517,16,568,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="160,5,260,32"/>
 <area shape="poly" title=" " alt="" coords="369,21,260,21,260,16,369,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="144,21,55,21,55,16,144,16"/>
 </map>
 </div>
@@ -778,7 +773,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="702,21,651,21,651,16,702,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="294,5,394,32"/>
 <area shape="poly" title=" " alt="" coords="503,21,394,21,394,16,503,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="72,5,122,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="72,5,122,32"/>
 <area shape="poly" title=" " alt="" coords="278,21,122,21,122,16,278,16"/>
 </map>
 </div>
@@ -896,7 +891,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="959,72,908,72,908,67,959,67"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="552,56,651,83"/>
 <area shape="poly" title=" " alt="" coords="760,72,651,72,651,67,760,67"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="330,56,379,83"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="330,56,379,83"/>
 <area shape="poly" title=" " alt="" coords="536,72,379,72,379,67,536,67"/>
 </map>
 </div>
@@ -1014,7 +1009,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="1615,72,1564,72,1564,67,1615,67"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="1208,56,1307,83"/>
 <area shape="poly" title=" " alt="" coords="1416,72,1307,72,1307,67,1416,67"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="986,56,1035,83"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="986,56,1035,83"/>
 <area shape="poly" title=" " alt="" coords="1192,72,1035,72,1035,67,1192,67"/>
 </map>
 </div>
@@ -1132,7 +1127,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="1398,72,1347,72,1347,67,1398,67"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="990,56,1090,83"/>
 <area shape="poly" title=" " alt="" coords="1199,72,1090,72,1090,67,1199,67"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="768,56,818,83"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="768,56,818,83"/>
 <area shape="poly" title=" " alt="" coords="974,72,818,72,818,67,974,67"/>
 </map>
 </div>
@@ -1250,7 +1245,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="1190,72,1139,72,1139,67,1190,67"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="783,56,882,83"/>
 <area shape="poly" title=" " alt="" coords="991,72,882,72,882,67,991,67"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="561,56,610,83"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="561,56,610,83"/>
 <area shape="poly" title=" " alt="" coords="767,72,611,72,611,67,767,67"/>
 </map>
 </div>
@@ -1368,7 +1363,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="453,21,402,21,402,16,453,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="254,21,202,21,202,16,254,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -1486,7 +1481,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,47,383,47,383,41,415,41"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,31,202,57"/>
 <area shape="poly" title=" " alt="" coords="234,47,203,47,203,41,234,41"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,31,55,57"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,31,55,57"/>
 <area shape="poly" title=" " alt="" coords="87,47,55,47,55,41,87,41"/>
 </map>
 </div>
@@ -1605,7 +1600,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Method for parsing only one statement." alt="" coords="250,5,382,32"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -1723,7 +1718,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,21,383,21,383,16,415,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -1839,7 +1834,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,21,383,21,383,16,415,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -1944,7 +1939,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,871,383,871,383,866,415,866"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,855,202,882"/>
 <area shape="poly" title=" " alt="" coords="234,871,203,871,203,866,234,866"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,855,55,882"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,855,55,882"/>
 <area shape="poly" title=" " alt="" coords="87,871,55,871,55,866,87,866"/>
 <area shape="poly" title=" " alt="" coords="2685,973,2340,973,1850,973,1742,970,1651,965,1497,947,1343,930,1252,924,1144,922,929,922,838,918,747,909,594,885,595,880,748,904,839,913,929,917,1144,917,1252,919,1343,925,1497,942,1651,959,1742,965,1850,967,2340,967,2685,967"/>
 <area shape="poly" title=" " alt="" coords="2964,614,2947,577,2922,532,2890,487,2851,447,2821,429,2824,424,2855,443,2894,483,2926,529,2951,574,2969,612"/>
@@ -2028,7 +2023,7 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="415,21,383,21,383,16,415,16"/>
 <area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
 <area shape="poly" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
-<area shape="rect" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,55,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
@@ -2057,32 +2052,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Current position in tokens </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00019">19</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a14119fb6e8ceafdf884b1de6483682c0" name="a14119fb6e8ceafdf884b1de6483682c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14119fb6e8ceafdf884b1de6483682c0">&#9670;&#160;</a></span>source</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Parser::source</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Source code on Topaz </p>
-
-<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00016">16</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00018">18</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
 
 </div>
 </div>
@@ -2107,7 +2077,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Tokens (from <a class="el" href="classLexer.html" title="Lexer class.">Lexer</a>) </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00017">17</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00016">16</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
 
 </div>
 </div>
@@ -2132,7 +2102,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Count of tokens </p>
 
-<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00018">18</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8hpp_source.html#l00017">17</a> of file <a class="el" href="parser_8hpp_source.html">parser.hpp</a>.</p>
 
 </div>
 </div>

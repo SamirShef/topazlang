@@ -84,6 +84,7 @@ $(function(){initNavTree('functions_func.html','',''); });
 
 <h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>CharacterLiteral()&#160;:&#160;<a class="el" href="classAST_1_1CharacterLiteral.html#a03a806619058077ee0baff3a92d3af6c">AST::CharacterLiteral</a></li>
+<li>CodeGenerator()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a32ea8548ee278fa4f6dd1810ef28f32c">CodeGenerator</a></li>
 <li>consume()&#160;:&#160;<a class="el" href="classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d">Parser</a></li>
 <li>consume_type()&#160;:&#160;<a class="el" href="classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe">Parser</a></li>
 </ul>
@@ -105,19 +106,27 @@ $(function(){initNavTree('functions_func.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>generate()&#160;:&#160;<a class="el" href="classCodeGenerator.html#aef4f9c2efe63221d0060f226cd767c0f">CodeGenerator</a></li>
+<li>generate_binary_expr()&#160;:&#160;<a class="el" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7">CodeGenerator</a></li>
+<li>generate_expr()&#160;:&#160;<a class="el" href="classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904">CodeGenerator</a></li>
+<li>generate_literal_expr()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e">CodeGenerator</a></li>
+<li>generate_stmt()&#160;:&#160;<a class="el" href="classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf">CodeGenerator</a></li>
+<li>generate_unary_expr()&#160;:&#160;<a class="el" href="classCodeGenerator.html#abb7b71380118a168adeb168f557060e7">CodeGenerator</a></li>
+<li>generate_var_decl_stmt()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478">CodeGenerator</a></li>
 <li>get_escape_sequence()&#160;:&#160;<a class="el" href="classLexer.html#a1b25efc22ae7e4235aa007185a885c0d">Lexer</a></li>
+<li>get_module()&#160;:&#160;<a class="el" href="classCodeGenerator.html#acaed752e624b67267e09a006578cafad">CodeGenerator</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>IntLiteral()&#160;:&#160;<a class="el" href="classAST_1_1IntLiteral.html#a4289bbcb819939090893144e3db82059">AST::IntLiteral</a></li>
+<li>IntLiteral()&#160;:&#160;<a class="el" href="classAST_1_1IntLiteral.html#a2f44c8c96a261dad964006f98d553554">AST::IntLiteral</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_l" name="index_l"></a>- l -</h3><ul>
 <li>Lexer()&#160;:&#160;<a class="el" href="classLexer.html#ad2e35c5bb50087adbf7a6f9079de4b68">Lexer</a></li>
 <li>Literal()&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#a840909663a94e9512d393f5cab0aa003">AST::Literal</a></li>
-<li>LongLiteral()&#160;:&#160;<a class="el" href="classAST_1_1LongLiteral.html#a96ac43c5f71b5aa8da3c805cecaf6704">AST::LongLiteral</a></li>
+<li>LongLiteral()&#160;:&#160;<a class="el" href="classAST_1_1LongLiteral.html#a8744bb6906e98b915e2da59a2ef4a4de">AST::LongLiteral</a></li>
 </ul>
 
 
@@ -139,8 +148,9 @@ $(function(){initNavTree('functions_func.html','',''); });
 <li>parse_stmt()&#160;:&#160;<a class="el" href="classParser.html#a0470ee6b00dadc211d17e46adae86a5d">Parser</a></li>
 <li>parse_unary_expr()&#160;:&#160;<a class="el" href="classParser.html#a065a423e45b55d6760c1c2d871d34055">Parser</a></li>
 <li>parse_var_decl_stmt()&#160;:&#160;<a class="el" href="classParser.html#a4e39379d0213f8f2cb8b10abe8110d77">Parser</a></li>
-<li>Parser()&#160;:&#160;<a class="el" href="classParser.html#a06253a8eaf87b9fa546b42d91bc07d79">Parser</a></li>
+<li>Parser()&#160;:&#160;<a class="el" href="classParser.html#abc8f9ebc6d42b34014a0011ec7951652">Parser</a></li>
 <li>peek()&#160;:&#160;<a class="el" href="classLexer.html#ad7efb4516f546ec49416043fa87cb910">Lexer</a>, <a class="el" href="classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3">Parser</a></li>
+<li>print_ir()&#160;:&#160;<a class="el" href="classCodeGenerator.html#ad9652056bc78e567f1346b7842899a15">CodeGenerator</a></li>
 </ul>
 
 
@@ -153,7 +163,7 @@ $(function(){initNavTree('functions_func.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
-<li>to_str()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7">AST::Type</a></li>
+<li>to_str()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7">AST::Type</a>, <a class="el" href="structToken.html#a2ffd9d9d778266034ccbf00b82cd82b6">Token</a></li>
 <li>Token()&#160;:&#160;<a class="el" href="structToken.html#af5c9c4faecfae6c8211b9788f5b72788">Token</a></li>
 <li>tokenize()&#160;:&#160;<a class="el" href="classLexer.html#af6c1882744b6491b56538b065e1600f5">Lexer</a></li>
 <li>tokenize_character_lit()&#160;:&#160;<a class="el" href="classLexer.html#a1831613248412010bfd02e87f9e8582d">Lexer</a></li>
@@ -163,6 +173,7 @@ $(function(){initNavTree('functions_func.html','',''); });
 <li>tokenize_string_lit()&#160;:&#160;<a class="el" href="classLexer.html#a23f4e2fe208765d7a603d78f508705ad">Lexer</a></li>
 <li>ttype_to_tvalue()&#160;:&#160;<a class="el" href="classParser.html#ae5709805b09bb75a192f232f58b579a5">Parser</a></li>
 <li>Type()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a59593540d5a322dc1c93ccdbc1daf918">AST::Type</a></li>
+<li>type_to_llvm()&#160;:&#160;<a class="el" href="classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab">CodeGenerator</a></li>
 </ul>
 
 

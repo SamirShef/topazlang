@@ -64,7 +64,7 @@ namespace AST {
     struct Value {
         std::variant<char8_t, int16_t, int32_t, int64_t, float_t, double_t, bool, std::string> value;               /**< Value as variant between char, short, int, long, float, double, bool and string */
 
-        Value(char8_t v)           : value(v) {}
+        Value(char8_t v)            : value(v) {}
         Value(int16_t v)            : value(v) {}
         Value(int32_t v)            : value(v) {}
         Value(int64_t v)            : value(v) {}
@@ -78,9 +78,9 @@ namespace AST {
      * @brief Base class of statement
      */
     class Stmt {
-    private:
-        uint32_t line;                      /**< Line coordinate */
     public:
+        uint32_t line;                      /**< Line coordinate */
+
         Stmt(uint32_t l) : line(l) {}
         virtual ~Stmt() = default;
     };
@@ -89,9 +89,9 @@ namespace AST {
      * @brief Base class of expression
      */
     class Expr {
-    private:
-        uint32_t line;                      /**< Line coordinate */
     public:
+        uint32_t line;                      /**< Line coordinate */
+
         Expr(uint32_t l) : line(l) {}
         virtual ~Expr() = default;
     };
@@ -136,7 +136,7 @@ namespace AST {
      */
     class IntLiteral : public Literal {
     public:
-        IntLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_INT, "int"), Value(v), l) {}
+        IntLiteral(int32_t v, uint32_t l) : Literal(Type(TYPE_INT, "int"), Value(v), l) {}
         ~IntLiteral() override = default;
     };
 
@@ -145,7 +145,7 @@ namespace AST {
      */
     class LongLiteral : public Literal {
     public:
-        LongLiteral(int16_t v, uint32_t l) : Literal(Type(TYPE_LONG, "long"), Value(v), l) {}
+        LongLiteral(int64_t v, uint32_t l) : Literal(Type(TYPE_LONG, "long"), Value(v), l) {}
         ~LongLiteral() override = default;
     };
 

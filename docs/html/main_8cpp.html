@@ -75,8 +75,25 @@ $(function(){initNavTree('main_8cpp.html','',''); });
 
 <p>Compiler entry point.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="parser_8hpp_source.html">../include/parser/parser.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="codegen_8hpp_source.html">../include/codegen/codegen.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="parser_8hpp_source.html">../include/parser/parser.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="lexer_8hpp_source.html">../include/lexer/lexer.hpp</a>&quot;</code><br />
+<code>#include &lt;llvm/IR/LegacyPassManager.h&gt;</code><br />
+<code>#include &lt;llvm/Support/TargetSelect.h&gt;</code><br />
+<code>#include &lt;llvm/Target/TargetMachine.h&gt;</code><br />
+<code>#include &lt;llvm/Target/TargetOptions.h&gt;</code><br />
+<code>#include &lt;llvm/TargetParser/Triple.h&gt;</code><br />
+<code>#include &lt;llvm/Support/raw_ostream.h&gt;</code><br />
+<code>#include &lt;llvm/Support/FileSystem.h&gt;</code><br />
+<code>#include &lt;llvm/Passes/PassBuilder.h&gt;</code><br />
+<code>#include &lt;llvm/MC/TargetRegistry.h&gt;</code><br />
+<code>#include &lt;llvm/IR/GlobalVariable.h&gt;</code><br />
+<code>#include &lt;llvm/IRReader/IRReader.h&gt;</code><br />
+<code>#include &lt;llvm/Support/SourceMgr.h&gt;</code><br />
+<code>#include &lt;llvm/IR/LLVMContext.h&gt;</code><br />
+<code>#include &lt;llvm/IR/Constants.h&gt;</code><br />
+<code>#include &lt;llvm/IR/IRBuilder.h&gt;</code><br />
+<code>#include &lt;llvm/IR/Module.h&gt;</code><br />
 <code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;fstream&gt;</code><br />
@@ -86,47 +103,99 @@ Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2src_2main_8cpp" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2src_2main_8cpp" id="a_2mnt_2disk__ext4__0_2topazlang_2src_2main_8cpp">
-<area shape="rect" title="Compiler entry point." alt="" coords="714,5,896,48"/>
-<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="461,96,640,123"/>
-<area shape="poly" title=" " alt="" coords="740,51,606,93,604,88,739,46"/>
-<area shape="rect" href="lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="618,171,736,197"/>
-<area shape="poly" title=" " alt="" coords="763,51,732,71,706,98,691,126,683,156,678,155,686,124,702,94,729,67,760,46"/>
-<area shape="rect" title=" " alt="" coords="715,96,796,123"/>
-<area shape="poly" title=" " alt="" coords="795,50,774,84,769,81,790,47"/>
-<area shape="rect" title=" " alt="" coords="820,96,891,123"/>
-<area shape="poly" title=" " alt="" coords="820,47,842,81,838,84,816,50"/>
-<area shape="rect" title=" " alt="" coords="915,96,980,123"/>
-<area shape="poly" title=" " alt="" coords="843,46,914,86,911,90,841,51"/>
-<area shape="rect" title=" " alt="" coords="1005,96,1064,123"/>
-<area shape="poly" title=" " alt="" coords="865,46,991,90,989,95,863,51"/>
-<area shape="poly" title=" " alt="" coords="574,121,643,160,641,165,571,126"/>
-<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="329,171,393,197"/>
-<area shape="poly" title=" " alt="" coords="518,126,409,167,407,162,517,121"/>
-<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="595,245,674,272"/>
-<area shape="poly" title=" " alt="" coords="672,199,652,233,647,231,667,197"/>
-<area shape="rect" title=" " alt="" coords="768,245,826,272"/>
-<area shape="poly" title=" " alt="" coords="699,196,765,235,762,239,697,200"/>
-<area shape="rect" title=" " alt="" coords="698,245,744,272"/>
-<area shape="poly" title=" " alt="" coords="687,196,708,231,703,233,683,199"/>
-<area shape="rect" title=" " alt="" coords="242,320,302,347"/>
-<area shape="poly" title=" " alt="" coords="595,270,317,326,316,320,594,265"/>
-<area shape="rect" title=" " alt="" coords="569,320,622,347"/>
-<area shape="poly" title=" " alt="" coords="630,274,612,308,607,305,625,271"/>
-<area shape="poly" title=" " alt="" coords="394,191,581,241,580,246,393,196"/>
-<area shape="poly" title=" " alt="" coords="329,189,253,192,159,201,72,219,40,232,19,247,11,259,8,269,10,278,14,286,35,300,67,311,148,324,226,329,226,334,147,329,66,316,33,305,11,290,5,280,3,269,6,257,15,243,37,227,71,214,158,196,253,187,329,183"/>
-<area shape="poly" title=" " alt="" coords="394,188,461,207,499,222,533,243,563,273,585,305,580,308,559,276,530,247,496,227,460,212,393,193"/>
-<area shape="rect" title=" " alt="" coords="30,245,98,272"/>
-<area shape="poly" title=" " alt="" coords="329,196,114,247,113,242,328,190"/>
-<area shape="rect" title=" " alt="" coords="122,245,187,272"/>
-<area shape="poly" title=" " alt="" coords="329,199,202,244,200,239,327,194"/>
-<area shape="rect" title=" " alt="" coords="211,245,263,272"/>
-<area shape="poly" title=" " alt="" coords="341,200,273,240,270,235,338,196"/>
-<area shape="rect" title=" " alt="" coords="287,245,347,272"/>
-<area shape="poly" title=" " alt="" coords="356,199,335,233,330,231,351,196"/>
-<area shape="rect" title=" " alt="" coords="371,245,439,272"/>
-<area shape="poly" title=" " alt="" coords="371,196,392,231,387,233,367,199"/>
-<area shape="rect" title=" " alt="" coords="463,245,520,272"/>
-<area shape="poly" title=" " alt="" coords="385,196,457,235,454,240,383,200"/>
+<area shape="rect" title="Compiler entry point." alt="" coords="2568,5,2749,48"/>
+<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="830,96,958,139"/>
+<area shape="poly" title=" " alt="" coords="2567,35,974,115,973,109,2567,30"/>
+<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="355,187,489,213"/>
+<area shape="poly" title=" " alt="" coords="2567,31,2206,36,1701,47,1191,67,979,81,819,99,722,116,628,139,475,184,473,179,626,134,721,111,818,93,978,76,1191,62,1700,42,2206,31,2567,26"/>
+<area shape="rect" href="lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="630,261,748,288"/>
+<area shape="poly" title=" " alt="" coords="2567,30,2347,32,2078,41,1950,50,1840,62,1759,78,1732,87,1716,98,1710,107,1709,116,1716,137,1729,153,1745,160,1762,168,1776,185,1782,201,1776,215,1761,223,1731,229,1636,240,1346,257,1018,269,764,275,763,269,1018,263,1346,252,1635,235,1730,224,1759,217,1772,211,1776,201,1772,188,1759,173,1743,165,1726,157,1712,140,1704,116,1705,105,1712,94,1730,83,1757,73,1840,57,1950,45,2077,36,2347,27,2567,25"/>
+<area shape="rect" title=" " alt="" coords="174,187,332,213"/>
+<area shape="poly" title=" " alt="" coords="2567,31,2171,33,1607,43,1312,51,1035,63,797,79,617,99,529,116,442,139,302,184,300,179,441,134,528,111,616,93,797,73,1035,58,1312,46,1607,37,2171,28,2567,25"/>
+<area shape="rect" title=" " alt="" coords="1277,187,1410,213"/>
+<area shape="poly" title=" " alt="" coords="2567,32,2341,37,2052,49,1769,69,1653,82,1565,99,1513,115,1461,137,1378,181,1376,176,1459,132,1511,110,1564,93,1652,77,1769,63,2051,44,2341,32,2567,27"/>
+<area shape="rect" title=" " alt="" coords="1434,187,1554,213"/>
+<area shape="poly" title=" " alt="" coords="2567,31,2357,34,2092,44,1959,53,1836,65,1731,80,1652,99,1614,115,1578,136,1521,179,1518,174,1575,131,1612,110,1651,93,1730,74,1835,59,1958,48,2092,39,2357,29,2567,26"/>
+<area shape="rect" title=" " alt="" coords="1578,187,1762,213"/>
+<area shape="poly" title=" " alt="" coords="2567,30,2337,31,2054,40,1919,48,1803,60,1717,77,1689,87,1672,98,1663,114,1659,133,1664,171,1658,172,1654,133,1658,112,1668,94,1686,82,1716,72,1803,55,1919,43,2054,34,2337,26,2567,25"/>
+<area shape="rect" title=" " alt="" coords="1726,104,1926,131"/>
+<area shape="poly" title=" " alt="" coords="2567,37,2287,60,2113,78,1940,99,1908,103,1907,98,1939,93,2113,72,2286,55,2567,32"/>
+<area shape="rect" title=" " alt="" coords="1951,104,2133,131"/>
+<area shape="poly" title=" " alt="" coords="2568,41,2374,65,2147,99,2120,103,2119,98,2146,93,2373,60,2567,36"/>
+<area shape="rect" title=" " alt="" coords="2158,104,2343,131"/>
+<area shape="poly" title=" " alt="" coords="2568,50,2324,103,2323,98,2567,45"/>
+<area shape="rect" title=" " alt="" coords="2368,104,2549,131"/>
+<area shape="poly" title=" " alt="" coords="2612,51,2502,100,2500,95,2610,46"/>
+<area shape="rect" title=" " alt="" coords="2573,104,2743,131"/>
+<area shape="poly" title=" " alt="" coords="2661,48,2661,88,2656,88,2656,48"/>
+<area shape="rect" title=" " alt="" coords="2768,104,2943,131"/>
+<area shape="poly" title=" " alt="" coords="2706,46,2815,95,2812,100,2703,51"/>
+<area shape="rect" title=" " alt="" coords="2968,104,3146,131"/>
+<area shape="poly" title=" " alt="" coords="2750,45,2985,97,2984,103,2749,51"/>
+<area shape="rect" title=" " alt="" coords="3170,104,3339,131"/>
+<area shape="poly" title=" " alt="" coords="2750,36,2938,60,3159,93,3183,98,3182,103,3158,99,2938,65,2749,41"/>
+<area shape="rect" title=" " alt="" coords="3363,104,3524,131"/>
+<area shape="poly" title=" " alt="" coords="2750,31,3020,53,3186,71,3352,93,3376,98,3376,103,3351,99,3185,76,3020,58,2749,36"/>
+<area shape="rect" title=" " alt="" coords="3549,104,3725,131"/>
+<area shape="poly" title=" " alt="" coords="2749,29,3096,49,3316,68,3537,93,3565,98,3564,103,3536,99,3315,73,3095,54,2749,34"/>
+<area shape="rect" title=" " alt="" coords="3749,104,3922,131"/>
+<area shape="poly" title=" " alt="" coords="2750,27,2931,32,3177,44,3456,63,3737,93,3765,98,3764,103,3736,99,3455,69,3177,49,2931,38,2749,32"/>
+<area shape="rect" title=" " alt="" coords="3946,104,4085,131"/>
+<area shape="poly" title=" " alt="" coords="2749,24,2961,26,3255,34,3593,55,3766,72,3935,93,3956,97,3955,103,3934,99,3765,77,3593,60,3255,39,2961,31,2749,30"/>
+<area shape="rect" title=" " alt="" coords="4108,104,4190,131"/>
+<area shape="poly" title=" " alt="" coords="2749,26,3039,30,3429,40,3816,60,3976,75,4097,93,4108,96,4106,101,4096,99,3975,80,3815,65,3428,45,3039,35,2749,31"/>
+<area shape="rect" title=" " alt="" coords="4213,104,4284,131"/>
+<area shape="poly" title=" " alt="" coords="2749,25,3058,27,3479,35,3696,44,3898,56,4072,72,4203,93,4211,96,4209,101,4202,99,4071,77,3898,61,3695,49,3479,41,3058,32,2749,30"/>
+<area shape="rect" title=" " alt="" coords="4308,104,4374,131"/>
+<area shape="poly" title=" " alt="" coords="2749,25,3076,25,3524,32,3756,40,3972,52,4158,70,4297,93,4304,95,4303,100,4296,99,4157,75,3972,58,3755,45,3524,37,3076,30,2749,30"/>
+<area shape="rect" title=" " alt="" coords="4398,104,4457,131"/>
+<area shape="poly" title=" " alt="" coords="2749,27,3124,34,3634,47,4110,67,4284,79,4387,93,4393,95,4391,100,4386,99,4284,85,4110,72,3633,53,3124,39,2749,32"/>
+<area shape="poly" title=" " alt="" coords="830,132,505,187,504,182,830,127"/>
+<area shape="rect" title=" " alt="" coords="766,336,812,363"/>
+<area shape="poly" title=" " alt="" coords="859,141,833,162,812,188,799,221,792,257,789,321,784,320,786,256,794,220,808,185,830,158,856,137"/>
+<area shape="rect" title=" " alt="" coords="489,336,558,363"/>
+<area shape="poly" title=" " alt="" coords="830,130,663,157,591,174,566,181,553,189,534,219,524,254,521,290,522,320,517,321,516,290,519,253,529,216,550,185,564,177,589,168,662,152,830,125"/>
+<area shape="poly" title=" " alt="" coords="830,129,347,189,346,184,830,124"/>
+<area shape="rect" title=" " alt="" coords="822,187,966,213"/>
+<area shape="poly" title=" " alt="" coords="897,139,897,171,892,171,892,139"/>
+<area shape="poly" title=" " alt="" coords="959,127,1263,182,1262,187,958,133"/>
+<area shape="rect" title=" " alt="" coords="990,187,1118,213"/>
+<area shape="poly" title=" " alt="" coords="937,137,1017,177,1014,182,934,142"/>
+<area shape="poly" title=" " alt="" coords="959,124,1160,148,1419,184,1419,189,1159,154,958,129"/>
+<area shape="rect" title=" " alt="" coords="1143,187,1253,213"/>
+<area shape="poly" title=" " alt="" coords="959,133,1136,180,1135,185,958,138"/>
+<area shape="rect" title=" " alt="" coords="564,187,670,213"/>
+<area shape="poly" title=" " alt="" coords="831,140,676,184,674,179,829,135"/>
+<area shape="poly" title=" " alt="" coords="958,122,1563,184,1562,189,958,127"/>
+<area shape="rect" title=" " alt="" coords="694,187,748,213"/>
+<area shape="poly" title=" " alt="" coords="851,142,763,182,761,177,848,137"/>
+<area shape="poly" title=" " alt="" coords="469,211,628,254,627,259,468,216"/>
+<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="314,261,378,288"/>
+<area shape="poly" title=" " alt="" coords="411,216,372,253,368,249,407,212"/>
+<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="582,336,660,363"/>
+<area shape="poly" title=" " alt="" coords="679,290,645,326,641,323,675,287"/>
+<area shape="rect" title=" " alt="" coords="684,336,742,363"/>
+<area shape="poly" title=" " alt="" coords="696,288,706,320,701,322,690,289"/>
+<area shape="poly" title=" " alt="" coords="708,286,761,324,757,329,705,291"/>
+<area shape="rect" title=" " alt="" coords="263,411,323,437"/>
+<area shape="poly" title=" " alt="" coords="582,363,571,365,339,416,338,410,570,360,580,358"/>
+<area shape="rect" title=" " alt="" coords="393,411,462,437"/>
+<area shape="poly" title=" " alt="" coords="588,366,476,407,475,402,586,361"/>
+<area shape="rect" title=" " alt="" coords="509,411,562,437"/>
+<area shape="poly" title=" " alt="" coords="608,365,563,403,560,399,604,361"/>
+<area shape="poly" title=" " alt="" coords="379,282,567,331,566,336,378,287"/>
+<area shape="poly" title=" " alt="" coords="315,284,263,301,238,316,219,337,215,354,222,371,237,386,256,400,253,405,234,391,218,374,210,355,214,335,235,312,260,296,313,279"/>
+<area shape="poly" title=" " alt="" coords="319,291,293,305,271,322,259,342,259,351,263,361,286,384,316,401,348,411,379,417,378,422,346,416,314,406,283,389,259,364,253,352,254,340,267,319,291,300,316,286"/>
+<area shape="poly" title=" " alt="" coords="364,286,428,334,510,399,507,403,425,338,361,290"/>
+<area shape="rect" title=" " alt="" coords="273,336,337,363"/>
+<area shape="poly" title=" " alt="" coords="341,290,322,324,317,321,337,287"/>
+<area shape="rect" title=" " alt="" coords="361,336,414,363"/>
+<area shape="poly" title=" " alt="" coords="356,287,375,321,371,324,351,290"/>
+<area shape="rect" title=" " alt="" coords="5,336,66,363"/>
+<area shape="poly" title=" " alt="" coords="314,285,81,338,80,333,313,280"/>
+<area shape="poly" title=" " alt="" coords="378,286,480,327,478,332,376,291"/>
+<area shape="rect" title=" " alt="" coords="90,336,147,363"/>
+<area shape="poly" title=" " alt="" coords="314,289,163,337,161,332,313,284"/>
 </map>
 </div>
 </div>
@@ -134,15 +203,15 @@ Include dependency graph for main.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memitem:ac0f2228420376f4db7e1274f2b41667c" id="r_ac0f2228420376f4db7e1274f2b41667c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0f2228420376f4db7e1274f2b41667c">main</a> (int argc, const char *argv[])</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Compiler entry point. </p>
 
 <p class="definition">Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a0ddf1224851353fc92bfbff6f499fa97" name="a0ddf1224851353fc92bfbff6f499fa97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&#160;</a></span>main()</h2>
+<a id="ac0f2228420376f4db7e1274f2b41667c" name="ac0f2228420376f4db7e1274f2b41667c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f2228420376f4db7e1274f2b41667c">&#9670;&#160;</a></span>main()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,131 +224,159 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>[]&#160;)</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>[]&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00014">14</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00031">31</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" loading="lazy" alt=""/></div>
-<map name="amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1171,55,1197"/>
-<area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,1063,202,1089"/>
-<area shape="poly" title=" " alt="" coords="45,1168,123,1098,127,1102,48,1172"/>
-<area shape="rect" href="classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="2283,1512,2393,1539"/>
-<area shape="poly" title=" " alt="" coords="42,1196,79,1247,140,1314,179,1345,221,1371,266,1389,315,1396,1852,1396,1916,1399,1980,1408,2104,1436,2213,1471,2293,1503,2291,1508,2211,1476,2103,1441,1979,1413,1915,1404,1852,1401,315,1401,265,1395,218,1376,175,1350,137,1318,75,1250,38,1199"/>
-<area shape="rect" href="classParser.html#a0470ee6b00dadc211d17e46adae86a5d" title="Method for parsing only one statement." alt="" coords="250,955,382,981"/>
-<area shape="poly" title=" " alt="" coords="173,1060,280,988,283,992,176,1065"/>
-<area shape="rect" href="classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="2974,828,3077,855"/>
-<area shape="poly" title=" " alt="" coords="331,980,387,1040,429,1079,479,1119,536,1157,598,1189,663,1211,697,1217,731,1219,1364,1219,1477,1212,1571,1195,1653,1171,1729,1143,1805,1115,1888,1090,1983,1073,2096,1067,2567,1067,2664,1072,2743,1076,2779,1074,2816,1065,2854,1049,2897,1023,2916,1004,2925,984,2932,961,2945,935,2999,865,3003,868,2949,937,2937,963,2930,986,2921,1007,2901,1027,2857,1054,2817,1070,2780,1079,2743,1082,2664,1077,2567,1072,2097,1072,1983,1079,1889,1096,1807,1120,1731,1148,1655,1176,1572,1200,1477,1217,1364,1224,731,1224,696,1222,662,1216,596,1194,533,1162,476,1124,426,1083,383,1044,327,984"/>
-<area shape="rect" href="classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="3151,448,3247,475"/>
-<area shape="poly" title=" " alt="" coords="315,954,315,882,320,765,336,619,349,541,366,461,388,383,416,309,450,240,490,179,538,127,593,88,624,73,658,62,693,56,731,53,2805,53,2896,52,2969,58,3003,67,3036,82,3070,104,3105,135,3133,169,3155,208,3172,249,3184,291,3197,371,3201,432,3195,432,3192,371,3179,292,3167,251,3151,210,3129,172,3101,139,3066,108,3033,86,3001,72,2968,63,2895,58,2805,59,731,59,694,61,659,67,626,78,596,92,541,131,494,182,454,242,421,311,393,385,371,463,354,542,341,620,326,766,320,883,320,954"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="3295,1157,3411,1184"/>
-<area shape="poly" title=" " alt="" coords="315,954,320,808,336,572,350,445,370,327,395,228,411,189,428,159,460,116,491,82,522,55,556,34,592,19,632,10,678,4,731,3,3027,3,3048,5,3068,12,3104,36,3135,73,3163,120,3188,175,3210,234,3249,355,3280,470,3305,588,3323,706,3336,820,3350,1015,3354,1141,3349,1142,3345,1015,3331,820,3318,707,3299,589,3275,471,3244,357,3205,236,3183,177,3158,123,3131,76,3100,40,3065,16,3047,10,3026,8,731,8,679,10,633,15,594,24,558,39,526,59,495,86,464,120,433,161,416,191,401,230,375,328,356,446,341,572,325,809,320,954"/>
-<area shape="rect" href="classParser.html#a4e39379d0213f8f2cb8b10abe8110d77" title="Method for parsing variable declaration." alt="" coords="430,955,619,981"/>
-<area shape="poly" title=" " alt="" coords="383,965,415,965,415,971,383,971"/>
-<area shape="poly" title=" " alt="" coords="3030,826,3183,488,3188,490,3035,828"/>
-<area shape="poly" title=" " alt="" coords="3172,449,3168,439,3171,430,3182,424,3199,421,3218,424,3228,431,3225,435,3216,429,3199,427,3183,429,3175,433,3173,439,3177,446"/>
-<area shape="poly" title=" " alt="" coords="3206,474,3348,1142,3343,1143,3201,475"/>
-<area shape="rect" href="exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="3459,1149,3626,1192"/>
-<area shape="poly" title=" " alt="" coords="3411,1168,3444,1168,3444,1173,3411,1173"/>
-<area shape="poly" title=" " alt="" coords="595,979,748,1003,839,1012,929,1016,2567,1016,2663,1018,2739,1016,2774,1011,2811,1002,2852,987,2898,966,2931,944,2960,918,3004,866,3008,869,2964,922,2934,949,2900,970,2854,992,2813,1007,2775,1016,2739,1021,2663,1023,2567,1021,929,1021,838,1018,747,1009,594,985"/>
-<area shape="poly" title=" " alt="" coords="523,954,524,886,531,775,548,637,561,563,578,488,600,415,627,345,660,280,699,222,745,173,798,136,828,122,860,112,893,106,929,104,2805,104,2896,105,2969,114,3002,125,3035,142,3069,165,3105,197,3129,223,3148,254,3175,319,3191,382,3198,432,3193,433,3186,383,3170,320,3143,256,3124,227,3101,201,3066,169,3032,146,3000,130,2968,119,2896,110,2805,109,929,109,894,111,861,118,830,127,801,141,749,177,703,225,665,282,632,347,605,416,583,490,566,564,553,638,536,775,530,886,528,954"/>
-<area shape="poly" title=" " alt="" coords="538,980,590,1039,627,1072,668,1100,736,1136,793,1156,852,1166,929,1168,3026,1168,3279,1168,3279,1173,3026,1173,929,1173,852,1171,792,1161,734,1140,665,1105,623,1076,586,1042,534,984"/>
-<area shape="rect" href="classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="2743,600,2864,627"/>
-<area shape="poly" title=" " alt="" coords="619,965,929,965,1144,965,1253,959,1344,942,1423,917,1496,890,1569,862,1649,837,1740,820,1850,813,2099,813,2198,808,2297,792,2394,769,2487,742,2648,682,2760,632,2762,636,2650,687,2489,747,2396,775,2298,797,2198,813,2099,819,1850,819,1741,825,1650,842,1571,867,1498,894,1425,922,1345,947,1254,964,1144,971,929,971,619,971"/>
-<area shape="rect" href="classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe" title="Method for verifyng the Topaz type by current tokens." alt="" coords="2727,1107,2880,1133"/>
-<area shape="poly" title=" " alt="" coords="548,979,610,1017,702,1062,756,1084,812,1101,871,1113,929,1117,2340,1117,2712,1117,2712,1123,2340,1123,929,1123,870,1118,811,1106,754,1089,700,1067,607,1021,545,984"/>
-<area shape="rect" href="classParser.html#a077a7024f238711664ff68ebf79e320b" title="Method for parsing expressions." alt="" coords="667,893,798,920"/>
-<area shape="poly" title=" " alt="" coords="572,952,669,922,671,927,573,957"/>
-<area shape="rect" href="structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7" title="Method for convert type to string." alt="" coords="671,843,794,869"/>
-<area shape="poly" title=" " alt="" coords="544,952,598,917,665,879,677,873,680,878,668,884,601,922,547,956"/>
-<area shape="poly" title=" " alt="" coords="2865,623,2884,631,2901,643,2921,668,2930,692,2936,717,2949,745,2976,782,3002,814,2998,818,2971,785,2945,748,2931,719,2924,693,2916,671,2897,647,2881,636,2863,628"/>
-<area shape="poly" title=" " alt="" coords="2864,617,2917,619,2979,615,3042,603,3102,579,3128,560,3151,536,3182,487,3187,490,3155,539,3132,564,3105,584,3044,608,2980,620,2917,624,2864,623"/>
-<area shape="poly" title=" " alt="" coords="2851,625,2900,647,2964,686,3011,720,3054,760,3105,814,3180,904,3247,997,3338,1142,3334,1145,3243,1000,3176,907,3101,818,3050,764,3008,725,2961,690,2898,652,2849,630"/>
-<area shape="poly" title=" " alt="" coords="2871,1104,2897,1086,2912,1067,2921,1048,2926,1010,2928,969,2934,947,2945,923,2968,890,2994,863,2998,867,2972,893,2949,925,2939,949,2934,970,2931,1010,2926,1049,2917,1069,2901,1090,2874,1108"/>
-<area shape="poly" title=" " alt="" coords="2860,1104,2898,1086,2939,1048,3004,980,3067,909,3101,865,3124,815,3143,762,3171,655,3186,560,3193,490,3199,491,3192,560,3176,656,3149,764,3129,817,3106,868,3071,913,3008,983,2942,1052,2900,1090,2862,1109"/>
-<area shape="poly" title=" " alt="" coords="2880,1120,3048,1130,3247,1149,3280,1154,3279,1160,3246,1155,3048,1136,2880,1126"/>
-<area shape="rect" href="classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="2947,1056,3103,1083"/>
-<area shape="poly" title=" " alt="" coords="2865,1103,2948,1084,2949,1089,2866,1109"/>
-<area shape="poly" title=" " alt="" coords="3037,1054,3069,1014,3101,960,3125,895,3145,827,3173,691,3188,573,3194,490,3199,490,3193,573,3178,692,3150,828,3130,897,3106,962,3074,1017,3041,1058"/>
-<area shape="poly" title=" " alt="" coords="3104,1070,3175,1079,3248,1099,3290,1120,3325,1145,3322,1150,3287,1125,3246,1104,3174,1084,3104,1075"/>
-<area shape="rect" href="classParser.html#ac23cdc70263553f1a8f5a2bf01caa770" title="Method for parsing expression as &#39;logical and&#39;." alt="" coords="846,811,1015,837"/>
-<area shape="poly" title=" " alt="" coords="769,890,797,879,883,842,885,847,799,884,771,895"/>
-<area shape="poly" title=" " alt="" coords="984,835,1131,871,1344,914,1466,934,1594,950,1723,961,1850,965,2567,965,2662,964,2736,956,2808,939,2898,910,2948,887,2990,861,2993,866,2950,892,2900,914,2809,944,2737,961,2662,969,2567,971,1850,971,1722,967,1593,955,1465,939,1343,919,1130,876,983,841"/>
-<area shape="poly" title=" " alt="" coords="935,809,959,753,1002,666,1062,560,1140,446,1184,390,1233,337,1286,287,1343,244,1403,207,1467,179,1534,161,1605,155,2805,155,2896,158,2934,164,2968,173,3001,186,3034,205,3105,262,3139,302,3165,349,3183,394,3194,432,3189,434,3178,396,3160,351,3135,305,3101,266,3031,210,2999,191,2967,178,2933,169,2896,163,2805,160,1605,160,1535,166,1469,184,1405,212,1346,248,1289,291,1237,340,1188,394,1144,449,1067,563,1007,669,964,756,940,811"/>
-<area shape="rect" href="classParser.html#a1438271fe63fe661f7e43ce92119bcea" title="Method for parsing expression as &#39;logical or&#39;." alt="" coords="1063,769,1223,796"/>
-<area shape="poly" title=" " alt="" coords="1002,807,1056,797,1057,802,1003,813"/>
-<area shape="poly" title=" " alt="" coords="1187,794,1301,827,1464,867,1557,886,1654,901,1752,911,1850,915,2567,915,2675,909,2783,894,2880,875,2958,856,2960,862,2881,880,2783,899,2676,914,2567,920,1850,920,1752,916,1653,906,1556,891,1463,872,1300,833,1186,799"/>
-<area shape="poly" title=" " alt="" coords="1146,768,1189,654,1228,570,1279,482,1342,397,1379,359,1418,325,1460,296,1505,275,1554,261,1605,256,2805,256,2893,253,2965,252,2998,256,3032,266,3067,284,3105,310,3126,335,3134,360,3139,387,3154,416,3171,436,3167,439,3149,419,3134,388,3129,361,3121,337,3102,314,3064,288,3030,271,2997,261,2964,257,2893,258,2805,261,1605,261,1555,266,1507,280,1463,301,1421,329,1382,362,1346,400,1284,485,1233,573,1194,656,1151,770"/>
-<area shape="rect" href="classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf" title="Method for parsing expression as &#39;equality&#39;." alt="" coords="1271,749,1454,776"/>
-<area shape="poly" title=" " alt="" coords="1223,773,1255,770,1255,775,1223,778"/>
-<area shape="poly" title=" " alt="" coords="1402,774,1483,800,1593,830,1720,854,1785,861,1850,864,2567,864,2781,857,2958,845,2958,850,2782,862,2567,869,1850,869,1785,867,1719,859,1591,835,1481,805,1401,779"/>
-<area shape="poly" title=" " alt="" coords="1372,747,1424,684,1460,645,1500,609,1649,483,1712,432,1773,388,1838,353,1910,328,1995,312,2096,307,2805,307,2892,304,2961,304,2994,309,3028,317,3064,332,3105,354,3122,368,3132,382,3140,398,3153,416,3173,436,3169,439,3149,419,3136,401,3128,385,3118,371,3102,358,3062,337,3026,323,2993,314,2961,310,2892,310,2805,312,2097,312,1996,317,1912,333,1840,358,1776,393,1715,436,1652,487,1504,613,1464,649,1428,687,1376,750"/>
-<area shape="rect" href="classParser.html#a9539499c0db5a3d7045952e7919d3a65" title="Method for parsing expression as &#39;comparation&#39;." alt="" coords="1502,623,1711,649"/>
-<area shape="poly" title=" " alt="" coords="1389,747,1564,654,1567,659,1391,751"/>
-<area shape="poly" title=" " alt="" coords="1702,647,2708,795,2958,830,2957,835,2707,800,1701,653"/>
-<area shape="poly" title=" " alt="" coords="1622,620,1693,566,1744,532,1805,496,1872,462,1944,434,2020,415,2096,408,2805,408,2896,412,2986,421,3137,446,3136,451,2985,427,2895,417,2805,413,2097,413,2021,420,1946,439,1874,467,1807,500,1747,536,1696,571,1626,624"/>
-<area shape="rect" href="classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa" title="Method for parsing expression as &#39;additive&#39;." alt="" coords="1759,612,1943,639"/>
-<area shape="poly" title=" " alt="" coords="1712,629,1743,627,1744,633,1712,634"/>
-<area shape="poly" title=" " alt="" coords="1943,634,2161,663,2437,703,2706,749,2816,772,2900,795,2924,807,2948,819,2959,823,2958,828,2946,824,2922,811,2898,800,2815,778,2705,754,2436,708,2160,668,1943,639"/>
-<area shape="poly" title=" " alt="" coords="1918,609,2105,577,2221,565,2337,560,2805,560,2890,556,2956,544,3102,497,3153,479,3155,484,3104,503,2957,549,2891,561,2805,565,2337,565,2221,570,2106,583,1919,614"/>
-<area shape="rect" href="classParser.html#ad46509f9d3366981b886adbbef7476f5" title="Method for parsing expression as &#39;multiplicative&#39;." alt="" coords="1991,499,2205,525"/>
-<area shape="poly" title=" " alt="" coords="1871,609,1923,576,1990,542,2026,528,2028,533,1992,546,1926,581,1874,614"/>
-<area shape="poly" title=" " alt="" coords="2143,523,2472,625,2708,693,2764,704,2809,708,2852,718,2875,728,2901,745,2918,763,2925,783,2933,802,2949,819,2960,826,2958,831,2945,823,2928,805,2920,785,2913,766,2897,749,2873,733,2850,723,2808,713,2763,709,2707,699,2471,631,2142,528"/>
-<area shape="poly" title=" " alt="" coords="2176,495,2253,484,2408,465,2476,460,2564,459,2805,459,3136,459,3136,464,2805,464,2564,464,2476,466,2408,470,2253,489,2177,501"/>
-<area shape="rect" href="classParser.html#a065a423e45b55d6760c1c2d871d34055" title="Method for parsing expression as &#39;unary&#39;." alt="" coords="2253,499,2423,525"/>
-<area shape="poly" title=" " alt="" coords="2205,509,2237,509,2237,515,2205,515"/>
-<area shape="poly" title=" " alt="" coords="2379,523,2708,636,2763,650,2808,657,2851,668,2901,694,2946,743,3005,814,3001,818,2942,746,2897,698,2849,673,2807,662,2762,655,2707,641,2377,528"/>
-<area shape="poly" title=" " alt="" coords="2423,510,2724,505,2913,495,3103,477,3136,472,3136,478,3104,483,2913,500,2724,510,2424,515"/>
-<area shape="rect" href="classParser.html#a2cdd6289b4951d4fadf3f5110586569a" title="Method for parsing expression as &#39;primary&#39;." alt="" coords="2475,347,2656,373"/>
-<area shape="poly" title=" " alt="" coords="2358,496,2530,380,2533,384,2361,500"/>
-<area shape="poly" title=" " alt="" coords="2657,348,2752,343,2865,345,2986,359,3046,372,3104,390,3143,410,3175,435,3172,439,3140,415,3102,394,3045,377,2985,364,2865,350,2752,348,2657,353"/>
-<area shape="poly" title=" " alt="" coords="2607,344,2664,327,2737,310,2823,296,2915,288,3009,292,3055,299,3100,311,3142,327,3181,349,3217,377,3249,410,3265,437,3280,471,3304,557,3322,661,3336,774,3350,992,3354,1142,3349,1142,3345,992,3330,774,3317,662,3299,558,3275,473,3261,439,3245,414,3214,380,3178,354,3140,332,3098,316,3054,305,3009,298,2915,294,2823,301,2738,315,2665,332,2609,349"/>
-<area shape="poly" title=" " alt="" coords="2582,372,2781,587,2777,590,2578,376"/>
-<area shape="poly" title=" " alt="" coords="2475,363,2254,372,2122,383,1991,401,1646,453,1504,476,1375,505,1250,546,1188,573,1126,605,1061,643,993,688,848,801,832,821,824,841,817,862,800,883,794,887,791,883,796,879,812,859,819,839,827,818,844,797,990,684,1058,639,1123,600,1186,568,1248,541,1373,500,1503,471,1645,448,1990,396,2122,378,2253,367,2474,358"/>
-<area shape="rect" href="classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="2970,1613,3080,1640"/>
-<area shape="poly" title=" " alt="" coords="2375,1537,2518,1588,2612,1614,2708,1633,2761,1639,2803,1639,2899,1633,2955,1630,2955,1635,2899,1639,2803,1644,2761,1644,2707,1639,2611,1619,2517,1593,2373,1542"/>
-<area shape="rect" href="classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="3154,1563,3244,1589"/>
-<area shape="poly" title=" " alt="" coords="2343,1511,2359,1476,2386,1430,2423,1383,2445,1363,2470,1346,2528,1316,2581,1296,2630,1285,2677,1283,2725,1286,2777,1294,2900,1319,2962,1331,3011,1343,3055,1365,3105,1403,3136,1437,3160,1476,3191,1547,3186,1549,3155,1479,3131,1441,3102,1407,3053,1370,3009,1348,2961,1336,2898,1324,2776,1299,2725,1291,2677,1288,2630,1291,2582,1301,2531,1321,2473,1350,2449,1367,2427,1387,2390,1433,2364,1478,2347,1513"/>
-<area shape="rect" href="classLexer.html#a8e7a060feea59b6a096676f74ca9cce3" title="Method for skipping comments." alt="" coords="2727,1715,2880,1741"/>
-<area shape="poly" title=" " alt="" coords="2348,1538,2364,1571,2391,1615,2427,1659,2449,1678,2473,1694,2531,1718,2593,1731,2655,1736,2711,1735,2711,1741,2654,1741,2592,1736,2529,1723,2470,1698,2446,1682,2424,1662,2387,1618,2360,1574,2343,1540"/>
-<area shape="rect" href="classLexer.html#a1831613248412010bfd02e87f9e8582d" title="Method for tokenizing character literal." alt="" coords="2471,1461,2660,1488"/>
-<area shape="poly" title=" " alt="" coords="2393,1510,2487,1489,2488,1495,2394,1516"/>
-<area shape="rect" href="classLexer.html#af26984da969b4bd1dbc65d07977b4438" title="Method for tokenizing identifier token." alt="" coords="2740,1765,2867,1792"/>
-<area shape="poly" title=" " alt="" coords="2346,1538,2359,1580,2384,1636,2422,1695,2446,1721,2473,1742,2502,1758,2534,1770,2600,1784,2665,1788,2724,1786,2724,1792,2665,1794,2599,1789,2532,1775,2500,1762,2470,1746,2442,1724,2418,1698,2380,1639,2354,1582,2341,1540"/>
-<area shape="rect" href="classLexer.html#a3a21d278a491d885602a77073f050b4b" title="Method for tokenizing number literal." alt="" coords="2715,1512,2892,1539"/>
-<area shape="poly" title=" " alt="" coords="2394,1523,2699,1523,2699,1528,2394,1528"/>
-<area shape="rect" href="classLexer.html#ada8d48ea48d4aad8af8ed61965f7c3c0" title="Method for tokenizing operator." alt="" coords="2738,1816,2869,1843"/>
-<area shape="poly" title=" " alt="" coords="2344,1538,2354,1589,2377,1659,2394,1697,2415,1734,2442,1767,2473,1794,2501,1811,2532,1823,2598,1838,2663,1842,2722,1839,2723,1844,2663,1847,2597,1843,2531,1828,2499,1815,2470,1798,2438,1770,2411,1737,2389,1700,2372,1661,2349,1590,2339,1540"/>
-<area shape="rect" href="classLexer.html#a23f4e2fe208765d7a603d78f508705ad" title="Method for tokenizing string literal." alt="" coords="2482,1360,2649,1387"/>
-<area shape="poly" title=" " alt="" coords="2358,1509,2530,1393,2533,1397,2361,1514"/>
-<area shape="poly" title=" " alt="" coords="3073,1610,3139,1591,3140,1596,3074,1615"/>
-<area shape="poly" title=" " alt="" coords="3207,1561,3244,1492,3277,1410,3305,1327,3342,1198,3347,1200,3310,1329,3282,1412,3249,1494,3211,1564"/>
-<area shape="poly" title=" " alt="" coords="2855,1712,2898,1694,2922,1676,2946,1656,2970,1644,2972,1649,2948,1661,2925,1680,2900,1698,2857,1717"/>
-<area shape="poly" title=" " alt="" coords="2880,1715,2988,1692,3046,1673,3102,1650,3140,1625,3172,1598,3175,1602,3143,1630,3105,1654,3048,1678,2989,1697,2881,1721"/>
-<area shape="poly" title=" " alt="" coords="2660,1466,2785,1449,2859,1436,2937,1417,3017,1393,3097,1363,3174,1326,3245,1282,3293,1239,3331,1195,3335,1198,3297,1242,3248,1286,3176,1331,3099,1368,3019,1398,2938,1422,2860,1441,2785,1455,2660,1471"/>
-<area shape="poly" title=" " alt="" coords="2580,1487,2631,1540,2668,1569,2709,1592,2771,1612,2836,1624,2899,1628,2954,1629,2954,1634,2899,1634,2836,1629,2770,1618,2707,1597,2665,1574,2628,1544,2576,1490"/>
-<area shape="poly" title=" " alt="" coords="2660,1476,2775,1483,2899,1497,3003,1515,3104,1541,3146,1555,3145,1560,3103,1547,3002,1520,2899,1503,2774,1489,2660,1481"/>
-<area shape="rect" href="classLexer.html#a1b25efc22ae7e4235aa007185a885c0d" title="Method for getting escape&#45;sequence in string or character literal." alt="" coords="2708,1360,2899,1387"/>
-<area shape="poly" title=" " alt="" coords="2591,1458,2707,1403,2742,1390,2743,1395,2709,1408,2593,1463"/>
-<area shape="poly" title=" " alt="" coords="2872,1357,3045,1312,3146,1278,3246,1238,3285,1215,3320,1192,3323,1196,3288,1220,3248,1242,3148,1283,3046,1317,2873,1362"/>
-<area shape="poly" title=" " alt="" coords="2819,1386,3004,1600,3000,1604,2815,1389"/>
-<area shape="poly" title=" " alt="" coords="2866,1764,2898,1751,2940,1711,2998,1650,3002,1654,2944,1715,2900,1756,2868,1769"/>
-<area shape="poly" title=" " alt="" coords="2867,1767,2999,1742,3060,1725,3102,1707,3129,1684,3151,1657,3183,1602,3188,1605,3156,1660,3133,1688,3105,1712,3062,1730,3000,1747,2868,1772"/>
-<area shape="poly" title=" " alt="" coords="2892,1517,2974,1505,3067,1482,3115,1465,3161,1445,3205,1420,3245,1390,3266,1369,3284,1345,3312,1293,3332,1241,3343,1198,3348,1200,3337,1242,3317,1295,3288,1348,3270,1372,3248,1394,3208,1424,3164,1450,3117,1470,3069,1487,2975,1510,2893,1522"/>
-<area shape="poly" title=" " alt="" coords="2857,1537,2900,1555,2925,1574,2948,1592,2972,1605,2970,1609,2946,1597,2922,1578,2898,1560,2855,1542"/>
-<area shape="poly" title=" " alt="" coords="2893,1534,2947,1541,3139,1566,3138,1571,2947,1547,2892,1540"/>
-<area shape="poly" title=" " alt="" coords="2869,1838,2923,1843,2983,1841,3045,1831,3074,1822,3102,1808,3142,1782,3177,1750,3208,1714,3235,1674,3259,1632,3279,1588,3310,1496,3330,1405,3342,1321,3349,1199,3354,1199,3347,1322,3335,1406,3315,1497,3284,1590,3264,1634,3240,1677,3212,1717,3181,1754,3145,1786,3105,1813,3076,1827,3046,1836,2983,1847,2923,1848,2869,1843"/>
-<area shape="poly" title=" " alt="" coords="2868,1816,2898,1802,2936,1768,2967,1728,2992,1687,3010,1653,3014,1655,2997,1690,2972,1731,2939,1772,2900,1806,2870,1821"/>
-<area shape="poly" title=" " alt="" coords="2869,1818,3001,1794,3061,1777,3102,1758,3135,1723,3160,1681,3178,1639,3189,1604,3194,1605,3183,1641,3165,1684,3139,1726,3105,1762,3063,1782,3002,1799,2870,1823"/>
-<area shape="poly" title=" " alt="" coords="2600,1357,2707,1319,2866,1275,3024,1236,3278,1182,3280,1187,3026,1241,2867,1280,2708,1324,2601,1362"/>
-<area shape="poly" title=" " alt="" coords="2590,1385,2626,1412,2662,1448,2677,1476,2683,1502,2690,1526,2709,1549,2733,1565,2755,1575,2797,1583,2843,1584,2900,1592,2957,1606,2955,1612,2898,1597,2843,1589,2797,1588,2754,1580,2731,1570,2706,1553,2686,1528,2678,1504,2672,1478,2658,1451,2623,1416,2587,1389"/>
-<area shape="poly" title=" " alt="" coords="2609,1357,2668,1343,2741,1332,2821,1330,2861,1335,2900,1345,2945,1364,2988,1388,3067,1444,3132,1502,3178,1549,3174,1552,3128,1505,3064,1448,2985,1392,2943,1369,2898,1351,2860,1341,2821,1336,2742,1337,2669,1348,2611,1362"/>
-<area shape="poly" title=" " alt="" coords="2649,1371,2692,1371,2692,1376,2649,1376"/>
+<div class="center"><img src="main_8cpp_ac0f2228420376f4db7e1274f2b41667c_cgraph.png" border="0" usemap="#amain_8cpp_ac0f2228420376f4db7e1274f2b41667c_cgraph" loading="lazy" alt=""/></div>
+<map name="amain_8cpp_ac0f2228420376f4db7e1274f2b41667c_cgraph" id="amain_8cpp_ac0f2228420376f4db7e1274f2b41667c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,1581,55,1608"/>
+<area shape="rect" href="classCodeGenerator.html#aef4f9c2efe63221d0060f226cd767c0f" title="Method for generating LLVM IR code." alt="" coords="307,455,474,481"/>
+<area shape="poly" title=" " alt="" coords="29,1581,35,1510,47,1398,68,1263,100,1126,131,1029,167,931,246,747,320,594,372,494,377,496,325,596,251,749,172,933,136,1031,105,1127,73,1264,52,1398,40,1511,35,1581"/>
+<area shape="rect" href="classCodeGenerator.html#acaed752e624b67267e09a006578cafad" title="Method for getting current LLVM Module." alt="" coords="113,1632,248,1675"/>
+<area shape="poly" title=" " alt="" coords="56,1602,111,1623,109,1628,54,1607"/>
+<area shape="rect" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="131,1139,230,1165"/>
+<area shape="poly" title=" " alt="" coords="33,1580,168,1179,173,1181,38,1582"/>
+<area shape="rect" href="classCodeGenerator.html#ad9652056bc78e567f1346b7842899a15" title="Method for printing generated LLVM IR code." alt="" coords="103,1699,259,1725"/>
+<area shape="poly" title=" " alt="" coords="41,1607,66,1646,84,1667,104,1685,112,1689,109,1694,101,1689,80,1670,62,1649,36,1610"/>
+<area shape="rect" href="classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="2387,1784,2497,1811"/>
+<area shape="poly" title=" " alt="" coords="55,1592,389,1592,1956,1592,2026,1598,2095,1613,2163,1635,2226,1662,2336,1722,2412,1772,2409,1777,2333,1726,2224,1667,2161,1640,2094,1618,2025,1603,1956,1597,389,1597,55,1597"/>
+<area shape="rect" href="classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf" title="Method for generating LLVM IR code for passing statement." alt="" coords="522,212,723,239"/>
+<area shape="poly" title=" " alt="" coords="394,454,410,415,436,362,473,306,496,280,521,257,543,243,546,247,524,261,499,283,477,309,441,365,415,417,399,456"/>
+<area shape="rect" href="classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478" title="Method for generating LLVM IR code for variable definition." alt="" coords="2586,197,2753,240"/>
+<area shape="poly" title=" " alt="" coords="723,222,1033,220,2203,220,2570,217,2570,223,2203,225,1033,225,723,227"/>
+<area shape="rect" href="classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="2812,131,3011,157"/>
+<area shape="poly" title=" " alt="" coords="2741,194,2850,160,2851,165,2742,199"/>
+<area shape="rect" href="classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="3274,248,3417,291"/>
+<area shape="poly" title=" " alt="" coords="2754,222,3259,260,3258,266,2754,228"/>
+<area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="3059,123,3226,165"/>
+<area shape="poly" title=" " alt="" coords="3012,150,3043,150,3043,156,3012,156"/>
+<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="3465,1404,3581,1431"/>
+<area shape="poly" title=" " alt="" coords="2945,128,3040,96,3102,81,3169,72,3238,70,3305,79,3337,89,3366,103,3394,122,3419,145,3434,173,3448,219,3472,355,3490,534,3503,736,3519,1132,3524,1388,3519,1389,3513,1132,3498,736,3484,534,3466,356,3443,221,3430,175,3415,148,3391,126,3364,108,3335,94,3304,84,3238,75,3170,77,3103,87,3041,101,2947,133"/>
+<area shape="rect" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="3059,189,3226,232"/>
+<area shape="poly" title=" " alt="" coords="2961,155,3052,182,3051,187,2960,161"/>
+<area shape="rect" href="classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="3059,5,3226,48"/>
+<area shape="poly" title=" " alt="" coords="2956,128,3058,76,3102,54,3105,58,3060,81,2958,133"/>
+<area shape="poly" title=" " alt="" coords="3059,138,3027,138,3027,132,3059,133"/>
+<area shape="poly" title=" " alt="" coords="3227,132,3276,134,3328,142,3377,161,3399,175,3419,193,3434,220,3447,264,3470,395,3488,566,3502,760,3518,1140,3524,1388,3518,1389,3513,1141,3496,760,3483,566,3465,395,3442,266,3429,222,3415,196,3396,179,3375,166,3327,147,3276,139,3227,138"/>
+<area shape="rect" href="exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="3629,1396,3796,1439"/>
+<area shape="poly" title=" " alt="" coords="3581,1415,3614,1415,3614,1420,3581,1420"/>
+<area shape="poly" title=" " alt="" coords="3226,191,3275,187,3327,191,3376,205,3399,218,3419,234,3434,260,3448,302,3471,427,3489,592,3502,779,3518,1147,3524,1388,3518,1388,3513,1147,3497,779,3483,592,3465,428,3443,303,3429,262,3415,238,3396,222,3374,210,3326,196,3275,192,3227,196"/>
+<area shape="poly" title=" " alt="" coords="3219,230,3260,242,3259,247,3218,235"/>
+<area shape="poly" title=" " alt="" coords="3401,289,3419,308,3430,334,3441,375,3460,494,3477,648,3491,822,3512,1163,3523,1388,3518,1389,3507,1164,3486,822,3471,649,3455,495,3436,376,3425,336,3414,311,3397,293"/>
+<area shape="poly" title=" " alt="" coords="3072,51,3060,57,2939,124,2937,119,3058,52,3070,46"/>
+<area shape="poly" title=" " alt="" coords="3227,11,3276,11,3328,17,3377,34,3399,48,3419,65,3436,95,3451,144,3464,209,3475,289,3493,479,3506,695,3520,1117,3524,1388,3519,1388,3515,1117,3501,695,3488,480,3470,289,3458,210,3445,145,3431,97,3415,68,3396,52,3375,39,3326,22,3275,16,3227,17"/>
+<area shape="rect" href="classParser.html#a0470ee6b00dadc211d17e46adae86a5d" title="Method for parsing only one statement." alt="" coords="324,987,457,1013"/>
+<area shape="poly" title=" " alt="" coords="199,1136,357,1021,360,1025,202,1140"/>
+<area shape="poly" title=" " alt="" coords="398,1013,437,1132,473,1218,521,1310,549,1354,580,1397,615,1436,652,1471,693,1500,737,1522,784,1536,835,1541,3144,1541,3223,1539,3283,1530,3342,1512,3416,1483,3456,1462,3491,1438,3494,1443,3459,1466,3418,1488,3344,1517,3284,1535,3223,1544,3144,1547,835,1547,783,1542,735,1527,690,1505,649,1475,611,1440,576,1400,544,1357,516,1312,468,1220,432,1134,393,1015"/>
+<area shape="rect" href="classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="3091,695,3194,721"/>
+<area shape="poly" title=" " alt="" coords="392,986,403,934,425,852,458,753,503,647,531,595,562,545,597,500,636,459,680,425,727,399,779,382,835,376,1956,376,2140,396,2489,442,2836,495,2956,518,2993,528,3013,537,3028,555,3036,574,3038,612,3040,650,3047,668,3061,686,3078,697,3075,701,3057,690,3042,671,3035,652,3033,613,3031,575,3024,558,3009,541,2991,533,2955,523,2835,500,2489,447,2139,401,1956,381,835,381,780,387,729,404,682,429,640,463,601,503,567,549,535,598,508,650,463,755,430,854,408,935,397,987"/>
+<area shape="rect" href="classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="3298,1075,3393,1101"/>
+<area shape="poly" title=" " alt="" coords="390,986,394,906,412,779,428,706,451,632,481,560,520,493,586,400,617,363,650,332,686,307,728,289,777,278,835,275,2671,275,2845,274,2920,278,2988,289,3051,309,3112,343,3170,392,3229,460,3254,509,3277,579,3295,663,3311,755,3333,932,3345,1059,3339,1059,3328,933,3306,756,3290,665,3271,581,3249,511,3224,463,3166,396,3109,347,3049,314,2987,294,2919,283,2845,280,2671,280,835,280,777,284,729,294,688,312,653,336,621,367,590,404,525,496,486,562,456,634,433,707,417,780,399,906,395,986"/>
+<area shape="rect" href="classParser.html#a4e39379d0213f8f2cb8b10abe8110d77" title="Method for parsing variable declaration." alt="" coords="528,987,717,1013"/>
+<area shape="poly" title=" " alt="" coords="457,997,513,997,513,1003,457,1003"/>
+<area shape="poly" title=" " alt="" coords="3158,720,3192,761,3229,815,3264,882,3295,950,3337,1059,3332,1061,3290,952,3259,884,3224,817,3188,764,3154,724"/>
+<area shape="poly" title=" " alt="" coords="3356,1100,3509,1389,3505,1391,3352,1103"/>
+<area shape="poly" title=" " alt="" coords="3315,1076,3310,1066,3313,1056,3326,1050,3346,1048,3367,1051,3378,1057,3376,1062,3365,1056,3345,1053,3327,1055,3317,1060,3315,1065,3320,1073"/>
+<area shape="poly" title=" " alt="" coords="629,1013,641,1073,667,1163,686,1213,710,1263,739,1311,773,1354,832,1417,860,1440,887,1459,917,1473,950,1483,988,1489,1033,1491,3144,1491,3233,1485,3321,1470,3401,1452,3465,1433,3467,1438,3402,1457,3322,1476,3233,1490,3144,1496,1033,1496,988,1494,949,1488,915,1478,885,1463,856,1444,829,1420,769,1358,734,1314,705,1265,681,1215,662,1165,636,1074,623,1014"/>
+<area shape="poly" title=" " alt="" coords="625,986,664,882,699,807,744,728,800,653,832,619,867,589,904,564,945,545,988,532,1033,528,2671,528,2771,524,2853,523,2890,528,2929,539,2969,558,3013,587,3025,599,3032,612,3038,638,3043,663,3050,675,3061,686,3078,696,3075,701,3057,690,3045,678,3038,665,3033,639,3027,614,3021,602,3009,591,2966,563,2927,544,2889,533,2852,528,2772,530,2671,533,1033,533,989,538,946,550,907,568,870,593,836,623,804,656,749,731,704,810,669,884,630,987"/>
+<area shape="poly" title=" " alt="" coords="635,1012,687,1079,728,1125,777,1172,834,1216,896,1253,963,1279,998,1286,1033,1288,2913,1288,3004,1290,3077,1290,3110,1286,3145,1277,3183,1262,3225,1239,3260,1212,3289,1179,3312,1144,3329,1114,3334,1117,3317,1147,3293,1182,3263,1216,3228,1244,3185,1267,3147,1282,3111,1291,3077,1296,3004,1296,2913,1293,1033,1293,997,1291,961,1284,893,1258,831,1220,774,1176,724,1128,683,1083,631,1015"/>
+<area shape="rect" href="classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="2851,365,2972,392"/>
+<area shape="poly" title=" " alt="" coords="623,986,637,880,667,718,687,633,711,556,738,494,753,470,769,453,802,430,832,416,862,411,892,411,956,420,1033,427,1956,427,2139,421,2388,409,2836,381,2836,386,2388,414,2139,427,1956,432,1033,432,955,425,891,416,862,416,834,421,804,434,772,457,757,473,743,496,716,558,692,635,672,719,643,881,628,986"/>
+<area shape="rect" href="classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe" title="Method for verifyng the Topaz type by current tokens." alt="" coords="2835,1328,2988,1355"/>
+<area shape="poly" title=" " alt="" coords="628,1013,639,1070,664,1151,683,1194,707,1237,737,1275,772,1307,806,1328,836,1341,865,1347,894,1348,956,1343,1033,1339,2444,1339,2820,1339,2820,1344,2444,1344,1033,1344,956,1349,894,1354,864,1352,835,1346,803,1333,769,1311,733,1279,703,1240,678,1197,659,1153,634,1071,623,1014"/>
+<area shape="rect" href="classParser.html#a077a7024f238711664ff68ebf79e320b" title="Method for parsing expressions." alt="" coords="771,467,902,493"/>
+<area shape="poly" title=" " alt="" coords="621,986,627,907,635,848,648,782,666,711,692,640,725,572,769,510,780,500,783,504,773,514,730,575,697,642,671,713,653,783,640,849,633,907,627,986"/>
+<area shape="rect" href="structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7" title="Method for convert type to string." alt="" coords="775,987,898,1013"/>
+<area shape="poly" title=" " alt="" coords="717,997,759,997,759,1003,717,1003"/>
+<area shape="poly" title=" " alt="" coords="2972,376,3032,380,3100,394,3168,419,3200,437,3228,459,3278,512,3323,571,3361,633,3395,699,3423,767,3447,837,3483,975,3506,1108,3519,1226,3524,1322,3525,1388,3519,1388,3519,1322,3513,1226,3501,1109,3478,977,3442,838,3418,769,3390,701,3356,636,3318,574,3274,516,3225,463,3197,441,3166,424,3099,399,3031,386,2972,381"/>
+<area shape="poly" title=" " alt="" coords="2935,390,2974,420,3013,460,3053,517,3087,578,3133,679,3128,681,3083,580,3049,520,3009,463,2970,424,2932,395"/>
+<area shape="poly" title=" " alt="" coords="2968,390,3012,408,3037,427,3060,446,3085,457,3108,463,3150,469,3189,479,3209,491,3228,510,3254,554,3276,618,3295,694,3310,778,3333,941,3345,1059,3339,1059,3328,942,3305,779,3290,695,3271,619,3249,557,3224,514,3206,496,3187,484,3149,475,3107,469,3083,462,3058,450,3033,431,3010,413,2966,395"/>
+<area shape="poly" title=" " alt="" coords="2933,1353,2988,1386,3023,1403,3060,1415,3111,1425,3164,1432,3270,1436,3368,1433,3449,1425,3450,1430,3369,1438,3270,1442,3164,1437,3110,1430,3058,1420,3021,1408,2986,1391,2930,1357"/>
+<area shape="poly" title=" " alt="" coords="2915,1327,3129,735,3134,737,2920,1328"/>
+<area shape="poly" title=" " alt="" coords="2988,1350,3044,1352,3106,1348,3168,1334,3197,1323,3225,1307,3248,1288,3269,1265,3301,1213,3323,1160,3336,1116,3341,1117,3328,1161,3306,1215,3273,1268,3252,1292,3228,1312,3200,1327,3170,1339,3107,1354,3044,1358,2988,1355"/>
+<area shape="rect" href="classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="3064,1379,3221,1405"/>
+<area shape="poly" title=" " alt="" coords="2976,1353,3064,1372,3063,1377,2975,1358"/>
+<area shape="poly" title=" " alt="" coords="3221,1395,3449,1410,3449,1415,3221,1400"/>
+<area shape="poly" title=" " alt="" coords="3197,1376,3225,1358,3249,1330,3270,1299,3303,1232,3325,1167,3337,1116,3342,1117,3330,1168,3308,1234,3275,1302,3253,1334,3228,1362,3200,1380"/>
+<area shape="rect" href="classParser.html#ac23cdc70263553f1a8f5a2bf01caa770" title="Method for parsing expression as &#39;logical and&#39;." alt="" coords="950,593,1119,620"/>
+<area shape="poly" title=" " alt="" coords="860,492,1001,582,998,587,858,496"/>
+<area shape="poly" title=" " alt="" coords="1120,596,1280,585,1465,579,2671,579,2770,577,2848,579,2885,584,2923,594,2965,610,3012,634,3028,646,3037,660,3046,673,3060,686,3078,694,3075,699,3058,690,3042,677,3033,663,3024,650,3010,638,2963,615,2922,599,2884,590,2848,584,2770,582,2671,584,1465,584,1280,590,1120,601"/>
+<area shape="poly" title=" " alt="" coords="1041,620,1051,673,1070,756,1101,856,1144,964,1170,1017,1200,1067,1234,1113,1271,1154,1313,1189,1359,1215,1410,1231,1465,1237,2913,1237,3003,1237,3074,1232,3142,1215,3225,1182,3253,1166,3278,1148,3320,1110,3323,1114,3282,1152,3255,1171,3227,1186,3144,1220,3075,1237,3003,1242,2913,1243,1465,1243,1409,1237,1357,1220,1310,1193,1268,1158,1230,1117,1196,1070,1165,1019,1139,966,1096,858,1065,757,1046,674,1036,621"/>
+<area shape="rect" href="classParser.html#a1438271fe63fe661f7e43ce92119bcea" title="Method for parsing expression as &#39;logical or&#39;." alt="" coords="1167,695,1327,721"/>
+<area shape="poly" title=" " alt="" coords="1066,618,1204,685,1202,690,1064,623"/>
+<area shape="poly" title=" " alt="" coords="1298,691,1377,673,1479,652,1593,636,1709,629,2671,629,2767,631,2843,637,2917,649,3012,669,3060,685,3077,690,3075,695,3058,691,3010,675,2916,654,2842,642,2767,636,2671,635,1709,635,1594,641,1480,657,1378,678,1300,697"/>
+<area shape="poly" title=" " alt="" coords="1256,721,1302,827,1343,903,1395,984,1458,1060,1493,1095,1532,1125,1572,1151,1615,1170,1661,1182,1709,1187,2913,1187,3002,1184,3071,1175,3139,1158,3226,1133,3301,1105,3303,1110,3227,1139,3141,1163,3072,1180,3002,1189,2913,1192,1709,1192,1660,1188,1614,1175,1570,1155,1528,1130,1490,1099,1454,1064,1391,987,1338,906,1297,829,1251,723"/>
+<area shape="rect" href="classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf" title="Method for parsing expression as &#39;equality&#39;." alt="" coords="1375,771,1558,797"/>
+<area shape="poly" title=" " alt="" coords="1289,719,1412,762,1410,767,1287,724"/>
+<area shape="poly" title=" " alt="" coords="1506,768,1587,742,1697,713,1824,690,1889,683,1954,680,2671,680,2893,687,3076,700,3075,705,2893,692,2671,685,1954,685,1889,688,1824,695,1698,719,1588,747,1508,773"/>
+<area shape="poly" title=" " alt="" coords="1476,797,1494,833,1523,883,1561,937,1608,985,1693,1054,1730,1080,1766,1101,1805,1116,1847,1127,1896,1134,1954,1136,2913,1136,3015,1132,3116,1122,3283,1097,3283,1102,3117,1127,3015,1137,2913,1141,1954,1141,1895,1139,1846,1133,1803,1121,1764,1105,1727,1084,1690,1058,1604,989,1557,940,1518,886,1489,836,1471,799"/>
+<area shape="rect" href="classParser.html#a9539499c0db5a3d7045952e7919d3a65" title="Method for parsing expression as &#39;comparation&#39;." alt="" coords="1606,948,1815,975"/>
+<area shape="poly" title=" " alt="" coords="1488,796,1680,937,1677,941,1485,800"/>
+<area shape="poly" title=" " alt="" coords="1816,967,1995,978,2201,984,2671,984,2773,979,2814,971,2851,960,2887,944,2924,924,3009,867,3046,836,3078,800,3124,733,3128,736,3082,803,3050,840,3013,871,2926,929,2889,949,2853,965,2815,976,2773,984,2671,989,2200,989,1995,984,1816,973"/>
+<area shape="poly" title=" " alt="" coords="1744,973,1822,1004,1934,1041,2065,1072,2133,1082,2201,1085,2913,1085,3282,1085,3282,1091,2913,1091,2200,1091,2133,1087,2064,1078,1933,1046,1820,1009,1742,978"/>
+<area shape="rect" href="classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa" title="Method for parsing expression as &#39;additive&#39;." alt="" coords="1863,897,2047,924"/>
+<area shape="poly" title=" " alt="" coords="1778,945,1872,925,1873,930,1779,950"/>
+<area shape="poly" title=" " alt="" coords="2047,900,2229,889,2441,883,2671,883,2736,878,2802,865,2865,846,2926,823,3032,772,3107,728,3110,732,3034,777,2928,828,2867,851,2803,870,2737,883,2671,888,2441,888,2229,894,2047,906"/>
+<area shape="poly" title=" " alt="" coords="1988,922,2066,953,2176,991,2306,1022,2374,1031,2441,1035,2913,1035,3015,1039,3117,1049,3283,1074,3283,1079,3116,1054,3015,1044,2913,1040,2441,1040,2373,1036,2305,1027,2175,996,2064,958,1986,927"/>
+<area shape="rect" href="classParser.html#ad46509f9d3366981b886adbbef7476f5" title="Method for parsing expression as &#39;multiplicative&#39;." alt="" coords="2095,821,2309,848"/>
+<area shape="poly" title=" " alt="" coords="1998,894,2094,864,2139,850,2141,855,2095,869,2000,899"/>
+<area shape="poly" title=" " alt="" coords="2309,826,2449,816,2625,799,2818,775,3010,741,3082,723,3084,729,3012,747,2819,780,2626,804,2450,821,2310,832"/>
+<area shape="poly" title=" " alt="" coords="2241,846,2318,871,2423,900,2544,924,2607,931,2668,933,2913,933,3004,938,3074,954,3142,980,3227,1016,3273,1039,3314,1064,3311,1068,3271,1044,3225,1021,3140,985,3073,959,3003,944,2913,939,2668,939,2606,936,2543,929,2422,905,2317,876,2240,851"/>
+<area shape="rect" href="classParser.html#a065a423e45b55d6760c1c2d871d34055" title="Method for parsing expression as &#39;unary&#39;." alt="" coords="2357,771,2527,797"/>
+<area shape="poly" title=" " alt="" coords="2268,818,2360,798,2361,804,2269,823"/>
+<area shape="poly" title=" " alt="" coords="2527,769,2575,763,2854,732,3076,711,3076,716,2854,738,2576,768,2528,774"/>
+<area shape="poly" title=" " alt="" coords="2528,775,2670,774,2757,779,2851,790,2949,807,3046,833,3140,868,3228,915,3265,947,3296,986,3319,1025,3336,1059,3331,1061,3315,1027,3292,989,3262,951,3225,920,3138,873,3044,838,2947,812,2851,795,2757,785,2670,780,2528,781"/>
+<area shape="rect" href="classParser.html#a2cdd6289b4951d4fadf3f5110586569a" title="Method for parsing expression as &#39;primary&#39;." alt="" coords="2579,416,2760,443"/>
+<area shape="poly" title=" " alt="" coords="2450,769,2649,455,2654,457,2455,772"/>
+<area shape="poly" title=" " alt="" coords="2688,413,2741,380,2775,363,2811,351,2866,340,2911,339,3011,351,3086,361,3152,375,3210,393,3261,418,3306,451,3347,493,3384,546,3419,612,3443,682,3463,776,3480,888,3494,1007,3513,1234,3523,1388,3517,1389,3508,1234,3488,1007,3474,888,3457,777,3437,683,3414,614,3380,549,3343,496,3303,455,3258,423,3208,398,3151,380,3085,367,3011,356,2910,344,2867,345,2812,356,2777,368,2743,384,2691,418"/>
+<area shape="poly" title=" " alt="" coords="2761,418,2819,418,2884,423,2950,436,3012,459,3029,470,3039,482,3061,510,3110,556,3152,590,3190,626,3229,681,3255,732,3277,785,3311,892,3332,988,3343,1058,3338,1059,3327,989,3305,893,3272,787,3250,734,3224,684,3186,630,3148,594,3107,560,3057,514,3035,485,3025,474,3010,464,2948,441,2883,428,2819,423,2761,424"/>
+<area shape="poly" title=" " alt="" coords="2736,413,2836,392,2837,397,2737,418"/>
+<area shape="poly" title=" " alt="" coords="2589,446,2413,470,2308,479,2203,483,1246,483,918,483,918,477,1246,477,2203,477,2308,474,2412,465,2588,441"/>
+<area shape="rect" href="classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="3088,1835,3198,1861"/>
+<area shape="poly" title=" " alt="" coords="2498,1799,3072,1840,3072,1846,2497,1804"/>
+<area shape="rect" href="classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="3301,1835,3390,1861"/>
+<area shape="poly" title=" " alt="" coords="2447,1811,2454,1871,2473,1957,2490,2004,2512,2049,2541,2090,2577,2125,2607,2143,2634,2154,2660,2158,2685,2157,2742,2150,2812,2147,2877,2152,2934,2160,3034,2172,3080,2171,3125,2162,3173,2141,3225,2106,3250,2081,3272,2053,3305,1989,3326,1926,3337,1876,3343,1877,3331,1928,3310,1991,3277,2056,3254,2085,3228,2110,3176,2145,3127,2167,3080,2176,3034,2178,2934,2165,2876,2157,2812,2152,2742,2155,2686,2162,2659,2163,2632,2159,2604,2148,2574,2129,2537,2094,2508,2052,2485,2006,2468,1959,2448,1872,2442,1812"/>
+<area shape="rect" href="classLexer.html#a8e7a060feea59b6a096676f74ca9cce3" title="Method for skipping comments." alt="" coords="2835,1733,2988,1760"/>
+<area shape="poly" title=" " alt="" coords="2498,1786,2575,1776,2819,1752,2819,1757,2576,1781,2498,1792"/>
+<area shape="rect" href="classLexer.html#a1831613248412010bfd02e87f9e8582d" title="Method for tokenizing character literal." alt="" coords="2575,1936,2764,1963"/>
+<area shape="poly" title=" " alt="" coords="2464,1809,2577,1890,2633,1925,2630,1930,2574,1894,2460,1813"/>
+<area shape="rect" href="classLexer.html#af26984da969b4bd1dbc65d07977b4438" title="Method for tokenizing identifier token." alt="" coords="2848,1885,2975,1912"/>
+<area shape="poly" title=" " alt="" coords="2498,1807,2833,1879,2832,1884,2497,1812"/>
+<area shape="rect" href="classLexer.html#a3a21d278a491d885602a77073f050b4b" title="Method for tokenizing number literal." alt="" coords="2823,1632,3000,1659"/>
+<area shape="poly" title=" " alt="" coords="2460,1781,2509,1746,2574,1712,2633,1692,2693,1676,2807,1654,2808,1660,2695,1681,2634,1697,2576,1717,2512,1751,2463,1786"/>
+<area shape="rect" href="classLexer.html#ada8d48ea48d4aad8af8ed61965f7c3c0" title="Method for tokenizing operator." alt="" coords="2846,1683,2977,1709"/>
+<area shape="poly" title=" " alt="" coords="2477,1781,2575,1748,2709,1720,2830,1702,2831,1708,2710,1725,2576,1753,2479,1786"/>
+<area shape="rect" href="classLexer.html#a23f4e2fe208765d7a603d78f508705ad" title="Method for tokenizing string literal." alt="" coords="2586,2088,2753,2115"/>
+<area shape="poly" title=" " alt="" coords="2456,1810,2651,2074,2647,2077,2452,1813"/>
+<area shape="poly" title=" " alt="" coords="3198,1845,3286,1845,3286,1851,3198,1851"/>
+<area shape="poly" title=" " alt="" coords="3350,1833,3508,1444,3513,1446,3355,1835"/>
+<area shape="poly" title=" " alt="" coords="2968,1758,3012,1776,3037,1795,3060,1814,3086,1826,3084,1831,3058,1818,3033,1799,3010,1781,2966,1763"/>
+<area shape="poly" title=" " alt="" coords="2973,1758,3286,1832,3285,1837,2972,1763"/>
+<area shape="poly" title=" " alt="" coords="2721,1961,2782,1975,2861,1989,2952,2000,3050,2003,3151,1996,3200,1987,3249,1974,3295,1956,3338,1933,3378,1905,3415,1872,3435,1839,3454,1791,3470,1733,3483,1669,3504,1541,3516,1446,3521,1446,3510,1542,3489,1670,3475,1734,3459,1793,3440,1842,3419,1875,3382,1910,3341,1938,3297,1961,3250,1979,3202,1992,3152,2001,3050,2009,2951,2005,2860,1995,2781,1980,2720,1966"/>
+<area shape="poly" title=" " alt="" coords="2689,1933,2742,1900,2776,1884,2811,1871,2879,1855,2949,1847,3072,1842,3072,1848,2949,1852,2880,1861,2812,1876,2778,1889,2745,1905,2692,1938"/>
+<area shape="poly" title=" " alt="" coords="2764,1947,2861,1944,2977,1935,3102,1919,3226,1893,3301,1866,3303,1871,3227,1899,3103,1924,2978,1940,2861,1949,2764,1952"/>
+<area shape="rect" href="classLexer.html#a1b25efc22ae7e4235aa007185a885c0d" title="Method for getting escape&#45;sequence in string or character literal." alt="" coords="2816,2088,3007,2115"/>
+<area shape="poly" title=" " alt="" coords="2685,1961,2738,2012,2774,2041,2813,2067,2841,2080,2839,2085,2810,2072,2771,2046,2735,2016,2682,1965"/>
+<area shape="poly" title=" " alt="" coords="2960,2113,3055,2133,3114,2140,3177,2143,3241,2139,3304,2127,3363,2103,3390,2087,3415,2067,3431,2048,3446,2022,3470,1952,3488,1865,3501,1769,3515,1580,3519,1446,3524,1446,3520,1580,3506,1769,3493,1866,3475,1953,3450,2024,3435,2051,3419,2071,3393,2092,3365,2108,3306,2132,3242,2145,3177,2149,3113,2146,3054,2138,2959,2118"/>
+<area shape="poly" title=" " alt="" coords="2930,2085,2968,2055,3009,2017,3073,1940,3122,1873,3126,1876,3078,1943,3013,2021,2971,2059,2933,2090"/>
+<area shape="poly" title=" " alt="" coords="2975,1882,3072,1861,3073,1866,2976,1887"/>
+<area shape="poly" title=" " alt="" coords="2975,1893,3092,1886,3226,1871,3285,1860,3286,1865,3227,1876,3093,1891,2976,1899"/>
+<area shape="poly" title=" " alt="" coords="3000,1630,3254,1591,3363,1573,3415,1560,3446,1535,3472,1504,3508,1443,3512,1446,3477,1507,3450,1539,3418,1565,3364,1578,3255,1597,3001,1635"/>
+<area shape="poly" title=" " alt="" coords="2990,1657,3013,1669,3040,1695,3071,1736,3127,1820,3123,1823,3067,1739,3036,1698,3009,1673,2987,1662"/>
+<area shape="poly" title=" " alt="" coords="2999,1657,3111,1686,3171,1708,3228,1736,3283,1778,3325,1821,3321,1825,3279,1782,3225,1741,3169,1713,3109,1691,2997,1662"/>
+<area shape="poly" title=" " alt="" coords="2977,1697,3070,1695,3185,1681,3245,1669,3305,1650,3362,1626,3415,1594,3450,1561,3477,1521,3497,1480,3511,1445,3516,1447,3502,1482,3482,1523,3454,1564,3418,1598,3365,1630,3307,1655,3246,1674,3186,1687,3071,1700,2977,1702"/>
+<area shape="poly" title=" " alt="" coords="2978,1705,3012,1719,3119,1822,3115,1826,3010,1724,2976,1710"/>
+<area shape="poly" title=" " alt="" coords="2968,1707,3012,1719,3121,1744,3168,1757,3227,1779,3272,1801,3312,1824,3309,1829,3270,1805,3225,1784,3167,1762,3120,1749,3010,1724,2967,1712"/>
+<area shape="poly" title=" " alt="" coords="2701,2113,2754,2136,2829,2165,2919,2193,3020,2215,3125,2226,3178,2225,3230,2220,3280,2209,3328,2193,3373,2169,3415,2138,3433,2117,3449,2087,3475,2009,3494,1911,3507,1804,3518,1593,3519,1446,3525,1446,3524,1593,3512,1804,3499,1912,3481,2010,3454,2089,3437,2120,3418,2142,3376,2174,3330,2198,3282,2215,3231,2225,3178,2231,3125,2231,3019,2220,2918,2198,2827,2170,2752,2141,2699,2118"/>
+<area shape="poly" title=" " alt="" coords="2697,2085,2832,2016,3010,1922,3104,1867,3107,1872,3012,1926,2835,2021,2700,2090"/>
+<area shape="poly" title=" " alt="" coords="2713,2113,2773,2128,2848,2139,2930,2141,2971,2135,3010,2124,3062,2101,3112,2071,3159,2037,3202,2001,3274,1929,3323,1872,3327,1875,3278,1932,3206,2005,3162,2041,3115,2076,3065,2106,3012,2129,2972,2140,2931,2146,2848,2145,2772,2133,2712,2118"/>
+<area shape="poly" title=" " alt="" coords="2753,2099,2800,2099,2800,2104,2753,2104"/>
 </map>
 </div>
 

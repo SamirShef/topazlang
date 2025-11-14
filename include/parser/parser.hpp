@@ -13,13 +13,12 @@
  */
 class Parser {
 private:
-    std::string source;                                         /**< Source code on Topaz */
     std::vector<Token> tokens;                                  /**< Tokens (from Lexer) */
     size_t tokens_count;                                        /**< Count of tokens */
     uint32_t pos;                                               /**< Current position in tokens */
 
 public:
-    Parser(std::string src, std::vector<Token> t) : source(src), tokens(t), tokens_count(t.size()), pos(0) {}
+    Parser(std::vector<Token> t) : tokens(t), tokens_count(t.size()), pos(0) {}
 
     /**
      * @brief Method for parsing tokens into AST tree
