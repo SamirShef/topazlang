@@ -247,6 +247,18 @@ namespace AST {
     };
 
     /**
+     * @brief Statement of assignment of variable
+     */
+    class VarAsgnStmt : public Stmt {
+    public:
+        std::string name;                                       /**< Variable name */
+        ExprPtr expr;                                           /**< New expression */
+
+        VarAsgnStmt(std::string n, ExprPtr e, uint32_t l) : name(n), expr(std::move(e)), Stmt(l) {}
+        ~VarAsgnStmt() override = default;
+    };
+
+    /**
      * @brief Statement of functions declaration
      */
     class FuncDeclStmt : public Stmt {

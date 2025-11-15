@@ -22,6 +22,7 @@ var hierarchy =
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
       [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
+      [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", null ],
       [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ]
     ] ],
     [ "Token", "structToken.html", null ],

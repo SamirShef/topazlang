@@ -49,6 +49,15 @@ private:
     AST::StmtPtr parse_var_decl_stmt();
 
     /**
+     * @brief Method for parsing of variable assignment
+     *
+     * This method sets the syntax for assignment a variable, creates the AST element of the VarAsgnStmt and returns it
+     *
+     * @return VarAsgnStmt
+     */
+    AST::StmtPtr parse_var_asgn_stmt();
+
+    /**
      * @brief Method for parsing of functions declaration
      *
      * This method sets the syntax for defining a function, creates the AST element of the FuncDeclStmt and returns it
@@ -213,4 +222,41 @@ private:
      * @return Converted type of Topaz value
      */
     AST::TypeValue ttype_to_tvalue(TokenType type);
+
+    /**
+     * @brief Method for checking whether the passed token is a compound assignment operator
+     *
+     * This method checks whether the passed token is a compound assignment operator. If yes, it returns true, otherwise it returns false
+     *
+     * @param token Token for checking
+     *
+     * @return True if token is compound assignment operator, and false otherwise
+     */
+    bool is_compound_asgn_operator(Token token);
+    
+    /**
+     * @brief Method for creating compound assignment operator and returns expression of assignment
+     *
+     * This method checking current token and if it is compound assignment operator, then generating expression for assignment.
+     * For example 'a += 1' is equal 'a = a + 1'
+     * If current token isnt compound assignment operator, then throwing exception
+     *
+     * @param var_name Name of variable for assignment
+     *
+     * @return Assingment expression
+     */
+    AST::ExprPtr create_compound_asgn_operator(std::string var_name);
+
+    /**
+     * @brief Method for creating increment/decrement operator and returns expression of assignment
+     *
+     * This method checking current token and if it is increment/decrement operator, then generating expression of assignment.
+     * For example 'a++' is equal 'a = a + 1'
+     * If current token isnt increment/decrement operator, then throwing exception
+     *
+     * @param var_name Name of variable for assignment
+     *
+     * @return Increment/Decrement expression
+     */
+    AST::ExprPtr create_inc_dec_operator(std::string var_name);
 };

@@ -18,6 +18,9 @@ AST::StmtPtr Parser::parse_stmt() {
     if (match(TOK_LET)) {
         return parse_var_decl_stmt();
     }
+    else if (match(TOK_ID)) {
+        return parse_var_asgn_stmt();
+    }
     else if (match(TOK_FUN)) {
         return parse_func_decl_stmt();
     }
@@ -61,6 +64,30 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
 
     return std::make_unique<AST::VarDeclStmt>(type, std::move(expr), name, first_token.line);
+}
+
+AST::StmtPtr Parser::parse_var_asgn_stmt() {
+    Token var_token = peek(-1);
+    AST::ExprPtr expr = nullptr;
+    if (match(TOK_OP_EQ)) {
+        expr = parse_expr();
+    }
+    else if (is_compound_asgn_operator(peek())) {
+        expr = create_compound_asgn_operator(var_token.value);
+    }
+    else {
+        expr = create_inc_dec_operator(var_token.value);
+    }
+    std::stringstream ss;
+    ss << "Expected \033[0m';'\033[31m in the end of variable definition. ";
+    if (pos == tokens_count) {
+        ss << "Please add \033[0m';'\033[31m into the end of variable definition";
+    }
+    else {
+        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
+    }
+    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
+    return std::make_unique<AST::VarAsgnStmt>(var_token.value, std::move(expr), var_token.line);
 }
 
 AST::StmtPtr Parser::parse_func_decl_stmt() {
@@ -239,6 +266,9 @@ AST::ExprPtr Parser::parse_primary_expr() {
         }
         case TOK_ID:
             pos++;
+            if (peek().type == TOK_OP_INC || peek().type == TOK_OP_DEC) {
+                return create_inc_dec_operator(token.value);
+            }
             return std::make_unique<AST::VarExpr>(token.value, token.line);
         case TOK_CHARACTER_LIT:
             pos++;
@@ -347,5 +377,56 @@ AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
             throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+    }
+}
+
+bool Parser::is_compound_asgn_operator(Token token) {
+    switch (token.type) {
+        case TOK_OP_PLUS_EQ:
+        case TOK_OP_MINUS_EQ:
+        case TOK_OP_MULT_EQ:
+        case TOK_OP_DIV_EQ:
+        case TOK_OP_MODULO_EQ:
+            return true;
+        default:
+            return false;
+    }
+}
+
+AST::ExprPtr Parser::create_compound_asgn_operator(std::string var_name) {
+    Token token = peek();
+    pos++;
+    switch (token.type) {
+        case TOK_OP_PLUS_EQ:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_PLUS, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+        case TOK_OP_MINUS_EQ:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_MINUS, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+        case TOK_OP_MULT_EQ:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_MULT, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+        case TOK_OP_DIV_EQ:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_DIV, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+        case TOK_OP_MODULO_EQ:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_MODULO, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+        default: {
+            std::stringstream ss;
+            ss << "Unsupported compound assignment operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
+            throw_excpetion(SUB_PARSER, ss.str(), token.line, peek().file_name);
+        }
+    }
+}
+
+AST::ExprPtr Parser::create_inc_dec_operator(std::string var_name) {
+    Token token = peek();
+    pos++;
+    switch (token.type) {
+        case TOK_OP_INC:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_PLUS, std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
+        case TOK_OP_DEC:
+            return std::make_unique<AST::BinaryExpr>(TOK_OP_MINUS, std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
+        default: {
+            std::stringstream ss;
+            ss << "Unsupported increment/decrement operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
+            throw_excpetion(SUB_PARSER, ss.str(), token.line, peek().file_name);
+        }
     }
 }
