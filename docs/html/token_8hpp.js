@@ -9,6 +9,7 @@ var token_8hpp =
       [ "TOK_FLOAT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0add470148bc49b9406cab8014f1a05e1a", null ],
       [ "TOK_DOUBLE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8b5daef5ae7f3bb296c4781cd8afcae6", null ],
       [ "TOK_BOOL", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8102b4aa92389b7d651cfe75e46daab4", null ],
+      [ "TOK_NOTH", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aaa08d8eb03392ac140a96733959f64ea", null ],
       [ "TOK_LET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a24119f1efcc3d4d91c590e8427354f45", null ],
       [ "TOK_FUN", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ad64b49c7c9e2a245d659eb4379d9d2e2", null ],
       [ "TOK_IF", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a28dd4809849b70364665cce314940bff", null ],

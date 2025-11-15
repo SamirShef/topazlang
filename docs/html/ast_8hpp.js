@@ -30,6 +30,7 @@ var ast_8hpp =
       [ "AST::TYPE_FLOAT", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0", null ],
       [ "AST::TYPE_DOUBLE", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdaec85d57abc55d5a4f0f98092927485a0", null ],
       [ "AST::TYPE_BOOL", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e", null ],
+      [ "AST::TYPE_NOTH", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb", null ],
       [ "AST::TYPE_STRING_LIT", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda19fe37a233dbc22cab69415e53d1b0f6", null ],
       [ "AST::TYPE_TRAIT", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdaf29dbf4bea00cc670c581adfc9b0525a", null ],
       [ "AST::TYPE_CLASS", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafcedc79364097b92f6e4f95379b13842", null ]
