@@ -28,7 +28,8 @@ private:
     std::unique_ptr<llvm::Module> module;                                       /**< LLVM Module (module name is relative path to the Topaz source code) */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
-    std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables */
+    std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables table */
+    std::map<std::string, llvm::Function*> functions;                           /**< Functions table */
 
 public:
     CodeGenerator(std::vector<AST::StmtPtr>& s, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), file_name(fn) {
@@ -83,6 +84,24 @@ private:
     void generate_var_decl_stmt(AST::VarDeclStmt& vds);
 
     /**
+     * @brief Method for generating LLVM IR code for function definition
+     *
+     * This method generating LLVM IR code for function definition
+     *
+     * @param fds Function declaration statement
+     */
+    void generate_func_decl_stmt(AST::FuncDeclStmt& fds);
+
+    /**
+     * @brief Method for generating LLVM IR code for 'return'
+     *
+     * This method generating LLVM IR code for 'return'
+     *
+     * @param rs Return statement
+     */
+    void generate_return_stmt(AST::ReturnStmt& rs);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
@@ -123,7 +142,17 @@ private:
      * @return Generated LLVM value
      */
     llvm::Value *generate_unary_expr(AST::UnaryExpr& ue);
-    //llvm::Value *generate_var_expr();
+    
+    /**
+     * @brief Method for generating LLVM IR code for variable expressions
+     *
+     * This method generating LLVM IR code for variable expressions and returns it
+     *
+     * @param ve Variable expression for generating
+     *
+     * @return Generated LLVM value
+     */
+    llvm::Value *generate_var_expr(AST::VarExpr& ve);
 
     /**
      * @brief Method for converting AST::Type to llvm::Type
