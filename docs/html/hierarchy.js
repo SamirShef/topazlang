@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "AST::Argument", "structAST_1_1Argument.html", null ],
     [ "CodeGenerator", "classCodeGenerator.html", null ],
     [ "AST::Expr", "classAST_1_1Expr.html", [
       [ "AST::BinaryExpr", "classAST_1_1BinaryExpr.html", null ],
@@ -13,11 +14,14 @@ var hierarchy =
         [ "AST::ShortLiteral", "classAST_1_1ShortLiteral.html", null ],
         [ "AST::StringLiteral", "classAST_1_1StringLiteral.html", null ]
       ] ],
-      [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", null ]
+      [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", null ],
+      [ "AST::VarExpr", "classAST_1_1VarExpr.html", null ]
     ] ],
     [ "Lexer", "classLexer.html", null ],
     [ "Parser", "classParser.html", null ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
+      [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],
+      [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
       [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ]
     ] ],
     [ "Token", "structToken.html", null ],

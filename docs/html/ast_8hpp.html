@@ -84,33 +84,36 @@ $(function(){initNavTree('ast_8hpp.html','',''); });
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ast.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="ast_8hpp__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hpp" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hpp" id="a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hpp">
-<area shape="rect" title="Header file for defining AST tree elements." alt="" coords="232,5,413,48"/>
-<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="93,96,215,123"/>
-<area shape="poly" title=" " alt="" coords="280,51,195,91,193,87,278,46"/>
+<area shape="rect" title="Header file for defining AST tree elements." alt="" coords="282,5,464,48"/>
+<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="52,96,174,123"/>
+<area shape="poly" title=" " alt="" coords="307,51,169,93,168,88,305,46"/>
 <area shape="rect" title=" " alt="" coords="5,171,66,197"/>
-<area shape="poly" title=" " alt="" coords="232,35,191,43,148,55,108,73,72,98,53,125,42,156,37,154,48,123,68,94,105,68,146,50,189,38,231,30"/>
-<area shape="rect" title=" " alt="" coords="104,171,172,197"/>
-<area shape="poly" title=" " alt="" coords="232,45,141,67,105,81,83,98,78,113,83,129,95,145,110,159,106,163,91,148,78,131,73,113,79,94,102,77,139,62,230,39"/>
-<area shape="rect" title=" " alt="" coords="212,171,265,197"/>
-<area shape="poly" title=" " alt="" coords="310,50,281,97,252,158,247,155,276,95,306,47"/>
-<area shape="rect" title=" " alt="" coords="290,96,354,123"/>
-<area shape="poly" title=" " alt="" coords="325,49,325,80,320,80,320,49"/>
-<area shape="rect" title=" " alt="" coords="379,96,431,123"/>
-<area shape="poly" title=" " alt="" coords="345,47,383,83,379,87,342,51"/>
-<area shape="rect" title=" " alt="" coords="455,96,515,123"/>
-<area shape="poly" title=" " alt="" coords="365,46,447,86,445,91,363,51"/>
-<area shape="rect" title=" " alt="" coords="539,96,607,123"/>
-<area shape="poly" title=" " alt="" coords="388,46,525,90,523,95,386,51"/>
-<area shape="rect" title=" " alt="" coords="631,96,688,123"/>
-<area shape="poly" title=" " alt="" coords="414,45,616,93,615,98,412,50"/>
-<area shape="poly" title=" " alt="" coords="135,125,70,165,68,160,132,121"/>
-<area shape="poly" title=" " alt="" coords="154,124,147,156,142,155,149,123"/>
-<area shape="poly" title=" " alt="" coords="171,121,214,158,210,162,167,125"/>
+<area shape="poly" title=" " alt="" coords="282,37,211,45,140,57,79,75,57,86,42,98,34,110,31,125,31,156,26,156,25,124,29,108,37,94,54,81,77,70,139,52,211,40,281,32"/>
+<area shape="rect" title=" " alt="" coords="95,171,163,197"/>
+<area shape="poly" title=" " alt="" coords="342,51,266,98,163,164,160,160,263,94,339,46"/>
+<area shape="rect" title=" " alt="" coords="220,171,273,197"/>
+<area shape="poly" title=" " alt="" coords="342,51,315,72,290,98,271,127,258,157,253,155,266,125,285,94,311,68,339,47"/>
+<area shape="rect" title=" " alt="" coords="299,96,364,123"/>
+<area shape="poly" title=" " alt="" coords="365,50,347,83,343,81,360,47"/>
+<area shape="rect" title=" " alt="" coords="388,96,440,123"/>
+<area shape="poly" title=" " alt="" coords="386,47,403,81,398,83,381,50"/>
+<area shape="rect" title=" " alt="" coords="464,96,524,123"/>
+<area shape="poly" title=" " alt="" coords="406,46,464,85,461,89,403,51"/>
+<area shape="rect" title=" " alt="" coords="548,96,616,123"/>
+<area shape="poly" title=" " alt="" coords="428,46,536,88,534,93,426,51"/>
+<area shape="rect" title=" " alt="" coords="640,96,698,123"/>
+<area shape="poly" title=" " alt="" coords="454,46,626,92,624,98,452,51"/>
+<area shape="rect" title=" " alt="" coords="722,96,779,123"/>
+<area shape="poly" title=" " alt="" coords="464,41,577,63,707,93,706,98,575,68,463,47"/>
+<area shape="poly" title=" " alt="" coords="101,125,62,162,58,158,98,121"/>
+<area shape="poly" title=" " alt="" coords="118,123,125,155,120,156,113,124"/>
+<area shape="poly" title=" " alt="" coords="137,121,211,161,209,165,135,126"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -141,6 +144,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for describing the type.  <a href="structAST_1_1Type.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3AValue" id="r_AST_3A_3AValue"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAST_1_1Value.html">AST::Value</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for describing the value.  <a href="structAST_1_1Value.html#details">More...</a><br /></td></tr>
+<tr class="memitem:AST_3A_3AArgument" id="r_AST_3A_3AArgument"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAST_1_1Argument.html">AST::Argument</a></td></tr>
 <tr class="memitem:AST_3A_3AStmt" id="r_AST_3A_3AStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Stmt.html">AST::Stmt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of statement.  <a href="classAST_1_1Stmt.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3AExpr" id="r_AST_3A_3AExpr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Expr.html">AST::Expr</a></td></tr>
@@ -167,8 +171,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary expression container.  <a href="classAST_1_1BinaryExpr.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3AUnaryExpr" id="r_AST_3A_3AUnaryExpr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1UnaryExpr.html">AST::UnaryExpr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unary expression container.  <a href="classAST_1_1UnaryExpr.html#details">More...</a><br /></td></tr>
+<tr class="memitem:AST_3A_3AVarExpr" id="r_AST_3A_3AVarExpr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1VarExpr.html">AST::VarExpr</a></td></tr>
 <tr class="memitem:AST_3A_3AVarDeclStmt" id="r_AST_3A_3AVarDeclStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1VarDeclStmt.html">AST::VarDeclStmt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of variable declaration.  <a href="classAST_1_1VarDeclStmt.html#details">More...</a><br /></td></tr>
+<tr class="memitem:AST_3A_3AFuncDeclStmt" id="r_AST_3A_3AFuncDeclStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1FuncDeclStmt.html">AST::FuncDeclStmt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of functions declaration.  <a href="classAST_1_1FuncDeclStmt.html#details">More...</a><br /></td></tr>
+<tr class="memitem:AST_3A_3AReturnStmt" id="r_AST_3A_3AReturnStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1ReturnStmt.html">AST::ReturnStmt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of 'return'.  <a href="classAST_1_1ReturnStmt.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>

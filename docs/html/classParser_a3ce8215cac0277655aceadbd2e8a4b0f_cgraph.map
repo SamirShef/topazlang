@@ -1,0 +1,26 @@
+<map id="Parser::parse_argument" name="Parser::parse_argument">
+<area shape="rect" id="Node000001" title="Method for parsing of function argument." alt="" coords="5,107,166,134"/>
+<area shape="rect" id="Node000002" href="$classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="230,31,350,58"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,104,237,61,238,66,125,109"/>
+<area shape="rect" id="Node000004" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="618,132,714,159"/>
+<area shape="poly" id="edge16_Node000001_Node000004" title=" " alt="" coords="166,120,570,136,603,138,603,144,570,142,166,125"/>
+<area shape="rect" id="Node000007" href="$classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe" title="Method for verifyng the Topaz type by current tokens." alt="" coords="214,158,366,184"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="143,132,219,151,218,156,142,137"/>
+<area shape="rect" id="Node000003" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="440,56,544,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,49,426,59,425,64,350,55"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="350,29,399,22,456,20,515,25,571,42,597,57,619,76,651,118,647,121,615,80,593,61,569,47,514,31,456,25,400,27,351,34"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="762,164,878,191"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="333,28,382,16,442,6,507,3,571,12,606,24,640,39,703,77,756,117,796,152,792,156,753,121,700,81,637,44,604,29,570,18,507,9,443,11,383,21,335,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="529,81,571,99,623,123,621,128,569,104,527,86"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="639,133,635,124,638,114,649,108,666,106,685,108,695,115,692,119,683,113,666,111,650,113,642,118,640,123,644,131"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="714,153,747,160,746,165,713,158"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="926,156,1093,199"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="878,175,911,175,911,180,878,180"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="317,155,449,88,452,93,320,160"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="366,163,603,147,603,153,366,169"/>
+<area shape="poly" id="edge12_Node000007_Node000005" title=" " alt="" coords="308,183,354,216,383,232,415,244,464,254,514,257,565,253,614,245,705,221,774,195,776,200,706,226,615,251,566,258,514,262,463,259,413,250,381,237,351,221,305,187"/>
+<area shape="rect" id="Node000008" href="$classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="414,208,570,235"/>
+<area shape="poly" id="edge13_Node000007_Node000008" title=" " alt="" coords="347,182,422,201,420,207,346,188"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="527,205,569,187,621,164,623,168,571,192,529,210"/>
+<area shape="poly" id="edge15_Node000008_Node000005" title=" " alt="" coords="571,209,746,185,747,190,571,214"/>
+</map>

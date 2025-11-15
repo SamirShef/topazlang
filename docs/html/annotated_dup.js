@@ -3,6 +3,7 @@ var annotated_dup =
     [ "AST", "namespaceAST.html", [
       [ "Type", "structAST_1_1Type.html", "structAST_1_1Type" ],
       [ "Value", "structAST_1_1Value.html", "structAST_1_1Value" ],
+      [ "Argument", "structAST_1_1Argument.html", "structAST_1_1Argument" ],
       [ "Stmt", "classAST_1_1Stmt.html", "classAST_1_1Stmt" ],
       [ "Expr", "classAST_1_1Expr.html", "classAST_1_1Expr" ],
       [ "Literal", "classAST_1_1Literal.html", "classAST_1_1Literal" ],
@@ -16,7 +17,10 @@ var annotated_dup =
       [ "StringLiteral", "classAST_1_1StringLiteral.html", "classAST_1_1StringLiteral" ],
       [ "BinaryExpr", "classAST_1_1BinaryExpr.html", "classAST_1_1BinaryExpr" ],
       [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
-      [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ]
+      [ "VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
+      [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
+      [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
+      [ "ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ]
     ] ],
     [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],
     [ "Lexer", "classLexer.html", "classLexer" ],

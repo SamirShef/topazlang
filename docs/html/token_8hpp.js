@@ -16,6 +16,7 @@ var token_8hpp =
       [ "TOK_FOR", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a704c56c00b5aa61d6341e95d773fa8c7", null ],
       [ "TOK_WHILE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa75ee6e7bd8eaf3b787c97626e78bf71", null ],
       [ "TOK_CONST", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ac6e2af1f642b1310b927ff0e1a58f003", null ],
+      [ "TOK_RETURN", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0af8893308d51b51856d01c2c6e1239af6", null ],
       [ "TOK_ID", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb", null ],
       [ "TOK_CHARACTER_LIT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a30895568a9a39733b5ae67c364f88e83", null ],
       [ "TOK_SHORT_LIT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a62feb56d7dba670e8ecfff28e0e23753", null ],
@@ -55,6 +56,7 @@ var token_8hpp =
       [ "TOK_OP_RBRACE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a54e098a85815b53a1678b5aa9718aa04", null ],
       [ "TOK_OP_LBRACKET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a10da7d2f4e27c4474d1a4ac86ea92777", null ],
       [ "TOK_OP_RBRACKET", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a015688b48b2e187a9b8fa0c040a5114a", null ],
-      [ "TOK_OP_QUESTION", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa2e3c96fe8f9fd88e3c6ba1256bd544e", null ]
+      [ "TOK_OP_QUESTION", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa2e3c96fe8f9fd88e3c6ba1256bd544e", null ],
+      [ "TOK_OP_NEXT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a0ff55cf150513885a7f141a343cc60a1", null ]
     ] ]
 ];

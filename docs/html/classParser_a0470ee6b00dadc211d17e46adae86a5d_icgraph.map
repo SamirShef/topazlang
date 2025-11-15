@@ -1,7 +1,10 @@
 <map id="Parser::parse_stmt" name="Parser::parse_stmt">
-<area shape="rect" id="Node000001" title="Method for parsing only one statement." alt="" coords="250,5,382,32"/>
-<area shape="rect" id="Node000002" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="103,5,202,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,21,203,21,203,16,234,16"/>
+<area shape="rect" id="Node000001" title="Method for parsing only one statement." alt="" coords="282,64,414,91"/>
+<area shape="rect" id="Node000002" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="119,5,218,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,61,211,35,212,30,291,56"/>
+<area shape="rect" id="Node000004" href="$classParser.html#a7771b29d78844845898c9d14a2eb8f0b" title="Method for parsing of functions declaration." alt="" coords="103,56,234,99"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="266,89,234,89,234,83,266,84"/>
 <area shape="rect" id="Node000003" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,21,55,21,55,16,103,16"/>
+<area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="249,66,281,66,281,71,249,71"/>
 </map>

@@ -1,11 +1,13 @@
 <map id="AST::Expr" name="AST::Expr">
-<area shape="rect" id="Node000001" title="Base class of expression." alt="" coords="5,183,87,209"/>
+<area shape="rect" id="Node000001" title="Base class of expression." alt="" coords="5,208,87,235"/>
 <area shape="rect" id="Node000002" href="$classAST_1_1BinaryExpr.html" title="Binary expression container." alt="" coords="135,132,253,159"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,175,152,157,154,162,102,180"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,197,133,168,158,157,160,162,136,173,84,202"/>
 <area shape="rect" id="Node000003" href="$classAST_1_1Literal.html" title="Base class of literal." alt="" coords="149,183,238,209"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,193,149,193,149,199,102,199"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,209,148,201,149,206,102,214"/>
 <area shape="rect" id="Node000012" href="$classAST_1_1UnaryExpr.html" title="Unary expression container." alt="" coords="136,233,252,260"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="102,212,154,230,152,235,100,217"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="102,228,136,234,135,239,102,233"/>
+<area shape="rect" id="Node000013" href="$classAST_1_1VarExpr.html" title=" " alt="" coords="144,284,244,311"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="84,241,136,270,160,281,158,286,133,274,81,245"/>
 <area shape="rect" id="Node000004" href="$classAST_1_1BoolLiteral.html" title="Boolean literal." alt="" coords="316,5,432,32"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="248,172,251,169,263,153,269,138,274,106,279,75,286,58,299,42,316,30,319,35,303,46,291,61,284,76,279,107,275,139,268,156,255,172,252,175"/>
 <area shape="rect" id="Node000005" href="$classAST_1_1CharacterLiteral.html" title="Character literal." alt="" coords="301,56,447,83"/>

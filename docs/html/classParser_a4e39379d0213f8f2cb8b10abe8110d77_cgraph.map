@@ -1,5 +1,5 @@
 <map id="Parser::parse_var_decl_stmt" name="Parser::parse_var_decl_stmt">
-<area shape="rect" id="Node000001" title="Method for parsing variable declaration." alt="" coords="5,955,194,981"/>
+<area shape="rect" id="Node000001" title="Method for parsing of variable declaration." alt="" coords="5,955,194,981"/>
 <area shape="rect" id="Node000002" href="$classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="2292,549,2412,576"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,979,323,1003,414,1012,504,1016,1183,1016,1213,1012,1257,1001,1381,960,1538,901,1714,831,2061,685,2304,580,2306,585,2063,690,1716,836,1540,906,1382,965,1259,1006,1214,1017,1183,1021,504,1021,413,1018,322,1009,169,985"/>
 <area shape="rect" id="Node000003" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="2502,727,2606,753"/>
