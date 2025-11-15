@@ -26,6 +26,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     if (auto vds = dynamic_cast<AST::VarDeclStmt*>(&stmt)) {
         generate_var_decl_stmt(*vds);
     }
+    else if (auto vas = dynamic_cast<AST::VarAsgnStmt*>(&stmt)) {
+        generate_var_asgn_stmt(*vas);
+    }
     else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&stmt)) {
         generate_func_decl_stmt(*fds);
     }
@@ -52,6 +55,24 @@ void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {
         builder.CreateStore(val, var);
     }
     variables.top().emplace(vds.name, var);
+}
+
+void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
+    llvm::Value *var_inst = nullptr;
+    auto vars = variables;
+    while (!vars.empty()) {
+        auto vars_it = vars.top().find(vas.name);
+        if (vars_it != vars.top().end()) {
+            var_inst = vars_it->second;
+        }
+        vars.pop();
+    }
+    if (var_inst == nullptr) {
+        std::stringstream ss;
+        ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
+        throw_excpetion(SUB_CODEGEN, ss.str(), vas.line, file_name);
+    }
+    builder.CreateStore(generate_expr(*vas.expr), var_inst);
 }
 
 void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
