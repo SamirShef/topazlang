@@ -28,6 +28,7 @@ typedef enum : uint8_t {
     TOK_FOR,                                /**< 'for' keyword for `for` cycle definition */
     TOK_WHILE,                              /**< 'while' keyword for `while` cycle definition */
     TOK_CONST,                              /**< 'const' keyword */
+    TOK_RETURN,                             /**< 'return' keyword */
 
     TOK_ID,                                 /**< Identifier */
     TOK_CHARACTER_LIT,                      /**< Character literal */
@@ -69,7 +70,8 @@ typedef enum : uint8_t {
     TOK_OP_RBRACE,                          /**< '}' operator */
     TOK_OP_LBRACKET,                        /**< '[' operator */
     TOK_OP_RBRACKET,                        /**< ']' operator */
-    TOK_OP_QUESTION                         /**< '?' operator */
+    TOK_OP_QUESTION,                        /**< '?' operator */
+    TOK_OP_NEXT                             /**< '->' operator */
 } TokenType;
 
 /**
@@ -81,10 +83,9 @@ struct Token {
 
     uint32_t line;                          /**< Token line coordinate */
     uint32_t column;                        /**< Token column coordinate */
-    uint32_t pos;                           /**< Position of the first token character from source */
     std::string file_name;                  /**< Name of the file containing the token */
 
-    Token(TokenType t, std::string v, uint32_t l, uint32_t c, uint32_t p, std::string fn) : type(t), value(v), line(l), column(c), pos(p), file_name(fn) {}
+    Token(TokenType t, std::string v, uint32_t l, uint32_t c, std::string fn) : type(t), value(v), line(l), column(c), file_name(fn) {}
 
     /**
      * @brief Method for converting token to string
@@ -137,6 +138,9 @@ struct Token {
                 break;
             case TOK_CONST:
                 ss << "const";
+                break;
+            case TOK_RETURN:
+                ss << "return";
                 break;
             case TOK_ID:
                 ss << "id";
@@ -256,6 +260,9 @@ struct Token {
                 break;
             case TOK_OP_QUESTION:
                 ss << "question";
+                break;
+            case TOK_OP_NEXT:
+                ss << "next";
                 break;
             default:
                 ss << "<unknown>";

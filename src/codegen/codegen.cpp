@@ -18,6 +18,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     if (auto vds = dynamic_cast<AST::VarDeclStmt*>(&stmt)) {
         generate_var_decl_stmt(*vds);
     }
+    else {
+        throw_excpetion(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
+    }
 }
 
 void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {

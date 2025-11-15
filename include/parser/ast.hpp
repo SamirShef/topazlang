@@ -14,6 +14,7 @@
 #include <string>
 #include <memory>
 #include <cmath>
+#include <vector>
 
 namespace AST {
     /**
@@ -72,6 +73,13 @@ namespace AST {
         Value(double_t v)           : value(v) {}
         Value(bool v)               : value(v) {}
         Value(std::string v)        : value(v) {}
+    };
+
+    struct Argument {
+        std::string name;
+        Type type;
+
+        Argument(std::string n, Type t) : name(n), type(t) {}
     };
     
     /**
@@ -214,6 +222,14 @@ namespace AST {
         ~UnaryExpr() override = default;
     };
 
+    class VarExpr : public Expr {
+    public:
+        std::string name;
+
+        VarExpr(std::string n, uint32_t l) : name(n), Expr(l) {}
+        ~VarExpr() override = default;
+    };
+
     // STATEMENTS
 
     /**
@@ -227,5 +243,30 @@ namespace AST {
 
         VarDeclStmt(Type t, ExprPtr e, std::string n, uint32_t l) : type(t), expr(std::move(e)), name(n), Stmt(l) {}
         ~VarDeclStmt() override = default;
+    };
+
+    /**
+     * @brief Statement of functions declaration
+     */
+    class FuncDeclStmt : public Stmt {
+    public:
+        std::string name;                                       /**< Function name */
+        std::vector<Argument> args;                             /**< Functions arguments */
+        Type ret_type;                                          /**< Function return type */
+        std::vector<StmtPtr> block;                             /**< Function block */
+
+        FuncDeclStmt(std::string n, std::vector<Argument> a, Type rt, std::vector<StmtPtr> b, uint32_t l) : name(n), args(std::move(a)), ret_type(rt), block(std::move(b)), Stmt(l) {}
+        ~FuncDeclStmt() override = default;
+    };
+
+    /**
+     * @brief Statement of 'return'
+     */
+    class ReturnStmt : public Stmt {
+    public:
+        ExprPtr expr;                                           /**< Returned expression */
+
+        ReturnStmt(ExprPtr e, uint32_t l) : expr(std::move(e)), Stmt(l) {}
+        ~ReturnStmt() override = default;
     };
 }

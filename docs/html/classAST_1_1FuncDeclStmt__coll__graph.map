@@ -1,0 +1,7 @@
+<map id="AST::FuncDeclStmt" name="AST::FuncDeclStmt">
+<area shape="rect" id="Node000001" title="Statement of functions declaration." alt="" coords="31,104,169,131"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="5,5,88,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,44,95,102,91,105,58,47"/>
+<area shape="rect" id="Node000003" href="$structAST_1_1Type.html" title="Structure for describing the type." alt="" coords="112,5,194,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="141,47,109,105,104,102,137,44"/>
+</map>

@@ -40,13 +40,40 @@ private:
     AST::StmtPtr parse_stmt();
 
     /**
-     * @brief Method for parsing variable declaration
+     * @brief Method for parsing of variable declaration
      *
      * This method sets the syntax for defining a variable, creates the AST element of the VarDeclStmt and returns it
      *
      * @return VarDeclStmt
      */
     AST::StmtPtr parse_var_decl_stmt();
+
+    /**
+     * @brief Method for parsing of functions declaration
+     *
+     * This method sets the syntax for defining a function, creates the AST element of the FuncDeclStmt and returns it
+     *
+     * @return FuncDeclStmt
+     */
+    AST::StmtPtr parse_func_decl_stmt();
+
+    /**
+     * @brief Method for parsing of function argument
+     *
+     * This method sets the syntax for defining a function argument, creates the AST element of the Argument and returns it
+     *
+     * @return Argument
+     */
+    AST::Argument parse_argument();
+
+    /**
+     * @brief Method for parsing of 'return'
+     *
+     * This method sets the syntax for 'return' statement, creates the AST element of the ReturnStmt and returns it
+     *
+     * @return ReturnStmt
+     */
+    AST::StmtPtr parse_return_stmt();
     
     /**
      * @brief Method for parsing expressions

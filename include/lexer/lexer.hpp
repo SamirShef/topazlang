@@ -34,7 +34,8 @@ private:
         {"else", TOK_ELSE},
         {"for", TOK_FOR},
         {"while", TOK_WHILE},
-        {"const", TOK_CONST}
+        {"const", TOK_CONST},
+        {"return", TOK_RETURN}
     };
 
 public:

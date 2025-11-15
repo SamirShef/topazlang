@@ -2,6 +2,7 @@ var ast_8hpp =
 [
     [ "AST::Type", "structAST_1_1Type.html", "structAST_1_1Type" ],
     [ "AST::Value", "structAST_1_1Value.html", "structAST_1_1Value" ],
+    [ "AST::Argument", "structAST_1_1Argument.html", "structAST_1_1Argument" ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", "classAST_1_1Stmt" ],
     [ "AST::Expr", "classAST_1_1Expr.html", "classAST_1_1Expr" ],
     [ "AST::Literal", "classAST_1_1Literal.html", "classAST_1_1Literal" ],
@@ -15,7 +16,10 @@ var ast_8hpp =
     [ "AST::StringLiteral", "classAST_1_1StringLiteral.html", "classAST_1_1StringLiteral" ],
     [ "AST::BinaryExpr", "classAST_1_1BinaryExpr.html", "classAST_1_1BinaryExpr" ],
     [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
+    [ "AST::VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
     [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
+    [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
+    [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ],
     [ "AST::ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "AST::StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "AST::TypeValue", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd", [

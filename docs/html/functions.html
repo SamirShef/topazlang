@@ -73,11 +73,14 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>advance()&#160;:&#160;<a class="el" href="classLexer.html#a73509f24c44f3bb079f97353e6f07b2b">Lexer</a></li>
+<li>args&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a07f03a1aae8fc9500cfdc7b172fdae47">AST::FuncDeclStmt</a></li>
+<li>Argument()&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#a28542f3259af4a5a30a57b94d101c8e5">AST::Argument</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
 <li>BinaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#add440f2ca2a6833b3e721e28e0275626">AST::BinaryExpr</a></li>
+<li>block&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a06f7458c9147b798521775e74d929c2b">AST::FuncDeclStmt</a></li>
 <li>BoolLiteral()&#160;:&#160;<a class="el" href="classAST_1_1BoolLiteral.html#a7fd72a0f9b678427a2209113f47b0afe">AST::BoolLiteral</a></li>
 <li>builder&#160;:&#160;<a class="el" href="classCodeGenerator.html#ae12aefc5f2c0083aaaa6a118809fd395">CodeGenerator</a></li>
 </ul>
@@ -100,13 +103,14 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
 <li>Expr()&#160;:&#160;<a class="el" href="classAST_1_1Expr.html#af1af0d3b7d82a25dc389d24e8e4b49bf">AST::Expr</a></li>
-<li>expr&#160;:&#160;<a class="el" href="classAST_1_1UnaryExpr.html#a68a2a3b5c5f05f3fc89155452437c868">AST::UnaryExpr</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#a04eccd724ff518d748679fd015ebabcd">AST::VarDeclStmt</a></li>
+<li>expr&#160;:&#160;<a class="el" href="classAST_1_1ReturnStmt.html#ad4bf3b5014e5eba9b4e6e82190a70b61">AST::ReturnStmt</a>, <a class="el" href="classAST_1_1UnaryExpr.html#a68a2a3b5c5f05f3fc89155452437c868">AST::UnaryExpr</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#a04eccd724ff518d748679fd015ebabcd">AST::VarDeclStmt</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_f" name="index_f"></a>- f -</h3><ul>
 <li>file_name&#160;:&#160;<a class="el" href="classCodeGenerator.html#a63079f3cf25075ff372f61d5c37fc46e">CodeGenerator</a>, <a class="el" href="classLexer.html#a15a7c44b97312d91763623a1be94192c">Lexer</a>, <a class="el" href="structToken.html#a9f01006e6f306b5034e66e0887320c24">Token</a></li>
 <li>FloatLiteral()&#160;:&#160;<a class="el" href="classAST_1_1FloatLiteral.html#afcd58203cbe60ad48b8e87db70305bf9">AST::FloatLiteral</a></li>
+<li>FuncDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#ac5b0bcce75127be1c6b970e39e34a350">AST::FuncDeclStmt</a></li>
 </ul>
 
 
@@ -152,7 +156,7 @@ $(function(){initNavTree('functions.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_n" name="index_n"></a>- n -</h3><ul>
-<li>name&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a13b52014ce5b39ab6d87c9c9b5b2a2a2">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#a453aba92dc28e1edabce5aad9bd34d5d">AST::VarDeclStmt</a></li>
+<li>name&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#aeeb6cc58c8e9af6fafc024212b841b79">AST::Argument</a>, <a class="el" href="classAST_1_1FuncDeclStmt.html#ae8c461b1295c0bfec58d1f9d615a04bc">AST::FuncDeclStmt</a>, <a class="el" href="structAST_1_1Type.html#a13b52014ce5b39ab6d87c9c9b5b2a2a2">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#a453aba92dc28e1edabce5aad9bd34d5d">AST::VarDeclStmt</a>, <a class="el" href="classAST_1_1VarExpr.html#ae9d1546643611924427e47b9fde68a4e">AST::VarExpr</a></li>
 </ul>
 
 
@@ -164,24 +168,29 @@ $(function(){initNavTree('functions.html','',''); });
 <h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>parse()&#160;:&#160;<a class="el" href="classParser.html#a46a674e4cff457fc9502b327ee9be73c">Parser</a></li>
 <li>parse_additive_expr()&#160;:&#160;<a class="el" href="classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa">Parser</a></li>
+<li>parse_argument()&#160;:&#160;<a class="el" href="classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f">Parser</a></li>
 <li>parse_comparation_expr()&#160;:&#160;<a class="el" href="classParser.html#a9539499c0db5a3d7045952e7919d3a65">Parser</a></li>
 <li>parse_equality_expr()&#160;:&#160;<a class="el" href="classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf">Parser</a></li>
 <li>parse_expr()&#160;:&#160;<a class="el" href="classParser.html#a077a7024f238711664ff68ebf79e320b">Parser</a></li>
+<li>parse_func_decl_stmt()&#160;:&#160;<a class="el" href="classParser.html#a7771b29d78844845898c9d14a2eb8f0b">Parser</a></li>
 <li>parse_l_and_expr()&#160;:&#160;<a class="el" href="classParser.html#ac23cdc70263553f1a8f5a2bf01caa770">Parser</a></li>
 <li>parse_l_or_expr()&#160;:&#160;<a class="el" href="classParser.html#a1438271fe63fe661f7e43ce92119bcea">Parser</a></li>
 <li>parse_multiplicative_expr()&#160;:&#160;<a class="el" href="classParser.html#ad46509f9d3366981b886adbbef7476f5">Parser</a></li>
 <li>parse_primary_expr()&#160;:&#160;<a class="el" href="classParser.html#a2cdd6289b4951d4fadf3f5110586569a">Parser</a></li>
+<li>parse_return_stmt()&#160;:&#160;<a class="el" href="classParser.html#a2f0a39989801cd360c54855bf6ad2e26">Parser</a></li>
 <li>parse_stmt()&#160;:&#160;<a class="el" href="classParser.html#a0470ee6b00dadc211d17e46adae86a5d">Parser</a></li>
 <li>parse_unary_expr()&#160;:&#160;<a class="el" href="classParser.html#a065a423e45b55d6760c1c2d871d34055">Parser</a></li>
 <li>parse_var_decl_stmt()&#160;:&#160;<a class="el" href="classParser.html#a4e39379d0213f8f2cb8b10abe8110d77">Parser</a></li>
 <li>Parser()&#160;:&#160;<a class="el" href="classParser.html#abc8f9ebc6d42b34014a0011ec7951652">Parser</a></li>
 <li>peek()&#160;:&#160;<a class="el" href="classLexer.html#ad7efb4516f546ec49416043fa87cb910">Lexer</a>, <a class="el" href="classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3">Parser</a></li>
-<li>pos&#160;:&#160;<a class="el" href="classLexer.html#a60c66b1d2adfcb162c8da9c15f6a033d">Lexer</a>, <a class="el" href="classParser.html#a555cedebfa75c5c2c4e9e014ab8f759f">Parser</a>, <a class="el" href="structToken.html#a9163ffe984d122b5e07ca5818b3068c0">Token</a></li>
+<li>pos&#160;:&#160;<a class="el" href="classLexer.html#a60c66b1d2adfcb162c8da9c15f6a033d">Lexer</a>, <a class="el" href="classParser.html#a555cedebfa75c5c2c4e9e014ab8f759f">Parser</a></li>
 <li>print_ir()&#160;:&#160;<a class="el" href="classCodeGenerator.html#ad9652056bc78e567f1346b7842899a15">CodeGenerator</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>ret_type&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a2a10c9f7a2626bbc6837cc61b031285e">AST::FuncDeclStmt</a></li>
+<li>ReturnStmt()&#160;:&#160;<a class="el" href="classAST_1_1ReturnStmt.html#a4a8c1e7093e0665f1c2b6f0bbd6da41f">AST::ReturnStmt</a></li>
 <li>right_expr&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#aa370f4e6bdb427f7f4b2584398e420bf">AST::BinaryExpr</a></li>
 </ul>
 
@@ -199,7 +208,7 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
 <li>to_str()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7">AST::Type</a>, <a class="el" href="structToken.html#a2ffd9d9d778266034ccbf00b82cd82b6">Token</a></li>
-<li>Token()&#160;:&#160;<a class="el" href="structToken.html#af5c9c4faecfae6c8211b9788f5b72788">Token</a></li>
+<li>Token()&#160;:&#160;<a class="el" href="structToken.html#a7a3c68e439c4ec728e6ccb29e3281ca0">Token</a></li>
 <li>tokenize()&#160;:&#160;<a class="el" href="classLexer.html#af6c1882744b6491b56538b065e1600f5">Lexer</a></li>
 <li>tokenize_character_lit()&#160;:&#160;<a class="el" href="classLexer.html#a1831613248412010bfd02e87f9e8582d">Lexer</a></li>
 <li>tokenize_id()&#160;:&#160;<a class="el" href="classLexer.html#af26984da969b4bd1dbc65d07977b4438">Lexer</a></li>
@@ -210,7 +219,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>tokens_count&#160;:&#160;<a class="el" href="classParser.html#aba68ea149a82220afc0902aa34963731">Parser</a></li>
 <li>ttype_to_tvalue()&#160;:&#160;<a class="el" href="classParser.html#ae5709805b09bb75a192f232f58b579a5">Parser</a></li>
 <li>Type()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a59593540d5a322dc1c93ccdbc1daf918">AST::Type</a></li>
-<li>type&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#a823158a25db049f41cf349f43e0ea457">AST::Literal</a>, <a class="el" href="structAST_1_1Type.html#ae8e3856c0bbe0d8dcc09392cc05b54a3">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#ac95d3f2f46507d2ce1e5f664374e9329">AST::VarDeclStmt</a>, <a class="el" href="structToken.html#a67919af9f3a80dc0b28a0ab1e6d5bf8a">Token</a></li>
+<li>type&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#a029afe764511ca5aa2f29154e1a74e17">AST::Argument</a>, <a class="el" href="classAST_1_1Literal.html#a823158a25db049f41cf349f43e0ea457">AST::Literal</a>, <a class="el" href="structAST_1_1Type.html#ae8e3856c0bbe0d8dcc09392cc05b54a3">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#ac95d3f2f46507d2ce1e5f664374e9329">AST::VarDeclStmt</a>, <a class="el" href="structToken.html#a67919af9f3a80dc0b28a0ab1e6d5bf8a">Token</a></li>
 <li>type_to_llvm()&#160;:&#160;<a class="el" href="classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab">CodeGenerator</a></li>
 </ul>
 
@@ -224,6 +233,7 @@ $(function(){initNavTree('functions.html','',''); });
 <li>Value()&#160;:&#160;<a class="el" href="structAST_1_1Value.html#a437716e942cb982476b268b8a5f27464">AST::Value</a></li>
 <li>value&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#ab5f237172771b6506619d9e55bab321c">AST::Literal</a>, <a class="el" href="structAST_1_1Value.html#af07243243a7203758b6c888f6ad42b9e">AST::Value</a>, <a class="el" href="structToken.html#a4b7142147b8598f8e24c404928d9263b">Token</a></li>
 <li>VarDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1VarDeclStmt.html#a02b93247bfd4522483630550d4589633">AST::VarDeclStmt</a></li>
+<li>VarExpr()&#160;:&#160;<a class="el" href="classAST_1_1VarExpr.html#a1e11efaf9a03a76c6099cb31f31dc044">AST::VarExpr</a></li>
 <li>variables&#160;:&#160;<a class="el" href="classCodeGenerator.html#a72703964607bb38232d74e3f584c5882">CodeGenerator</a></li>
 </ul>
 
@@ -235,14 +245,17 @@ $(function(){initNavTree('functions.html','',''); });
 <li>~DoubleLiteral()&#160;:&#160;<a class="el" href="classAST_1_1DoubleLiteral.html#aeeff9200c40a9e2351c64bacac29dbdf">AST::DoubleLiteral</a></li>
 <li>~Expr()&#160;:&#160;<a class="el" href="classAST_1_1Expr.html#a0428e4e0edfd77d07e6d76ee0b6b67d2">AST::Expr</a></li>
 <li>~FloatLiteral()&#160;:&#160;<a class="el" href="classAST_1_1FloatLiteral.html#a0b651a2f1344e860b39c1917878d49b6">AST::FloatLiteral</a></li>
+<li>~FuncDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a9c3680fc8aa6e9404719e1d3447a19f2">AST::FuncDeclStmt</a></li>
 <li>~IntLiteral()&#160;:&#160;<a class="el" href="classAST_1_1IntLiteral.html#a0d137c080348c685200c49266ff86c4f">AST::IntLiteral</a></li>
 <li>~Literal()&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#ac6c85a466ac26837313d41bef8e1df46">AST::Literal</a></li>
 <li>~LongLiteral()&#160;:&#160;<a class="el" href="classAST_1_1LongLiteral.html#a28ba73e9a3f69077f3efa7b532d7263e">AST::LongLiteral</a></li>
+<li>~ReturnStmt()&#160;:&#160;<a class="el" href="classAST_1_1ReturnStmt.html#a2270fc61ecf55babb3d4b76f5f708de4">AST::ReturnStmt</a></li>
 <li>~ShortLiteral()&#160;:&#160;<a class="el" href="classAST_1_1ShortLiteral.html#af0d1b52673cd8a9fad1c8b250ddc8db2">AST::ShortLiteral</a></li>
 <li>~Stmt()&#160;:&#160;<a class="el" href="classAST_1_1Stmt.html#a04d66e897648e6479438eef569402eb2">AST::Stmt</a></li>
 <li>~StringLiteral()&#160;:&#160;<a class="el" href="classAST_1_1StringLiteral.html#af97f349bc416770269bb14cd4a6dd639">AST::StringLiteral</a></li>
 <li>~UnaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1UnaryExpr.html#a441096eb3e71a662af9bd9b5440bc3a8">AST::UnaryExpr</a></li>
 <li>~VarDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1VarDeclStmt.html#a4380ac1919debc39f3cff86ea739dba9">AST::VarDeclStmt</a></li>
+<li>~VarExpr()&#160;:&#160;<a class="el" href="classAST_1_1VarExpr.html#a46b9ab31dbe2243042431f1f638f1a64">AST::VarExpr</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

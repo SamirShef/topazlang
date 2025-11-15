@@ -1,5 +1,9 @@
 <map id="AST::Stmt" name="AST::Stmt">
-<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="28,5,111,32"/>
-<area shape="rect" id="Node000002" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="5,80,134,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,48,72,80,67,80,67,48"/>
+<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="187,5,269,32"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="5,80,144,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,41,103,82,100,77,186,37"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="167,80,288,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,48,230,80,225,80,225,48"/>
+<area shape="rect" id="Node000004" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="313,80,441,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="269,37,352,77,350,82,266,42"/>
 </map>

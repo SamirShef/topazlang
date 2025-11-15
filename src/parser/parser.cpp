@@ -2,6 +2,7 @@
 #include "../../include/parser/parser.hpp"
 #include <sstream>
 #include <memory>
+#include <utility>
 
 std::vector<AST::StmtPtr> Parser::parse() {
     std::vector<AST::StmtPtr> stmts;
@@ -17,8 +18,14 @@ AST::StmtPtr Parser::parse_stmt() {
     if (match(TOK_LET)) {
         return parse_var_decl_stmt();
     }
+    else if (match(TOK_FUN)) {
+        return parse_func_decl_stmt();
+    }
+    else if (match(TOK_RETURN)) {
+        return parse_return_stmt();
+    }
     else {
-        throw_excpetion(SUB_PARSER, "Unsupported statement", peek().line, peek().file_name);
+        throw_excpetion(SUB_PARSER, "Unsupported statement. Please check ", peek().line, peek().file_name);
     }
 }
 
@@ -31,7 +38,7 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     consume(TOK_OP_COLON, ss.str(), peek().line);
 
     ss.str("");
-    ss << "Expected \033[0m':'\033[31m between type and variable name.\nToken '\033[0m" << peek().value << "'\033[31m is keyword. Please replase it with unique identifier";
+    ss << "Expected variable name.\nToken \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
     std::string name = consume(TOK_ID, ss.str(), peek().line).value;
     AST::ExprPtr expr = nullptr;
     if (pos == tokens_count) {
@@ -54,6 +61,63 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
 
     return std::make_unique<AST::VarDeclStmt>(type, std::move(expr), name, first_token.line);
+}
+
+AST::StmtPtr Parser::parse_func_decl_stmt() {
+    Token first_token = peek(-1);
+    std::stringstream ss;
+    ss << "Expected function name.\nToken \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
+    std::string name = consume(TOK_ID, ss.str(), peek().line).value;
+    std::vector<AST::Argument> args;
+    if (match(TOK_OP_LPAREN)) {
+        while (!match(TOK_OP_RPAREN)) {
+            args.push_back(parse_argument());
+            if (peek().type != TOK_OP_RPAREN) {
+                ss.str("");
+                ss << "Expected \033[0m','\033[31m between function arguments.\nPlease replace \033[0m'";
+                ss << args[args.size() - 1].name << ": " << args[args.size() - 1].type.to_str() << " " << peek().value << "'\033[31m with: \033[0m'"
+                   << args[args.size() - 1].name << ": " << args[args.size() - 1].type.to_str() << ", " << peek().value << "'";
+                consume(TOK_OP_COMMA, ss.str(), peek().line);
+            }
+        }
+    }
+
+    AST::Type ret_type = AST::Type(AST::TYPE_INT, "int");
+    if (match(TOK_OP_NEXT)) {
+        ret_type = consume_type();
+    }
+    
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m after funtion arguments. Prototypes of functions is unsupported in current Topaz compiler version", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_stmt());
+    }
+
+    return std::make_unique<AST::FuncDeclStmt>(name, std::move(args), ret_type, std::move(block), first_token.line);
+}
+
+AST::Argument Parser::parse_argument() {
+    std::stringstream ss;
+    ss << "Expected function argument name.\nToken \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
+    std::string name = consume(TOK_ID, ss.str(), peek().line).value;
+
+    ss.str("");
+    ss << "Expected \033[0m':'\033[31m between function argument name and type.\nPlease replace \033[0m'";
+    ss << name << "'\033[31m with: \033[0m'" << name << ": '";
+    consume(TOK_OP_COLON, ss.str(), peek().line);
+
+    AST::Type type = consume_type();
+    return AST::Argument(name, type);
+}
+
+AST::StmtPtr Parser::parse_return_stmt() {
+    Token first_token = peek(-1);
+    AST::ExprPtr ret_expr = nullptr;
+    if (!match(TOK_OP_SEMICOLON)) {
+        ret_expr = parse_expr();
+        consume(TOK_OP_SEMICOLON, "Expected ';' after returned expression", peek().line);
+    }
+    return std::make_unique<AST::ReturnStmt>(std::move(ret_expr), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
@@ -173,6 +237,9 @@ AST::ExprPtr Parser::parse_primary_expr() {
             consume(TOK_OP_RPAREN, "Expected ')'. You forgot to specify the closing ')'", token.line);
             return expr;
         }
+        case TOK_ID:
+            pos++;
+            return std::make_unique<AST::VarExpr>(token.value, token.line);
         case TOK_CHARACTER_LIT:
             pos++;
             return std::make_unique<AST::CharacterLiteral>(token.value[0], token.line);
@@ -251,7 +318,7 @@ AST::Type Parser::consume_type() {
         }
         default: {
             std::stringstream ss;
-            ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
+            ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists type";
             throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
         }
     }
