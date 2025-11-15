@@ -1,9 +1,9 @@
 fun procedure1 {                    // return type is 'noth'
-
+    return;
 }
 
 fun procedure2 -> noth {
-
+    return;
 }
 
 fun mult(a: int, b: int) -> int {

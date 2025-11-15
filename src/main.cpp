@@ -31,20 +31,13 @@
 int main(int argc, const char *argv[]) {
     bool print_tokens = false;
     bool print_ir = false;
+    bool output_is_object = false;
 
     if (argc < 2) {
         std::cerr << "\033[33mUsage: topazc \"path/to/src.tp\"\n";
         return 1;
     }
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "--tokens") == 0) {
-            print_tokens = true;
-        }
-        else if (strcmp(argv[i], "--ir") == 0) {
-            print_ir = true;
-        }
-    }
-    
+
     std::ifstream file(argv[1]);
     if (!file.is_open()) {
         std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\n";
@@ -53,6 +46,26 @@ int main(int argc, const char *argv[]) {
     
     std::filesystem::path file_path = std::filesystem::absolute(argv[1]);
     std::string executable_path = file_path;
+    
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--tokens") == 0) {
+            print_tokens = true;
+        }
+        else if (strcmp(argv[i], "--ir") == 0) {
+            print_ir = true;
+        }
+        else if (strcmp(argv[i], "--obj") == 0) {
+            output_is_object = true;
+        }
+        else if (strcmp(argv[i], "--path") == 0) {
+            if (i == argc - 1) {
+                std::cerr << "\033[31mCompilation error: After \033[0m'--path'\033[31m option should be followed by the path to the output file!\n";
+                return 1;
+            }
+            executable_path = argv[++i];
+        }
+    }
+
     if (executable_path.find('.') != std::string::npos) {
         for (int i = executable_path.size() - 1; executable_path[i] != '.'; i--) {
             executable_path.pop_back();
@@ -195,6 +208,11 @@ int main(int argc, const char *argv[]) {
     dest.flush();
     dest.close();
 
+    if (output_is_object) {
+        std::cout << "COMPILING SUCCESS. Built object: " << object_path << '\n';
+        return 0;
+    }
+
     const char *env_linker = std::getenv("TOPAZC_LINKER");
     std::string linker = env_linker ? std::string(env_linker) : std::string("clang");
     #if defined(_WIN32)
@@ -235,7 +253,7 @@ int main(int argc, const char *argv[]) {
         return 1;
     }
 
-    std::cout << "COMPILING SUCCESS. Built executable: " << executable_path << std::endl;
+    std::cout << "COMPILING SUCCESS. Built executable: " << executable_path << '\n';
     
     if (std::remove(object_path.c_str()) != 0) {
         std::cerr << "\033[31mCompilation error: Warning: Failed to remove object file: " << object_path << '\n';

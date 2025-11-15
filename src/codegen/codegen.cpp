@@ -1,12 +1,20 @@
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
+#include <cstddef>
+#include <llvm/IR/Argument.h>
+#include <llvm/IR/BasicBlock.h>
+#include <llvm/IR/DerivedTypes.h>
+#include <llvm/IR/Function.h>
 #include <llvm/IR/GlobalVariable.h>
+#include <llvm/IR/Instructions.h>
 #include <llvm/Support/Casting.h>
 #include <llvm/IR/GlobalValue.h>
 #include <llvm/IR/Constant.h>
 #include <llvm/ADT/APInt.h>
 #include <llvm/IR/Value.h>
 #include <llvm/IR/Type.h>
+#include <sstream>
+#include <vector>
 
 void CodeGenerator::generate() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -17,6 +25,12 @@ void CodeGenerator::generate() {
 void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     if (auto vds = dynamic_cast<AST::VarDeclStmt*>(&stmt)) {
         generate_var_decl_stmt(*vds);
+    }
+    else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&stmt)) {
+        generate_func_decl_stmt(*fds);
+    }
+    else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
+        generate_return_stmt(*rs);
     }
     else {
         throw_excpetion(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
@@ -33,7 +47,50 @@ void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {
     if (variables.size() == 1) {
         var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), vds.name);
     }
+    else {
+        var = builder.CreateAlloca(type, nullptr, vds.name + ".alloca");
+        builder.CreateStore(val, var);
+    }
     variables.top().emplace(vds.name, var);
+}
+
+void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
+    llvm::Type *ret_type = type_to_llvm(fds.ret_type);
+    std::vector<llvm::Type*> args;
+    size_t args_count = fds.args.size();
+    for (size_t i = 0; i < args_count; i++) {
+        args.push_back(type_to_llvm(fds.args[i].type));
+    }
+    llvm::FunctionType *func_type = llvm::FunctionType::get(ret_type, args, false);
+    llvm::Function *func = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, fds.name, *module);
+    
+    llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, "entry", func);
+    builder.SetInsertPoint(entry);
+    
+    variables.push({});
+    functions.emplace(fds.name, func);
+    size_t index = 0;
+    for (llvm::Argument& arg : func->args()) {
+        arg.setName(fds.args[index].name);
+        llvm::AllocaInst* arg_alloca = builder.CreateAlloca(arg.getType(), nullptr, fds.args[index].name);
+        builder.CreateStore(&arg, arg_alloca);
+        variables.top().emplace(fds.args[index].name, arg_alloca);
+        index++;
+    }
+    size_t block_size = fds.block.size();
+    for (size_t i = 0; i < block_size; i++) {
+        generate_stmt(*fds.block[i]);
+    }
+    variables.pop();
+}
+
+void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
+    if (rs.expr != nullptr) {
+        builder.CreateRet(generate_expr(*rs.expr));
+    }
+    else {
+        builder.CreateRetVoid();
+    }
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
@@ -45,6 +102,9 @@ llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
     }
     else if (auto ue = dynamic_cast<AST::UnaryExpr*>(&expr)) {
         return generate_unary_expr(*ue);
+    }
+    else if (auto ve = dynamic_cast<AST::VarExpr*>(&expr)) {
+        return generate_var_expr(*ve);
     }
     else {
         throw_excpetion(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
@@ -166,6 +226,20 @@ llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
     }
 }
 
+llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
+    auto vars = variables;
+    while (!vars.empty()) {
+        auto vars_it = vars.top().find(ve.name);
+        if (vars_it != vars.top().end()) {
+            return builder.CreateLoad(vars_it->second->getType(), vars_it->second, ve.name + ".load");
+        }
+        vars.pop();
+    }
+    std::stringstream ss;
+    ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
+    throw_excpetion(SUB_CODEGEN, ss.str(), ve.line, file_name);
+}
+
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
     switch (type.type) {
         case AST::TYPE_CHAR:
@@ -182,6 +256,8 @@ llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
             return llvm::Type::getDoubleTy(context);
         case AST::TYPE_BOOL:
             return llvm::Type::getInt1Ty(context);
+        case AST::TYPE_NOTH:
+            return llvm::Type::getVoidTy(context);
         default:
             throw_excpetion(SUB_CODEGEN, "Unsupported type", -1, file_name);
     }
