@@ -28,6 +28,7 @@ private:
         {"float", TOK_FLOAT},
         {"double", TOK_DOUBLE},
         {"bool", TOK_BOOL},
+        {"noth", TOK_NOTH},
         {"let", TOK_LET},
         {"fun", TOK_FUN},
         {"if", TOK_IF},

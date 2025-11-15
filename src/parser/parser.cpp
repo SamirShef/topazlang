@@ -1,8 +1,8 @@
 #include "../../include/exception/exception.hpp"
 #include "../../include/parser/parser.hpp"
+#include <utility>
 #include <sstream>
 #include <memory>
-#include <utility>
 
 std::vector<AST::StmtPtr> Parser::parse() {
     std::vector<AST::StmtPtr> stmts;
@@ -82,7 +82,7 @@ AST::StmtPtr Parser::parse_func_decl_stmt() {
         }
     }
 
-    AST::Type ret_type = AST::Type(AST::TYPE_INT, "int");
+    AST::Type ret_type = AST::Type(AST::TYPE_NOTH, "noth");
     if (match(TOK_OP_NEXT)) {
         ret_type = consume_type();
     }
@@ -308,7 +308,8 @@ AST::Type Parser::consume_type() {
         case TOK_LONG:
         case TOK_FLOAT:
         case TOK_DOUBLE:
-        case TOK_BOOL: {
+        case TOK_BOOL:
+        case TOK_NOTH: {
             Token type = peek();
             pos++;
             if (match(TOK_OP_QUESTION)) {
@@ -340,6 +341,8 @@ AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
             return AST::TYPE_DOUBLE;
         case TOK_BOOL:
             return AST::TYPE_BOOL;
+        case TOK_NOTH:
+            return AST::TYPE_NOTH;
         default:
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";

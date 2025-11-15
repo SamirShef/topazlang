@@ -20,6 +20,7 @@ typedef enum : uint8_t {
     TOK_FLOAT,                              /**< 'float' type keyword */
     TOK_DOUBLE,                             /**< 'double' type keyword */
     TOK_BOOL,                               /**< 'bool' type keyword */
+    TOK_NOTH,                               /**< 'noth' type keyword (only for functions) */
     
     TOK_LET,                                /**< 'let' keyword for variable definition */
     TOK_FUN,                                /**< 'fun' keyword for function definition */
@@ -117,6 +118,9 @@ struct Token {
                 break;
             case TOK_BOOL:
                 ss << "bool";
+                break;
+            case TOK_NOTH:
+                ss << "noth";
                 break;
             case TOK_LET:
                 ss << "let";

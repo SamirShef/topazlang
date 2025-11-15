@@ -28,6 +28,7 @@ namespace AST {
         TYPE_FLOAT,                              /**< 'float' type */
         TYPE_DOUBLE,                             /**< 'double' type */
         TYPE_BOOL,                               /**< 'bool' type */
+        TYPE_NOTH,                               /**< 'noth' type (only for functions) */
         TYPE_STRING_LIT,                         /**< String literal type */
         TYPE_TRAIT,                              /**< Trait type */
         TYPE_CLASS,                              /**< Class type */

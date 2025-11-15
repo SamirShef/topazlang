@@ -1,3 +1,11 @@
+fun procedure1 {                    // return type is 'noth'
+
+}
+
+fun procedure2 -> noth {
+
+}
+
 fun mult(a: int, b: int) -> int {
     return a * b;
 }
