@@ -9,6 +9,7 @@ var classCodeGenerator =
     [ "generate_return_stmt", "classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a", null ],
     [ "generate_stmt", "classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf", null ],
     [ "generate_unary_expr", "classCodeGenerator.html#abb7b71380118a168adeb168f557060e7", null ],
+    [ "generate_var_asgn_stmt", "classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4", null ],
     [ "generate_var_decl_stmt", "classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478", null ],
     [ "generate_var_expr", "classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441", null ],
     [ "get_module", "classCodeGenerator.html#acaed752e624b67267e09a006578cafad", null ],

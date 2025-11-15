@@ -84,6 +84,15 @@ private:
     void generate_var_decl_stmt(AST::VarDeclStmt& vds);
 
     /**
+     * @brief Method for generating LLVM IR code for variable assignment
+     *
+     * This method generating LLVM IR code for variable assignment
+     *
+     * @param vds Variable assignment statement
+     */
+    void generate_var_asgn_stmt(AST::VarAsgnStmt& vas);
+
+    /**
      * @brief Method for generating LLVM IR code for function definition
      *
      * This method generating LLVM IR code for function definition
