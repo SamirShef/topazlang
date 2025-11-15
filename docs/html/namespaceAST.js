@@ -18,6 +18,7 @@ var namespaceAST =
     [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
     [ "VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
     [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
+    [ "VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
     [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
     [ "ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ],
     [ "ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],

@@ -172,11 +172,19 @@ Token Lexer::tokenize_op() {
                 advance();
                 return Token(TOK_OP_PLUS_EQ, "+=", tmp_l, tmp_c, file_name);
             }
+            else if (peek() == '+') {
+                advance();
+                return Token(TOK_OP_INC, "++", tmp_l, tmp_c, file_name);
+            }
             return Token(TOK_OP_PLUS, "+", tmp_l, tmp_c, file_name);
         case '-':
             if (peek() == '=') {
                 advance();
                 return Token(TOK_OP_MINUS_EQ, "-=", tmp_l, tmp_c, file_name);
+            }
+            else if (peek() == '-') {
+                advance();
+                return Token(TOK_OP_DEC, "--", tmp_l, tmp_c, file_name);
             }
             else if (peek() == '>') {
                 advance();

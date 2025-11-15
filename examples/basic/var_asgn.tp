@@ -1,0 +1,10 @@
+let int: var = 10;
+
+fun main -> int {
+    var = 4;
+    var *= 4;
+    var -= 2;
+    var++;
+    var--;
+    return 0;
+}

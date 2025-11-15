@@ -43,8 +43,10 @@ typedef enum : uint8_t {
 
     TOK_OP_PLUS,                            /**< '+' operator */
     TOK_OP_PLUS_EQ,                         /**< '+=' operator */
+    TOK_OP_INC,                             /**< '++' operator */
     TOK_OP_MINUS,                           /**< '-' operator */
     TOK_OP_MINUS_EQ,                        /**< '-=' operator */
+    TOK_OP_DEC,                             /**< '--' operator */
     TOK_OP_MULT,                            /**< '*' operator */
     TOK_OP_MULT_EQ,                         /**< '*=' operator */
     TOK_OP_DIV,                             /**< '/' operator */

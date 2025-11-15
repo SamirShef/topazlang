@@ -1,0 +1,5 @@
+<map id="AST::VarAsgnStmt" name="AST::VarAsgnStmt">
+<area shape="rect" id="Node000001" title="Statement of assignment of variable." alt="" coords="5,80,137,107"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="30,5,112,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,48,74,80,68,80,68,48"/>
+</map>
