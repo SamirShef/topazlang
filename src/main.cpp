@@ -4,6 +4,7 @@
  * @brief Compiler entry point
  */
 
+#include "../include/semantic/semantic.hpp"
 #include "../include/codegen/codegen.hpp"
 #include "../include/parser/parser.hpp"
 #include "../include/lexer/lexer.hpp"
@@ -34,13 +35,13 @@ int main(int argc, const char *argv[]) {
     bool output_is_object = false;
 
     if (argc < 2) {
-        std::cerr << "\033[33mUsage: topazc \"path/to/src.tp\"\n";
+        std::cerr << "\033[33mUsage: topazc \"path/to/src.tp\"\033[0m\n";
         return 1;
     }
 
     std::ifstream file(argv[1]);
     if (!file.is_open()) {
-        std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\n";
+        std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\033[0m\n";
         return 1;
     }
     
@@ -59,7 +60,7 @@ int main(int argc, const char *argv[]) {
         }
         else if (strcmp(argv[i], "--path") == 0) {
             if (i == argc - 1) {
-                std::cerr << "\033[31mCompilation error: After \033[0m'--path'\033[31m option should be followed by the path to the output file!\n";
+                std::cerr << "\033[31mCompilation error: After \033[0m'--path'\033[31m option should be followed by the path to the output file!\033[0m\n";
                 return 1;
             }
             executable_path = argv[++i];
@@ -99,6 +100,9 @@ int main(int argc, const char *argv[]) {
     Parser parser(tokens);
     std::vector<AST::StmtPtr> stmts = parser.parse();
 
+    SemanticAnalyzer semantic(stmts, file_path.string());
+    semantic.analyze();
+
     CodeGenerator codegen(stmts, file_path.string());
     codegen.generate();
     if (print_ir) {
@@ -116,7 +120,7 @@ int main(int argc, const char *argv[]) {
     llvm::InitializeNativeTargetAsmParser();
     
     if (module->getFunction("main") == nullptr) {
-        std::cerr << "\033[31mCompilation error: Program does not have entry point 'main'" << '\n';
+        std::cerr << "\033[31mCompilation error: Program does not have entry point 'main'\033[0m" << '\n';
         return 1;
     }
     auto getTriple = []() -> std::string {
@@ -183,7 +187,7 @@ int main(int argc, const char *argv[]) {
     auto reloc_model = std::optional<llvm::Reloc::Model>();
     std::unique_ptr<llvm::TargetMachine> target_machine(target->createTargetMachine(target_triple, CPU, features, opt, reloc_model));
     if (!target_machine) {
-        std::cerr << "\033[31mCompilation error: Failed to create TargetMachine for triple '" << target_triple << "'" << '\n';
+        std::cerr << "\033[31mCompilation error: Failed to create TargetMachine for triple '" << target_triple << "'\033[0m\n";
         return 1;
     }
 
@@ -192,7 +196,7 @@ int main(int argc, const char *argv[]) {
     std::error_code ec;
     llvm::raw_fd_ostream dest(object_path, ec, llvm::sys::fs::OF_None);
     if (ec) {
-        std::cerr << "\033[31mCompilation error: Could not open file '" << object_path << "': " << ec.message() << '\n';
+        std::cerr << "\033[31mCompilation error: Could not open file '" << object_path << "': " << ec.message() << "\033[0m\n";
         return 1;
     }
 
@@ -200,7 +204,7 @@ int main(int argc, const char *argv[]) {
     
     auto fileType = static_cast<llvm::CodeGenFileType>(1); // 1 = Object file
     if (target_machine->addPassesToEmitFile(pass, dest, nullptr, fileType)) {
-        std::cerr << "\033[31mCompilation error: TargetMachine can't emit a file of this type" << '\n';
+        std::cerr << "\033[31mCompilation error: TargetMachine can't emit a file of this type\033[0m\n";
         return 1;
     }
 
@@ -249,14 +253,14 @@ int main(int argc, const char *argv[]) {
     if (linkRes != 0) {
         std::cerr << "\033[31mCompilation error: Link command: " << link_cmd << '\n';
         std::cerr << link_out << '\n';
-        std::cerr << "Linking failed with code " << linkRes << '\n';
+        std::cerr << "Linking failed with code " << linkRes << "\033[0m\n";
         return 1;
     }
 
     std::cout << "COMPILING SUCCESS. Built executable: " << executable_path << '\n';
     
     if (std::remove(object_path.c_str()) != 0) {
-        std::cerr << "\033[31mCompilation error: Warning: Failed to remove object file: " << object_path << '\n';
+        std::cerr << "\033[31mCompilation error: Warning: Failed to remove object file: " << object_path << "\033[0m\n";
         return 1;
     }
     

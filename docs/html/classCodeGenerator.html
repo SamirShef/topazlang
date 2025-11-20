@@ -115,18 +115,18 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a63079f3cf25075ff372f61d5c37fc46e" id="r_a63079f3cf25075ff372f61d5c37fc46e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63079f3cf25075ff372f61d5c37fc46e">file_name</a></td></tr>
+<tr class="memitem:a7e46191a8d524d1de64cc9ba73ea7b61" id="r_a7e46191a8d524d1de64cc9ba73ea7b61"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">AST::StmtPtr</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e46191a8d524d1de64cc9ba73ea7b61">stmts</a></td></tr>
 <tr class="memitem:a1e1eadbf7857546e60f9fdb881b5e0bd" id="r_a1e1eadbf7857546e60f9fdb881b5e0bd"><td class="memItemLeft" align="right" valign="top">llvm::LLVMContext&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e1eadbf7857546e60f9fdb881b5e0bd">context</a></td></tr>
 <tr class="memitem:ae12aefc5f2c0083aaaa6a118809fd395" id="r_ae12aefc5f2c0083aaaa6a118809fd395"><td class="memItemLeft" align="right" valign="top">llvm::IRBuilder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae12aefc5f2c0083aaaa6a118809fd395">builder</a></td></tr>
 <tr class="memitem:a99ee2accc36506cab4248f9089e9d89e" id="r_a99ee2accc36506cab4248f9089e9d89e"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; llvm::Module &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99ee2accc36506cab4248f9089e9d89e">module</a></td></tr>
-<tr class="memitem:a7e46191a8d524d1de64cc9ba73ea7b61" id="r_a7e46191a8d524d1de64cc9ba73ea7b61"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">AST::StmtPtr</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e46191a8d524d1de64cc9ba73ea7b61">stmts</a></td></tr>
-<tr class="memitem:a63079f3cf25075ff372f61d5c37fc46e" id="r_a63079f3cf25075ff372f61d5c37fc46e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63079f3cf25075ff372f61d5c37fc46e">file_name</a></td></tr>
 <tr class="memitem:a72703964607bb38232d74e3f584c5882" id="r_a72703964607bb38232d74e3f584c5882"><td class="memItemLeft" align="right" valign="top">std::stack&lt; std::map&lt; std::string, llvm::Value * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72703964607bb38232d74e3f584c5882">variables</a></td></tr>
 <tr class="memitem:adc04cd88bd1d94afbf5d19da93b2f0ee" id="r_adc04cd88bd1d94afbf5d19da93b2f0ee"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, llvm::Function * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc04cd88bd1d94afbf5d19da93b2f0ee">functions</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Code generator class. </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00024">24</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00023">23</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a32ea8548ee278fa4f6dd1810ef28f32c" name="a32ea8548ee278fa4f6dd1810ef28f32c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32ea8548ee278fa4f6dd1810ef28f32c">&#9670;&#160;</a></span>CodeGenerator()</h2>
@@ -155,7 +155,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00035">35</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00034">34</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -178,7 +178,7 @@ Private Attributes</h2></td></tr>
 <p>Method for generating LLVM IR code. </p>
 <p>This method generating LLVM IR code for all <a class="el" href="namespaceAST.html">AST</a> statements </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00019">19</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00027">27</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -189,7 +189,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="173,101,205,101,205,107,173,107"/>
 <area shape="rect" href="classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="469,49,636,92"/>
 <area shape="poly" title=" " alt="" coords="421,96,453,91,454,97,422,101"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="1362,237,1479,264"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="1362,237,1479,264"/>
 <area shape="poly" title=" " alt="" coords="345,88,400,60,468,35,555,15,624,6,783,4,1017,4,1105,4,1176,10,1209,18,1242,31,1277,50,1316,77,1351,110,1378,149,1399,188,1412,222,1408,224,1394,191,1373,152,1347,113,1313,81,1274,55,1239,36,1207,23,1175,15,1105,9,1017,9,783,9,624,11,556,20,470,40,402,65,347,93"/>
 <area shape="rect" href="classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="469,187,636,229"/>
 <area shape="poly" title=" " alt="" coords="354,115,470,168,490,177,488,182,468,173,351,120"/>
@@ -273,7 +273,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Generated LLVM value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00160">160</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00171">171</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -282,7 +282,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Method for generating LLVM IR code for binary expressions." alt="" coords="5,153,173,196"/>
 <area shape="rect" href="classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,161,420,188"/>
 <area shape="poly" title=" " alt="" coords="173,181,205,181,205,186,173,186"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,128,1015,155"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,128,1015,155"/>
 <area shape="poly" title=" " alt="" coords="140,194,269,241,354,266,449,286,549,299,652,301,703,296,753,287,802,274,849,256,878,239,903,215,939,167,943,170,907,219,881,243,852,261,804,279,754,293,704,301,652,306,549,304,448,292,353,271,267,247,138,199"/>
 <area shape="poly" title=" " alt="" coords="220,168,188,168,188,163,220,163"/>
 <area shape="rect" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="468,36,635,79"/>
@@ -369,7 +369,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00117">117</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00125">125</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -378,7 +378,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Method for generating LLVM IR code for expressions." alt="" coords="5,131,205,157"/>
 <area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="253,5,420,48"/>
 <area shape="poly" title=" " alt="" coords="150,128,251,76,296,54,298,58,254,81,152,133"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="683,152,800,179"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="683,152,800,179"/>
 <area shape="poly" title=" " alt="" coords="154,127,202,116,252,108,360,100,445,102,529,114,636,135,680,145,678,150,635,140,528,119,445,107,360,105,253,113,203,122,156,133"/>
 <area shape="rect" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="253,123,420,165"/>
 <area shape="poly" title=" " alt="" coords="205,141,237,141,237,147,205,147"/>
@@ -465,7 +465,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00078">78</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00086">86</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -479,7 +479,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="220,234,188,234,188,228,220,228"/>
 <area shape="rect" href="classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="469,219,636,261"/>
 <area shape="poly" title=" " alt="" coords="421,237,453,237,453,243,421,243"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="1362,256,1479,283"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="1362,256,1479,283"/>
 <area shape="poly" title=" " alt="" coords="339,252,405,304,454,337,510,372,573,404,641,431,711,449,783,456,1017,456,1104,455,1172,448,1237,427,1313,387,1340,367,1365,343,1401,294,1405,298,1369,346,1344,371,1316,392,1239,432,1173,453,1104,460,1017,461,783,461,710,454,639,436,571,409,508,376,451,342,402,308,336,256"/>
 <area shape="rect" href="classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4" title="Method for generating LLVM IR code for variable assignment." alt="" coords="469,285,636,328"/>
 <area shape="poly" title=" " alt="" coords="371,251,462,278,461,283,369,257"/>
@@ -563,14 +563,14 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Generated LLVM value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00135">135</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00143">143</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCodeGenerator_a74f0d8b2ead2d26896b08054830e580e_cgraph.png" border="0" usemap="#aclassCodeGenerator_a74f0d8b2ead2d26896b08054830e580e_cgraph" loading="lazy" alt=""/></div>
 <map name="aclassCodeGenerator_a74f0d8b2ead2d26896b08054830e580e_cgraph" id="aclassCodeGenerator_a74f0d8b2ead2d26896b08054830e580e_cgraph">
 <area shape="rect" title="Method for generating LLVM IR code for literals." alt="" coords="5,5,173,48"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="411,13,527,40"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="411,13,527,40"/>
 <area shape="poly" title=" " alt="" coords="173,21,221,20,363,20,396,21,395,26,363,25,221,25,173,26"/>
 <area shape="rect" href="classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="221,35,363,77"/>
 <area shape="poly" title=" " alt="" coords="173,36,206,41,205,46,173,41"/>
@@ -647,7 +647,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00108">108</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00116">116</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -658,7 +658,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="173,141,205,141,205,147,173,147"/>
 <area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,5,635,48"/>
 <area shape="poly" title=" " alt="" coords="365,128,467,76,511,54,514,58,469,81,367,133"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,152,1015,179"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,152,1015,179"/>
 <area shape="poly" title=" " alt="" coords="370,127,417,116,468,108,576,100,660,102,745,114,851,135,895,145,894,150,850,140,744,119,660,107,576,105,468,113,418,122,371,133"/>
 <area shape="rect" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="468,123,635,165"/>
 <area shape="poly" title=" " alt="" coords="421,141,452,141,452,147,421,147"/>
@@ -731,7 +731,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00025">25</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00033">33</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -740,7 +740,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Method for generating LLVM IR code for passing statement." alt="" coords="5,91,206,117"/>
 <area shape="rect" href="classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="254,49,421,92"/>
 <area shape="poly" title=" " alt="" coords="206,96,238,91,239,97,206,101"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="1147,237,1263,264"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="1147,237,1263,264"/>
 <area shape="poly" title=" " alt="" coords="130,88,185,60,253,35,340,15,409,6,567,4,801,4,890,4,960,10,993,18,1026,31,1062,50,1101,77,1135,110,1163,149,1183,188,1197,222,1192,224,1178,191,1158,152,1131,113,1097,81,1059,55,1024,36,992,23,960,15,890,9,801,9,567,9,409,11,341,20,254,40,187,65,132,93"/>
 <area shape="rect" href="classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="254,187,421,229"/>
 <area shape="poly" title=" " alt="" coords="138,115,255,168,275,177,273,182,253,173,136,120"/>
@@ -829,7 +829,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Generated LLVM value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00231">231</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00242">242</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -838,7 +838,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Method for generating LLVM IR code for unary expressions." alt="" coords="5,93,173,136"/>
 <area shape="rect" href="classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,101,420,128"/>
 <area shape="poly" title=" " alt="" coords="173,121,205,121,205,126,173,126"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,152,1015,179"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,152,1015,179"/>
 <area shape="poly" title=" " alt="" coords="144,134,242,172,375,217,527,261,606,279,684,292,770,308,806,307,849,292,880,272,905,246,940,192,945,194,909,249,883,276,852,297,807,312,769,313,683,297,605,284,526,266,373,223,240,177,142,139"/>
 <area shape="poly" title=" " alt="" coords="220,108,188,108,188,103,220,103"/>
 <area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,5,635,48"/>
@@ -925,7 +925,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00060">60</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00068">68</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -934,7 +934,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Method for generating LLVM IR code for variable assignment." alt="" coords="5,272,173,315"/>
 <area shape="rect" href="classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,172,420,199"/>
 <area shape="poly" title=" " alt="" coords="135,269,275,203,277,208,138,274"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,179,1015,205"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,179,1015,205"/>
 <area shape="poly" title=" " alt="" coords="146,313,278,355,364,375,459,391,558,399,659,395,708,388,757,376,804,361,849,340,882,316,909,284,929,249,943,219,948,221,934,252,913,287,886,320,852,345,806,366,758,382,709,393,659,400,558,404,458,396,363,381,277,360,145,318"/>
 <area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,5,635,48"/>
 <area shape="poly" title=" " alt="" coords="344,170,398,126,467,76,508,53,511,58,469,81,402,130,347,174"/>
@@ -1010,7 +1010,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00043">43</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00051">51</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1023,7 +1023,7 @@ Here is the call graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="173,270,311,285,468,297,680,300,680,306,468,303,311,291,173,276"/>
 <area shape="rect" href="classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,61,635,104"/>
 <area shape="poly" title=" " alt="" coords="377,154,496,108,498,113,379,159"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,153,1015,180"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,153,1015,180"/>
 <area shape="poly" title=" " alt="" coords="420,165,468,164,659,159,851,160,883,161,883,166,851,165,659,165,468,169,421,171"/>
 <area shape="rect" href="classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="468,245,635,288"/>
 <area shape="poly" title=" " alt="" coords="355,182,469,231,483,237,481,241,467,236,353,187"/>
@@ -1096,14 +1096,14 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Generated LLVM value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00250">250</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00261">261</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCodeGenerator_a060e2359d3058ae256948b9ed563c441_cgraph.png" border="0" usemap="#aclassCodeGenerator_a060e2359d3058ae256948b9ed563c441_cgraph" loading="lazy" alt=""/></div>
 <map name="aclassCodeGenerator_a060e2359d3058ae256948b9ed563c441_cgraph" id="aclassCodeGenerator_a060e2359d3058ae256948b9ed563c441_cgraph">
 <area shape="rect" title="Method for generating LLVM IR code for variable expressions." alt="" coords="5,5,173,48"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="221,13,337,40"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="221,13,337,40"/>
 <area shape="poly" title=" " alt="" coords="173,24,205,24,205,29,173,29"/>
 <area shape="rect" href="exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="385,5,552,48"/>
 <area shape="poly" title=" " alt="" coords="337,24,370,24,370,29,337,29"/>
@@ -1172,7 +1172,7 @@ Here is the caller graph for this function:</div>
 <p>This method returning current LLVM Module. This method needs the entry point 'main'</p>
 <dl class="section return"><dt>Returns</dt><dd>Current LLVM Module </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00062">62</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00061">61</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1212,7 +1212,7 @@ Here is the caller graph for this function:</div>
 <p>Method for printing generated LLVM IR code. </p>
 <p>This method printing generated LLVM IR code into llvm::outs(). This method needs the entry point 'main' </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00051">51</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00050">50</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1259,14 +1259,14 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Converted type to llvm::Type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00264">264</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8cpp_source.html#l00282">282</a> of file <a class="el" href="codegen_8cpp_source.html">codegen.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCodeGenerator_ac9b488b1b0075da9a932714fe63c5cab_cgraph.png" border="0" usemap="#aclassCodeGenerator_ac9b488b1b0075da9a932714fe63c5cab_cgraph" loading="lazy" alt=""/></div>
 <map name="aclassCodeGenerator_ac9b488b1b0075da9a932714fe63c5cab_cgraph" id="aclassCodeGenerator_ac9b488b1b0075da9a932714fe63c5cab_cgraph">
 <area shape="rect" title="Method for converting AST::Type to llvm::Type." alt="" coords="5,5,148,48"/>
-<area shape="rect" href="exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="196,13,312,40"/>
+<area shape="rect" href="exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="196,13,312,40"/>
 <area shape="poly" title=" " alt="" coords="148,24,180,24,180,29,148,29"/>
 <area shape="rect" href="exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="360,5,527,48"/>
 <area shape="poly" title=" " alt="" coords="312,24,345,24,345,29,312,29"/>
@@ -1334,7 +1334,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>LLVM IR Builder </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00027">27</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00028">28</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1359,7 +1359,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>LLVM Context </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00026">26</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00027">27</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1384,7 +1384,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Absolute path to the Topaz source code </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00030">30</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00025">25</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1409,7 +1409,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Functions table </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00032">32</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00031">31</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1434,7 +1434,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>LLVM Module (module name is relative path to the Topaz source code) </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00028">28</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00029">29</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1459,7 +1459,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p><a class="el" href="namespaceAST.html">AST</a> Tree (statements from <a class="el" href="classParser.html" title="Parser class.">Parser</a>) </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00029">29</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00026">26</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>
@@ -1484,7 +1484,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>View scope of the variables table </p>
 
-<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00031">31</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="codegen_8hpp_source.html#l00030">30</a> of file <a class="el" href="codegen_8hpp_source.html">codegen.hpp</a>.</p>
 
 </div>
 </div>

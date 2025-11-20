@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Method for generating LLVM IR code for variable assignment." alt="" coords="5,272,173,315"/>
 <area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,172,420,199"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,269,275,203,277,208,138,274"/>
-<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="899,179,1015,205"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="899,179,1015,205"/>
 <area shape="poly" id="edge16_Node000001_Node000004" title=" " alt="" coords="146,313,278,355,364,375,459,391,558,399,659,395,708,388,757,376,804,361,849,340,882,316,909,284,929,249,943,219,948,221,934,252,913,287,886,320,852,345,806,366,758,382,709,393,659,400,558,404,458,396,363,381,277,360,145,318"/>
 <area shape="rect" id="Node000003" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,5,635,48"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="344,170,398,126,467,76,508,53,511,58,469,81,402,130,347,174"/>

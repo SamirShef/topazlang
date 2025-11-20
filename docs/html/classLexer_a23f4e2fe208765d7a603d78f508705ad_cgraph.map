@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,59,443,43,444,48,172,64"/>
 <area shape="rect" id="Node000003" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="617,28,707,55"/>
 <area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="138,50,219,32,317,16,394,5,471,4,570,13,606,21,605,26,569,19,471,9,394,11,318,21,220,37,139,55"/>
-<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="755,79,871,105"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="755,79,871,105"/>
 <area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="118,78,165,98,220,115,291,125,363,130,506,129,636,117,739,103,739,108,637,123,507,134,363,135,290,130,219,120,163,103,116,83"/>
 <area shape="rect" id="Node000006" href="$classLexer.html#a1b25efc22ae7e4235aa007185a885c0d" title="Method for getting escape&#45;sequence in string or character literal." alt="" coords="220,79,411,105"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="172,73,204,77,204,82,172,79"/>

@@ -13,13 +13,13 @@
  * @brief All tokens types
  */
 typedef enum : uint8_t {
+    TOK_BOOL,                               /**< 'bool' type keyword */
     TOK_CHAR,                               /**< 'char' type keyword */
     TOK_SHORT,                              /**< 'short' type keyword */
     TOK_INT,                                /**< 'int' type keyword */
     TOK_LONG,                               /**< 'long' type keyword */
     TOK_FLOAT,                              /**< 'float' type keyword */
     TOK_DOUBLE,                             /**< 'double' type keyword */
-    TOK_BOOL,                               /**< 'bool' type keyword */
     TOK_NOTH,                               /**< 'noth' type keyword (only for functions) */
     
     TOK_LET,                                /**< 'let' keyword for variable definition */

@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,78,231,36,232,41,120,83"/>
 <area shape="rect" id="Node000003" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="410,56,505,83"/>
 <area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="158,87,394,71,395,76,158,92"/>
-<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="553,107,670,133"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="553,107,670,133"/>
 <area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="109,106,154,127,206,143,295,153,384,152,467,144,537,133,538,138,468,149,384,157,294,158,205,148,152,132,107,111"/>
 <area shape="rect" id="Node000006" href="$classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="206,107,362,133"/>
 <area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="159,102,191,106,190,111,158,107"/>

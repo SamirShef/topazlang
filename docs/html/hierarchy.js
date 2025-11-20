@@ -17,8 +17,10 @@ var hierarchy =
       [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", null ],
       [ "AST::VarExpr", "classAST_1_1VarExpr.html", null ]
     ] ],
+    [ "SemanticAnalyzer::FunctionInfo", "structSemanticAnalyzer_1_1FunctionInfo.html", null ],
     [ "Lexer", "classLexer.html", null ],
     [ "Parser", "classParser.html", null ],
+    [ "SemanticAnalyzer", "classSemanticAnalyzer.html", null ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
       [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
@@ -27,5 +29,6 @@ var hierarchy =
     ] ],
     [ "Token", "structToken.html", null ],
     [ "AST::Type", "structAST_1_1Type.html", null ],
-    [ "AST::Value", "structAST_1_1Value.html", null ]
+    [ "AST::Value", "structAST_1_1Value.html", null ],
+    [ "SemanticAnalyzer::Value", "structSemanticAnalyzer_1_1Value.html", null ]
 ];

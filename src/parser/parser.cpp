@@ -1,5 +1,12 @@
+/**
+ * @file parser.cpp
+ *
+ * @brief parser.hpp implementation
+ */
+
 #include "../../include/exception/exception.hpp"
 #include "../../include/parser/parser.hpp"
+#include <iostream>
 #include <utility>
 #include <sstream>
 #include <memory>
@@ -28,7 +35,7 @@ AST::StmtPtr Parser::parse_stmt() {
         return parse_return_stmt();
     }
     else {
-        throw_excpetion(SUB_PARSER, "Unsupported statement. Please check ", peek().line, peek().file_name);
+        throw_exception(SUB_PARSER, "Unsupported statement. Please check ", peek().line, peek().file_name);
     }
 }
 
@@ -47,7 +54,7 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     if (pos == tokens_count) {
         ss.str("");
         ss << "Expected \033[0m';'\033[31m in the end of variable definition. Please add \033[0m';'\033[31m into the end of variable definition";
-        throw_excpetion(SUB_PARSER, ss.str(), peek(-1).line, peek(-1).file_name);
+        throw_exception(SUB_PARSER, ss.str(), peek(-1).line, peek(-1).file_name);
     }
     if (match(TOK_OP_EQ)) {
         expr = parse_expr();
@@ -154,8 +161,8 @@ AST::ExprPtr Parser::parse_expr() {
 AST::ExprPtr Parser::parse_l_and_expr() {
     AST::ExprPtr expr = parse_l_or_expr();
     while (match(TOK_OP_L_AND)) {
-        uint32_t line = peek().line;
-        expr = std::make_unique<AST::BinaryExpr>(TOK_OP_L_AND, std::move(expr), parse_l_or_expr(), line);
+        Token token = peek(-1);
+        expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_l_or_expr(), token.line);
     }
     return expr;
 }
@@ -163,8 +170,8 @@ AST::ExprPtr Parser::parse_l_and_expr() {
 AST::ExprPtr Parser::parse_l_or_expr() {
     AST::ExprPtr expr = parse_equality_expr();
     while (match(TOK_OP_L_OR)) {
-        uint32_t line = peek().line;
-        expr = std::make_unique<AST::BinaryExpr>(TOK_OP_L_OR, std::move(expr), parse_equality_expr(), line);
+        Token token = peek(-1);
+        expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_equality_expr(), token.line);
     }
     return expr;
 }
@@ -172,12 +179,12 @@ AST::ExprPtr Parser::parse_l_or_expr() {
 AST::ExprPtr Parser::parse_equality_expr() {
     AST::ExprPtr expr = parse_comparation_expr();
     while (1) {
-        uint32_t line = peek().line;
+        Token token = peek();
         if (match(TOK_OP_EQ_EQ)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_EQ_EQ, std::move(expr), parse_comparation_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_comparation_expr(), token.line);
         }
         else if (match(TOK_OP_NOT_EQ_EQ)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_NOT_EQ_EQ, std::move(expr), parse_comparation_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_comparation_expr(), token.line);
         }
         else {
             break;
@@ -189,12 +196,18 @@ AST::ExprPtr Parser::parse_equality_expr() {
 AST::ExprPtr Parser::parse_comparation_expr() {
     AST::ExprPtr expr = parse_additive_expr();
     while (1) {
-        uint32_t line = peek().line;
-        if (match(TOK_OP_EQ_EQ)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_EQ_EQ, std::move(expr), parse_additive_expr(), line);
+        Token token = peek();
+        if (match(TOK_OP_GT)) {
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_additive_expr(), token.line);
         }
-        else if (match(TOK_OP_NOT_EQ_EQ)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_NOT_EQ_EQ, std::move(expr), parse_additive_expr(), line);
+        else if (match(TOK_OP_GT_EQ)) {
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_additive_expr(), token.line);
+        }
+        else if (match(TOK_OP_LS)) {
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_additive_expr(), token.line);
+        }
+        else if (match(TOK_OP_LS_EQ)) {
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_additive_expr(), token.line);
         }
         else {
             break;
@@ -206,12 +219,12 @@ AST::ExprPtr Parser::parse_comparation_expr() {
 AST::ExprPtr Parser::parse_additive_expr() {
     AST::ExprPtr expr = parse_multiplicative_expr();
     while (1) {
-        uint32_t line = peek().line;
+        Token token = peek();
         if (match(TOK_OP_PLUS)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_PLUS, std::move(expr), parse_multiplicative_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_multiplicative_expr(), token.line);
         }
         else if (match(TOK_OP_MINUS)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_MINUS, std::move(expr), parse_multiplicative_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_multiplicative_expr(), token.line);
         }
         else {
             break;
@@ -223,15 +236,15 @@ AST::ExprPtr Parser::parse_additive_expr() {
 AST::ExprPtr Parser::parse_multiplicative_expr() {
     AST::ExprPtr expr = parse_unary_expr();
     while (1) {
-        uint32_t line = peek().line;
+        Token token = peek();
         if (match(TOK_OP_MULT)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_MULT, std::move(expr), parse_unary_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_unary_expr(), token.line);
         }
         else if (match(TOK_OP_DIV)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_DIV, std::move(expr), parse_unary_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_unary_expr(), token.line);
         }
         else if (match(TOK_OP_MODULO)) {
-            expr = std::make_unique<AST::BinaryExpr>(TOK_OP_MODULO, std::move(expr), parse_unary_expr(), line);
+            expr = std::make_unique<AST::BinaryExpr>(token, std::move(expr), parse_unary_expr(), token.line);
         }
         else {
             break;
@@ -241,13 +254,13 @@ AST::ExprPtr Parser::parse_multiplicative_expr() {
 }
 
 AST::ExprPtr Parser::parse_unary_expr() {
-    uint32_t line = peek().line;
+    Token token = peek();
     while (1) {
         if (match(TOK_OP_MINUS)) {
-            return std::make_unique<AST::UnaryExpr>(TOK_OP_PLUS, parse_primary_expr(), line);
+            return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
         }
         else if (match(TOK_OP_L_NOT)) {
-            return std::make_unique<AST::UnaryExpr>(TOK_OP_MINUS, parse_primary_expr(), line);
+            return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
         }
         else {
             break;
@@ -295,7 +308,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
             pos++;
             return std::make_unique<AST::StringLiteral>(token.value, token.line);
         default:
-            throw_excpetion(SUB_PARSER, "Unsupported expression. Please check expression to mistakes", token.line, token.file_name);
+            throw_exception(SUB_PARSER, "Unsupported expression. Please check expression to mistakes", token.line, token.file_name);
     }
 }
 
@@ -303,7 +316,7 @@ Token Parser::peek(int32_t rpos) const {
     if (pos + rpos >= tokens_count || pos + rpos < 0) {
         std::stringstream ss;
         ss << "Index out of range: " << pos + rpos << '/' << tokens_count;
-        throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
     }
     return tokens[pos + rpos];
 }
@@ -321,7 +334,7 @@ Token Parser::consume(TokenType type, std::string err_msg, uint32_t line) {
     if (match(type)) {
         return token;
     }
-    throw_excpetion(SUB_PARSER, err_msg, line, token.file_name);
+    throw_exception(SUB_PARSER, err_msg, line, token.file_name);
 }
 
 AST::Type Parser::consume_type() {
@@ -332,31 +345,33 @@ AST::Type Parser::consume_type() {
         is_const = true;
     }
     switch (peek().type) {
+        case TOK_BOOL:
         case TOK_CHAR:
         case TOK_SHORT:
         case TOK_INT:
         case TOK_LONG:
         case TOK_FLOAT:
         case TOK_DOUBLE:
-        case TOK_BOOL:
         case TOK_NOTH: {
             Token type = peek();
             pos++;
             if (match(TOK_OP_QUESTION)) {
                 is_nullable = true;
             }
-            return AST::Type(ttype_to_tvalue(type.type), type.value, is_const, is_nullable);
+            return AST::Type(ttype_to_tvalue(type.type), type.value, is_const, false, is_nullable);
         }
         default: {
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists type";
-            throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
         }
     }
 }
 
 AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
     switch (type) {
+        case TOK_BOOL:
+            return AST::TYPE_BOOL;
         case TOK_CHAR:
             return AST::TYPE_CHAR;
         case TOK_SHORT:
@@ -369,14 +384,12 @@ AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
             return AST::TYPE_FLOAT;
         case TOK_DOUBLE:
             return AST::TYPE_DOUBLE;
-        case TOK_BOOL:
-            return AST::TYPE_BOOL;
         case TOK_NOTH:
             return AST::TYPE_NOTH;
         default:
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
-            throw_excpetion(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
     }
 }
 
@@ -398,19 +411,19 @@ AST::ExprPtr Parser::create_compound_asgn_operator(std::string var_name) {
     pos++;
     switch (token.type) {
         case TOK_OP_PLUS_EQ:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_PLUS, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_PLUS, "+", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
         case TOK_OP_MINUS_EQ:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_MINUS, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_MINUS, "-", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
         case TOK_OP_MULT_EQ:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_MULT, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_MULT, "*", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
         case TOK_OP_DIV_EQ:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_DIV, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_DIV, "/", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
         case TOK_OP_MODULO_EQ:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_MODULO, std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_MODULO, "%", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), parse_expr(), token.line);
         default: {
             std::stringstream ss;
             ss << "Unsupported compound assignment operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
-            throw_excpetion(SUB_PARSER, ss.str(), token.line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name);
         }
     }
 }
@@ -420,13 +433,13 @@ AST::ExprPtr Parser::create_inc_dec_operator(std::string var_name) {
     pos++;
     switch (token.type) {
         case TOK_OP_INC:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_PLUS, std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_PLUS, "+", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
         case TOK_OP_DEC:
-            return std::make_unique<AST::BinaryExpr>(TOK_OP_MINUS, std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
+            return std::make_unique<AST::BinaryExpr>(Token(TOK_OP_MINUS, "-", token.line, token.column, token.file_name), std::make_unique<AST::VarExpr>(var_name, token.line), std::make_unique<AST::IntLiteral>(1, token.line), token.line);
         default: {
             std::stringstream ss;
             ss << "Unsupported increment/decrement operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
-            throw_excpetion(SUB_PARSER, ss.str(), token.line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name);
         }
     }
 }

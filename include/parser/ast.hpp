@@ -21,13 +21,13 @@ namespace AST {
      * @brief Type values enum
      */
     enum TypeValue {
+        TYPE_BOOL,                               /**< 'bool' type */
         TYPE_CHAR,                               /**< 'char' type */
         TYPE_SHORT,                              /**< 'short' type */
         TYPE_INT,                                /**< 'int' type */
         TYPE_LONG,                               /**< 'long' type */
         TYPE_FLOAT,                              /**< 'float' type */
         TYPE_DOUBLE,                             /**< 'double' type */
-        TYPE_BOOL,                               /**< 'bool' type */
         TYPE_NOTH,                               /**< 'noth' type (only for functions) */
         TYPE_STRING_LIT,                         /**< String literal type */
         TYPE_TRAIT,                              /**< Trait type */
@@ -46,6 +46,10 @@ namespace AST {
         
         Type(TypeValue t, std::string n, bool ic = false, bool ip = false, bool in = false) : type(t), name(n), is_const(ic), is_ptr(ip), is_nullable(in) {}
 
+        bool operator ==(Type& other) {
+            return type == other.type && name == other.name && is_const == other.is_const && is_ptr == other.is_ptr && is_nullable == other.is_nullable;
+        }
+        
         /**
          * @brief Method for convert type to string
          *
@@ -55,7 +59,7 @@ namespace AST {
          */
         std::string to_str() {
             std::stringstream ss;
-            ss << (is_const ? "const " : "") << (is_ptr ? "*" : "") << name << (is_nullable ? "? " : "");
+            ss << (is_const ? "const " : "") << name << (is_ptr ? "*" : "") << (is_nullable ? "? " : "");
             return ss.str();
         }
     };
@@ -64,15 +68,15 @@ namespace AST {
      * @brief Structure for describing the value
      */
     struct Value {
-        std::variant<char8_t, int16_t, int32_t, int64_t, float_t, double_t, bool, std::string> value;               /**< Value as variant between char, short, int, long, float, double, bool and string */
+        std::variant<bool, char8_t, int16_t, int32_t, int64_t, float_t, double_t, std::string> value;               /**< Value as variant between char, short, int, long, float, double, bool and string */
 
+        Value(bool v)               : value(v) {}
         Value(char8_t v)            : value(v) {}
         Value(int16_t v)            : value(v) {}
         Value(int32_t v)            : value(v) {}
         Value(int64_t v)            : value(v) {}
         Value(float_t v)            : value(v) {}
         Value(double_t v)           : value(v) {}
-        Value(bool v)               : value(v) {}
         Value(std::string v)        : value(v) {}
     };
 
@@ -122,6 +126,15 @@ namespace AST {
         ~Literal() override = default;
     };
 
+    /**
+     * @brief Boolean literal
+     */
+    class BoolLiteral : public Literal {
+    public:
+        BoolLiteral(bool v, uint32_t l) : Literal(Type(TYPE_BOOL, "bool"), Value(v), l) {}
+        ~BoolLiteral() override = default;
+    };
+    
     /**
      * @brief Character literal
      */
@@ -177,15 +190,6 @@ namespace AST {
     };
 
     /**
-     * @brief Boolean literal
-     */
-    class BoolLiteral : public Literal {
-    public:
-        BoolLiteral(bool v, uint32_t l) : Literal(Type(TYPE_BOOL, "bool"), Value(v), l) {}
-        ~BoolLiteral() override = default;
-    };
-
-    /**
      * @brief String literal
      */
     class StringLiteral : public Literal {
@@ -201,11 +205,11 @@ namespace AST {
      */
     class BinaryExpr : public Expr {
     public:
-        TokenType op;                                           /**< Binary operator (+, -, *, /, &&, ||, !=, ==, >, >=, <, <=) */
+        Token op;                                               /**< Binary operator (+, -, *, /, &&, ||, !=, ==, >, >=, <, <=) */
         ExprPtr left_expr;                                      /**< Expression of left operand */
         ExprPtr right_expr;                                     /**< Expression of right operand */
 
-        BinaryExpr(TokenType o, ExprPtr le, ExprPtr re, uint32_t l) : op(o), left_expr(std::move(le)), right_expr(std::move(re)), Expr(l) {}
+        BinaryExpr(Token o, ExprPtr le, ExprPtr re, uint32_t l) : op(o), left_expr(std::move(le)), right_expr(std::move(re)), Expr(l) {}
         ~BinaryExpr() override = default;
     };
 
@@ -216,10 +220,10 @@ namespace AST {
      */
     class UnaryExpr : public Expr {
     public:
-        TokenType op;                                           /**< Unary operator (-, !) */
+        Token op;                                               /**< Unary operator (-, !) */
         ExprPtr expr;                                           /**< Expression of operand */
 
-        UnaryExpr(TokenType o, ExprPtr e, uint32_t l) : op(o), expr(std::move(e)), Expr(l) {}
+        UnaryExpr(Token o, ExprPtr e, uint32_t l) : op(o), expr(std::move(e)), Expr(l) {}
         ~UnaryExpr() override = default;
     };
 

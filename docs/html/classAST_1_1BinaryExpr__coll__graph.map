@@ -1,5 +1,7 @@
 <map id="AST::BinaryExpr" name="AST::BinaryExpr">
-<area shape="rect" id="Node000001" title="Binary expression container." alt="" coords="5,80,124,107"/>
-<area shape="rect" id="Node000002" href="$classAST_1_1Expr.html" title="Base class of expression." alt="" coords="24,5,105,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,48,67,80,62,80,62,48"/>
+<area shape="rect" id="Node000001" title="Binary expression container." alt="" coords="34,104,152,131"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Expr.html" title="Base class of expression." alt="" coords="5,5,87,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,45,89,103,84,105,56,47"/>
+<area shape="rect" id="Node000003" href="$structToken.html" title="Token structure." alt="" coords="111,5,168,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="129,47,101,105,96,103,124,45"/>
 </map>

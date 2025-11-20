@@ -5,7 +5,8 @@
  */
 
 #pragma once
-#include "../parser/parser.hpp"
+#include "../parser/ast.hpp"
+#include <llvm/Support/raw_ostream.h>
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/IR/BasicBlock.h>
 #include <llvm/IR/IRBuilder.h>
@@ -13,21 +14,19 @@
 #include <llvm/IR/Module.h>
 #include <llvm/IR/Value.h>
 #include <llvm/IR/Type.h>
-#include <llvm/Support/raw_ostream.h>
-#include <map>
-#include <memory>
 #include <stack>
+#include <map>
 
 /**
  * @brief Code generator class
  */
 class CodeGenerator {
 private:
+    std::string file_name;                                                      /**< Absolute path to the Topaz source code */
+    std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
     llvm::LLVMContext context;                                                  /**< LLVM Context */
     llvm::IRBuilder<> builder;                                                  /**< LLVM IR Builder */
     std::unique_ptr<llvm::Module> module;                                       /**< LLVM Module (module name is relative path to the Topaz source code) */
-    std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
-    std::string file_name;                                                      /**< Absolute path to the Topaz source code */
     std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables table */
     std::map<std::string, llvm::Function*> functions;                           /**< Functions table */
 

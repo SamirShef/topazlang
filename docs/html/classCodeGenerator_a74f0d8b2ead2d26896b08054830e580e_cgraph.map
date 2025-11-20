@@ -1,6 +1,6 @@
 <map id="CodeGenerator::generate_literal_expr" name="CodeGenerator::generate_literal_expr">
 <area shape="rect" id="Node000001" title="Method for generating LLVM IR code for literals." alt="" coords="5,5,173,48"/>
-<area shape="rect" id="Node000002" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="411,13,527,40"/>
+<area shape="rect" id="Node000002" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="411,13,527,40"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,21,221,20,363,20,396,21,395,26,363,25,221,25,173,26"/>
 <area shape="rect" id="Node000004" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="221,35,363,77"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="173,36,206,41,205,46,173,41"/>
