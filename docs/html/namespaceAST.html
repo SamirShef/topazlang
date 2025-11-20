@@ -86,6 +86,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of expression.  <a href="classAST_1_1Expr.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Literal" id="r_Literal"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Literal.html">Literal</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of literal.  <a href="classAST_1_1Literal.html#details">More...</a><br /></td></tr>
+<tr class="memitem:BoolLiteral" id="r_BoolLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BoolLiteral.html">BoolLiteral</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean literal.  <a href="classAST_1_1BoolLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:CharacterLiteral" id="r_CharacterLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1CharacterLiteral.html">CharacterLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character literal.  <a href="classAST_1_1CharacterLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ShortLiteral" id="r_ShortLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1ShortLiteral.html">ShortLiteral</a></td></tr>
@@ -98,8 +100,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Float literal.  <a href="classAST_1_1FloatLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:DoubleLiteral" id="r_DoubleLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1DoubleLiteral.html">DoubleLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Double literal.  <a href="classAST_1_1DoubleLiteral.html#details">More...</a><br /></td></tr>
-<tr class="memitem:BoolLiteral" id="r_BoolLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BoolLiteral.html">BoolLiteral</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean literal.  <a href="classAST_1_1BoolLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:StringLiteral" id="r_StringLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1StringLiteral.html">StringLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">String literal.  <a href="classAST_1_1StringLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:BinaryExpr" id="r_BinaryExpr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BinaryExpr.html">BinaryExpr</a></td></tr>
@@ -124,14 +124,14 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a9c58ec4096a73a8a3427c29077b6fbbd" id="r_a9c58ec4096a73a8a3427c29077b6fbbd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbd">TypeValue</a> { <br />
-&#160;&#160;<a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261">TYPE_CHAR</a>
+&#160;&#160;<a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e">TYPE_BOOL</a>
+, <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261">TYPE_CHAR</a>
 , <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdafd5b36ecd4e3aa791be3b679cecb4193">TYPE_SHORT</a>
 , <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbda22d9f59829b1b97b20751ac88e171357">TYPE_INT</a>
-, <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdac60c77a6b32431cdd0d01a61b325bb54">TYPE_LONG</a>
 , <br />
-&#160;&#160;<a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0">TYPE_FLOAT</a>
+&#160;&#160;<a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdac60c77a6b32431cdd0d01a61b325bb54">TYPE_LONG</a>
+, <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0">TYPE_FLOAT</a>
 , <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdaec85d57abc55d5a4f0f98092927485a0">TYPE_DOUBLE</a>
-, <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e">TYPE_BOOL</a>
 , <a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb">TYPE_NOTH</a>
 , <br />
 &#160;&#160;<a class="el" href="#a9c58ec4096a73a8a3427c29077b6fbbda19fe37a233dbc22cab69415e53d1b0f6">TYPE_STRING_LIT</a>
@@ -154,7 +154,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00109">109</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00113">113</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -170,7 +170,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00108">108</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00112">112</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -189,7 +189,9 @@ Enumerations</h2></td></tr>
 
 <p><a class="el" href="structAST_1_1Type.html" title="Structure for describing the type.">Type</a> values enum. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261" name="a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261"></a>TYPE_CHAR&#160;</td><td class="fielddoc"><p>'char' type </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e" name="a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e"></a>TYPE_BOOL&#160;</td><td class="fielddoc"><p>'bool' type </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261" name="a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261"></a>TYPE_CHAR&#160;</td><td class="fielddoc"><p>'char' type </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdafd5b36ecd4e3aa791be3b679cecb4193" name="a9c58ec4096a73a8a3427c29077b6fbbdafd5b36ecd4e3aa791be3b679cecb4193"></a>TYPE_SHORT&#160;</td><td class="fielddoc"><p>'short' type </p>
 </td></tr>
@@ -200,8 +202,6 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0" name="a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0"></a>TYPE_FLOAT&#160;</td><td class="fielddoc"><p>'float' type </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdaec85d57abc55d5a4f0f98092927485a0" name="a9c58ec4096a73a8a3427c29077b6fbbdaec85d57abc55d5a4f0f98092927485a0"></a>TYPE_DOUBLE&#160;</td><td class="fielddoc"><p>'double' type </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e" name="a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e"></a>TYPE_BOOL&#160;</td><td class="fielddoc"><p>'bool' type </p>
 </td></tr>
 <tr><td class="fieldname"><a id="a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb" name="a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb"></a>TYPE_NOTH&#160;</td><td class="fielddoc"><p>'noth' type (only for functions) </p>
 </td></tr>

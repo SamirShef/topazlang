@@ -9,7 +9,7 @@
 <area shape="rect" id="Node000003" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="440,56,544,83"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,49,426,59,425,64,350,55"/>
 <area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="350,29,399,22,456,20,515,25,571,42,597,57,619,76,651,118,647,121,615,80,593,61,569,47,514,31,456,25,400,27,351,34"/>
-<area shape="rect" id="Node000005" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="762,164,878,191"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="762,164,878,191"/>
 <area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="333,28,382,16,442,6,507,3,571,12,606,24,640,39,703,77,756,117,796,152,792,156,753,121,700,81,637,44,604,29,570,18,507,9,443,11,383,21,335,33"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="529,81,571,99,623,123,621,128,569,104,527,86"/>
 <area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="639,133,635,124,638,114,649,108,666,106,685,108,695,115,692,119,683,113,666,111,650,113,642,118,640,123,644,131"/>

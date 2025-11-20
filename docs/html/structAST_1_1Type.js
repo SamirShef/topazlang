@@ -1,6 +1,7 @@
 var structAST_1_1Type =
 [
     [ "Type", "structAST_1_1Type.html#a59593540d5a322dc1c93ccdbc1daf918", null ],
+    [ "operator==", "structAST_1_1Type.html#a6dc7b227a0061a05940be46085de76f1", null ],
     [ "to_str", "structAST_1_1Type.html#af80b27a16e2643ecf0c4d91a7159aac7", null ],
     [ "is_const", "structAST_1_1Type.html#a86d29e2eaf3d1004fdc9fd6d97721916", null ],
     [ "is_nullable", "structAST_1_1Type.html#a1d3e0aad6d51ea4a924bd9f8775fe74f", null ],

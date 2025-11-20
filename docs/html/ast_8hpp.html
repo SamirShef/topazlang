@@ -121,18 +121,23 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="ast_8hpp__dep__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hppdep" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hppdep" id="a_2mnt_2disk__ext4__0_2topazlang_2include_2parser_2ast_8hppdep">
-<area shape="rect" title="Header file for defining AST tree elements." alt="" coords="211,5,392,48"/>
-<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="211,96,392,139"/>
-<area shape="poly" title=" " alt="" coords="304,64,304,96,299,96,299,64"/>
-<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="67,187,264,229"/>
-<area shape="poly" title=" " alt="" coords="259,150,198,188,196,184,256,145"/>
-<area shape="rect" href="main_8cpp.html" title="Compiler entry point." alt="" coords="211,277,392,320"/>
-<area shape="poly" title=" " alt="" coords="304,154,304,277,299,277,299,154"/>
-<area shape="rect" href="parser_8cpp.html" title=" " alt="" coords="339,187,520,229"/>
-<area shape="poly" title=" " alt="" coords="345,145,401,184,398,188,342,150"/>
-<area shape="rect" href="codegen_8cpp.html" title=" " alt="" coords="5,277,187,320"/>
-<area shape="poly" title=" " alt="" coords="142,243,114,279,110,275,138,240"/>
-<area shape="poly" title=" " alt="" coords="211,236,271,275,268,279,208,240"/>
+<area shape="rect" title="Header file for defining AST tree elements." alt="" coords="311,5,492,48"/>
+<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="89,96,287,139"/>
+<area shape="poly" title=" " alt="" coords="338,57,239,98,237,93,336,52"/>
+<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="311,96,492,139"/>
+<area shape="poly" title=" " alt="" coords="404,64,404,96,399,96,399,64"/>
+<area shape="rect" href="semantic_8hpp.html" title="Header file for defining semantic analyzer." alt="" coords="516,96,721,139"/>
+<area shape="poly" title=" " alt="" coords="467,52,569,93,567,98,465,57"/>
+<area shape="rect" href="codegen_8cpp.html" title="codegen.hpp implementation" alt="" coords="5,187,187,229"/>
+<area shape="poly" title=" " alt="" coords="158,151,119,188,115,184,154,147"/>
+<area shape="rect" href="main_8cpp.html" title="Compiler entry point." alt="" coords="211,187,392,229"/>
+<area shape="poly" title=" " alt="" coords="228,146,276,184,273,188,224,150"/>
+<area shape="poly" title=" " alt="" coords="369,151,327,188,323,184,365,147"/>
+<area shape="rect" href="parser_8cpp.html" title="parser.hpp implementation" alt="" coords="416,187,597,229"/>
+<area shape="poly" title=" " alt="" coords="439,147,484,184,480,188,436,151"/>
+<area shape="poly" title=" " alt="" coords="530,146,377,189,375,183,529,141"/>
+<area shape="rect" href="semantic_8cpp.html" title="semantic.hpp implementation" alt="" coords="621,187,803,229"/>
+<area shape="poly" title=" " alt="" coords="653,147,692,184,689,188,649,151"/>
 </map>
 </div>
 </div>
@@ -151,6 +156,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of expression.  <a href="classAST_1_1Expr.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3ALiteral" id="r_AST_3A_3ALiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Literal.html">AST::Literal</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of literal.  <a href="classAST_1_1Literal.html#details">More...</a><br /></td></tr>
+<tr class="memitem:AST_3A_3ABoolLiteral" id="r_AST_3A_3ABoolLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BoolLiteral.html">AST::BoolLiteral</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean literal.  <a href="classAST_1_1BoolLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3ACharacterLiteral" id="r_AST_3A_3ACharacterLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1CharacterLiteral.html">AST::CharacterLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character literal.  <a href="classAST_1_1CharacterLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3AShortLiteral" id="r_AST_3A_3AShortLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1ShortLiteral.html">AST::ShortLiteral</a></td></tr>
@@ -163,8 +170,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Float literal.  <a href="classAST_1_1FloatLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3ADoubleLiteral" id="r_AST_3A_3ADoubleLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1DoubleLiteral.html">AST::DoubleLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Double literal.  <a href="classAST_1_1DoubleLiteral.html#details">More...</a><br /></td></tr>
-<tr class="memitem:AST_3A_3ABoolLiteral" id="r_AST_3A_3ABoolLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BoolLiteral.html">AST::BoolLiteral</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean literal.  <a href="classAST_1_1BoolLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3AStringLiteral" id="r_AST_3A_3AStringLiteral"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1StringLiteral.html">AST::StringLiteral</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">String literal.  <a href="classAST_1_1StringLiteral.html#details">More...</a><br /></td></tr>
 <tr class="memitem:AST_3A_3ABinaryExpr" id="r_AST_3A_3ABinaryExpr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1BinaryExpr.html">AST::BinaryExpr</a></td></tr>
@@ -193,14 +198,14 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a9c58ec4096a73a8a3427c29077b6fbbd" id="r_a9c58ec4096a73a8a3427c29077b6fbbd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd">AST::TypeValue</a> { <br />
-&#160;&#160;<a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261">AST::TYPE_CHAR</a>
+&#160;&#160;<a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e">AST::TYPE_BOOL</a>
+, <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261">AST::TYPE_CHAR</a>
 , <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd5b36ecd4e3aa791be3b679cecb4193">AST::TYPE_SHORT</a>
 , <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda22d9f59829b1b97b20751ac88e171357">AST::TYPE_INT</a>
-, <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdac60c77a6b32431cdd0d01a61b325bb54">AST::TYPE_LONG</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0">AST::TYPE_FLOAT</a>
+&#160;&#160;<a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdac60c77a6b32431cdd0d01a61b325bb54">AST::TYPE_LONG</a>
+, <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdab7d761d6a56e43f7cef71a76db64e6c0">AST::TYPE_FLOAT</a>
 , <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdaec85d57abc55d5a4f0f98092927485a0">AST::TYPE_DOUBLE</a>
-, <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e">AST::TYPE_BOOL</a>
 , <a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb">AST::TYPE_NOTH</a>
 , <br />
 &#160;&#160;<a class="el" href="namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda19fe37a233dbc22cab69415e53d1b0f6">AST::TYPE_STRING_LIT</a>

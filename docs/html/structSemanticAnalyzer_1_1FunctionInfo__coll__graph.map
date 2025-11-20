@@ -1,0 +1,5 @@
+<map id="SemanticAnalyzer::FunctionInfo" name="SemanticAnalyzer::FunctionInfo">
+<area shape="rect" id="Node000001" title="Structure of information about function." alt="" coords="5,104,213,131"/>
+<area shape="rect" id="Node000002" href="$structAST_1_1Type.html" title="Structure for describing the type." alt="" coords="68,5,150,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,48,112,104,106,104,106,48"/>
+</map>

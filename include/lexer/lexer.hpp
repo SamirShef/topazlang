@@ -14,20 +14,20 @@
  */
 class Lexer {
 private:
+    std::string file_name;                                      /**< Name of the file containing the token */
     std::string source;                                         /**< Source code on Topaz */
     size_t source_len;                                          /**< Length of source code (optimization) */
     uint32_t pos;                                               /**< Position index into source code */
     uint32_t line;                                              /**< Line coordinate */
     uint32_t column;                                            /**< Column coordinate */
-    std::string file_name;                                      /**< Name of the file containing the token */
     std::map<std::string, TokenType> keywords {                 /**< Keywords table */
+        {"bool", TOK_BOOL},
         {"char", TOK_CHAR},
         {"short", TOK_SHORT},
         {"int", TOK_INT},
         {"long", TOK_LONG},
         {"float", TOK_FLOAT},
         {"double", TOK_DOUBLE},
-        {"bool", TOK_BOOL},
         {"noth", TOK_NOTH},
         {"let", TOK_LET},
         {"fun", TOK_FUN},

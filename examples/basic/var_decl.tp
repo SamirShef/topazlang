@@ -1,4 +1,11 @@
 let float: a = 10.1f;
 let int: b = 100;
-let long?: c = 100_000_000;             // Nullable type (coming soon)
+let long?: c = 100_000_000;                         // Nullable type (coming soon)
 let char: d = 'A';
+let bool: default_var;                              // Variable without initializator -> value is the default value for this type.
+let bool: condition = 100 >= 2 && true && true;
+let int: unary_minus = -b;
+
+fun main() -> int {
+    return 0;
+}

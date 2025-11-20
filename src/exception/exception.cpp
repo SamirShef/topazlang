@@ -21,12 +21,14 @@ std::string convert_subsystem_type_to_string(SubsystemType type) {
             return "lexer";
         case SUB_PARSER:
             return "parser";
+        case SUB_SEMANTIC:    
+            return "semantic";
         case SUB_CODEGEN:
             return "codegen";
     }
 }
 
-void throw_excpetion(SubsystemType type, std::string msg, uint32_t line, std::string file_name) {
+void throw_exception(SubsystemType type, std::string msg, uint32_t line, std::string file_name) {
     std::cerr << "\033[31mSubsystem " << convert_subsystem_type_to_string(type) << " was paniced\n";
     std::cerr << "Compilation error at:\033[0m " << file_name << ':' << line << "\n\033[31m" << msg << "\033[0m\n";
     exit(1);

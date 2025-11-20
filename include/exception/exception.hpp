@@ -14,6 +14,7 @@
 enum SubsystemType {
     SUB_LEXER,                                  /**< Lexer subsystem */
     SUB_PARSER,                                 /**< Parser subsystem */
+    SUB_SEMANTIC,                               /**< Semantic subsystem */
     SUB_CODEGEN                                 /**< Code generator subsystem */
 };
 
@@ -27,4 +28,4 @@ enum SubsystemType {
  * @param line Line where exception throwed
  * @param file_name File where exception throwed
  */
-void throw_excpetion(SubsystemType type, std::string msg, uint32_t line, std::string file_name);
+void throw_exception(SubsystemType type, std::string msg, uint32_t line, std::string file_name);

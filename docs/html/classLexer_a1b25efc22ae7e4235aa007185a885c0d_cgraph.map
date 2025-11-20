@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Method for getting escape&#45;sequence in string or character literal." alt="" coords="5,31,197,57"/>
 <area shape="rect" id="Node000002" href="$classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="245,5,355,32"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,29,229,25,230,30,197,34"/>
-<area shape="rect" id="Node000004" href="$exception_8cpp.html#ae60a75b47d775d6015c01ed8c926a1d3" title="Function for throwing exception." alt="" coords="540,31,657,57"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="540,31,657,57"/>
 <area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="197,41,525,41,525,47,197,47"/>
 <area shape="rect" id="Node000003" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="403,5,492,32"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,16,387,16,387,21,356,21"/>

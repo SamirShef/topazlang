@@ -76,13 +76,13 @@ Token Lexer::tokenize_number_lit() {
         }
         else if (peek() == '.') {
             if (has_dot) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: twice dot", line, file_name);
+                throw_exception(SUB_LEXER, "Invalid number literal: twice dot", line, file_name);
             }
             else if (pos < source_len && peek(1) == '_') {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: \033[0m'_'\033[31m cannot be immediately after the dot", line, file_name);
+                throw_exception(SUB_LEXER, "Invalid number literal: \033[0m'_'\033[31m cannot be immediately after the dot", line, file_name);
             }
             else if (pos < source_len && !isdigit(peek(1))) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: dot cannot be the end", line, file_name);
+                throw_exception(SUB_LEXER, "Invalid number literal: dot cannot be the end", line, file_name);
             }
             has_dot = true;
         }
@@ -96,13 +96,13 @@ Token Lexer::tokenize_number_lit() {
             return Token(TOK_FLOAT_LIT, value, tmp_l, tmp_c, file_name);
         case 's':
             if (has_dot) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix \033[0m's'\033[31m does not match for floating point literal", line, file_name);
+                throw_exception(SUB_LEXER, "Invalid number literal: specified suffix \033[0m's'\033[31m does not match for floating point literal", line, file_name);
             }
             advance();
             return Token(TOK_SHORT_LIT, value, tmp_l, tmp_c, file_name);
         case 'l':
             if (has_dot) {
-                throw_excpetion(SUB_LEXER, "Invalid number literal: specified suffix \033[0m'l'\033[31m does not match for floating point literal", line, file_name);
+                throw_exception(SUB_LEXER, "Invalid number literal: specified suffix \033[0m'l'\033[31m does not match for floating point literal", line, file_name);
             }
             advance();
             return Token(TOK_LONG_LIT, value, tmp_l, tmp_c, file_name);
@@ -130,7 +130,7 @@ Token Lexer::tokenize_string_lit() {
         value += c;
     }
     if (pos == source_len) {
-        throw_excpetion(SUB_LEXER, "Invalid string literal: missed closing double quote", line, file_name);
+        throw_exception(SUB_LEXER, "Invalid string literal: missed closing double quote", line, file_name);
     }
     advance();
 
@@ -151,10 +151,10 @@ Token Lexer::tokenize_character_lit() {
         value += c;
     }
     if (pos == source_len) {
-        throw_excpetion(SUB_LEXER, "Invalid character literal: missed closing single quote", line, file_name);
+        throw_exception(SUB_LEXER, "Invalid character literal: missed closing single quote", line, file_name);
     }
     else if (value.length() != 1) {
-        throw_excpetion(SUB_LEXER, "Invalid character literal: length should be equal to 1", line, file_name);
+        throw_exception(SUB_LEXER, "Invalid character literal: length should be equal to 1", line, file_name);
     }
     advance();
 
@@ -238,13 +238,13 @@ Token Lexer::tokenize_op() {
                 advance();
                 return Token(TOK_OP_L_AND, "&&", tmp_l, tmp_c, file_name);
             }
-            throw_excpetion(SUB_LEXER, "Operator '&' (aka bitwise and) is unsupported", line, file_name);
+            throw_exception(SUB_LEXER, "Operator '&' (aka bitwise and) is unsupported", line, file_name);
         case '|':
             if (peek() == '|') {
                 advance();
                 return Token(TOK_OP_L_OR, "||", tmp_l, tmp_c, file_name);
             }
-            throw_excpetion(SUB_LEXER, "Operator '|' (aka bitwise or) is unsupported", line, file_name);
+            throw_exception(SUB_LEXER, "Operator '|' (aka bitwise or) is unsupported", line, file_name);
         case ',':
             return Token(TOK_OP_COMMA, ",", tmp_l, tmp_c, file_name);
         case '.':
@@ -270,7 +270,7 @@ Token Lexer::tokenize_op() {
         default:
             std::stringstream ss;
             ss << "Unsupported operator: \033[0m'" << c << "'";
-            throw_excpetion(SUB_LEXER, ss.str(), line, file_name);
+            throw_exception(SUB_LEXER, ss.str(), line, file_name);
     }
 }
 
@@ -310,7 +310,7 @@ const char Lexer::get_escape_sequence() {
         default:
             std::stringstream ss;
             ss << "Unsupported escape sequence: \033[0m'\\" << c;
-            throw_excpetion(SUB_LEXER, ss.str(), line, file_name);
+            throw_exception(SUB_LEXER, ss.str(), line, file_name);
     }
 }
 
@@ -318,7 +318,7 @@ const char Lexer::peek(int32_t rpos) const {
     if (pos + rpos >= source_len || pos + rpos < 0) {
         std::stringstream ss;
         ss << "Index out of range: " << pos + rpos << '/' << source_len;
-        throw_excpetion(SUB_LEXER, ss.str(), line, file_name);
+        throw_exception(SUB_LEXER, ss.str(), line, file_name);
     }
     return source[pos + rpos];
 }

@@ -73,14 +73,26 @@ $(function(){initNavTree('functions.html','',''); });
 
 <h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>advance()&#160;:&#160;<a class="el" href="classLexer.html#a73509f24c44f3bb079f97353e6f07b2b">Lexer</a></li>
-<li>args&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a07f03a1aae8fc9500cfdc7b172fdae47">AST::FuncDeclStmt</a></li>
+<li>analyze()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598">SemanticAnalyzer</a></li>
+<li>analyze_binary_expr()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#af0f7909d4707f3ae5a0c27097b305eaf">SemanticAnalyzer</a></li>
+<li>analyze_expr()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a75137be91075073557a7cbfcd4ad8dea">SemanticAnalyzer</a></li>
+<li>analyze_func_decl_stmt()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5">SemanticAnalyzer</a></li>
+<li>analyze_literal_expr()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#aa16a8cc4020aa3aec83f5b1e77862651">SemanticAnalyzer</a></li>
+<li>analyze_return_stmt()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a0bf5e17816e2b3c7006c3d4d2034feea">SemanticAnalyzer</a></li>
+<li>analyze_stmt()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e">SemanticAnalyzer</a></li>
+<li>analyze_unary_expr()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a0caa4b637c6553d460aceb21b95c3263">SemanticAnalyzer</a></li>
+<li>analyze_var_asgn_stmt()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a32b7d6c326238d687184c3740ab1540a">SemanticAnalyzer</a></li>
+<li>analyze_var_decl_stmt()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#aad5f91cc661dc6af8c69e1e1dbc2dc1d">SemanticAnalyzer</a></li>
+<li>analyze_var_expr()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#af81519f8fc509217f8c7f9acb3808e4c">SemanticAnalyzer</a></li>
+<li>args&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a07f03a1aae8fc9500cfdc7b172fdae47">AST::FuncDeclStmt</a>, <a class="el" href="structSemanticAnalyzer_1_1FunctionInfo.html#a71769ba7e8833fb3ca430ade6a256b42">SemanticAnalyzer::FunctionInfo</a></li>
 <li>Argument()&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#a28542f3259af4a5a30a57b94d101c8e5">AST::Argument</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
-<li>BinaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#add440f2ca2a6833b3e721e28e0275626">AST::BinaryExpr</a></li>
-<li>block&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a06f7458c9147b798521775e74d929c2b">AST::FuncDeclStmt</a></li>
+<li>binary_two_variants()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a9243eea2dd58cba615bcb9caaf285974">SemanticAnalyzer</a></li>
+<li>BinaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#a6597a6eed0c75a462b9c4f68f31aebda">AST::BinaryExpr</a></li>
+<li>block&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a06f7458c9147b798521775e74d929c2b">AST::FuncDeclStmt</a>, <a class="el" href="structSemanticAnalyzer_1_1FunctionInfo.html#a244302c4bedf2f11ef6e70b935057f02">SemanticAnalyzer::FunctionInfo</a></li>
 <li>BoolLiteral()&#160;:&#160;<a class="el" href="classAST_1_1BoolLiteral.html#a7fd72a0f9b678427a2209113f47b0afe">AST::BoolLiteral</a></li>
 <li>builder&#160;:&#160;<a class="el" href="classCodeGenerator.html#ae12aefc5f2c0083aaaa6a118809fd395">CodeGenerator</a></li>
 </ul>
@@ -110,10 +122,11 @@ $(function(){initNavTree('functions.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_f" name="index_f"></a>- f -</h3><ul>
-<li>file_name&#160;:&#160;<a class="el" href="classCodeGenerator.html#a63079f3cf25075ff372f61d5c37fc46e">CodeGenerator</a>, <a class="el" href="classLexer.html#a15a7c44b97312d91763623a1be94192c">Lexer</a>, <a class="el" href="structToken.html#a9f01006e6f306b5034e66e0887320c24">Token</a></li>
+<li>file_name&#160;:&#160;<a class="el" href="classCodeGenerator.html#a63079f3cf25075ff372f61d5c37fc46e">CodeGenerator</a>, <a class="el" href="classLexer.html#a15a7c44b97312d91763623a1be94192c">Lexer</a>, <a class="el" href="classSemanticAnalyzer.html#a6f678271de88b1a0b32fac7dc2cafc12">SemanticAnalyzer</a>, <a class="el" href="structToken.html#a9f01006e6f306b5034e66e0887320c24">Token</a></li>
 <li>FloatLiteral()&#160;:&#160;<a class="el" href="classAST_1_1FloatLiteral.html#afcd58203cbe60ad48b8e87db70305bf9">AST::FloatLiteral</a></li>
 <li>FuncDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#ac5b0bcce75127be1c6b970e39e34a350">AST::FuncDeclStmt</a></li>
-<li>functions&#160;:&#160;<a class="el" href="classCodeGenerator.html#adc04cd88bd1d94afbf5d19da93b2f0ee">CodeGenerator</a></li>
+<li>functions&#160;:&#160;<a class="el" href="classCodeGenerator.html#adc04cd88bd1d94afbf5d19da93b2f0ee">CodeGenerator</a>, <a class="el" href="classSemanticAnalyzer.html#aa037d8f2a3aa87c037983b2640185bb3">SemanticAnalyzer</a></li>
+<li>functions_ret_types&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#afc5ce31ea67f44866b4f0bf2d7977404">SemanticAnalyzer</a></li>
 </ul>
 
 
@@ -129,12 +142,22 @@ $(function(){initNavTree('functions.html','',''); });
 <li>generate_var_asgn_stmt()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4">CodeGenerator</a></li>
 <li>generate_var_decl_stmt()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478">CodeGenerator</a></li>
 <li>generate_var_expr()&#160;:&#160;<a class="el" href="classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441">CodeGenerator</a></li>
+<li>get_common_type()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a58f145fce6b55f2d96d07c610f52b4ae">SemanticAnalyzer</a></li>
+<li>get_default_val_by_type()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a24b9a6f7832e5e11387547e8e1b5900f">SemanticAnalyzer</a></li>
 <li>get_escape_sequence()&#160;:&#160;<a class="el" href="classLexer.html#a1b25efc22ae7e4235aa007185a885c0d">Lexer</a></li>
+<li>get_function_info()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#acf438c9ebaafb085ddf47066fcc795ba">SemanticAnalyzer</a></li>
 <li>get_module()&#160;:&#160;<a class="el" href="classCodeGenerator.html#acaed752e624b67267e09a006578cafad">CodeGenerator</a></li>
+<li>get_variable_value()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#ad4c95a7ce009487b07415904b1231253">SemanticAnalyzer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>has_common_type()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a75f8b13e4c05c3440492a1fd09976c06">SemanticAnalyzer</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>implicitly_cast_allowed_types&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#a1e49c40308de04a59d0d4e323acd8cf2">SemanticAnalyzer</a></li>
 <li>IntLiteral()&#160;:&#160;<a class="el" href="classAST_1_1IntLiteral.html#a2f44c8c96a261dad964006f98d553554">AST::IntLiteral</a></li>
 <li>is_compound_asgn_operator()&#160;:&#160;<a class="el" href="classParser.html#a5d9bec9e1e2242f0c41245919c3f4aee">Parser</a></li>
 <li>is_const&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a86d29e2eaf3d1004fdc9fd6d97721916">AST::Type</a></li>
@@ -169,7 +192,8 @@ $(function(){initNavTree('functions.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_o" name="index_o"></a>- o -</h3><ul>
-<li>op&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#a41be0ce09711f77a4e77e77046f995f2">AST::BinaryExpr</a>, <a class="el" href="classAST_1_1UnaryExpr.html#a55585473b28c0463e45076d790a05e15">AST::UnaryExpr</a></li>
+<li>op&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#a0e1bf4d4f596dd30d39ead631eae9397">AST::BinaryExpr</a>, <a class="el" href="classAST_1_1UnaryExpr.html#a9a67051ab073454ba2448fec7425321e">AST::UnaryExpr</a></li>
+<li>operator==()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a6dc7b227a0061a05940be46085de76f1">AST::Type</a></li>
 </ul>
 
 
@@ -198,19 +222,20 @@ $(function(){initNavTree('functions.html','',''); });
 
 
 <h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>ret_type&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a2a10c9f7a2626bbc6837cc61b031285e">AST::FuncDeclStmt</a></li>
+<li>ret_type&#160;:&#160;<a class="el" href="classAST_1_1FuncDeclStmt.html#a2a10c9f7a2626bbc6837cc61b031285e">AST::FuncDeclStmt</a>, <a class="el" href="structSemanticAnalyzer_1_1FunctionInfo.html#a5c2531664a626b2afa3e1ef9bf4938f7">SemanticAnalyzer::FunctionInfo</a></li>
 <li>ReturnStmt()&#160;:&#160;<a class="el" href="classAST_1_1ReturnStmt.html#a4a8c1e7093e0665f1c2b6f0bbd6da41f">AST::ReturnStmt</a></li>
 <li>right_expr&#160;:&#160;<a class="el" href="classAST_1_1BinaryExpr.html#aa370f4e6bdb427f7f4b2584398e420bf">AST::BinaryExpr</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>SemanticAnalyzer()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#aa2c1bebcea72606c0a4b9e0ff14d0bfa">SemanticAnalyzer</a></li>
 <li>ShortLiteral()&#160;:&#160;<a class="el" href="classAST_1_1ShortLiteral.html#ac79f3bfaec189320ee49d14d86e9efaa">AST::ShortLiteral</a></li>
 <li>skip_comments()&#160;:&#160;<a class="el" href="classLexer.html#a8e7a060feea59b6a096676f74ca9cce3">Lexer</a></li>
 <li>source&#160;:&#160;<a class="el" href="classLexer.html#a3c5973498f85bbf15551eb20c6b1c16b">Lexer</a></li>
 <li>source_len&#160;:&#160;<a class="el" href="classLexer.html#aa651535f1fc81e593e8c9ec5ec052f22">Lexer</a></li>
 <li>Stmt()&#160;:&#160;<a class="el" href="classAST_1_1Stmt.html#a9e417ea5c4ae6a49bcdc44057eaeac52">AST::Stmt</a></li>
-<li>stmts&#160;:&#160;<a class="el" href="classCodeGenerator.html#a7e46191a8d524d1de64cc9ba73ea7b61">CodeGenerator</a></li>
+<li>stmts&#160;:&#160;<a class="el" href="classCodeGenerator.html#a7e46191a8d524d1de64cc9ba73ea7b61">CodeGenerator</a>, <a class="el" href="classSemanticAnalyzer.html#a253a8c665966d9fa1dd8bf475b0b2859">SemanticAnalyzer</a></li>
 <li>StringLiteral()&#160;:&#160;<a class="el" href="classAST_1_1StringLiteral.html#a1e544e2309689b9796c07e37cebe8e22">AST::StringLiteral</a></li>
 </ul>
 
@@ -228,23 +253,24 @@ $(function(){initNavTree('functions.html','',''); });
 <li>tokens_count&#160;:&#160;<a class="el" href="classParser.html#aba68ea149a82220afc0902aa34963731">Parser</a></li>
 <li>ttype_to_tvalue()&#160;:&#160;<a class="el" href="classParser.html#ae5709805b09bb75a192f232f58b579a5">Parser</a></li>
 <li>Type()&#160;:&#160;<a class="el" href="structAST_1_1Type.html#a59593540d5a322dc1c93ccdbc1daf918">AST::Type</a></li>
-<li>type&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#a029afe764511ca5aa2f29154e1a74e17">AST::Argument</a>, <a class="el" href="classAST_1_1Literal.html#a823158a25db049f41cf349f43e0ea457">AST::Literal</a>, <a class="el" href="structAST_1_1Type.html#ae8e3856c0bbe0d8dcc09392cc05b54a3">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#ac95d3f2f46507d2ce1e5f664374e9329">AST::VarDeclStmt</a>, <a class="el" href="structToken.html#a67919af9f3a80dc0b28a0ab1e6d5bf8a">Token</a></li>
+<li>type&#160;:&#160;<a class="el" href="structAST_1_1Argument.html#a029afe764511ca5aa2f29154e1a74e17">AST::Argument</a>, <a class="el" href="classAST_1_1Literal.html#a823158a25db049f41cf349f43e0ea457">AST::Literal</a>, <a class="el" href="structAST_1_1Type.html#ae8e3856c0bbe0d8dcc09392cc05b54a3">AST::Type</a>, <a class="el" href="classAST_1_1VarDeclStmt.html#ac95d3f2f46507d2ce1e5f664374e9329">AST::VarDeclStmt</a>, <a class="el" href="structSemanticAnalyzer_1_1Value.html#ae1bfcb5415e580fc10bd1e83a9e616e6">SemanticAnalyzer::Value</a>, <a class="el" href="structToken.html#a67919af9f3a80dc0b28a0ab1e6d5bf8a">Token</a></li>
 <li>type_to_llvm()&#160;:&#160;<a class="el" href="classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab">CodeGenerator</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
-<li>UnaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1UnaryExpr.html#a0080094082d57be3e0e662ac4325e2e5">AST::UnaryExpr</a></li>
+<li>unary_two_variants()&#160;:&#160;<a class="el" href="classSemanticAnalyzer.html#aedd2a6febd49a0c5840fc2aaf32032de">SemanticAnalyzer</a></li>
+<li>UnaryExpr()&#160;:&#160;<a class="el" href="classAST_1_1UnaryExpr.html#a3430df6abbe7eafdf27db8747db3405c">AST::UnaryExpr</a></li>
 </ul>
 
 
 <h3 class="doxsection"><a id="index_v" name="index_v"></a>- v -</h3><ul>
-<li>Value()&#160;:&#160;<a class="el" href="structAST_1_1Value.html#a437716e942cb982476b268b8a5f27464">AST::Value</a></li>
-<li>value&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#ab5f237172771b6506619d9e55bab321c">AST::Literal</a>, <a class="el" href="structAST_1_1Value.html#af07243243a7203758b6c888f6ad42b9e">AST::Value</a>, <a class="el" href="structToken.html#a4b7142147b8598f8e24c404928d9263b">Token</a></li>
+<li>Value()&#160;:&#160;<a class="el" href="structAST_1_1Value.html#a2e8ccc5f7726dd63623785af38942b66">AST::Value</a>, <a class="el" href="structSemanticAnalyzer_1_1Value.html#a98a21199d27deec8977039d1df21a0ea">SemanticAnalyzer::Value</a></li>
+<li>value&#160;:&#160;<a class="el" href="classAST_1_1Literal.html#ab5f237172771b6506619d9e55bab321c">AST::Literal</a>, <a class="el" href="structAST_1_1Value.html#a92bcc1d2ae0431f1576a0d96d144f401">AST::Value</a>, <a class="el" href="structSemanticAnalyzer_1_1Value.html#a269644f152b5699896e0010c24c913f6">SemanticAnalyzer::Value</a>, <a class="el" href="structToken.html#a4b7142147b8598f8e24c404928d9263b">Token</a></li>
 <li>VarAsgnStmt()&#160;:&#160;<a class="el" href="classAST_1_1VarAsgnStmt.html#ab887a4df46696c0679044aac8a761604">AST::VarAsgnStmt</a></li>
 <li>VarDeclStmt()&#160;:&#160;<a class="el" href="classAST_1_1VarDeclStmt.html#a02b93247bfd4522483630550d4589633">AST::VarDeclStmt</a></li>
 <li>VarExpr()&#160;:&#160;<a class="el" href="classAST_1_1VarExpr.html#a1e11efaf9a03a76c6099cb31f31dc044">AST::VarExpr</a></li>
-<li>variables&#160;:&#160;<a class="el" href="classCodeGenerator.html#a72703964607bb38232d74e3f584c5882">CodeGenerator</a></li>
+<li>variables&#160;:&#160;<a class="el" href="classCodeGenerator.html#a72703964607bb38232d74e3f584c5882">CodeGenerator</a>, <a class="el" href="classSemanticAnalyzer.html#ae4f1a48bac4f2396499fa3658eebdb9c">SemanticAnalyzer</a></li>
 </ul>
 
 

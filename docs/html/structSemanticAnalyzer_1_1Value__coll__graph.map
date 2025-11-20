@@ -1,0 +1,7 @@
+<map id="SemanticAnalyzer::Value" name="SemanticAnalyzer::Value">
+<area shape="rect" id="Node000001" title="Structure of value." alt="" coords="16,104,184,131"/>
+<area shape="rect" id="Node000002" href="$structAST_1_1Type.html" title="Structure for describing the type." alt="" coords="5,5,88,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,44,95,102,91,105,58,47"/>
+<area shape="rect" id="Node000003" href="$structAST_1_1Value.html" title="Structure for describing the value." alt="" coords="111,5,198,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,47,109,105,104,102,138,44"/>
+</map>

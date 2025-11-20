@@ -1,0 +1,7 @@
+<map id="SemanticAnalyzer::binary_two_variants" name="SemanticAnalyzer::binary_two_variants">
+<area shape="rect" id="Node000001" title="Method for evaluating binary operations on two values from std::variant." alt="" coords="5,5,176,48"/>
+<area shape="rect" id="Node000002" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="224,13,340,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,24,208,24,208,29,176,29"/>
+<area shape="rect" id="Node000003" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="388,5,555,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,24,373,24,373,29,340,29"/>
+</map>

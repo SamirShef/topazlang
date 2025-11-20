@@ -1,0 +1,15 @@
+<map id="SemanticAnalyzer::get_default_val_by_type" name="SemanticAnalyzer::get_default_val_by_type">
+<area shape="rect" id="Node000001" title="Method for getting default value by type." alt="" coords="1049,35,1202,77"/>
+<area shape="rect" id="Node000002" href="$classSemanticAnalyzer.html#aad5f91cc661dc6af8c69e1e1dbc2dc1d" title="Method for analyze variable declaration." alt="" coords="821,35,1001,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1033,59,1001,59,1001,53,1033,53"/>
+<area shape="rect" id="Node000003" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="592,5,773,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="805,45,773,41,773,36,806,40"/>
+<area shape="rect" id="Node000004" href="$classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e" title="Method for analyze one statement." alt="" coords="331,13,544,40"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="805,62,773,63,682,66,592,63,539,54,489,43,491,38,540,49,593,57,682,61,773,57,805,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="577,38,545,38,545,33,576,33"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="560,15,592,15,592,21,560,20"/>
+<area shape="rect" id="Node000005" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="103,13,283,40"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="315,29,284,29,284,24,315,24"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,13,55,40"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="87,29,55,29,55,24,87,24"/>
+</map>

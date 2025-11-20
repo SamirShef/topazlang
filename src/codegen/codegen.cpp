@@ -1,6 +1,12 @@
+/**
+ * @file codegen.cpp
+ *
+ * @brief codegen.hpp implementation
+ */
+
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
-#include <cstddef>
+#include <llvm/ADT/APFloat.h>
 #include <llvm/IR/Argument.h>
 #include <llvm/IR/BasicBlock.h>
 #include <llvm/IR/DerivedTypes.h>
@@ -13,6 +19,8 @@
 #include <llvm/ADT/APInt.h>
 #include <llvm/IR/Value.h>
 #include <llvm/IR/Type.h>
+#include <cstddef>
+#include <llvm/Support/raw_ostream.h>
 #include <sstream>
 #include <vector>
 
@@ -36,7 +44,7 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
         generate_return_stmt(*rs);
     }
     else {
-        throw_excpetion(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
+        throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
 }
 
@@ -70,7 +78,7 @@ void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     if (var_inst == nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
-        throw_excpetion(SUB_CODEGEN, ss.str(), vas.line, file_name);
+        throw_exception(SUB_CODEGEN, ss.str(), vas.line, file_name);
     }
     builder.CreateStore(generate_expr(*vas.expr), var_inst);
 }
@@ -128,7 +136,7 @@ llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
         return generate_var_expr(*ve);
     }
     else {
-        throw_excpetion(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
+        throw_exception(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
     }
 }
 
@@ -145,15 +153,18 @@ llvm::Value *CodeGenerator::generate_literal_expr(AST::Literal& lit) {
         case AST::TYPE_LONG:
             return llvm::ConstantInt::get(type_to_llvm(lit.type), llvm::APInt(64, std::get<int64_t>(value)));
         case AST::TYPE_FLOAT:
-            return llvm::ConstantFP::get(type_to_llvm(lit.type), std::get<float_t>(value));
+            return llvm::ConstantFP::get(type_to_llvm(lit.type), llvm::APFloat(std::get<float_t>(value)));
         case AST::TYPE_DOUBLE:
-            return llvm::ConstantFP::get(type_to_llvm(lit.type), std::get<double_t>(value));
+            return llvm::ConstantFP::get(type_to_llvm(lit.type), llvm::APFloat(std::get<double_t>(value)));
         case AST::TYPE_BOOL:
             return llvm::ConstantInt::get(type_to_llvm(lit.type), llvm::APInt(1, std::get<bool>(value)));
-        case AST::TYPE_STRING_LIT:
-            return builder.CreateGlobalString(std::get<std::string>(value));
+        case AST::TYPE_STRING_LIT: {
+                llvm::Constant *str_const = llvm::ConstantDataArray::getString(context, std::get<std::string>(value), true);
+                llvm::GlobalVariable *str_var = new llvm::GlobalVariable(*module, str_const->getType(), true, llvm::GlobalValue::PrivateLinkage, str_const, "string.lit");
+                return str_var;
+            }
         default:
-            throw_excpetion(SUB_CODEGEN, "An unsupported literal type was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", lit.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported literal type was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", lit.line, file_name);
     }
 }
 
@@ -163,7 +174,7 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Value *right = generate_expr(*be.right_expr);
     llvm::Type *right_type = right->getType();
 
-    switch (be.op) {
+    switch (be.op.type) {
         case TOK_OP_PLUS:
             if (left_type->isFloatingPointTy() || right_type->isFloatingPointTy()) {
                 return builder.CreateFAdd(left, right, "fadd.tmp");
@@ -224,14 +235,14 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
         case TOK_OP_L_OR:
             return builder.CreateLogicalAnd(left, right, "lor.tmp");
         default:
-            throw_excpetion(SUB_CODEGEN, "An unsupported binary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", be.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported binary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", be.line, file_name);
     }
 }
 
 llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
     llvm::Value* value = generate_expr(*ue.expr);
     
-    switch (ue.op) {
+    switch (ue.op.type) {
         case TOK_OP_MINUS:
             if (value->getType()->isFloatingPointTy()) {
                 return builder.CreateFNeg(value, "neg.tmp");
@@ -243,7 +254,7 @@ llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
             }
             return builder.CreateICmpEQ(value, builder.getInt32(0), "lnot.tmp");
         default:
-            throw_excpetion(SUB_CODEGEN, "An unsupported unary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", ue.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported unary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", ue.line, file_name);
     }
 }
 
@@ -252,13 +263,20 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
     while (!vars.empty()) {
         auto vars_it = vars.top().find(ve.name);
         if (vars_it != vars.top().end()) {
-            return builder.CreateLoad(vars_it->second->getType(), vars_it->second, ve.name + ".load");
+            llvm::Type* type = nullptr;
+            if (auto global = llvm::dyn_cast<llvm::GlobalVariable>(vars_it->second)) {
+                type = global->getValueType();
+            }
+            else if (auto local = llvm::dyn_cast<llvm::AllocaInst>(vars_it->second)) {
+                type = local->getAllocatedType();
+            }
+            return vars_it->second;
         }
         vars.pop();
     }
     std::stringstream ss;
     ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
-    throw_excpetion(SUB_CODEGEN, ss.str(), ve.line, file_name);
+    throw_exception(SUB_CODEGEN, ss.str(), ve.line, file_name);
 }
 
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
@@ -280,6 +298,6 @@ llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
         case AST::TYPE_NOTH:
             return llvm::Type::getVoidTy(context);
         default:
-            throw_excpetion(SUB_CODEGEN, "Unsupported type", -1, file_name);
+            throw_exception(SUB_CODEGEN, "Unsupported type", -1, file_name);
     }
 }
