@@ -1,11 +1,13 @@
 <map id="AST::Stmt" name="AST::Stmt">
-<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="261,5,344,32"/>
-<area shape="rect" id="Node000002" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="5,80,144,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,40,115,82,114,77,248,35"/>
-<area shape="rect" id="Node000003" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="167,80,288,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,45,243,82,239,78,277,41"/>
-<area shape="rect" id="Node000004" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="313,80,444,107"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="328,41,367,78,364,82,325,45"/>
-<area shape="rect" id="Node000005" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="468,80,596,107"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="358,35,492,77,491,82,356,40"/>
+<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="5,107,88,133"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1FuncCallStmt.html" title="Statement of functions calling." alt="" coords="138,5,272,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,94,99,67,134,42,158,30,161,35,137,46,102,71,73,98"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="136,56,274,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,100,160,81,162,86,103,105"/>
+<area shape="rect" id="Node000004" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="144,107,266,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="103,117,144,117,144,123,103,123"/>
+<area shape="rect" id="Node000005" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="139,157,270,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="103,135,162,154,160,159,102,140"/>
+<area shape="rect" id="Node000006" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="141,208,269,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="73,142,102,169,137,194,161,205,158,210,134,198,99,173,69,146"/>
 </map>

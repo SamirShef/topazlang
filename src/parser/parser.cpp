@@ -10,6 +10,7 @@
 #include <utility>
 #include <sstream>
 #include <memory>
+#include <vector>
 
 std::vector<AST::StmtPtr> Parser::parse() {
     std::vector<AST::StmtPtr> stmts;
@@ -26,6 +27,9 @@ AST::StmtPtr Parser::parse_stmt() {
         return parse_var_decl_stmt();
     }
     else if (match(TOK_ID)) {
+        if (match(TOK_OP_LPAREN)) {
+            return parse_func_call_stmt();
+        }
         return parse_var_asgn_stmt();
     }
     else if (match(TOK_FUN)) {
@@ -128,6 +132,24 @@ AST::StmtPtr Parser::parse_func_decl_stmt() {
     }
 
     return std::make_unique<AST::FuncDeclStmt>(name, std::move(args), ret_type, std::move(block), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_func_call_stmt() {
+    Token name_token = peek(-2);
+    std::vector<AST::ExprPtr> args;
+    while (!match(TOK_OP_RPAREN)) {
+        args.push_back(parse_expr());
+    }
+    std::stringstream ss;
+    ss << "Expected \033[0m';'\033[31m in the end of function calling. ";
+    if (pos == tokens_count) {
+        ss << "Please add \033[0m';'\033[31m into the end of function calling";
+    }
+    else {
+        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
+    }
+    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
+    return std::make_unique<AST::FuncCallStmt>(name_token.value, std::move(args), name_token.line);
 }
 
 AST::Argument Parser::parse_argument() {

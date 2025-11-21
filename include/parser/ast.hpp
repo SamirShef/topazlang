@@ -277,6 +277,18 @@ namespace AST {
     };
 
     /**
+     * @brief Statement of functions calling
+     */
+    class FuncCallStmt : public Stmt {
+    public:
+        std::string name;                                       /**< Function name */
+        std::vector<ExprPtr> args;                              /**< Functions arguments as expressions */
+
+        FuncCallStmt(std::string n, std::vector<ExprPtr> a, uint32_t l) : name(n), args(std::move(a)), Stmt(l) {}
+        ~FuncCallStmt() override = default;
+    };
+
+    /**
      * @brief Statement of 'return'
      */
     class ReturnStmt : public Stmt {

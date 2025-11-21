@@ -21,6 +21,7 @@ var annotated_dup =
       [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
       [ "VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
       [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
+      [ "FuncCallStmt", "classAST_1_1FuncCallStmt.html", "classAST_1_1FuncCallStmt" ],
       [ "ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ]
     ] ],
     [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],

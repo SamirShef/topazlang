@@ -67,6 +67,15 @@ private:
     AST::StmtPtr parse_func_decl_stmt();
 
     /**
+     * @brief Method for parsing of functions calling
+     *
+     * This method sets the syntax for calling a function, creates the AST element of the FuncCallStmt and returns it
+     *
+     * @return FuncCallStmt
+     */
+    AST::StmtPtr parse_func_call_stmt();
+
+    /**
      * @brief Method for parsing of function argument
      *
      * This method sets the syntax for defining a function argument, creates the AST element of the Argument and returns it
