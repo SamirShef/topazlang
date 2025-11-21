@@ -22,6 +22,10 @@ std::vector<AST::StmtPtr> Parser::parse() {
     return stmts;
 }
 
+void Parser::reset() {
+    pos = 0;
+}
+
 AST::StmtPtr Parser::parse_stmt() {
     if (match(TOK_LET)) {
         return parse_var_decl_stmt();
@@ -139,6 +143,13 @@ AST::StmtPtr Parser::parse_func_call_stmt() {
     std::vector<AST::ExprPtr> args;
     while (!match(TOK_OP_RPAREN)) {
         args.push_back(parse_expr());
+        if (peek().type != TOK_OP_RPAREN) {
+            std::stringstream ss;
+            ss << "Expected \033[0m','\033[31m between function arguments.\nPlease replace \033[0m'";
+            ss << peek(-1).value << " " << peek().value << "'\033[31m with: \033[0m'"
+               << peek(-1).value << ", " << peek().value << "'";
+            consume(TOK_OP_COMMA, ss.str(), peek().line);
+        }
     }
     std::stringstream ss;
     ss << "Expected \033[0m';'\033[31m in the end of function calling. ";

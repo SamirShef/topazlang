@@ -7,8 +7,10 @@
 #include "../../include/exception/exception.hpp"
 #include "../../include/semantic/semantic.hpp"
 #include <algorithm>
+#include <cstddef>
 #include <sstream>
 #include <memory>
+#include <utility>
 
 void SemanticAnalyzer::analyze() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -25,6 +27,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     }
     else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&stmt)) {
         analyze_func_decl_stmt(*fds);
+    }
+    else if (auto fcs = dynamic_cast<AST::FuncCallStmt*>(&stmt)) {
+        analyze_func_call_stmt(*fcs);
     }
     else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
         analyze_return_stmt(*rs);
@@ -78,14 +83,39 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
         throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
     }
     AST::Type ret_type = fds.ret_type;
+    functions.emplace(fds.name, new FunctionInfo{.ret_type=ret_type, .args=std::move(fds.args), .block=std::move(fds.block)});
     functions_ret_types.push(ret_type);
-    for (auto& arg : fds.args) {
+    for (auto& arg : functions.at(fds.name)->args) {
         analyze_var_decl_stmt(*std::make_unique<AST::VarDeclStmt>(arg.type, nullptr, arg.name, fds.line));
     }
-    for (auto& stmt : fds.block) {
+    for (auto& stmt : functions.at(fds.name)->block) {
         analyze_stmt(*stmt);
     }
     functions_ret_types.pop();
+}
+
+void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
+    FunctionInfo *func = get_function_info(fcs.name, fcs.line);
+    if (func == nullptr) {
+        std::stringstream ss;
+        ss << "Function \033[0m'" << fcs.name << "'\033[31m does not exists";
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+    }
+    if (fcs.args.size() != functions.at(fcs.name)->args.size()) {
+        std::stringstream ss;
+        ss << "Function \033[0m'" << fcs.name << "'\033[31m expected " << functions.at(fcs.name)->args.size() << " arguments, but got " << fcs.args.size();
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+    }
+    size_t index = 0;
+    for (auto& arg : fcs.args) {
+        AST::Type arg_type = analyze_expr(*arg).type;
+        if (!has_common_type(arg_type, functions.at(fcs.name)->args[index].type)) {
+            std::stringstream ss;
+            ss << "Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << functions.at(fcs.name)->args[index].type.to_str() << "'\033[31m";
+            throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+        }
+        index++;
+    }
 }
 
 void SemanticAnalyzer::analyze_return_stmt(AST::ReturnStmt& rs) {
@@ -293,7 +323,7 @@ std::unique_ptr<SemanticAnalyzer::Value> SemanticAnalyzer::get_variable_value(st
 SemanticAnalyzer::FunctionInfo *SemanticAnalyzer::get_function_info(std::string name, uint32_t line) {
     auto func_it = functions.find(name);
     if (func_it != functions.end()) {
-        return &func_it->second;
+        return &*func_it->second;
     }
     return nullptr;
 }

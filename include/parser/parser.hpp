@@ -29,6 +29,11 @@ public:
      */
     std::vector<AST::StmtPtr> parse();
 
+    /**
+     * @brief Method for resetting all parameters in parser
+     */
+    void reset();
+
 private:
     /**
      * @brief Method for parsing only one statement
