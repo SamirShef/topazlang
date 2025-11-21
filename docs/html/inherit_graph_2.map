@@ -1,11 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="5,81,88,108"/>
-<area shape="rect" id="Node000001" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="136,5,274,32"/>
-<area shape="poly" id="edge13_Node000000_Node000001" title=" " alt="" coords="81,70,135,42,162,30,164,35,137,46,84,75"/>
-<area shape="rect" id="Node000002" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="144,56,266,83"/>
-<area shape="poly" id="edge14_Node000000_Node000002" title=" " alt="" coords="103,83,143,76,144,82,104,88"/>
-<area shape="rect" id="Node000003" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="139,107,270,133"/>
-<area shape="poly" id="edge15_Node000000_Node000003" title=" " alt="" coords="104,101,140,107,139,112,103,106"/>
-<area shape="rect" id="Node000004" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="141,157,269,184"/>
-<area shape="poly" id="edge16_Node000000_Node000004" title=" " alt="" coords="84,114,137,143,164,154,162,159,135,148,81,119"/>
+<area shape="rect" id="Node000000" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="5,107,88,133"/>
+<area shape="rect" id="Node000001" href="$classAST_1_1FuncCallStmt.html" title="Statement of functions calling." alt="" coords="138,5,272,32"/>
+<area shape="poly" id="edge13_Node000000_Node000001" title=" " alt="" coords="69,94,99,67,134,42,158,30,161,35,137,46,102,71,73,98"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="136,56,274,83"/>
+<area shape="poly" id="edge14_Node000000_Node000002" title=" " alt="" coords="102,100,160,81,162,86,103,105"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="144,107,266,133"/>
+<area shape="poly" id="edge15_Node000000_Node000003" title=" " alt="" coords="103,117,144,117,144,123,103,123"/>
+<area shape="rect" id="Node000004" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="139,157,270,184"/>
+<area shape="poly" id="edge16_Node000000_Node000004" title=" " alt="" coords="103,135,162,154,160,159,102,140"/>
+<area shape="rect" id="Node000005" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="141,208,269,235"/>
+<area shape="poly" id="edge17_Node000000_Node000005" title=" " alt="" coords="73,142,102,169,137,194,161,205,158,210,134,198,99,173,69,146"/>
 </map>

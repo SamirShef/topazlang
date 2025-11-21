@@ -13,6 +13,7 @@ var classParser =
     [ "parse_comparation_expr", "classParser.html#a9539499c0db5a3d7045952e7919d3a65", null ],
     [ "parse_equality_expr", "classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf", null ],
     [ "parse_expr", "classParser.html#a077a7024f238711664ff68ebf79e320b", null ],
+    [ "parse_func_call_stmt", "classParser.html#a18c10cd8d8d56740d593928d610ccb4e", null ],
     [ "parse_func_decl_stmt", "classParser.html#a7771b29d78844845898c9d14a2eb8f0b", null ],
     [ "parse_l_and_expr", "classParser.html#ac23cdc70263553f1a8f5a2bf01caa770", null ],
     [ "parse_l_or_expr", "classParser.html#a1438271fe63fe661f7e43ce92119bcea", null ],

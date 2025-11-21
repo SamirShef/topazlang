@@ -1,0 +1,5 @@
+<map id="AST::FuncCallStmt" name="AST::FuncCallStmt">
+<area shape="rect" id="Node000001" title="Statement of functions calling." alt="" coords="5,80,140,107"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="31,5,114,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,48,75,80,70,80,70,48"/>
+</map>
