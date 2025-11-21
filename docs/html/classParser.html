@@ -83,6 +83,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abc8f9ebc6d42b34014a0011ec7951652" id="r_abc8f9ebc6d42b34014a0011ec7951652"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc8f9ebc6d42b34014a0011ec7951652">Parser</a> (std::vector&lt; <a class="el" href="structToken.html">Token</a> &gt; t)</td></tr>
 <tr class="memitem:a46a674e4cff457fc9502b327ee9be73c" id="r_a46a674e4cff457fc9502b327ee9be73c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">AST::StmtPtr</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46a674e4cff457fc9502b327ee9be73c">parse</a> ()</td></tr>
 <tr class="memdesc:a46a674e4cff457fc9502b327ee9be73c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for parsing tokens into <a class="el" href="namespaceAST.html">AST</a> tree.  <br /></td></tr>
+<tr class="memitem:af9229801acbc514a95c290833db99864" id="r_af9229801acbc514a95c290833db99864"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9229801acbc514a95c290833db99864">reset</a> ()</td></tr>
+<tr class="memdesc:af9229801acbc514a95c290833db99864"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for resetting all parameters in parser.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -218,7 +220,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Verificated token </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00354">354</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00365">365</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -326,7 +328,7 @@ Here is the caller graph for this function:</div>
 <p>This method checks the current keywords to collect the final Topaz type and returns it. If the tokens are in the wrong sequence or are not part of the type, an exception is thrown</p>
 <dl class="section return"><dt>Returns</dt><dd>Topaz type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00362">362</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00373">373</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -409,7 +411,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Assingment expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00431">431</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00442">442</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -527,7 +529,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Increment/Decrement expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00453">453</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00464">464</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -631,7 +633,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if token is compound assignment operator, and false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00418">418</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00429">429</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -687,7 +689,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>'true' if passed type is equal to type of current token and 'false' otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00346">346</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00357">357</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -964,7 +966,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'additive'. If type of current token isnt TOK_OP_PLUS (aka +) or TOK_OP_MINUS (aka -), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'additive' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00241">241</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00252">252</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1101,7 +1103,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for defining a function argument, creates the <a class="el" href="namespaceAST.html">AST</a> element of the Argument and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>Argument </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00155">155</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00166">166</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1180,7 +1182,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'comparation'. If type of current token isnt TOK_OP_GT (aka &gt;) or TOK_OP_GT_EQ (aka &gt;=) or TOK_OP_LS (aka &lt;) or TOK_OP_LS_EQ (aka &lt;=), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'comparation' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00218">218</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00229">229</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1317,7 +1319,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'equality'. If type of current token isnt TOK_OP_EQ_EQ (aka ==) or TOK_OP_NOT_EQ_EQ (aka !=), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'equality' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00201">201</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00212">212</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1454,7 +1456,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing expression, creates the <a class="el" href="namespaceAST.html">AST</a> element and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00179">179</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00190">190</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1591,7 +1593,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for calling a function, creates the <a class="el" href="namespaceAST.html">AST</a> element of the FuncCallStmt and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>FuncCallStmt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00137">137</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00141">141</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1702,7 +1704,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for defining a function, creates the <a class="el" href="namespaceAST.html">AST</a> element of the FuncDeclStmt and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>FuncDeclStmt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00104">104</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00108">108</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1866,7 +1868,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'logical and'. If type of current token isnt TOK_OP_L_AND (aka &amp;&amp;), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'logical and' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00183">183</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00194">194</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2003,7 +2005,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'logical or'. If type of current token isnt TOK_OP_L_OR (aka ||), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'logical or' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00192">192</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00203">203</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2140,7 +2142,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'multiplicative'. If type of current token isnt TOK_OP_MULT (aka *) or TOK_OP_DIV (aka /) or TOK_OP_MODULO (aka %), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'multiplicative' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00258">258</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00269">269</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2277,7 +2279,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'primary'. If type of current token isnt literal or identifier, then throwing exception</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'primary' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00294">294</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00305">305</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2414,7 +2416,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for 'return' statement, creates the <a class="el" href="namespaceAST.html">AST</a> element of the ReturnStmt and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>ReturnStmt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00169">169</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00180">180</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2525,7 +2527,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing one statement and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed statement </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00025">25</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00029">29</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2689,7 +2691,7 @@ Here is the caller graph for this function:</div>
 <p>This method parsing all expressions as 'unary'. If type of current token isnt TOK_OP_L_NOT (aka !) or TOK_OP_MINUS (aka -), then returns created expression</p>
 <dl class="section return"><dt>Returns</dt><dd>Parsed expression as 'unary' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00278">278</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00289">289</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2826,7 +2828,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for assignment a variable, creates the <a class="el" href="namespaceAST.html">AST</a> element of the VarAsgnStmt and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>VarAsgnStmt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00080">80</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00084">84</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2945,7 +2947,7 @@ Here is the caller graph for this function:</div>
 <p>This method sets the syntax for defining a variable, creates the <a class="el" href="namespaceAST.html">AST</a> element of the VarDeclStmt and returns it</p>
 <dl class="section return"><dt>Returns</dt><dd>VarDeclStmt </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00046">46</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00050">50</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3074,7 +3076,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structToken.html" title="Token structure.">Token</a> from tokens </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00337">337</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00348">348</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3197,6 +3199,37 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="af9229801acbc514a95c290833db99864" name="af9229801acbc514a95c290833db99864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9229801acbc514a95c290833db99864">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parser::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Method for resetting all parameters in parser. </p>
+
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00025">25</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classParser_af9229801acbc514a95c290833db99864_icgraph.png" border="0" usemap="#aclassParser_af9229801acbc514a95c290833db99864_icgraph" loading="lazy" alt=""/></div>
+<map name="aclassParser_af9229801acbc514a95c290833db99864_icgraph" id="aclassParser_af9229801acbc514a95c290833db99864_icgraph">
+<area shape="rect" title="Method for resetting all parameters in parser." alt="" coords="103,5,199,32"/>
+<area shape="rect" href="main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ae5709805b09bb75a192f232f58b579a5" name="ae5709805b09bb75a192f232f58b579a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae5709805b09bb75a192f232f58b579a5">&#9670;&#160;</a></span>ttype_to_tvalue()</h2>
 
@@ -3230,7 +3263,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Converted type of Topaz value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00393">393</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="parser_8cpp_source.html#l00404">404</a> of file <a class="el" href="parser_8cpp_source.html">parser.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

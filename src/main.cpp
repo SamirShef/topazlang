@@ -98,12 +98,15 @@ int main(int argc, const char *argv[]) {
     }
 
     Parser parser(tokens);
-    std::vector<AST::StmtPtr> stmts = parser.parse();
+    std::vector<AST::StmtPtr> stmts_for_semantic = parser.parse();
 
-    SemanticAnalyzer semantic(stmts, file_path.string());
+    SemanticAnalyzer semantic(stmts_for_semantic, file_path.string());
     semantic.analyze();
-
-    CodeGenerator codegen(stmts, file_path.string());
+    
+    parser.reset();
+    std::vector<AST::StmtPtr> stmts_for_codegen = parser.parse();
+    
+    CodeGenerator codegen(stmts_for_codegen, file_path.string());
     codegen.generate();
     if (print_ir) {
         if (print_tokens) {

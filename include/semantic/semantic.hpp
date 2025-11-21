@@ -44,11 +44,11 @@ private:
         std::vector<AST::Argument> args;                                        /**< Function arguments */
         std::vector<AST::StmtPtr> block;                                        /**< Function block */
     };
-    std::map<std::string, FunctionInfo> functions;                              /**< Functions table */
+    std::map<std::string, std::unique_ptr<FunctionInfo>> functions;                              /**< Functions table */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
 
 public:
-    SemanticAnalyzer(std::vector<AST::StmtPtr>& stmts, std::string fn) : stmts(stmts), file_name(fn) {
+    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn) {
         variables.push({});
     }
 
@@ -95,6 +95,15 @@ private:
      * @param fds Function declaration statement for analyzing
      */
     void analyze_func_decl_stmt(AST::FuncDeclStmt& fds);
+
+    /**
+     * @brief Method for analyze function calling
+     *
+     * This method analyze function calling
+     *
+     * @param fds Function calling statement for analyzing
+     */
+    void analyze_func_call_stmt(AST::FuncCallStmt& fcs);
 
     /**
      * @brief Method for analyze 'return' statement
