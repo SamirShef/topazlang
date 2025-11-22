@@ -34,6 +34,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
         analyze_return_stmt(*rs);
     }
+    else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&stmt)) {
+        analyze_if_else_stmt(*ies);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -49,7 +52,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds) {
     AST::Type var_type = vds.type;
     Value var_val = Value(var_type, get_default_val_by_type(var_type, vds.line));
     if (vds.expr != nullptr) {
-        var_val = analyze_expr(*vds.expr);
+        var_val.value = analyze_expr(*vds.expr).value;
     }
     if (!has_common_type(var_val.type, var_type)) {
         std::stringstream ss;
@@ -130,6 +133,23 @@ void SemanticAnalyzer::analyze_return_stmt(AST::ReturnStmt& rs) {
     else {
         if (functions_ret_types.top().type != AST::TYPE_NOTH) {
             throw_exception(SUB_SEMANTIC, "Nothing-type function cannot return values", rs.line, file_name);
+        }
+    }
+}
+
+void SemanticAnalyzer::analyze_if_else_stmt(AST::IfElseStmt& ies) {
+    Value cond_val = analyze_expr(*ies.cond);
+    if (cond_val.type.type != AST::TYPE_BOOL) {
+        std::stringstream ss;
+        ss << "Type mismatch: the condition of the \033[0m'if'\033[31m operator must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), ies.line, file_name);
+    }
+    for (auto& stmt : ies.then_block) {
+        analyze_stmt(*stmt);
+    }
+    if (ies.else_block.size() != 0) {
+        for (auto& stmt : ies.else_block) {
+            analyze_stmt(*stmt);
         }
     }
 }
@@ -324,10 +344,44 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
             variables.pop();
             return val;
         }
+        else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+            Value *val = get_function_return_value_from_if_else(*ies);
+            if (val != nullptr) {
+                variables.pop();
+                return *val;
+            }
+        }
     }
     std::stringstream ss;
     ss << "Function \033[0m'" << fce.name << "'\033[31m does not returning value. Please add \033[0m'return'\033[31m statement into the end of the function";
     throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+}
+
+SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_else(AST::IfElseStmt& ies) {
+    Value cond_val = analyze_expr(*ies.cond);
+    if (std::get<bool>(cond_val.value.value) == true) {
+        for (auto& stmt : ies.then_block) {
+            if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+                static Value val = analyze_expr(*rs->expr);
+                return &val;
+            }
+            else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+                return get_function_return_value_from_if_else(*ies);
+            }
+        }
+    }
+    else {
+        for (auto& stmt : ies.else_block) {
+            if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+                static Value val = analyze_expr(*rs->expr);
+                return &val;
+            }
+            else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+                return get_function_return_value_from_if_else(*ies);
+            }
+        }
+    }
+    return nullptr;
 }
 
 AST::Value SemanticAnalyzer::get_default_val_by_type(AST::Type type, uint32_t line) {
@@ -374,7 +428,7 @@ SemanticAnalyzer::FunctionInfo *SemanticAnalyzer::get_function_info(std::string 
 }
 
 bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
-    if (left == right) {
+    if (left.type == right.type) {
         return true;
     }
     if (implicitly_cast_allowed_types.find(left.type) != implicitly_cast_allowed_types.end() &&
@@ -385,7 +439,7 @@ bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
 }
 
 AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uint32_t line) {
-    if (left == right) {
+    if (left.type == right.type) {
         return left;
     }
 
