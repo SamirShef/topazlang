@@ -148,6 +148,9 @@ llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
     else if (auto ve = dynamic_cast<AST::VarExpr*>(&expr)) {
         return generate_var_expr(*ve);
     }
+    else if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&expr)) {
+        return generate_func_call_expr(*fce);
+    }
     else {
         throw_exception(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
     }
@@ -290,6 +293,16 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
     std::stringstream ss;
     ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
     throw_exception(SUB_CODEGEN, ss.str(), ve.line, file_name);
+}
+
+llvm::Value *CodeGenerator::generate_func_call_expr(AST::FuncCallExpr& fce) {
+    llvm::Function *func = functions.at(fce.name);
+    std::vector<llvm::Value*> args;
+    for (auto& arg : fce.args) {
+        args.push_back(generate_expr(*arg));
+    }
+
+    return builder.CreateCall(func, args, fce.name + ".call");
 }
 
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {

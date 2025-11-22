@@ -172,6 +172,17 @@ private:
     llvm::Value *generate_var_expr(AST::VarExpr& ve);
 
     /**
+     * @brief Method for generating LLVM IR code for function calling expressions
+     *
+     * This method generating LLVM IR code for function calling expressions and returns it
+     *
+     * @param fce Function calling expression for generating
+     *
+     * @return Generated LLVM value
+     */
+    llvm::Value *generate_func_call_expr(AST::FuncCallExpr& fce);
+
+    /**
      * @brief Method for converting AST::Type to llvm::Type
      *
      * This method converting passed AST::Type to llvm::Type and returns it. If type of passed AST::Type is unsupported by current version of compiler, then throwing exception
