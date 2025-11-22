@@ -7,6 +7,7 @@ var classCodeGenerator =
     [ "generate_func_call_expr", "classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93", null ],
     [ "generate_func_call_stmt", "classCodeGenerator.html#a2e4fc8a531cca1921b87183c95dc2b42", null ],
     [ "generate_func_decl_stmt", "classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f", null ],
+    [ "generate_if_else_stmt", "classCodeGenerator.html#a4e2f6284dbdcf560807c53c04aa4829f", null ],
     [ "generate_literal_expr", "classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e", null ],
     [ "generate_return_stmt", "classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a", null ],
     [ "generate_stmt", "classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf", null ],
