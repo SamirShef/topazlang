@@ -4,7 +4,10 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="364,63,251,35,252,30,365,57"/>
 <area shape="rect" id="Node000004" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="103,56,283,99"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="315,89,284,89,284,83,315,84"/>
+<area shape="rect" id="Node000005" href="$classSemanticAnalyzer.html#a2c40e832f07d8a8d7c68b9504dcfaff5" title="Method for analyze control flow operators." alt="" coords="103,123,283,165"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="394,99,284,131,283,126,392,94"/>
 <area shape="rect" id="Node000003" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 <area shape="poly" id="edge4_Node000004_Node000001" title=" " alt="" coords="299,66,330,66,330,71,299,71"/>
+<area shape="poly" id="edge6_Node000005_Node000001" title=" " alt="" coords="260,115,354,89,355,94,261,120"/>
 </map>

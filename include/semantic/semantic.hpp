@@ -115,6 +115,15 @@ private:
     void analyze_return_stmt(AST::ReturnStmt& rs);
 
     /**
+     * @brief Method for analyze control flow operators
+     *
+     * This method analyze control flow operators. If condition for control flow operator 'if' is not a bool type, then throwing exception
+     *
+     * @param ies Control flow operator
+     */
+    void analyze_if_else_stmt(AST::IfElseStmt& ies);
+
+    /**
      * @brief Method for analyze expression
      *
      * This method analyze passed expression and returns value of it
@@ -191,6 +200,18 @@ private:
      * @return Evaluating function returned value
      */
     Value get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce);
+
+    /**
+     * @brief Method for evaluating and returning function returned value from control flow operators
+     *
+     * This method evaluating function returned value from control flow operators and returns it. If function dont have return statement, then throwing exception.
+     * If in block of statements of control flow operators does not have a 'return' statement, then returns nullptr
+     *
+     * @param ies Control flow operators
+     *
+     * @return Evaluating function returned value or nullptr if does not have 'return'
+     */
+    Value *get_function_return_value_from_if_else(AST::IfElseStmt& ies);
 
     /**
      * @brief Method for getting default value by type
