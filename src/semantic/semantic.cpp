@@ -168,7 +168,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_binary_expr(AST::BinaryExpr& b
     AST::Type output_type = get_common_type(left_type, right_type, be.line);
 
     if (left_type.type >= AST::TYPE_BOOL && left_type.type <= AST::TYPE_DOUBLE && right_type.type > AST::TYPE_DOUBLE ||
-             right_type.type >= AST::TYPE_BOOL && right_type.type <= AST::TYPE_DOUBLE && left_type.type > AST::TYPE_DOUBLE) {
+        right_type.type >= AST::TYPE_BOOL && right_type.type <= AST::TYPE_DOUBLE && left_type.type > AST::TYPE_DOUBLE) {
         std::stringstream ss;
         ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
         throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);

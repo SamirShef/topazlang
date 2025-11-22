@@ -25,6 +25,7 @@ var hierarchy =
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
       [ "AST::FuncCallStmt", "classAST_1_1FuncCallStmt.html", null ],
       [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],
+      [ "AST::IfElseStmt", "classAST_1_1IfElseStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
       [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", null ],
       [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ]

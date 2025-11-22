@@ -42,8 +42,13 @@ AST::StmtPtr Parser::parse_stmt() {
     else if (match(TOK_RETURN)) {
         return parse_return_stmt();
     }
+    else if (match(TOK_IF)) {
+        return parse_if_else_stmt();
+    }
     else {
-        throw_exception(SUB_PARSER, "Unsupported statement. Please check ", peek().line, peek().file_name);
+        std::stringstream ss;
+        ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
+        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
     }
 }
 
@@ -185,6 +190,28 @@ AST::StmtPtr Parser::parse_return_stmt() {
         consume(TOK_OP_SEMICOLON, "Expected ';' after returned expression", peek().line);
     }
     return std::make_unique<AST::ReturnStmt>(std::move(ret_expr), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_if_else_stmt() {
+    Token first_token = peek(-1);
+    AST::ExprPtr cond = parse_expr();
+    std::vector<AST::StmtPtr> then_block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m after condition", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        then_block.push_back(parse_stmt());
+    }
+    std::vector<AST::StmtPtr> else_block;
+    if (match(TOK_ELSE)) {
+        if (match(TOK_OP_LBRACE)) {
+            while (!match(TOK_OP_RBRACE)) {
+                else_block.push_back(parse_stmt());
+            }
+        }
+        else {
+            else_block.push_back(parse_stmt());
+        }
+    }
+    return std::make_unique<AST::IfElseStmt>(std::move(cond), std::move(then_block), std::move(else_block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
@@ -355,7 +382,9 @@ AST::ExprPtr Parser::parse_primary_expr() {
             pos++;
             return std::make_unique<AST::StringLiteral>(token.value, token.line);
         default:
-            throw_exception(SUB_PARSER, "Unsupported expression. Please check expression to mistakes", token.line, token.file_name);
+            std::stringstream ss;
+            ss << "Expected expression, but got \033[0m'" << peek().value << "'\033[31m. Please check expression to mistakes";
+            throw_exception(SUB_PARSER, ss.str(), token.line, token.file_name);
     }
 }
 
