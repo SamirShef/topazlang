@@ -317,4 +317,16 @@ namespace AST {
         ReturnStmt(ExprPtr e, uint32_t l) : expr(std::move(e)), Stmt(l) {}
         ~ReturnStmt() override = default;
     };
+
+    /**
+     * @brief Statement of control flow operator
+     */
+    class IfElseStmt : public Stmt {
+    public:
+        ExprPtr cond;                                           /**< Condition */
+        std::vector<StmtPtr> then_block;                        /**< Block for true branch */
+        std::vector<StmtPtr> else_block;                        /**< Block for false branch (not necessary) */
+
+        IfElseStmt(ExprPtr c, std::vector<StmtPtr> tb, std::vector<StmtPtr> eb, uint32_t l) : cond(std::move(c)), then_block(std::move(tb)), else_block(std::move(eb)), Stmt(l) {}
+    };
 }

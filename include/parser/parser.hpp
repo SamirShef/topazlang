@@ -97,6 +97,15 @@ private:
      * @return ReturnStmt
      */
     AST::StmtPtr parse_return_stmt();
+
+    /**
+     * @brief Method for parsing of control flow operators (aka if-else)
+     *
+     * This method sets the syntax for control flow operators, creates the AST element of the IfElseStmt and returns it
+     *
+     * @return IfElseStmt
+     */
+    AST::StmtPtr parse_if_else_stmt();
     
     /**
      * @brief Method for parsing expressions

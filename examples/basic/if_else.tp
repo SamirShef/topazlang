@@ -1,0 +1,16 @@
+fun main() -> int {
+    let int: a = 0;
+    let int: b = a * 2;
+
+    if a == b {
+        a *= 12;
+    }
+    else if a > b {
+        b /= 2;
+    }
+    else {
+        b = 0;
+    }
+
+    return 0;
+}
