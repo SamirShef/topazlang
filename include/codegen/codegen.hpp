@@ -101,6 +101,15 @@ private:
     void generate_func_decl_stmt(AST::FuncDeclStmt& fds);
 
     /**
+     * @brief Method for generating LLVM IR code for function calling
+     *
+     * This method generating LLVM IR code for function calling
+     *
+     * @param fds Function calling statement
+     */
+    void generate_func_call_stmt(AST::FuncCallStmt& fcs);
+
+    /**
      * @brief Method for generating LLVM IR code for 'return'
      *
      * This method generating LLVM IR code for 'return'
