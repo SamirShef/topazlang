@@ -17,6 +17,7 @@ var ast_8hpp =
     [ "AST::BinaryExpr", "classAST_1_1BinaryExpr.html", "classAST_1_1BinaryExpr" ],
     [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
     [ "AST::VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
+    [ "AST::FuncCallExpr", "classAST_1_1FuncCallExpr.html", "classAST_1_1FuncCallExpr" ],
     [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
     [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
     [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],

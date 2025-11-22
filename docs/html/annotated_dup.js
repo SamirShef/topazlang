@@ -18,6 +18,7 @@ var annotated_dup =
       [ "BinaryExpr", "classAST_1_1BinaryExpr.html", "classAST_1_1BinaryExpr" ],
       [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
       [ "VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
+      [ "FuncCallExpr", "classAST_1_1FuncCallExpr.html", "classAST_1_1FuncCallExpr" ],
       [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
       [ "VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
       [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],

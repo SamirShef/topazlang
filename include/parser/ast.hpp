@@ -227,12 +227,31 @@ namespace AST {
         ~UnaryExpr() override = default;
     };
 
+    /**
+     * @brief Variable expression container
+     *
+     * Is the container of variable expression (aka <var_name>)
+     */
     class VarExpr : public Expr {
     public:
-        std::string name;
+        std::string name;                                       /**< Variable name */
 
         VarExpr(std::string n, uint32_t l) : name(n), Expr(l) {}
         ~VarExpr() override = default;
+    };
+
+    /**
+     * @brief Function calling expression container
+     *
+     * Is the container of function calling expression (aka <func_name>(<args>))
+     */
+    class FuncCallExpr : public Expr {
+    public:
+        std::string name;                                       /**< Function name */
+        std::vector<ExprPtr> args;                              /**< Function arguments */
+
+        FuncCallExpr(std::string n, std::vector<ExprPtr> a, uint32_t l) : name(n), args(std::move(a)), Expr(l) {}
+        ~FuncCallExpr() override = default;
     };
 
     // STATEMENTS

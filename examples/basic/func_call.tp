@@ -4,5 +4,6 @@ fun add(a: int, b: int) -> int {
 
 fun main() -> int {
     add(2, 2);
+    let int: sum = add(2, 4);
     return 0;
 }

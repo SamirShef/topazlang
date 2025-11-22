@@ -312,7 +312,21 @@ AST::ExprPtr Parser::parse_primary_expr() {
         }
         case TOK_ID:
             pos++;
-            if (peek().type == TOK_OP_INC || peek().type == TOK_OP_DEC) {
+            if (match(TOK_OP_LPAREN)) {
+                std::vector<AST::ExprPtr> args;
+                while (!match(TOK_OP_RPAREN)) {
+                    args.push_back(parse_expr());
+                    if (peek().type != TOK_OP_RPAREN) {
+                        std::stringstream ss;
+                        ss << "Expected \033[0m','\033[31m between function arguments.\nPlease replace \033[0m'";
+                        ss << peek(-1).value << " " << peek().value << "'\033[31m with: \033[0m'"
+                        << peek(-1).value << ", " << peek().value << "'";
+                        consume(TOK_OP_COMMA, ss.str(), peek().line);
+                    }
+                }
+                return std::make_unique<AST::FuncCallExpr>(token.value, std::move(args), token.line);
+            }
+            else if (peek().type == TOK_OP_INC || peek().type == TOK_OP_DEC) {
                 return create_inc_dec_operator(token.value);
             }
             return std::make_unique<AST::VarExpr>(token.value, token.line);
