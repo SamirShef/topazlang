@@ -119,6 +119,15 @@ private:
     void generate_return_stmt(AST::ReturnStmt& rs);
 
     /**
+     * @brief Method for generating LLVM IR code for control flow operators
+     *
+     * This method generating LLVM IR code for control flow operators
+     *
+     * @param ies Control flow operator
+     */
+    void generate_if_else_stmt(AST::IfElseStmt& ies);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception

@@ -46,6 +46,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
         generate_return_stmt(*rs);
     }
+    else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&stmt)) {
+        generate_if_else_stmt(*ies);
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -133,6 +136,39 @@ void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
     else {
         builder.CreateRetVoid();
     }
+}
+
+void CodeGenerator::generate_if_else_stmt(AST::IfElseStmt& ies) {
+    llvm::Function *parent = builder.GetInsertBlock()->getParent();
+    llvm::Value *cond_val = generate_expr(*ies.cond);
+    llvm::BasicBlock *then_bb = llvm::BasicBlock::Create(context, "then", parent);
+    llvm::BasicBlock *else_bb = llvm::BasicBlock::Create(context, "else", parent);
+    llvm::BasicBlock *merge_bb = llvm::BasicBlock::Create(context, "merge", parent);
+
+    builder.CreateCondBr(cond_val, then_bb, else_bb ? else_bb : merge_bb);
+
+    builder.SetInsertPoint(then_bb);
+    variables.push({});
+    for (auto& stmt : ies.then_block) {
+        generate_stmt(*stmt);
+    }
+    variables.pop();
+
+    if (builder.GetInsertBlock()->getTerminator() == nullptr) {
+        builder.CreateBr(merge_bb);
+    }
+
+    builder.SetInsertPoint(else_bb);
+    variables.push({});
+    for (auto& stmt : ies.else_block) {
+        generate_stmt(*stmt);
+    }
+    variables.pop();
+    
+    if (builder.GetInsertBlock()->getTerminator() == nullptr) {
+        builder.CreateBr(merge_bb);
+    }
+    builder.SetInsertPoint(merge_bb);
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
