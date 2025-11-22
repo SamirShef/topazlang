@@ -4,6 +4,7 @@ var hierarchy =
     [ "CodeGenerator", "classCodeGenerator.html", null ],
     [ "AST::Expr", "classAST_1_1Expr.html", [
       [ "AST::BinaryExpr", "classAST_1_1BinaryExpr.html", null ],
+      [ "AST::FuncCallExpr", "classAST_1_1FuncCallExpr.html", null ],
       [ "AST::Literal", "classAST_1_1Literal.html", [
         [ "AST::BoolLiteral", "classAST_1_1BoolLiteral.html", null ],
         [ "AST::CharacterLiteral", "classAST_1_1CharacterLiteral.html", null ],
