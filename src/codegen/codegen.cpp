@@ -40,6 +40,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&stmt)) {
         generate_func_decl_stmt(*fds);
     }
+    else if (auto fcs = dynamic_cast<AST::FuncCallStmt*>(&stmt)) {
+        generate_func_call_stmt(*fcs);
+    }
     else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
         generate_return_stmt(*rs);
     }
@@ -111,6 +114,16 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
         generate_stmt(*fds.block[i]);
     }
     variables.pop();
+}
+
+void CodeGenerator::generate_func_call_stmt(AST::FuncCallStmt& fcs) {
+    llvm::Function *func = functions.at(fcs.name);
+    std::vector<llvm::Value*> args;
+    for (auto& arg : fcs.args) {
+        args.push_back(generate_expr(*arg));
+    }
+
+    builder.CreateCall(func, args, fcs.name + ".call");
 }
 
 void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
