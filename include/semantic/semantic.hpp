@@ -44,7 +44,7 @@ private:
         std::vector<AST::Argument> args;                                        /**< Function arguments */
         std::vector<AST::StmtPtr> block;                                        /**< Function block */
     };
-    std::map<std::string, std::unique_ptr<FunctionInfo>> functions;                              /**< Functions table */
+    std::map<std::string, std::unique_ptr<FunctionInfo>> functions;             /**< Functions table */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
 
 public:
@@ -170,6 +170,29 @@ private:
     Value analyze_var_expr(AST::VarExpr& ve);
 
     /**
+     * @brief Method for analyze function calling expression
+     *
+     * This method searching passed function in functions table and returns value of call this function
+     *
+     * @param fce Function calling expression for analyzing
+     *
+     * @return Value of passed function calling (if have)
+     */
+    Value analyze_func_call_expr(AST::FuncCallExpr& fce);
+
+    /**
+     * @brief Method for evaluating and returning function returned value
+     *
+     * This method evaluating function returned value and returns it. If function dont have return statement, then throwing exception
+     *
+     * @param func Pointer to information about function
+     * @param fce Function calling expression
+     *
+     * @return Evaluating function returned value
+     */
+    Value get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce);
+
+    /**
      * @brief Method for getting default value by type
      *
      * This method getting default value by passed type and returns it. If cannot generating value, then throwing exception
@@ -187,11 +210,10 @@ private:
      * This method getting value of variable from view scope of variables table and returns it. If variable not found, then returning null
      *
      * @param name Name of variable
-     * @param line Line coordinate of variable expression in Topaz source code (for exception)
      *
      * @return Value of variable
      */
-    std::unique_ptr<Value> get_variable_value(std::string name, uint32_t line);
+    std::unique_ptr<Value> get_variable_value(std::string name);
 
     /**
      * @brief Method for getting info about function from functions table
@@ -199,11 +221,10 @@ private:
      * This method getting info about function from functions table and returns it. If function not found, then returning null
      *
      * @param name Name of function
-     * @param line Line coordinate of function declaration in Topaz source code (for exception)
      *
      * @return Info about function
      */
-    FunctionInfo *get_function_info(std::string name, uint32_t line);
+    FunctionInfo *get_function_info(std::string name);
 
     /**
      * @brief Method for determining whether two types have a common type

@@ -40,7 +40,7 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
 }
 
 void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds) {
-    std::unique_ptr<Value> value = get_variable_value(vds.name, vds.line);
+    std::unique_ptr<Value> value = get_variable_value(vds.name);
     if (value != nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vds.name << "'\033[31m already exists";
@@ -60,7 +60,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds) {
 }
 
 void SemanticAnalyzer::analyze_var_asgn_stmt(AST::VarAsgnStmt& vas) {
-    std::unique_ptr<Value> var_val = get_variable_value(vas.name, vas.line);
+    std::unique_ptr<Value> var_val = get_variable_value(vas.name);
     if (var_val == nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
@@ -76,7 +76,7 @@ void SemanticAnalyzer::analyze_var_asgn_stmt(AST::VarAsgnStmt& vas) {
 }
 
 void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
-    FunctionInfo *func = get_function_info(fds.name, fds.line);
+    FunctionInfo *func = get_function_info(fds.name);
     if (func != nullptr) {
         std::stringstream ss;
         ss << "Function \033[0m'" << fds.name << "'\033[31m does not exists";
@@ -95,7 +95,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
 }
 
 void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
-    FunctionInfo *func = get_function_info(fcs.name, fcs.line);
+    FunctionInfo *func = get_function_info(fcs.name);
     if (func == nullptr) {
         std::stringstream ss;
         ss << "Function \033[0m'" << fcs.name << "'\033[31m does not exists";
@@ -146,6 +146,9 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {
     }
     else if (auto ve = dynamic_cast<AST::VarExpr*>(&expr)) {
         return analyze_var_expr(*ve);
+    }
+    else if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&expr)) {
+        return analyze_func_call_expr(*fce);
     }
     else {
         throw_exception(SUB_SEMANTIC, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
@@ -276,13 +279,55 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_unary_expr(AST::UnaryExpr& ue)
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_var_expr(AST::VarExpr& ve) {
-    std::unique_ptr<Value> value = get_variable_value(ve.name, ve.line);
-    if (value == nullptr) {
+    std::unique_ptr<Value> var = get_variable_value(ve.name);
+    if (var == nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
         throw_exception(SUB_SEMANTIC, ss.str(), ve.line, file_name);
     }
-    return *value;
+    return *var;
+}
+
+SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallExpr& fce) {
+    FunctionInfo *func = get_function_info(fce.name);
+    if (func == nullptr) {
+        std::stringstream ss;
+        ss << "Function \033[0m'" << fce.name << "'\033[31m does not exists";
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+    }
+    if (fce.args.size() != func->args.size()) {
+        std::stringstream ss;
+        ss << "Function \033[0m'" << fce.name << "'\033[31m expected " << func->args.size() << " arguments, but got " << fce.args.size();
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+    }
+    size_t index = 0;
+    for (auto& arg : fce.args) {
+        AST::Type arg_type = analyze_expr(*arg).type;
+        if (!has_common_type(arg_type, func->args[index].type)) {
+            std::stringstream ss;
+            ss << "Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << func->args[index].type.to_str() << "'\033[31m";
+            throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+        }
+        index++;
+    }
+    return get_function_return_value(func, fce);
+}
+
+SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce) {
+    variables.push({});
+    for (size_t i = 0; i < fce.args.size(); i++) {
+        variables.top().emplace(func->args[i].name, analyze_expr(*fce.args[i]));
+    }
+    for (auto& stmt : func->block) {
+        if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+            Value val =  analyze_expr(*rs->expr);
+            variables.pop();
+            return val;
+        }
+    }
+    std::stringstream ss;
+    ss << "Function \033[0m'" << fce.name << "'\033[31m does not returning value. Please add \033[0m'return'\033[31m statement into the end of the function";
+    throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
 }
 
 AST::Value SemanticAnalyzer::get_default_val_by_type(AST::Type type, uint32_t line) {
@@ -308,7 +353,7 @@ AST::Value SemanticAnalyzer::get_default_val_by_type(AST::Type type, uint32_t li
     }
 }
 
-std::unique_ptr<SemanticAnalyzer::Value> SemanticAnalyzer::get_variable_value(std::string name, uint32_t line) {
+std::unique_ptr<SemanticAnalyzer::Value> SemanticAnalyzer::get_variable_value(std::string name) {
     auto vars = variables;
     while (!vars.empty()) {
         auto vars_it = vars.top().find(name);
@@ -320,7 +365,7 @@ std::unique_ptr<SemanticAnalyzer::Value> SemanticAnalyzer::get_variable_value(st
     return nullptr;
 }
 
-SemanticAnalyzer::FunctionInfo *SemanticAnalyzer::get_function_info(std::string name, uint32_t line) {
+SemanticAnalyzer::FunctionInfo *SemanticAnalyzer::get_function_info(std::string name) {
     auto func_it = functions.find(name);
     if (func_it != functions.end()) {
         return &*func_it->second;
