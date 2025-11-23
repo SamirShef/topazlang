@@ -35,6 +35,11 @@ private:
         {"else", TOK_ELSE},
         {"for", TOK_FOR},
         {"while", TOK_WHILE},
+        {"do", TOK_DO},
+        {"continue", TOK_CONTINUE},
+        {"break", TOK_BREAK},
+        {"pub", TOK_PUB},
+        {"priv", TOK_PRIV},
         {"const", TOK_CONST},
         {"return", TOK_RETURN}
     };

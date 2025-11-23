@@ -27,7 +27,12 @@ typedef enum : uint8_t {
     TOK_IF,                                 /**< 'if' keyword for conditionally expression operator */
     TOK_ELSE,                               /**< 'else' keyword for else branch in conditionally expression operator */
     TOK_FOR,                                /**< 'for' keyword for `for` cycle definition */
+    TOK_DO,                                 /**< 'do' keyword for `do-while` cycle definition */
     TOK_WHILE,                              /**< 'while' keyword for `while` cycle definition */
+    TOK_CONTINUE,                           /**< 'continue' keyword for jump to next cycle iteration */
+    TOK_BREAK,                              /**< 'break' keyword for break cycle execution */
+    TOK_PUB,                                /**< 'pub' keyword for declare some statement with global visiblity */
+    TOK_PRIV,                               /**< 'priv' keyword for declare some statement with local visiblity */
     TOK_CONST,                              /**< 'const' keyword */
     TOK_RETURN,                             /**< 'return' keyword */
 
