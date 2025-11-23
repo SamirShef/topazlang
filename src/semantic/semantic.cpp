@@ -91,8 +91,17 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     for (auto& arg : functions.at(fds.name)->args) {
         analyze_var_decl_stmt(*std::make_unique<AST::VarDeclStmt>(arg.type, nullptr, arg.name, fds.line));
     }
+    bool have_ret_in_global = false;
     for (auto& stmt : functions.at(fds.name)->block) {
+        if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+            have_ret_in_global = true;
+        }
         analyze_stmt(*stmt);
+    }
+    if (!have_ret_in_global && ret_type.type != AST::TYPE_NOTH) {
+        std::stringstream ss;
+        ss << "Non-nothing function must be have return statement in the global space in the body of function. Please add or move return statement to the global space in the body of function";
+        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
     }
     functions_ret_types.pop();
 }

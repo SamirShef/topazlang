@@ -112,9 +112,15 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
         variables.top().emplace(fds.args[index].name, arg_alloca);
         index++;
     }
-    size_t block_size = fds.block.size();
-    for (size_t i = 0; i < block_size; i++) {
-        generate_stmt(*fds.block[i]);
+    bool have_ret_in_global = false;
+    for (auto& stmt : fds.block) {
+        if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+            have_ret_in_global = true;
+        }
+        generate_stmt(*stmt);
+    }
+    if (!have_ret_in_global && fds.ret_type.type == AST::TYPE_NOTH) {
+        builder.CreateRetVoid();
     }
     variables.pop();
 }
