@@ -15,6 +15,7 @@ var classCodeGenerator =
     [ "generate_var_asgn_stmt", "classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4", null ],
     [ "generate_var_decl_stmt", "classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478", null ],
     [ "generate_var_expr", "classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441", null ],
+    [ "generate_while_cycle_stmt", "classCodeGenerator.html#a01a43875720edfc00d6e0ac6e5245c80", null ],
     [ "get_module", "classCodeGenerator.html#acaed752e624b67267e09a006578cafad", null ],
     [ "print_ir", "classCodeGenerator.html#ad9652056bc78e567f1346b7842899a15", null ],
     [ "type_to_llvm", "classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab", null ],
