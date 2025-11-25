@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f":[1,0,3,9],
 "classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe":[1,0,3,2],
 "classParser.html#a46a674e4cff457fc9502b327ee9be73c":[1,0,3,7],
 "classParser.html#a4e39379d0213f8f2cb8b10abe8110d77":[1,0,3,24],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8b5daef5ae7f3bb296c4781cd8afcae6":[2,0,0,2,1,1,6],
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8c3cdc306a2bda5bf028563460901e6f":[2,0,0,2,1,1,13],
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a8d15c2dfe5f46b4b9aa58f3a1148fd92":[2,0,0,2,1,1,37],
-"token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a969313122943877c5287122b18a41851":[2,0,0,2,1,1,57],
-"token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa1b24b8a7613cf1c04fd2a59e998d311":[2,0,0,2,1,1,32]
+"token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a969313122943877c5287122b18a41851":[2,0,0,2,1,1,57]
 };

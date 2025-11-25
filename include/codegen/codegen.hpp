@@ -128,6 +128,15 @@ private:
     void generate_if_else_stmt(AST::IfElseStmt& ies);
 
     /**
+     * @brief Method for generating LLVM IR code for while cycle
+     *
+     * This method generating LLVM IR code for while cycle
+     *
+     * @param wcs While cycle
+     */
+    void generate_while_cycle_stmt(AST::WhileCycleStmt& wcs);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception

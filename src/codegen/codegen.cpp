@@ -6,6 +6,7 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
+#include <iostream>
 #include <llvm/ADT/APFloat.h>
 #include <llvm/IR/Argument.h>
 #include <llvm/IR/BasicBlock.h>
@@ -48,6 +49,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     }
     else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&stmt)) {
         generate_if_else_stmt(*ies);
+    }
+    else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&stmt)) {
+        generate_while_cycle_stmt(*wcs);
     }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
@@ -147,9 +151,9 @@ void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
 void CodeGenerator::generate_if_else_stmt(AST::IfElseStmt& ies) {
     llvm::Function *parent = builder.GetInsertBlock()->getParent();
     llvm::Value *cond_val = generate_expr(*ies.cond);
-    llvm::BasicBlock *then_bb = llvm::BasicBlock::Create(context, "then", parent);
-    llvm::BasicBlock *else_bb = llvm::BasicBlock::Create(context, "else", parent);
-    llvm::BasicBlock *merge_bb = llvm::BasicBlock::Create(context, "merge", parent);
+    llvm::BasicBlock *then_bb = llvm::BasicBlock::Create(context, "if.then", parent);
+    llvm::BasicBlock *else_bb = llvm::BasicBlock::Create(context, "if.else", parent);
+    llvm::BasicBlock *merge_bb = llvm::BasicBlock::Create(context, "if.merge", parent);
 
     builder.CreateCondBr(cond_val, then_bb, else_bb ? else_bb : merge_bb);
 
@@ -175,6 +179,28 @@ void CodeGenerator::generate_if_else_stmt(AST::IfElseStmt& ies) {
         builder.CreateBr(merge_bb);
     }
     builder.SetInsertPoint(merge_bb);
+}
+
+void CodeGenerator::generate_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
+    llvm::Function *parent = builder.GetInsertBlock()->getParent();
+    llvm::BasicBlock *cond_bb = llvm::BasicBlock::Create(context, "while.cond", parent);
+    llvm::BasicBlock *body_bb = llvm::BasicBlock::Create(context, "while.body", parent);
+    llvm::BasicBlock *exit_bb = llvm::BasicBlock::Create(context, "while.exit", parent);
+    
+    builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(cond_bb);
+    llvm::Value* cond_value = generate_expr(*wcs.cond);
+    
+    builder.CreateCondBr(cond_value, body_bb, exit_bb);
+    builder.SetInsertPoint(body_bb);
+    variables.push({});
+    for (auto& stmt : wcs.block) {
+        generate_stmt(*stmt);
+    }
+    variables.pop();
+
+    builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(exit_bb);
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
@@ -229,8 +255,10 @@ llvm::Value *CodeGenerator::generate_literal_expr(AST::Literal& lit) {
 llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Value *left = generate_expr(*be.left_expr);
     llvm::Type *left_type = left->getType();
+    left_type->print(llvm::outs()); std::cout << ' ';
     llvm::Value *right = generate_expr(*be.right_expr);
     llvm::Type *right_type = right->getType();
+    right_type->print(llvm::outs()); std::cout << '\n';
 
     switch (be.op.type) {
         case TOK_OP_PLUS:
@@ -328,7 +356,7 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
             else if (auto local = llvm::dyn_cast<llvm::AllocaInst>(vars_it->second)) {
                 type = local->getAllocatedType();
             }
-            return vars_it->second;
+            return builder.CreateLoad(type, vars_it->second, ve.name + ".load");
         }
         vars.pop();
     }
