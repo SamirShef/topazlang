@@ -2,7 +2,7 @@ fun main() -> int {
     let int: a = 0;
     let int: b = a * 2;
 
-    if a == b {
+    if a == b) {
         a *= 12;
     }
     else if a > b {

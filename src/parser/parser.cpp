@@ -45,6 +45,9 @@ AST::StmtPtr Parser::parse_stmt() {
     else if (match(TOK_IF)) {
         return parse_if_else_stmt();
     }
+    else if (match(TOK_WHILE)) {
+        return parse_while_cycle_stmt();
+    }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
@@ -212,6 +215,18 @@ AST::StmtPtr Parser::parse_if_else_stmt() {
         }
     }
     return std::make_unique<AST::IfElseStmt>(std::move(cond), std::move(then_block), std::move(else_block), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_while_cycle_stmt() {
+    Token first_token = peek(-1);
+    AST::ExprPtr cond = parse_expr();
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m after condition", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_stmt());
+    }
+
+    return std::make_unique<AST::WhileCycleStmt>(std::move(cond), std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {

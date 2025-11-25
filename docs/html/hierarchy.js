@@ -28,7 +28,8 @@ var hierarchy =
       [ "AST::IfElseStmt", "classAST_1_1IfElseStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
       [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", null ],
-      [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ]
+      [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ],
+      [ "AST::WhileCycleStmt", "classAST_1_1WhileCycleStmt.html", null ]
     ] ],
     [ "Token", "structToken.html", null ],
     [ "AST::Type", "structAST_1_1Type.html", null ],

@@ -25,6 +25,7 @@ var classParser =
     [ "parse_unary_expr", "classParser.html#a065a423e45b55d6760c1c2d871d34055", null ],
     [ "parse_var_asgn_stmt", "classParser.html#a344bfeffa418a8f4604ccc632cbd93d5", null ],
     [ "parse_var_decl_stmt", "classParser.html#a4e39379d0213f8f2cb8b10abe8110d77", null ],
+    [ "parse_while_cycle_stmt", "classParser.html#a12957ed845e7c2263543daae50fbe692", null ],
     [ "peek", "classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3", null ],
     [ "reset", "classParser.html#af9229801acbc514a95c290833db99864", null ],
     [ "ttype_to_tvalue", "classParser.html#ae5709805b09bb75a192f232f58b579a5", null ],

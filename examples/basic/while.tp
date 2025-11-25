@@ -1,0 +1,8 @@
+fun main() -> int {
+    let int: counter;
+    while true {
+        counter++;
+    }
+
+    return 0;
+}
