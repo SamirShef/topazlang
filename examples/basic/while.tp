@@ -1,6 +1,6 @@
 fun main() -> int {
     let int: counter;
-    while true {
+    while true {            // infinite loop
         counter++;
     }
 
