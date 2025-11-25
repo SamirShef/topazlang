@@ -9,7 +9,10 @@
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="322,54,241,34,242,28,324,49"/>
 <area shape="rect" id="Node000006" href="$classParser.html#a1fee8ad7e05a3de414f2b548e102040d" title="Method for parsing of control flow operators (aka if&#45;else)." alt="" coords="103,56,280,83"/>
 <area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="313,81,281,81,281,76,313,76"/>
+<area shape="rect" id="Node000007" href="$classParser.html#a12957ed845e7c2263543daae50fbe692" title="Method for parsing of while cycle." alt="" coords="123,107,260,149"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="353,91,261,119,259,114,352,86"/>
 <area shape="rect" id="Node000005" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="126,21,55,21,55,16,126,16"/>
 <area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="296,58,328,58,328,64,296,63"/>
+<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="254,99,327,77,329,82,256,104"/>
 </map>

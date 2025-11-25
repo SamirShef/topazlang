@@ -106,6 +106,15 @@ private:
      * @return IfElseStmt
      */
     AST::StmtPtr parse_if_else_stmt();
+
+    /**
+     * @brief Method for parsing of while cycle
+     *
+     * This method sets the syntax for while cycle, creates the AST element of the WhileCycleStmt and returns it
+     *
+     * @return WhileCycleStmt
+     */
+    AST::StmtPtr parse_while_cycle_stmt();
     
     /**
      * @brief Method for parsing expressions

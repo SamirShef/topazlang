@@ -329,4 +329,13 @@ namespace AST {
 
         IfElseStmt(ExprPtr c, std::vector<StmtPtr> tb, std::vector<StmtPtr> eb, uint32_t l) : cond(std::move(c)), then_block(std::move(tb)), else_block(std::move(eb)), Stmt(l) {}
     };
+
+    class WhileCycleStmt : public Stmt {
+    public:
+        ExprPtr cond;                                           /**< Condition */
+        std::vector<StmtPtr> block;                             /**< Body of cycle */
+
+        WhileCycleStmt(ExprPtr c, std::vector<StmtPtr> b, uint32_t l) : cond(std::move(c)), block(std::move(b)), Stmt(l) {}
+        ~WhileCycleStmt() override = default;
+    };
 }
