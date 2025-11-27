@@ -11,6 +11,7 @@ var classParser =
     [ "parse_additive_expr", "classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa", null ],
     [ "parse_argument", "classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f", null ],
     [ "parse_comparation_expr", "classParser.html#a9539499c0db5a3d7045952e7919d3a65", null ],
+    [ "parse_do_while_cycle_stmt", "classParser.html#a1be977573be54d572f1ece29da880715", null ],
     [ "parse_equality_expr", "classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf", null ],
     [ "parse_expr", "classParser.html#a077a7024f238711664ff68ebf79e320b", null ],
     [ "parse_func_call_stmt", "classParser.html#a18c10cd8d8d56740d593928d610ccb4e", null ],

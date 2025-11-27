@@ -115,6 +115,15 @@ private:
      * @return WhileCycleStmt
      */
     AST::StmtPtr parse_while_cycle_stmt();
+
+    /**
+     * @brief Method for parsing of do-while cycle
+     *
+     * This method sets the syntax for do-while cycle, creates the AST element of the DoWhileCycleStmt and returns it
+     *
+     * @return DoWhileCycleStmt
+     */
+    AST::StmtPtr parse_do_while_cycle_stmt();
     
     /**
      * @brief Method for parsing expressions

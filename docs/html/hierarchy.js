@@ -23,6 +23,7 @@ var hierarchy =
     [ "Parser", "classParser.html", null ],
     [ "SemanticAnalyzer", "classSemanticAnalyzer.html", null ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
+      [ "AST::DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", null ],
       [ "AST::FuncCallStmt", "classAST_1_1FuncCallStmt.html", null ],
       [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],
       [ "AST::IfElseStmt", "classAST_1_1IfElseStmt.html", null ],
