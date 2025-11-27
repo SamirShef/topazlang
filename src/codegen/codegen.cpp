@@ -6,7 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
-#include <iostream>
 #include <llvm/ADT/APFloat.h>
 #include <llvm/IR/Argument.h>
 #include <llvm/IR/BasicBlock.h>
@@ -52,6 +51,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     }
     else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&stmt)) {
         generate_while_cycle_stmt(*wcs);
+    }
+    else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&stmt)) {
+        generate_do_while_cycle_stmt(*dwcs);
     }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
@@ -189,7 +191,7 @@ void CodeGenerator::generate_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
     
     builder.CreateBr(cond_bb);
     builder.SetInsertPoint(cond_bb);
-    llvm::Value* cond_value = generate_expr(*wcs.cond);
+    llvm::Value *cond_value = generate_expr(*wcs.cond);
     
     builder.CreateCondBr(cond_value, body_bb, exit_bb);
     builder.SetInsertPoint(body_bb);
@@ -200,6 +202,28 @@ void CodeGenerator::generate_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
     variables.pop();
 
     builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(exit_bb);
+}
+
+void CodeGenerator::generate_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) {
+    llvm::Function *parent = builder.GetInsertBlock()->getParent();
+    llvm::BasicBlock *cond_bb = llvm::BasicBlock::Create(context, "do.while.cond", parent);
+    llvm::BasicBlock *body_bb = llvm::BasicBlock::Create(context, "do.while.body", parent);
+    llvm::BasicBlock *exit_bb = llvm::BasicBlock::Create(context, "do.while.exit", parent);
+
+    builder.CreateBr(body_bb);
+    builder.SetInsertPoint(body_bb);
+    variables.push({});
+    for (auto& stmt : dwcs.block) {
+        generate_stmt(*stmt);
+    }
+    variables.pop();
+
+    builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(cond_bb);
+    llvm::Value *cond_value = generate_expr(*dwcs.cond);
+    builder.CreateCondBr(cond_value, body_bb, exit_bb);
+
     builder.SetInsertPoint(exit_bb);
 }
 
@@ -255,10 +279,8 @@ llvm::Value *CodeGenerator::generate_literal_expr(AST::Literal& lit) {
 llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Value *left = generate_expr(*be.left_expr);
     llvm::Type *left_type = left->getType();
-    left_type->print(llvm::outs()); std::cout << ' ';
     llvm::Value *right = generate_expr(*be.right_expr);
     llvm::Type *right_type = right->getType();
-    right_type->print(llvm::outs()); std::cout << '\n';
 
     switch (be.op.type) {
         case TOK_OP_PLUS:
