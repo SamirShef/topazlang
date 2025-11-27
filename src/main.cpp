@@ -216,18 +216,18 @@ int main(int argc, const char *argv[]) {
     dest.close();
 
     if (output_is_object) {
-        std::cout << "COMPILING SUCCESS. Built object: " << object_path << '\n';
+        std::cout << "\033[36;1mCOMPILING SUCCESS. Built object:\033[0m " << object_path << '\n';
         return 0;
     }
 
     const char *env_linker = std::getenv("TOPAZC_LINKER");
     std::string linker = env_linker ? std::string(env_linker) : std::string("clang");
     #if defined(_WIN32)
-    std::string link_cmd = linker + std::string(" ") + std::string("\"") + object_path + std::string("\"") + " -o " + std::string("\"") + executable_path + std::string("\"") + " -fuse-ld=lld";
+    std::string link_cmd = linker + " \"" + object_path + "\" -o \"" + executable_path + "\" -fuse-ld=lld";
     #elif defined(__APPLE__)
-    std::string link_cmd = linker + std::string(" ") + std::string("\"") + object_path + std::string("\"") + " -o " + std::string("\"") + executable_path + std::string("\"");
+    std::string link_cmd = linker + " \"" + object_path + "\" -o \"" + executable_path + "\"";
     #else
-    std::string link_cmd = linker + std::string(" ") + std::string("\"") + object_path + std::string("\"") + " -o " + std::string("\"") + executable_path + std::string("\"") + " -no-pie";
+    std::string link_cmd = linker + " \"" + object_path + "\" -o \"" + executable_path + "\" -no-pie";
     #endif
     auto runAndCapture = [](const std::string& cmd) -> std::pair<int, std::string> {
         std::string output;
@@ -260,7 +260,7 @@ int main(int argc, const char *argv[]) {
         return 1;
     }
 
-    std::cout << "COMPILING SUCCESS. Built executable: " << executable_path << '\n';
+    std::cout << "\033[36;1mCOMPILING SUCCESS. Built executable:\033[0m " << executable_path << '\n';
     
     if (std::remove(object_path.c_str()) != 0) {
         std::cerr << "\033[31mCompilation error: Warning: Failed to remove object file: " << object_path << "\033[0m\n";
