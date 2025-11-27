@@ -1,0 +1,17 @@
+<map id="Parser::consume_semicolon" name="Parser::consume_semicolon">
+<area shape="rect" id="Node000001" title="Method for skipping semicolon in the end of statement." alt="" coords="5,105,192,131"/>
+<area shape="rect" id="Node000002" href="$classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="240,54,360,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,101,228,82,230,87,155,106"/>
+<area shape="rect" id="Node000004" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="559,66,655,93"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="192,108,544,81,544,87,192,113"/>
+<area shape="rect" id="Node000003" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="408,29,511,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="360,55,392,50,393,55,361,60"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="361,67,544,74,544,79,360,72"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="703,29,819,55"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="322,51,361,30,407,14,482,4,557,4,628,12,689,22,688,27,628,17,557,10,482,9,409,19,363,35,324,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="512,52,545,61,544,66,511,57"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="581,67,577,57,580,48,590,41,607,39,625,42,635,48,632,53,623,47,607,45,592,46,584,51,582,57,586,64"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="654,65,688,57,689,62,656,70"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="867,21,1034,63"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="819,39,852,39,852,45,819,45"/>
+</map>

@@ -1,19 +1,21 @@
 <map id="AST::Stmt" name="AST::Stmt">
-<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="5,183,88,209"/>
+<area shape="rect" id="Node000001" title="Base class of statement." alt="" coords="5,208,88,235"/>
 <area shape="rect" id="Node000002" href="$classAST_1_1DoWhileCycleStmt.html" title="Statement of do&#45;while cycle." alt="" coords="136,5,302,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="54,167,83,104,106,71,134,42,153,30,156,35,137,46,110,74,88,107,59,169"/>
-<area shape="rect" id="Node000003" href="$classAST_1_1FuncCallStmt.html" title="Statement of functions calling." alt="" coords="152,56,286,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="62,168,93,129,134,92,157,81,160,86,137,97,97,133,66,171"/>
-<area shape="rect" id="Node000004" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="150,107,288,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="81,172,135,143,165,131,167,136,137,148,83,176"/>
-<area shape="rect" id="Node000005" href="$classAST_1_1IfElseStmt.html" title="Statement of control flow operator." alt="" coords="161,157,277,184"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="102,185,160,177,161,182,103,190"/>
-<area shape="rect" id="Node000006" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="158,208,280,235"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="103,202,158,210,157,215,102,207"/>
-<area shape="rect" id="Node000007" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="153,259,284,285"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="83,216,137,244,167,256,165,261,135,249,81,220"/>
-<area shape="rect" id="Node000008" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="155,309,283,336"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="66,221,97,259,137,295,160,306,157,311,134,300,93,263,62,224"/>
-<area shape="rect" id="Node000009" href="$classAST_1_1WhileCycleStmt.html" title="Statement of while cycle." alt="" coords="144,360,294,387"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="59,223,88,285,110,318,137,346,156,357,153,362,134,350,106,321,83,288,54,225"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,192,63,158,79,117,103,77,134,42,153,30,155,35,137,46,107,80,84,120,68,159,57,194"/>
+<area shape="rect" id="Node000003" href="$classAST_1_1ForCycleStmt.html" title="Statement of for cycle." alt="" coords="151,56,286,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="58,192,88,142,109,115,134,92,155,81,158,86,137,97,113,119,92,145,62,195"/>
+<area shape="rect" id="Node000004" href="$classAST_1_1FuncCallStmt.html" title="Statement of functions calling." alt="" coords="152,107,286,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="69,195,98,168,134,143,161,131,163,136,137,148,102,172,72,199"/>
+<area shape="rect" id="Node000005" href="$classAST_1_1FuncDeclStmt.html" title="Statement of functions declaration." alt="" coords="150,157,288,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="102,202,170,182,172,187,103,208"/>
+<area shape="rect" id="Node000006" href="$classAST_1_1IfElseStmt.html" title="Statement of control flow operator." alt="" coords="161,208,277,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="103,219,160,219,160,224,103,224"/>
+<area shape="rect" id="Node000007" href="$classAST_1_1ReturnStmt.html" title="Statement of &#39;return&#39;." alt="" coords="158,259,280,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="103,235,172,256,170,261,102,240"/>
+<area shape="rect" id="Node000008" href="$classAST_1_1VarAsgnStmt.html" title="Statement of assignment of variable." alt="" coords="153,309,284,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="72,244,102,271,137,295,163,306,161,311,134,300,98,275,69,248"/>
+<area shape="rect" id="Node000009" href="$classAST_1_1VarDeclStmt.html" title="Statement of variable declaration." alt="" coords="155,360,283,387"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="62,247,92,298,113,324,137,346,158,357,155,362,134,350,109,327,88,301,58,250"/>
+<area shape="rect" id="Node000010" href="$classAST_1_1WhileCycleStmt.html" title="Statement of while cycle." alt="" coords="144,411,294,437"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="57,249,68,283,84,323,107,363,137,397,155,408,153,412,134,401,103,366,79,325,63,285,52,251"/>
 </map>

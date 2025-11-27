@@ -40,9 +40,11 @@ private:
      *
      * This method parsing one statement and returns it
      *
+     * @param from_for Flag that indicates that the method is being called to process the for loop. If true, then processing for the for loop, otherwise not
+     *
      * @return Parsed statement
      */
-    AST::StmtPtr parse_stmt();
+    AST::StmtPtr parse_stmt(bool from_for = false);
 
     /**
      * @brief Method for parsing of variable declaration
@@ -124,6 +126,15 @@ private:
      * @return DoWhileCycleStmt
      */
     AST::StmtPtr parse_do_while_cycle_stmt();
+
+    /**
+     * @brief Method for parsing of for cycle
+     *
+     * This method sets the syntax for for cycle, creates the AST element of the ForCycleStmt and returns it
+     *
+     * @return ForCycleStmt
+     */
+    AST::StmtPtr parse_for_cycle_stmt();
     
     /**
      * @brief Method for parsing expressions
@@ -252,6 +263,13 @@ private:
      * @return Topaz type
      */
     AST::Type consume_type();
+
+    /**
+     * @brief Method for skipping semicolon in the end of statement
+     *
+     * This method checks the current token and if it is the semicolon, then skipping it, otherwise throwing exception
+     */
+    void consume_semicolon();
 
     /**
      * @brief Method for convert type of token to type of Topaz value

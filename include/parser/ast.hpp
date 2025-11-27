@@ -353,4 +353,18 @@ namespace AST {
         DoWhileCycleStmt(ExprPtr c, std::vector<StmtPtr> b, uint32_t l) : cond(std::move(c)), block(std::move(b)), Stmt(l) {}
         ~DoWhileCycleStmt() override = default;
     };
+
+    /**
+     * @brief Statement of for cycle
+     */
+    class ForCycleStmt : public Stmt {
+    public:
+        StmtPtr indexator;                                      /**< Indexator variable */
+        ExprPtr cond;                                           /**< Condition */
+        StmtPtr iteration;                                      /**< Iteration statement after each iterations */
+        std::vector<StmtPtr> block;                             /**< Body of cycle */
+
+        ForCycleStmt(StmtPtr ix, ExprPtr c, StmtPtr it, std::vector<StmtPtr> b, uint32_t l) : indexator(std::move(ix)), cond(std::move(c)), iteration(std::move(it)), block(std::move(b)), Stmt(l) {}
+        ~ForCycleStmt() override = default;
+    };
 }
