@@ -1,56 +1,69 @@
 <map id="SemanticAnalyzer::analyze_unary_expr" name="SemanticAnalyzer::analyze_unary_expr">
-<area shape="rect" id="Node000001" title="Method for analyze unary expression." alt="" coords="1538,308,1718,351"/>
-<area shape="rect" id="Node000002" href="$classSemanticAnalyzer.html#a75137be91075073557a7cbfcd4ad8dea" title="Method for analyze expression." alt="" coords="1277,316,1490,343"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1522,341,1490,341,1490,336,1522,336"/>
-<area shape="poly" id="edge19_Node000002_Node000001" title=" " alt="" coords="1505,318,1537,318,1537,323,1505,323"/>
-<area shape="rect" id="Node000003" href="$classSemanticAnalyzer.html#af0f7909d4707f3ae5a0c27097b305eaf" title="Method for analyze binary expression." alt="" coords="1049,5,1229,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1367,303,1347,256,1316,197,1277,135,1228,81,1203,64,1177,51,1179,46,1206,59,1231,77,1281,132,1321,194,1352,253,1372,301"/>
-<area shape="rect" id="Node000004" href="$classSemanticAnalyzer.html#a64f619465a862c70d0fb4ec45e3444dd" title="Method for analyze function calling expression." alt="" coords="348,76,528,119"/>
-<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="1354,306,1300,253,1266,227,1228,205,1137,170,1041,143,944,124,847,111,755,104,669,101,528,101,528,95,669,95,755,99,848,106,945,119,1043,138,1139,165,1230,200,1269,222,1303,249,1358,303"/>
-<area shape="rect" id="Node000005" href="$classSemanticAnalyzer.html#ad424f85be3d35de49d05eb848884d008" title="Method for analyze function calling." alt="" coords="821,405,1001,448"/>
-<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="1321,350,1230,373,1111,397,1002,416,1001,410,1110,392,1229,368,1320,345"/>
-<area shape="rect" id="Node000010" href="$classSemanticAnalyzer.html#a2c40e832f07d8a8d7c68b9504dcfaff5" title="Method for analyze control flow operators." alt="" coords="103,497,283,540"/>
-<area shape="poly" id="edge16_Node000002_Node000010" title=" " alt="" coords="1380,359,1365,419,1338,495,1318,534,1294,572,1265,606,1231,634,1189,658,1151,672,1115,677,1080,677,1005,667,961,662,912,660,681,660,643,657,594,647,478,616,254,543,256,538,479,611,595,642,644,651,681,655,912,655,962,657,1005,662,1080,672,1114,672,1149,667,1187,653,1228,630,1261,602,1290,569,1313,532,1333,493,1360,417,1375,358"/>
-<area shape="rect" id="Node000011" href="$classSemanticAnalyzer.html#a8c1e64676cb8ba085fc836ad6f282d89" title="Method for analyze while cycle." alt="" coords="103,564,283,607"/>
-<area shape="poly" id="edge25_Node000002_Node000011" title=" " alt="" coords="1382,359,1370,427,1345,516,1325,563,1300,608,1269,648,1231,682,1190,707,1152,722,1116,728,1081,728,1005,718,962,713,912,711,681,711,619,708,556,700,435,673,327,640,245,610,247,605,329,635,436,668,557,695,619,702,681,705,912,705,962,708,1006,713,1081,722,1116,723,1151,717,1187,703,1228,678,1265,645,1295,605,1320,561,1340,515,1365,426,1377,358"/>
-<area shape="rect" id="Node000012" href="$classSemanticAnalyzer.html#a0bf5e17816e2b3c7006c3d4d2034feea" title="Method for analyze &#39;return&#39; statement." alt="" coords="592,527,773,569"/>
-<area shape="poly" id="edge17_Node000002_Node000012" title=" " alt="" coords="1363,357,1307,415,1271,446,1231,472,1174,498,1113,518,1051,534,989,544,872,555,773,556,773,551,872,550,989,539,1050,528,1112,513,1172,493,1228,467,1268,441,1304,411,1359,353"/>
-<area shape="rect" id="Node000013" href="$classSemanticAnalyzer.html#a32b7d6c326238d687184c3740ab1540a" title="Method for analyze variable assignment." alt="" coords="1049,577,1229,620"/>
-<area shape="poly" id="edge20_Node000002_Node000013" title=" " alt="" coords="1373,358,1351,401,1320,455,1279,511,1231,561,1203,579,1200,574,1228,557,1275,507,1315,452,1346,398,1368,355"/>
-<area shape="rect" id="Node000014" href="$classSemanticAnalyzer.html#aad5f91cc661dc6af8c69e1e1dbc2dc1d" title="Method for analyze variable declaration." alt="" coords="821,472,1001,515"/>
-<area shape="poly" id="edge22_Node000002_Node000014" title=" " alt="" coords="1349,353,1294,384,1230,413,1112,452,1002,479,1001,473,1111,446,1228,408,1292,379,1346,349"/>
-<area shape="rect" id="Node000015" href="$classSemanticAnalyzer.html#acf63724297e2ca4b411ccc64fd987b7e" title="Method for evaluating and returning function returned value." alt="" coords="606,188,759,231"/>
-<area shape="poly" id="edge26_Node000002_Node000015" title=" " alt="" coords="1350,309,1295,272,1228,238,1119,200,1073,188,1029,182,938,180,821,188,760,196,759,191,820,183,938,174,1030,176,1074,183,1120,194,1230,234,1298,268,1353,304"/>
-<area shape="rect" id="Node000016" href="$classSemanticAnalyzer.html#ae6e45a91ab106723d2ecc9c059dc1845" title="Method for evaluating and returning function returned value from control flow operators." alt="" coords="834,221,988,280"/>
-<area shape="poly" id="edge28_Node000002_Node000016" title=" " alt="" coords="1343,311,1290,287,1229,267,1166,256,1103,250,988,249,988,244,1103,245,1167,251,1230,261,1292,282,1346,306"/>
-<area shape="rect" id="Node000017" href="$classSemanticAnalyzer.html#aab17916aac7248a9a5c85fa0ce076ef3" title="Method for evaluating and returning function returned value from while cycle." alt="" coords="1062,300,1216,359"/>
-<area shape="poly" id="edge37_Node000002_Node000017" title=" " alt="" coords="1262,332,1216,332,1216,327,1262,327"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="1235,57,1265,90,1293,127,1336,201,1366,268,1382,315,1377,316,1361,270,1331,204,1288,130,1261,94,1231,60"/>
-<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="544,79,685,75,770,78,860,84,954,97,1049,115,1142,142,1231,176,1280,207,1323,245,1357,284,1378,314,1374,317,1353,287,1320,249,1277,211,1228,181,1140,147,1048,121,953,102,860,90,769,83,685,81,544,85"/>
-<area shape="rect" id="Node000006" href="$classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e" title="Method for analyze one statement." alt="" coords="331,505,544,532"/>
-<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="806,448,593,489,505,507,504,502,592,484,805,443"/>
-<area shape="rect" id="Node000007" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="103,447,283,473"/>
-<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="364,504,251,476,252,471,365,499"/>
-<area shape="rect" id="Node000009" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="592,359,773,401"/>
-<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="459,493,518,450,591,406,603,399,605,404,594,410,521,455,462,497"/>
-<area shape="poly" id="edge12_Node000006_Node000010" title=" " alt="" coords="315,530,284,530,284,525,315,525"/>
-<area shape="poly" id="edge14_Node000006_Node000011" title=" " alt="" coords="394,540,284,572,283,567,392,535"/>
-<area shape="rect" id="Node000008" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,447,55,473"/>
-<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="87,463,55,463,55,457,87,457"/>
-<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="640,411,594,434,473,507,470,503,591,430,638,406"/>
-<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="299,507,330,507,330,512,299,512"/>
-<area shape="poly" id="edge15_Node000011_Node000006" title=" " alt="" coords="260,556,354,530,355,535,261,562"/>
-<area shape="poly" id="edge18_Node000012_Node000006" title=" " alt="" coords="576,538,545,534,545,529,577,533"/>
-<area shape="poly" id="edge21_Node000013_Node000006" title=" " alt="" coords="1034,609,939,612,828,611,709,602,592,584,521,561,464,535,466,530,523,556,593,579,710,597,828,605,939,607,1034,604"/>
-<area shape="poly" id="edge24_Node000014_Node000006" title=" " alt="" coords="806,502,545,516,545,510,805,496"/>
-<area shape="poly" id="edge23_Node000014_Node000009" title=" " alt="" coords="832,468,819,462,764,433,716,404,719,399,767,428,822,458,834,463"/>
-<area shape="poly" id="edge27_Node000015_Node000004" title=" " alt="" coords="619,184,485,122,488,117,621,179"/>
-<area shape="poly" id="edge29_Node000016_Node000009" title=" " alt="" coords="845,290,723,360,721,356,843,286"/>
-<area shape="poly" id="edge30_Node000016_Node000015" title=" " alt="" coords="818,237,759,226,760,221,819,231"/>
-<area shape="poly" id="edge31_Node000016_Node000016" title=" " alt="" coords="947,209,933,202,911,200,891,202,878,207,872,213,871,221,866,221,867,211,875,202,890,197,911,195,935,197,949,204"/>
-<area shape="poly" id="edge32_Node000016_Node000017" title=" " alt="" coords="1003,271,1076,297,1075,302,1001,276"/>
-<area shape="poly" id="edge33_Node000017_Node000009" title=" " alt="" coords="1047,342,773,373,773,367,1047,337"/>
-<area shape="poly" id="edge34_Node000017_Node000015" title=" " alt="" coords="1047,331,937,321,877,311,820,294,760,266,710,233,713,229,762,261,822,290,879,305,938,316,1047,326"/>
-<area shape="poly" id="edge35_Node000017_Node000016" title=" " alt="" coords="1047,309,974,283,975,278,1049,304"/>
-<area shape="poly" id="edge36_Node000017_Node000017" title=" " alt="" coords="1175,288,1162,281,1139,279,1119,281,1106,285,1100,292,1100,300,1094,300,1095,290,1103,281,1118,275,1139,273,1163,276,1178,283"/>
+<area shape="rect" id="Node000001" title="Method for analyze unary expression." alt="" coords="1766,349,1946,392"/>
+<area shape="rect" id="Node000002" href="$classSemanticAnalyzer.html#a75137be91075073557a7cbfcd4ad8dea" title="Method for analyze expression." alt="" coords="1506,357,1718,384"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1750,382,1718,382,1718,377,1750,377"/>
+<area shape="poly" id="edge22_Node000002_Node000001" title=" " alt="" coords="1734,359,1766,359,1766,365,1734,364"/>
+<area shape="rect" id="Node000003" href="$classSemanticAnalyzer.html#af0f7909d4707f3ae5a0c27097b305eaf" title="Method for analyze binary expression." alt="" coords="1277,5,1458,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1599,343,1580,289,1551,219,1509,146,1484,112,1456,81,1432,64,1406,51,1409,46,1435,59,1459,77,1488,108,1514,143,1555,217,1585,287,1604,342"/>
+<area shape="rect" id="Node000004" href="$classSemanticAnalyzer.html#a828c70a109bd262852b0e0ea13e0fe98" title="Method for analyze do&#45;while cycle." alt="" coords="103,179,283,221"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="1596,345,1574,305,1543,256,1504,208,1456,168,1376,121,1342,107,1308,98,1234,89,1140,88,681,88,621,91,559,98,440,122,333,152,251,181,249,176,332,147,438,117,558,93,620,85,681,83,1141,83,1235,84,1309,92,1343,102,1379,116,1459,163,1507,204,1547,253,1579,302,1600,342"/>
+<area shape="rect" id="Node000009" href="$classSemanticAnalyzer.html#a2c40e832f07d8a8d7c68b9504dcfaff5" title="Method for analyze control flow operators." alt="" coords="103,245,283,288"/>
+<area shape="poly" id="edge19_Node000002_Node000009" title=" " alt="" coords="1589,347,1534,285,1497,253,1456,225,1374,181,1306,155,1234,142,1140,139,681,139,644,142,597,150,482,179,260,247,258,242,480,174,595,145,643,137,681,133,1141,133,1234,137,1307,150,1376,176,1459,220,1500,249,1537,282,1593,343"/>
+<area shape="rect" id="Node000010" href="$classSemanticAnalyzer.html#a8c1e64676cb8ba085fc836ad6f282d89" title="Method for analyze while cycle." alt="" coords="103,363,283,405"/>
+<area shape="poly" id="edge28_Node000002_Node000010" title=" " alt="" coords="1612,400,1605,482,1596,536,1583,595,1563,655,1537,714,1503,768,1459,815,1420,846,1384,866,1348,879,1313,885,1236,886,1140,883,681,883,626,885,578,892,493,905,454,906,414,899,373,883,329,853,303,820,279,769,258,707,239,638,211,503,195,406,200,405,216,502,244,637,263,705,284,767,307,817,333,849,376,878,416,894,454,901,493,900,577,887,626,880,681,877,1141,877,1236,880,1312,880,1347,874,1382,862,1417,841,1456,811,1498,765,1532,711,1558,653,1577,593,1591,535,1600,481,1607,399"/>
+<area shape="rect" id="Node000011" href="$classSemanticAnalyzer.html#a64f619465a862c70d0fb4ec45e3444dd" title="Method for analyze function calling expression." alt="" coords="348,796,528,839"/>
+<area shape="poly" id="edge15_Node000002_Node000011" title=" " alt="" coords="1609,400,1595,466,1567,552,1547,597,1523,642,1494,684,1459,721,1384,781,1349,800,1315,814,1278,823,1238,829,1141,832,909,832,528,829,528,824,910,827,1140,827,1237,824,1277,818,1313,809,1347,796,1381,776,1456,717,1490,680,1518,639,1542,595,1562,550,1589,464,1604,399"/>
+<area shape="rect" id="Node000012" href="$classSemanticAnalyzer.html#ad424f85be3d35de49d05eb848884d008" title="Method for analyze function calling." alt="" coords="1049,173,1229,216"/>
+<area shape="poly" id="edge17_Node000002_Node000012" title=" " alt="" coords="1582,349,1526,308,1457,269,1399,248,1340,231,1229,208,1230,203,1341,226,1401,243,1459,264,1529,304,1585,345"/>
+<area shape="rect" id="Node000013" href="$classSemanticAnalyzer.html#a0bf5e17816e2b3c7006c3d4d2034feea" title="Method for analyze &#39;return&#39; statement." alt="" coords="1049,240,1229,283"/>
+<area shape="poly" id="edge20_Node000002_Node000013" title=" " alt="" coords="1572,352,1518,326,1457,304,1399,290,1339,280,1229,268,1230,263,1340,275,1400,285,1458,299,1520,321,1574,347"/>
+<area shape="rect" id="Node000014" href="$classSemanticAnalyzer.html#a32b7d6c326238d687184c3740ab1540a" title="Method for analyze variable assignment." alt="" coords="821,275,1001,317"/>
+<area shape="poly" id="edge23_Node000002_Node000014" title=" " alt="" coords="1499,357,1457,352,1210,326,1001,306,1002,301,1210,320,1458,347,1500,352"/>
+<area shape="rect" id="Node000015" href="$classSemanticAnalyzer.html#aad5f91cc661dc6af8c69e1e1dbc2dc1d" title="Method for analyze variable declaration." alt="" coords="821,341,1001,384"/>
+<area shape="poly" id="edge25_Node000002_Node000015" title=" " alt="" coords="1490,372,1002,366,1002,361,1490,367"/>
+<area shape="rect" id="Node000016" href="$classSemanticAnalyzer.html#acf63724297e2ca4b411ccc64fd987b7e" title="Method for evaluating and returning function returned value." alt="" coords="606,683,759,725"/>
+<area shape="poly" id="edge29_Node000002_Node000016" title=" " alt="" coords="1605,400,1586,449,1556,511,1514,572,1488,600,1459,624,1417,649,1372,671,1279,704,1181,725,1083,736,988,738,901,735,760,720,760,715,901,730,988,733,1083,730,1180,720,1277,699,1370,666,1414,644,1456,619,1485,596,1510,569,1552,508,1581,447,1600,398"/>
+<area shape="rect" id="Node000017" href="$classSemanticAnalyzer.html#a02d813f7164f38a7410a6b4beaacf3ea" title="Method for evaluating and returning function returned value from do&#45;while cycle." alt="" coords="1062,483,1216,541"/>
+<area shape="poly" id="edge31_Node000002_Node000017" title=" " alt="" coords="1512,390,1398,414,1278,449,1197,485,1195,480,1276,444,1397,409,1511,385"/>
+<area shape="rect" id="Node000018" href="$classSemanticAnalyzer.html#ae6e45a91ab106723d2ecc9c059dc1845" title="Method for evaluating and returning function returned value from control flow operators." alt="" coords="834,584,988,643"/>
+<area shape="poly" id="edge47_Node000002_Node000018" title=" " alt="" coords="1598,399,1576,435,1545,478,1505,521,1459,556,1400,584,1338,605,1274,619,1209,628,1087,632,988,626,988,621,1087,627,1209,622,1273,614,1337,600,1398,579,1456,551,1502,517,1541,475,1572,432,1594,396"/>
+<area shape="rect" id="Node000019" href="$classSemanticAnalyzer.html#aab17916aac7248a9a5c85fa0ce076ef3" title="Method for evaluating and returning function returned value from while cycle." alt="" coords="1291,483,1444,541"/>
+<area shape="poly" id="edge48_Node000002_Node000019" title=" " alt="" coords="1575,394,1421,484,1419,480,1573,390"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="1463,57,1496,97,1525,139,1569,226,1597,304,1611,357,1606,358,1592,306,1564,228,1520,142,1492,100,1459,61"/>
+<area shape="rect" id="Node000005" href="$classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e" title="Method for analyze one statement." alt="" coords="331,283,544,309"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="298,225,368,253,421,280,419,284,366,258,296,229"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="362,279,282,248,224,224,226,219,284,243,364,274"/>
+<area shape="rect" id="Node000006" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="103,312,283,339"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="316,313,284,317,283,312,315,308"/>
+<area shape="rect" id="Node000008" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="592,396,773,439"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="495,314,651,393,649,398,493,318"/>
+<area shape="poly" id="edge11_Node000005_Node000009" title=" " alt="" coords="315,293,283,289,284,284,316,288"/>
+<area shape="poly" id="edge13_Node000005_Node000010" title=" " alt="" coords="400,319,279,365,277,360,399,314"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,312,55,339"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="87,328,55,328,55,323,87,323"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="607,391,523,350,455,312,458,307,525,345,609,387"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="299,268,384,279,383,285,298,273"/>
+<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="248,354,376,307,377,312,250,359"/>
+<area shape="poly" id="edge16_Node000011_Node000002" title=" " alt="" coords="543,805,909,803,1140,803,1237,800,1277,794,1313,785,1347,772,1381,752,1456,693,1490,656,1519,613,1544,568,1563,523,1591,440,1605,384,1610,385,1596,442,1568,525,1548,571,1524,616,1494,659,1459,697,1384,757,1349,776,1315,790,1278,799,1238,805,1141,808,910,808,543,811"/>
+<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="1034,203,829,220,710,235,593,255,534,269,481,285,479,280,533,264,592,249,710,230,828,215,1033,198"/>
+<area shape="poly" id="edge21_Node000013_Node000005" title=" " alt="" coords="1033,263,821,265,707,270,593,280,545,285,545,280,592,275,706,265,821,260,1033,258"/>
+<area shape="poly" id="edge24_Node000014_Node000005" title=" " alt="" coords="805,299,545,299,545,293,805,293"/>
+<area shape="poly" id="edge27_Node000015_Node000005" title=" " alt="" coords="805,351,537,313,538,307,806,345"/>
+<area shape="poly" id="edge26_Node000015_Node000008" title=" " alt="" coords="806,390,774,398,772,393,805,385"/>
+<area shape="poly" id="edge30_Node000016_Node000011" title=" " alt="" coords="622,735,487,798,485,793,620,730"/>
+<area shape="poly" id="edge32_Node000017_Node000008" title=" " alt="" coords="1046,496,772,439,773,433,1047,490"/>
+<area shape="poly" id="edge33_Node000017_Node000016" title=" " alt="" coords="1047,508,994,509,936,515,877,528,822,550,781,579,746,615,718,652,698,684,693,681,713,649,741,612,777,575,819,546,875,523,935,510,993,504,1047,503"/>
+<area shape="poly" id="edge34_Node000017_Node000017" title=" " alt="" coords="1175,470,1162,464,1139,461,1119,463,1106,468,1100,474,1100,483,1094,482,1095,472,1103,464,1118,458,1139,456,1163,459,1178,465"/>
+<area shape="poly" id="edge35_Node000017_Node000018" title=" " alt="" coords="1076,551,989,590,987,586,1074,546"/>
+<area shape="poly" id="edge46_Node000017_Node000019" title=" " alt="" coords="1231,500,1290,501,1290,506,1231,506"/>
+<area shape="poly" id="edge36_Node000018_Node000008" title=" " alt="" coords="862,576,707,441,710,437,866,572"/>
+<area shape="poly" id="edge37_Node000018_Node000016" title=" " alt="" coords="822,651,739,685,737,680,820,646"/>
+<area shape="poly" id="edge38_Node000018_Node000017" title=" " alt="" coords="974,574,1061,535,1063,540,977,579"/>
+<area shape="poly" id="edge39_Node000018_Node000018" title=" " alt="" coords="947,572,933,565,911,563,891,565,878,569,872,576,871,584,866,584,867,574,875,565,890,559,911,557,935,560,949,567"/>
+<area shape="poly" id="edge40_Node000018_Node000019" title=" " alt="" coords="1002,586,1229,539,1290,522,1291,527,1230,544,1003,591"/>
+<area shape="poly" id="edge41_Node000019_Node000008" title=" " alt="" coords="1301,478,1266,462,1229,449,1107,426,983,415,869,412,773,414,773,409,869,407,984,410,1108,421,1230,444,1268,457,1304,473"/>
+<area shape="poly" id="edge42_Node000019_Node000016" title=" " alt="" coords="1314,553,1274,577,1230,598,1169,622,1105,642,976,672,856,691,760,701,759,696,856,686,975,666,1103,637,1167,617,1228,594,1271,572,1311,548"/>
+<area shape="poly" id="edge43_Node000019_Node000017" title=" " alt="" coords="1276,524,1216,523,1216,518,1276,518"/>
+<area shape="poly" id="edge44_Node000019_Node000018" title=" " alt="" coords="1295,549,1230,568,1102,595,988,614,987,608,1101,590,1229,563,1294,544"/>
+<area shape="poly" id="edge45_Node000019_Node000019" title=" " alt="" coords="1404,470,1390,464,1367,461,1348,463,1335,468,1328,474,1328,483,1323,482,1323,472,1332,464,1346,458,1368,456,1391,459,1406,465"/>
 </map>

@@ -41,6 +41,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&stmt)) {
         analyze_while_cycle_stmt(*wcs);
     }
+    else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&stmt)) {
+        analyze_do_while_cycle_stmt(*dwcs);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -99,17 +102,27 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     for (auto& stmt : functions.at(fds.name)->block) {
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             have_ret_in_global = true;
+            break;
         }
         else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
             Value *val = get_function_return_value_from_if_else(*ies);
             if (val != nullptr) {
                 have_ret_in_global = true;
+                break;
             }
         }
         else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
             Value *val = get_function_return_value_from_while_cycle(*wcs);
             if (val != nullptr) {
                 have_ret_in_global = true;
+                break;
+            }
+        }
+        else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+            Value *val = get_function_return_value_from_do_while_cycle(*dwcs);
+            if (val != nullptr) {
+                have_ret_in_global = true;
+                break;
             }
         }
         analyze_stmt(*stmt);
@@ -187,6 +200,18 @@ void SemanticAnalyzer::analyze_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
         throw_exception(SUB_SEMANTIC, ss.str(), wcs.line, file_name);
     }
     for (auto& stmt : wcs.block) {
+        analyze_stmt(*stmt);
+    }
+}
+
+void SemanticAnalyzer::analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) {
+    Value cond_val = analyze_expr(*dwcs.cond);
+    if (cond_val.type.type != AST::TYPE_BOOL) {
+        std::stringstream ss;
+        ss << "Type mismatch: the condition of the \033[0m'do-while'\033[31m cycle must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), dwcs.line, file_name);
+    }
+    for (auto& stmt : dwcs.block) {
         analyze_stmt(*stmt);
     }
 }
@@ -396,6 +421,13 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
                 return *val;
             }
         }
+        else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+            Value *val = get_function_return_value_from_do_while_cycle(*dwcs);
+            if (val != nullptr) {
+                variables.pop();
+                return *val;
+            }
+        }
     }
     std::stringstream ss;
     ss << "Function \033[0m'" << fce.name << "'\033[31m does not returning value. Please add \033[0m'return'\033[31m statement into the end of the function";
@@ -416,6 +448,9 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
             else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
                 return get_function_return_value_from_while_cycle(*wcs);
             }
+            else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+                return get_function_return_value_from_do_while_cycle(*dwcs);
+            }
         }
     }
     else {
@@ -429,6 +464,9 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
             }
             else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
                 return get_function_return_value_from_while_cycle(*wcs);
+            }
+            else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+                return get_function_return_value_from_do_while_cycle(*dwcs);
             }
         }
     }
@@ -449,6 +487,28 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_
             else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
                 return get_function_return_value_from_while_cycle(*wcs);
             }
+            else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+                return get_function_return_value_from_do_while_cycle(*dwcs);
+            }
+        }
+    }
+    return nullptr;
+}
+
+SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_do_while_cycle(AST::DoWhileCycleStmt& dwcs) {
+    for (auto& stmt : dwcs.block) {
+        if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+            static Value val = analyze_expr(*rs->expr);
+            return &val;
+        }
+        else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+            return get_function_return_value_from_if_else(*ies);
+        }
+        else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
+            return get_function_return_value_from_while_cycle(*wcs);
+        }
+        else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+            return get_function_return_value_from_do_while_cycle(*dwcs);
         }
     }
     return nullptr;
