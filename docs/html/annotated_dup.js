@@ -26,7 +26,8 @@ var annotated_dup =
       [ "ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ],
       [ "IfElseStmt", "classAST_1_1IfElseStmt.html", "classAST_1_1IfElseStmt" ],
       [ "WhileCycleStmt", "classAST_1_1WhileCycleStmt.html", "classAST_1_1WhileCycleStmt" ],
-      [ "DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", "classAST_1_1DoWhileCycleStmt" ]
+      [ "DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", "classAST_1_1DoWhileCycleStmt" ],
+      [ "ForCycleStmt", "classAST_1_1ForCycleStmt.html", "classAST_1_1ForCycleStmt" ]
     ] ],
     [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],
     [ "Lexer", "classLexer.html", "classLexer" ],

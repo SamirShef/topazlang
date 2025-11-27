@@ -1,0 +1,8 @@
+fun main() -> int {
+    let int sum_of_squares;
+    for let int i, i < 10, i++ {
+        sum_of_squares += i * i;
+    }
+    
+    return 0;
+}

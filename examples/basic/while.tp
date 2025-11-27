@@ -1,5 +1,5 @@
 fun main() -> int {
-    let int: counter;
+    let int counter;
     while counter < 10 {            // infinite loop
         counter++;
     }

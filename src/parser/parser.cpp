@@ -26,69 +26,71 @@ void Parser::reset() {
     pos = 0;
 }
 
-AST::StmtPtr Parser::parse_stmt() {
+AST::StmtPtr Parser::parse_stmt(bool from_for) {
+    AST::StmtPtr stmt = nullptr;
+    
     if (match(TOK_LET)) {
-        return parse_var_decl_stmt();
+        stmt = parse_var_decl_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
     }
     else if (match(TOK_ID)) {
         if (match(TOK_OP_LPAREN)) {
-            return parse_func_call_stmt();
+            stmt = parse_func_call_stmt();
+            if (!from_for) {
+                consume_semicolon();
+            }
+            return stmt;
         }
-        return parse_var_asgn_stmt();
+        stmt = parse_var_asgn_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
+        return stmt;
     }
     else if (match(TOK_FUN)) {
-        return parse_func_decl_stmt();
+        stmt = parse_func_decl_stmt();
     }
     else if (match(TOK_RETURN)) {
-        return parse_return_stmt();
+        stmt = parse_return_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
     }
     else if (match(TOK_IF)) {
-        return parse_if_else_stmt();
+        stmt = parse_if_else_stmt();
     }
     else if (match(TOK_WHILE)) {
-        return parse_while_cycle_stmt();
+        stmt = parse_while_cycle_stmt();
     }
     else if (match(TOK_DO)) {
-        return parse_do_while_cycle_stmt();
+        stmt = parse_do_while_cycle_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
+    }
+    else if (match(TOK_FOR)) {
+        stmt = parse_for_cycle_stmt();
     }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
         throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
     }
+    return stmt;
 }
 
 AST::StmtPtr Parser::parse_var_decl_stmt() {
     Token first_token = peek(-1);
     AST::Type type = consume_type();
     std::stringstream ss;
-    ss << "Expected \033[0m':'\033[31m between type and variable name.\nPlease replace \033[0m'";
-    ss << "let " << type.to_str() << "'\033[31m with: \033[0m'let " << type.to_str() << ": '";
-    consume(TOK_OP_COLON, ss.str(), peek().line);
-
-    ss.str("");
     ss << "Expected variable name.\nToken \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
     std::string name = consume(TOK_ID, ss.str(), peek().line).value;
     AST::ExprPtr expr = nullptr;
-    if (pos == tokens_count) {
-        ss.str("");
-        ss << "Expected \033[0m';'\033[31m in the end of variable definition. Please add \033[0m';'\033[31m into the end of variable definition";
-        throw_exception(SUB_PARSER, ss.str(), peek(-1).line, peek(-1).file_name);
-    }
     if (match(TOK_OP_EQ)) {
         expr = parse_expr();
     }
-    
-    ss.str("");
-    ss << "Expected \033[0m';'\033[31m in the end of variable definition. ";
-    if (pos == tokens_count) {
-        ss << "Please add \033[0m';'\033[31m into the end of variable definition";
-    }
-    else {
-        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
-    }
-    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
-
     return std::make_unique<AST::VarDeclStmt>(type, std::move(expr), name, first_token.line);
 }
 
@@ -104,15 +106,6 @@ AST::StmtPtr Parser::parse_var_asgn_stmt() {
     else {
         expr = create_inc_dec_operator(var_token.value);
     }
-    std::stringstream ss;
-    ss << "Expected \033[0m';'\033[31m in the end of variable definition. ";
-    if (pos == tokens_count) {
-        ss << "Please add \033[0m';'\033[31m into the end of variable definition";
-    }
-    else {
-        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
-    }
-    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
     return std::make_unique<AST::VarAsgnStmt>(var_token.value, std::move(expr), var_token.line);
 }
 
@@ -145,7 +138,6 @@ AST::StmtPtr Parser::parse_func_decl_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-
     return std::make_unique<AST::FuncDeclStmt>(name, std::move(args), ret_type, std::move(block), first_token.line);
 }
 
@@ -162,15 +154,6 @@ AST::StmtPtr Parser::parse_func_call_stmt() {
             consume(TOK_OP_COMMA, ss.str(), peek().line);
         }
     }
-    std::stringstream ss;
-    ss << "Expected \033[0m';'\033[31m in the end of function calling. ";
-    if (pos == tokens_count) {
-        ss << "Please add \033[0m';'\033[31m into the end of function calling";
-    }
-    else {
-        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
-    }
-    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
     return std::make_unique<AST::FuncCallStmt>(name_token.value, std::move(args), name_token.line);
 }
 
@@ -190,11 +173,7 @@ AST::Argument Parser::parse_argument() {
 
 AST::StmtPtr Parser::parse_return_stmt() {
     Token first_token = peek(-1);
-    AST::ExprPtr ret_expr = nullptr;
-    if (!match(TOK_OP_SEMICOLON)) {
-        ret_expr = parse_expr();
-        consume(TOK_OP_SEMICOLON, "Expected ';' after returned expression", peek().line);
-    }
+    AST::ExprPtr ret_expr = parse_expr();
     return std::make_unique<AST::ReturnStmt>(std::move(ret_expr), first_token.line);
 }
 
@@ -228,7 +207,6 @@ AST::StmtPtr Parser::parse_while_cycle_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-
     return std::make_unique<AST::WhileCycleStmt>(std::move(cond), std::move(block), first_token.line);
 }
 
@@ -241,18 +219,23 @@ AST::StmtPtr Parser::parse_do_while_cycle_stmt() {
     }
     consume(TOK_WHILE, "Expected \033[0m'while'\033[31m after block in the do-while cycle", peek().line);
     AST::ExprPtr cond = parse_expr();
-
-    std::stringstream ss;
-    ss << "Expected \033[0m';'\033[31m in the end of variable definition. ";
-    if (pos == tokens_count) {
-        ss << "Please add \033[0m';'\033[31m into the end of variable definition";
-    }
-    else {
-        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
-    }
-    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
-
     return std::make_unique<AST::DoWhileCycleStmt>(std::move(cond), std::move(block), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_for_cycle_stmt() {
+    Token first_token = peek(-1);
+    AST::StmtPtr indexator = parse_stmt(true);
+    consume(TOK_OP_COMMA, "Expected \033[0m','\033[31m after indexator declaration", peek().line);
+    AST::ExprPtr cond = parse_expr();
+    consume(TOK_OP_COMMA, "Expected \033[0m','\033[31m after expression", peek().line);
+    AST::StmtPtr iteration = parse_stmt(true);
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_stmt());
+    }
+
+    return std::make_unique<AST::ForCycleStmt>(std::move(indexator), std::move(cond), std::move(iteration), std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
@@ -483,6 +466,18 @@ AST::Type Parser::consume_type() {
             throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
         }
     }
+}
+
+void Parser::consume_semicolon() {
+    std::stringstream ss;
+    ss << "Expected \033[0m';'\033[31m in the end of variable definition. ";
+    if (pos == tokens_count) {
+        ss << "Please add \033[0m';'\033[31m into the end of variable definition";
+    }
+    else {
+        ss << "Please replace \033[0m'" << peek().value << "'\033[31m with \033[0m';'";
+    }
+    consume(TOK_OP_SEMICOLON, ss.str(), peek().line);
 }
 
 AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
