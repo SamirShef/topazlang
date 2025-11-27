@@ -133,6 +133,15 @@ private:
     void analyze_while_cycle_stmt(AST::WhileCycleStmt& wcs);
 
     /**
+     * @brief Method for analyze do-while cycle
+     *
+     * This method analyze do-while cycle. If condition for do-while cycle is not a bool type, then throwing exception
+     *
+     * @param dwcs Do-while cycle
+     */
+    void analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs);
+
+    /**
      * @brief Method for analyze expression
      *
      * This method analyze passed expression and returns value of it
@@ -233,6 +242,18 @@ private:
      * @return Evaluating function returned value or nullptr if does not have 'return'
      */
     Value *get_function_return_value_from_while_cycle(AST::WhileCycleStmt& wcs);
+
+    /**
+     * @brief Method for evaluating and returning function returned value from do-while cycle
+     *
+     * This method evaluating function returned value from do-while cycle and returns it.
+     * If in block of statements of do-while cycle does not have a 'return' statement, then returns nullptr
+     *
+     * @param dwcs Do-while cycle
+     *
+     * @return Evaluating function returned value or nullptr if does not have 'return'
+     */
+    Value *get_function_return_value_from_do_while_cycle(AST::DoWhileCycleStmt& dwcs);
 
     /**
      * @brief Method for getting default value by type
