@@ -25,6 +25,7 @@ var namespaceAST =
     [ "ReturnStmt", "classAST_1_1ReturnStmt.html", "classAST_1_1ReturnStmt" ],
     [ "IfElseStmt", "classAST_1_1IfElseStmt.html", "classAST_1_1IfElseStmt" ],
     [ "WhileCycleStmt", "classAST_1_1WhileCycleStmt.html", "classAST_1_1WhileCycleStmt" ],
+    [ "DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", "classAST_1_1DoWhileCycleStmt" ],
     [ "ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "TypeValue", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd", [
