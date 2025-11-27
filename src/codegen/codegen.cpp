@@ -6,7 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
-#include <iostream>
 #include <llvm/ADT/APFloat.h>
 #include <llvm/IR/Argument.h>
 #include <llvm/IR/BasicBlock.h>
@@ -255,10 +254,8 @@ llvm::Value *CodeGenerator::generate_literal_expr(AST::Literal& lit) {
 llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Value *left = generate_expr(*be.left_expr);
     llvm::Type *left_type = left->getType();
-    left_type->print(llvm::outs()); std::cout << ' ';
     llvm::Value *right = generate_expr(*be.right_expr);
     llvm::Type *right_type = right->getType();
-    right_type->print(llvm::outs()); std::cout << '\n';
 
     switch (be.op.type) {
         case TOK_OP_PLUS:
