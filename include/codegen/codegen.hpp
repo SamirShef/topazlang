@@ -137,6 +137,15 @@ private:
     void generate_while_cycle_stmt(AST::WhileCycleStmt& wcs);
 
     /**
+     * @brief Method for generating LLVM IR code for do-while cycle
+     *
+     * This method generating LLVM IR code for do-while cycle
+     *
+     * @param dwcs Do-while cycle
+     */
+    void generate_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
