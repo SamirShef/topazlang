@@ -6,24 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
-#include <iostream>
-#include <llvm/ADT/APFloat.h>
-#include <llvm/IR/Argument.h>
-#include <llvm/IR/BasicBlock.h>
-#include <llvm/IR/DerivedTypes.h>
-#include <llvm/IR/Function.h>
-#include <llvm/IR/GlobalVariable.h>
-#include <llvm/IR/Instructions.h>
-#include <llvm/Support/Casting.h>
-#include <llvm/IR/GlobalValue.h>
-#include <llvm/IR/Constant.h>
-#include <llvm/ADT/APInt.h>
-#include <llvm/IR/Value.h>
-#include <llvm/IR/Type.h>
-#include <cstddef>
-#include <llvm/Support/raw_ostream.h>
-#include <sstream>
-#include <vector>
 
 void CodeGenerator::generate() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -55,6 +37,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     }
     else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&stmt)) {
         generate_do_while_cycle_stmt(*dwcs);
+    }
+    else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&stmt)) {
+        generate_for_cycle_stmt(*fcs);
     }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
@@ -237,6 +222,38 @@ void CodeGenerator::generate_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) {
     builder.SetInsertPoint(exit_bb);
 }
 
+void CodeGenerator::generate_for_cycle_stmt(AST::ForCycleStmt& fcs) {
+    llvm::Function* parent = builder.GetInsertBlock()->getParent();
+    llvm::BasicBlock* indexator_bb = llvm::BasicBlock::Create(context, "for.indexator", parent);
+    llvm::BasicBlock* cond_bb = llvm::BasicBlock::Create(context, "for.cond", parent);
+    llvm::BasicBlock* iteration_bb = llvm::BasicBlock::Create(context, "for.iteration", parent);
+    llvm::BasicBlock* body_bb = llvm::BasicBlock::Create(context, "for.body", parent);
+    llvm::BasicBlock* exit_bb = llvm::BasicBlock::Create(context, "for.exit", parent);
+
+    builder.CreateBr(indexator_bb);
+    builder.SetInsertPoint(indexator_bb);
+    generate_stmt(*fcs.indexator);
+
+    builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(cond_bb);
+    llvm::Value* condition_value = generate_expr(*fcs.cond);
+
+    builder.CreateCondBr(condition_value, body_bb, exit_bb);
+    builder.SetInsertPoint(body_bb);
+    variables.push({});
+    for (auto& stmt : fcs.block) {
+        generate_stmt(*stmt);
+    }
+    variables.pop();
+
+    builder.CreateBr(iteration_bb);
+    builder.SetInsertPoint(iteration_bb);
+    generate_stmt(*fcs.iteration);
+
+    builder.CreateBr(cond_bb);
+    builder.SetInsertPoint(exit_bb);
+}
+
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
     if (auto lit = dynamic_cast<AST::Literal*>(&expr)) {
         return generate_literal_expr(*lit);
@@ -293,7 +310,6 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Type *right_type = right->getType();
     
     llvm::Type *common_type = get_common_type(left_type, right_type);
-    std::cout << (common_type == nullptr) << '\n';
     if (left_type != common_type) {
         left = implicitly_cast(left, common_type);
         left_type = left->getType();

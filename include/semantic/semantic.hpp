@@ -5,10 +5,10 @@
  */
 
 #include "../parser/ast.hpp"
+#include <vector>
 #include <memory>
 #include <stack>
 #include <map>
-#include <vector>
 
 class SemanticAnalyzer {
 private:

@@ -6,7 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include <iostream>
-#include <cstdlib>
 
 /**
  * @brief Function for converting passed subsystem type into string

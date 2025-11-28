@@ -6,15 +6,11 @@
 
 #pragma once
 #include "../lexer/token.hpp"
-#include <cstdint>
-#include <sstream>
 #include <uchar.h>
-#include <utility>
 #include <variant>
-#include <string>
 #include <memory>
-#include <cmath>
 #include <vector>
+#include <cmath>
 
 namespace AST {
     /**
