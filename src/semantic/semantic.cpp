@@ -74,6 +74,11 @@ void SemanticAnalyzer::analyze_var_asgn_stmt(AST::VarAsgnStmt& vas) {
         ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
         throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name);
     }
+    if (var_val->type.is_const) {
+        std::stringstream ss;
+        ss << "Variable \033[0m'" << vas.name << "'\033[31m is a constant";
+        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name);
+    }
     AST::Type var_type = var_val->type;
     Value new_val = analyze_expr(*vas.expr);
     if (!has_common_type(new_val.type, var_type)) {
