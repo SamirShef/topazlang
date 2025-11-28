@@ -135,6 +135,24 @@ private:
      * @return ForCycleStmt
      */
     AST::StmtPtr parse_for_cycle_stmt();
+
+    /**
+     * @brief Method for parsing of break statement
+     *
+     * This method sets the syntax for break statement, creates the AST element of the BreakStmt and returns it
+     *
+     * @return BreakStmt
+     */
+    AST::StmtPtr parse_break_stmt();
+
+    /**
+     * @brief Method for parsing of continue statement
+     *
+     * This method sets the syntax for continue statement, creates the AST element of the ContinueStmt and returns it
+     *
+     * @return ContinueStmt
+     */
+    AST::StmtPtr parse_continue_stmt();
     
     /**
      * @brief Method for parsing expressions

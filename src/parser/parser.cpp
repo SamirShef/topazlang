@@ -68,6 +68,18 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
     else if (match(TOK_FOR)) {
         stmt = parse_for_cycle_stmt();
     }
+    else if (match(TOK_BREAK)) {
+        stmt = parse_break_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
+    }
+    else if (match(TOK_CONTINUE)) {
+        stmt = parse_continue_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
+    }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
@@ -231,6 +243,16 @@ AST::StmtPtr Parser::parse_for_cycle_stmt() {
     }
 
     return std::make_unique<AST::ForCycleStmt>(std::move(indexator), std::move(cond), std::move(iteration), std::move(block), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_break_stmt() {
+    Token first_token = peek(-1);
+    return std::make_unique<AST::BreakStmt>(first_token.line);
+}
+
+AST::StmtPtr Parser::parse_continue_stmt() {
+    Token first_token = peek(-1);
+    return std::make_unique<AST::ContinueStmt>(first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
