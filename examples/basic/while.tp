@@ -1,8 +1,8 @@
 fun main() -> int {
     let int counter;
-    while counter < 10 {            // infinite loop
+    while true {            // infinite loop
         counter++;
     }
 
-    return counter;
+    return 0;
 }
