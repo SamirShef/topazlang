@@ -30,8 +30,9 @@ private:
     struct Value {
         AST::Type type;                                                         /**< Type of value */
         AST::Value value;                                                       /**< Primitive value */
+        bool is_literal;                                                        /**< Is the value the result of an operation on literals */
 
-        Value(AST::Type t, AST::Value v) : type(t), value(v) {}
+        Value(AST::Type t, AST::Value v, bool il) : type(t), value(v), is_literal(il) {}
     };
 
     std::stack<std::map<std::string, Value>> variables;                         /**< View scope of the variables table */
@@ -140,6 +141,17 @@ private:
      * @param dwcs Do-while cycle
      */
     void analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs);
+
+    /**
+     * @brief Method for analyze for cycle
+     *
+     * This method analyze for cycle.
+     * If condition for for cycle is not a bool type, then throwing exception.
+     * If indexator statement is not a variable declaration/assignment, then throwing exception.
+     *
+     * @param fcs For cycle
+     */
+    void analyze_for_cycle_stmt(AST::ForCycleStmt& fcs);
 
     /**
      * @brief Method for analyze expression
@@ -254,6 +266,18 @@ private:
      * @return Evaluating function returned value or nullptr if does not have 'return'
      */
     Value *get_function_return_value_from_do_while_cycle(AST::DoWhileCycleStmt& dwcs);
+
+    /**
+     * @brief Method for evaluating and returning function returned value from for cycle
+     *
+     * This method evaluating function returned value from for cycle and returns it.
+     * If in block of statements of for cycle does not have a 'return' statement, then returns nullptr
+     *
+     * @param fcs For cycle
+     *
+     * @return Evaluating function returned value or nullptr if does not have 'return'
+     */
+    Value *get_function_return_value_from_for_cycle(AST::ForCycleStmt& fcs);
 
     /**
      * @brief Method for getting default value by type

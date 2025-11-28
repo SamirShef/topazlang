@@ -4,5 +4,5 @@ fun main() -> int {
         counter++;
     } while false;
 
-    return counter;
+    return 0;
 }
