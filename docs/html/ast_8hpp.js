@@ -27,6 +27,8 @@ var ast_8hpp =
     [ "AST::WhileCycleStmt", "classAST_1_1WhileCycleStmt.html", "classAST_1_1WhileCycleStmt" ],
     [ "AST::DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", "classAST_1_1DoWhileCycleStmt" ],
     [ "AST::ForCycleStmt", "classAST_1_1ForCycleStmt.html", "classAST_1_1ForCycleStmt" ],
+    [ "AST::BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
+    [ "AST::ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
     [ "AST::ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "AST::StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "AST::TypeValue", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd", [

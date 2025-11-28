@@ -2,6 +2,9 @@ fun main() -> int {
     let int counter;
     while true {            // infinite loop
         counter++;
+        if counter == 10 {
+            break;
+        }
     }
 
     return 0;

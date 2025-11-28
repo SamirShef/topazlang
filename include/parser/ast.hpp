@@ -363,4 +363,20 @@ namespace AST {
         ForCycleStmt(StmtPtr ix, ExprPtr c, StmtPtr it, std::vector<StmtPtr> b, uint32_t l) : indexator(std::move(ix)), cond(std::move(c)), iteration(std::move(it)), block(std::move(b)), Stmt(l) {}
         ~ForCycleStmt() override = default;
     };
+
+    /**
+     * @brief Statement of break
+     */
+    class BreakStmt : public Stmt {
+    public:
+        BreakStmt(uint32_t l) : Stmt(l) {}
+    };
+
+    /**
+     * @brief Statement of break
+     */
+    class ContinueStmt : public Stmt {
+    public:
+        ContinueStmt(uint32_t l) : Stmt(l) {}
+    };
 }

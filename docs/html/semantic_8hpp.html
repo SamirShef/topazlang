@@ -76,47 +76,40 @@ $(function(){initNavTree('semantic_8hpp.html','',''); });
 <p>Header file for defining semantic analyzer.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ast_8hpp_source.html">../parser/ast.hpp</a>&quot;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;stack&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for semantic.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="semantic_8hpp__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2include_2semantic_2semantic_8hpp" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2include_2semantic_2semantic_8hpp" id="a_2mnt_2disk__ext4__0_2topazlang_2include_2semantic_2semantic_8hpp">
-<area shape="rect" title="Header file for defining semantic analyzer." alt="" coords="617,5,822,48"/>
-<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="375,96,491,123"/>
-<area shape="poly" title=" " alt="" coords="646,51,493,94,492,89,645,46"/>
-<area shape="rect" title=" " alt="" coords="635,171,703,197"/>
-<area shape="poly" title=" " alt="" coords="715,49,680,156,675,155,710,47"/>
-<area shape="rect" title=" " alt="" coords="727,171,784,197"/>
-<area shape="poly" title=" " alt="" coords="727,48,752,155,747,156,722,49"/>
-<area shape="rect" title=" " alt="" coords="757,96,810,123"/>
-<area shape="poly" title=" " alt="" coords="738,47,766,82,762,85,734,50"/>
-<area shape="rect" title=" " alt="" coords="834,96,880,123"/>
-<area shape="poly" title=" " alt="" coords="756,46,823,85,821,90,754,51"/>
-<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="222,171,345,197"/>
-<area shape="poly" title=" " alt="" coords="408,126,325,166,322,161,406,121"/>
-<area shape="rect" title=" " alt="" coords="176,245,236,272"/>
-<area shape="poly" title=" " alt="" coords="375,121,278,141,237,155,212,172,205,185,202,200,202,230,197,231,196,199,200,183,208,169,235,151,277,136,374,116"/>
-<area shape="rect" title=" " alt="" coords="265,245,334,272"/>
-<area shape="poly" title=" " alt="" coords="424,125,359,199,324,236,320,232,355,196,420,121"/>
-<area shape="rect" title=" " alt="" coords="390,245,444,272"/>
-<area shape="poly" title=" " alt="" coords="434,123,422,230,417,230,429,123"/>
-<area shape="rect" title=" " alt="" coords="470,171,534,197"/>
-<area shape="poly" title=" " alt="" coords="447,121,482,157,478,161,443,125"/>
-<area shape="rect" title=" " alt="" coords="559,171,611,197"/>
-<area shape="poly" title=" " alt="" coords="460,121,546,161,543,166,458,126"/>
+<area shape="rect" title="Header file for defining semantic analyzer." alt="" coords="390,5,596,48"/>
+<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="288,96,404,123"/>
+<area shape="poly" title=" " alt="" coords="456,51,383,91,381,86,454,46"/>
+<area shape="rect" title=" " alt="" coords="405,171,474,197"/>
+<area shape="poly" title=" " alt="" coords="488,49,451,156,446,155,483,47"/>
+<area shape="rect" title=" " alt="" coords="498,171,555,197"/>
+<area shape="poly" title=" " alt="" coords="500,48,523,155,518,156,495,49"/>
+<area shape="rect" title=" " alt="" coords="530,96,584,123"/>
+<area shape="poly" title=" " alt="" coords="511,47,539,82,535,85,507,50"/>
+<area shape="rect" title=" " alt="" coords="607,96,653,123"/>
+<area shape="poly" title=" " alt="" coords="530,46,597,85,594,90,527,51"/>
+<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="170,171,293,197"/>
+<area shape="poly" title=" " alt="" coords="328,125,266,164,263,160,325,121"/>
+<area shape="rect" title=" " alt="" coords="317,171,381,197"/>
+<area shape="poly" title=" " alt="" coords="349,123,350,155,345,155,344,123"/>
 <area shape="rect" title=" " alt="" coords="5,171,66,197"/>
-<area shape="poly" title=" " alt="" coords="375,121,244,141,81,173,80,167,243,136,374,116"/>
-<area shape="poly" title=" " alt="" coords="475,121,621,165,619,170,473,126"/>
+<area shape="poly" title=" " alt="" coords="288,125,81,172,80,167,287,120"/>
+<area shape="poly" title=" " alt="" coords="364,121,413,159,410,163,361,125"/>
+<area shape="poly" title=" " alt="" coords="379,121,484,163,482,168,377,126"/>
 <area shape="rect" title=" " alt="" coords="90,171,147,197"/>
-<area shape="poly" title=" " alt="" coords="376,126,167,173,162,174,161,169,166,168,374,121"/>
-<area shape="poly" title=" " alt="" coords="492,119,712,167,711,173,491,124"/>
-<area shape="poly" title=" " alt="" coords="272,200,232,237,229,233,268,196"/>
-<area shape="poly" title=" " alt="" coords="289,197,296,230,291,231,284,198"/>
-<area shape="poly" title=" " alt="" coords="308,196,382,235,379,240,305,200"/>
+<area shape="poly" title=" " alt="" coords="307,126,162,171,161,166,306,121"/>
+<area shape="rect" title=" " alt="" coords="157,245,218,272"/>
+<area shape="poly" title=" " alt="" coords="226,199,205,233,201,231,222,196"/>
+<area shape="rect" title=" " alt="" coords="241,245,310,272"/>
+<area shape="poly" title=" " alt="" coords="241,196,262,231,258,233,237,199"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
