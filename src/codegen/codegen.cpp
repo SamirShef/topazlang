@@ -41,6 +41,12 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&stmt)) {
         generate_for_cycle_stmt(*fcs);
     }
+    else if (auto bs = dynamic_cast<AST::BreakStmt*>(&stmt)) {
+        generate_break_stmt(*bs);
+    }
+    else if (auto cs = dynamic_cast<AST::ContinueStmt*>(&stmt)) {
+        generate_continue_stmt(*cs);
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -191,9 +197,11 @@ void CodeGenerator::generate_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
     builder.CreateCondBr(cond_value, body_bb, exit_bb);
     builder.SetInsertPoint(body_bb);
     variables.push({});
+    loop_blocks.emplace(exit_bb, cond_bb);
     for (auto& stmt : wcs.block) {
         generate_stmt(*stmt);
     }
+    loop_blocks.pop();
     variables.pop();
 
     builder.CreateBr(cond_bb);
@@ -209,9 +217,11 @@ void CodeGenerator::generate_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) {
     builder.CreateBr(body_bb);
     builder.SetInsertPoint(body_bb);
     variables.push({});
+    loop_blocks.emplace(exit_bb, cond_bb);
     for (auto& stmt : dwcs.block) {
         generate_stmt(*stmt);
     }
+    loop_blocks.pop();
     variables.pop();
 
     builder.CreateBr(cond_bb);
@@ -241,9 +251,11 @@ void CodeGenerator::generate_for_cycle_stmt(AST::ForCycleStmt& fcs) {
     builder.CreateCondBr(condition_value, body_bb, exit_bb);
     builder.SetInsertPoint(body_bb);
     variables.push({});
+    loop_blocks.emplace(exit_bb, iteration_bb);
     for (auto& stmt : fcs.block) {
         generate_stmt(*stmt);
     }
+    loop_blocks.pop();
     variables.pop();
 
     builder.CreateBr(iteration_bb);
@@ -252,6 +264,14 @@ void CodeGenerator::generate_for_cycle_stmt(AST::ForCycleStmt& fcs) {
 
     builder.CreateBr(cond_bb);
     builder.SetInsertPoint(exit_bb);
+}
+
+void CodeGenerator::generate_break_stmt(AST::BreakStmt& bs) {
+    builder.CreateBr(loop_blocks.top().first);
+}
+
+void CodeGenerator::generate_continue_stmt(AST::ContinueStmt& cs) {
+    builder.CreateBr(loop_blocks.top().second);
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {

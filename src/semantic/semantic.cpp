@@ -42,6 +42,12 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&stmt)) {
         analyze_for_cycle_stmt(*fcs);
     }
+    else if (auto bs = dynamic_cast<AST::BreakStmt*>(&stmt)) {
+        analyze_break_stmt(*bs);
+    }
+    else if (auto cs = dynamic_cast<AST::ContinueStmt*>(&stmt)) {
+        analyze_continue_stmt(*cs);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -213,9 +219,11 @@ void SemanticAnalyzer::analyze_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
         throw_exception(SUB_SEMANTIC, ss.str(), wcs.line, file_name);
     }
     variables.push({});
+    depth_of_loops++;
     for (auto& stmt : wcs.block) {
         analyze_stmt(*stmt);
     }
+    depth_of_loops--;
     variables.pop();
 }
 
@@ -227,9 +235,11 @@ void SemanticAnalyzer::analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) 
         throw_exception(SUB_SEMANTIC, ss.str(), dwcs.line, file_name);
     }
     variables.push({});
+    depth_of_loops++;
     for (auto& stmt : dwcs.block) {
         analyze_stmt(*stmt);
     }
+    depth_of_loops--;
     variables.pop();
 }
 
@@ -247,10 +257,24 @@ void SemanticAnalyzer::analyze_for_cycle_stmt(AST::ForCycleStmt& fcs) {
         throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
     }
     analyze_stmt(*fcs.iteration);
+    depth_of_loops++;
     for (auto& stmt : fcs.block) {
         analyze_stmt(*stmt);
     }
+    depth_of_loops--;
     variables.pop();
+}
+
+void SemanticAnalyzer::analyze_break_stmt(AST::BreakStmt& bs) {
+    if (depth_of_loops == 0) {
+        throw_exception(SUB_SEMANTIC, "\033[0m'break'\033[31m statement must be in a cycle", bs.line, file_name);
+    }
+}
+
+void SemanticAnalyzer::analyze_continue_stmt(AST::ContinueStmt& cs) {
+    if (depth_of_loops == 0) {
+        throw_exception(SUB_SEMANTIC, "\033[0m'continue'\033[31m statement must be in a cycle", cs.line, file_name);
+    }
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {

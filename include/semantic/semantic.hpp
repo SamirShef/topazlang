@@ -47,9 +47,10 @@ private:
     };
     std::map<std::string, std::unique_ptr<FunctionInfo>> functions;             /**< Functions table */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
+    unsigned depth_of_loops;                                                    /**< Depth of loops */
 
 public:
-    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn) {
+    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn), depth_of_loops(0) {
         variables.push({});
     }
 
@@ -152,6 +153,24 @@ private:
      * @param fcs For cycle
      */
     void analyze_for_cycle_stmt(AST::ForCycleStmt& fcs);
+
+    /**
+     * @brief Method for analyze break statement
+     *
+     * This method analyze break statement. If break statement isn't in cycle, then throwing exception
+     *
+     * @param bs Break statement
+     */
+    void analyze_break_stmt(AST::BreakStmt& bs);
+
+    /**
+     * @brief Method for analyze continue statement
+     *
+     * This method analyze continue statement. If continue statement isn't in cycle, then throwing exception
+     *
+     * @param cs Continue statement
+     */
+    void analyze_continue_stmt(AST::ContinueStmt& cs);
 
     /**
      * @brief Method for analyze expression

@@ -30,6 +30,7 @@ private:
     std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables table */
     std::map<std::string, llvm::Function*> functions;                           /**< Functions table */
     std::stack<llvm::Type*> functions_ret_types;                                /**< Stack of functions return types */
+    std::stack<std::pair<llvm::BasicBlock*, llvm::BasicBlock*>> loop_blocks;    /**< Stack of branches into cycles. First for 'break', second for 'continue' */
 
 public:
     CodeGenerator(std::vector<AST::StmtPtr>& s, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), file_name(fn) {
@@ -154,6 +155,24 @@ private:
      * @param fcs For cycle
      */
     void generate_for_cycle_stmt(AST::ForCycleStmt& fcs);
+
+    /**
+     * @brief Method for generating LLVM IR code for break statement
+     *
+     * This method generating LLVM IR code for break statement
+     *
+     * @param bs Break statement
+     */
+    void generate_break_stmt(AST::BreakStmt& bs);
+
+    /**
+     * @brief Method for generating LLVM IR code for continue statement
+     *
+     * This method generating LLVM IR code for continue statement
+     *
+     * @param cs Continue statement
+     */
+    void generate_continue_stmt(AST::ContinueStmt& cs);
 
     /**
      * @brief Method for generating LLVM IR code for expressions
