@@ -6,6 +6,7 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/codegen/codegen.hpp"
+#include <iostream>
 #include <llvm/ADT/APFloat.h>
 #include <llvm/IR/Argument.h>
 #include <llvm/IR/BasicBlock.h>
@@ -66,6 +67,9 @@ void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {
     if (vds.expr != nullptr) {
         val = generate_expr(*vds.expr);
     }
+    if (val->getType() != type) {
+        val = implicitly_cast(val, type);
+    }
     llvm::Value *var = nullptr;
     if (variables.size() == 1) {
         var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), vds.name);
@@ -110,6 +114,7 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
     
     variables.push({});
     functions.emplace(fds.name, func);
+    functions_ret_types.push(ret_type);
     size_t index = 0;
     for (llvm::Argument& arg : func->args()) {
         arg.setName(fds.args[index].name);
@@ -129,6 +134,7 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
         builder.CreateRetVoid();
     }
     variables.pop();
+    functions_ret_types.pop();
 }
 
 void CodeGenerator::generate_func_call_stmt(AST::FuncCallStmt& fcs) {
@@ -143,7 +149,11 @@ void CodeGenerator::generate_func_call_stmt(AST::FuncCallStmt& fcs) {
 
 void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
     if (rs.expr != nullptr) {
-        builder.CreateRet(generate_expr(*rs.expr));
+        llvm::Value *val = generate_expr(*rs.expr);
+        if (val->getType() != functions_ret_types.top()) {
+            val = implicitly_cast(val, functions_ret_types.top());
+        }
+        builder.CreateRet(val);
     }
     else {
         builder.CreateRetVoid();
@@ -281,7 +291,17 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
     llvm::Type *left_type = left->getType();
     llvm::Value *right = generate_expr(*be.right_expr);
     llvm::Type *right_type = right->getType();
-
+    
+    llvm::Type *common_type = get_common_type(left_type, right_type);
+    std::cout << (common_type == nullptr) << '\n';
+    if (left_type != common_type) {
+        left = implicitly_cast(left, common_type);
+        left_type = left->getType();
+    }
+    else if (right_type != common_type) {
+        right = implicitly_cast(right, common_type);
+        right_type = right->getType();
+    }
     switch (be.op.type) {
         case TOK_OP_PLUS:
             if (left_type->isFloatingPointTy() || right_type->isFloatingPointTy()) {
@@ -418,4 +438,58 @@ llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
         default:
             throw_exception(SUB_CODEGEN, "Unsupported type", -1, file_name);
     }
+}
+
+llvm::Type *CodeGenerator::get_common_type(llvm::Type *left, llvm::Type *right) {
+    if (left == right) {
+        return left;
+    }
+    else if (left->isIntegerTy() || right->isIntegerTy()) {
+        if (left->isIntegerTy() && right->isIntegerTy()) {
+            unsigned left_width = left->getIntegerBitWidth();
+            unsigned right_width = right->getIntegerBitWidth();
+
+            return left_width > right_width ? left : right;
+        }
+        else if (left->isFloatingPointTy() || right->isFloatingPointTy()) {
+            return left->isFloatingPointTy() ? left : right;
+        }
+    }
+    else if (left->isFloatingPointTy() && right->isFloatingPointTy()) {
+        return left->isDoubleTy() && right->isFloatTy() ? left : right;
+    }
+    else if (left->isDoubleTy() || right->isDoubleTy()) {
+        return llvm::Type::getDoubleTy(context);
+    }
+    return nullptr;
+}
+
+llvm::Value *CodeGenerator::implicitly_cast(llvm::Value *val, llvm::Type *expected_type) {
+    llvm::Type *val_type = val->getType();
+    if (val_type == expected_type) {
+        return val;
+    }
+    else if (val_type->isIntegerTy() && expected_type->isIntegerTy()) {
+        unsigned long value_width = val_type->getIntegerBitWidth();
+        unsigned long expected_width = expected_type->getIntegerBitWidth();
+
+        if (value_width > expected_width) {
+            return builder.CreateTrunc(val, expected_type, "trunc.tmp");
+        }
+        else {
+            return builder.CreateSExt(val, expected_type, "sext.tmp");
+        }
+    }
+    else if (val_type->isFloatingPointTy() && expected_type->isFloatingPointTy()) {
+        if (val_type->isFloatTy() && expected_type->isDoubleTy()) {
+            return builder.CreateFPExt(val, expected_type, "fpext.tmp");
+        }
+        else {
+            return builder.CreateFPTrunc(val, expected_type, "fptrunc.tmp");
+        }
+    }
+    else if (val_type->isIntegerTy() && expected_type->isFloatingPointTy()) {
+        return builder.CreateSIToFP(val, expected_type, "sitofp.tmp");
+    }
+    return nullptr;
 }

@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"structToken.html#ac6c12c25d41c190f8fd65f8f7d5f9343":[1,0,5,2],
+"token_8hpp.html":[2,0,0,2,1],
+"token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0":[2,0,0,2,1,1],
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a00e034b0da5d1135e3bff7188e579173":[2,0,0,2,1,1,35],
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a015688b48b2e187a9b8fa0c040a5114a":[2,0,0,2,1,1,61],
 "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a02790e1df7f6c542b505343f893a1ea9":[2,0,0,2,1,1,39],

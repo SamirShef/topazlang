@@ -662,7 +662,7 @@ AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uin
     }
 
     if (has_common_type(left, right)) {
-        return AST::Type(implicitly_cast_allowed_types[left.type][right.type], right.name, right.is_const, right.is_ptr, right.is_nullable);
+        return AST::Type(*std::find(implicitly_cast_allowed_types[left.type].begin(), implicitly_cast_allowed_types[left.type].end(), right.type).base(), right.name, right.is_const, right.is_ptr, right.is_nullable);
     }
 
     std::stringstream ss;

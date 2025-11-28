@@ -29,6 +29,7 @@ private:
     std::unique_ptr<llvm::Module> module;                                       /**< LLVM Module (module name is relative path to the Topaz source code) */
     std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables table */
     std::map<std::string, llvm::Function*> functions;                           /**< Functions table */
+    std::stack<llvm::Type*> functions_ret_types;                                /**< Stack of functions return types */
 
 public:
     CodeGenerator(std::vector<AST::StmtPtr>& s, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), file_name(fn) {
@@ -219,4 +220,28 @@ private:
      * @return Converted type to llvm::Type
      */
     llvm::Type *type_to_llvm(AST::Type type);
+
+    /**
+     * @brief Method for getting comon type between two types
+     *
+     * This method getting common type between two passed types and returns it. If common type does not exist, then throwing exception
+     *
+     * @param left Type to be implicitly cast
+     * @param right Type to be implicitly cast to
+     *
+     * @return Common type between two passed types
+     */
+    llvm::Type *get_common_type(llvm::Type *left, llvm::Type *right);
+
+    /**
+     * @brief Method for implicitly cast value to expected type
+     *
+     * This method implicitly cast passed value to passed expected type and returns casted value. If cast is imposible, then returns nullptr
+     *
+     * @param val Value for casting
+     * @param expected_type Type to be converted to
+     *
+     * @return Casted value
+     */
+    llvm::Value *implicitly_cast(llvm::Value *val, llvm::Type *expected_type);
 };
