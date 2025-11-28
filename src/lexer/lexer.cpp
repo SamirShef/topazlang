@@ -6,8 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/lexer/lexer.hpp"
-#include <iostream>
-#include <sstream>
 
 std::vector<Token> Lexer::tokenize() {
     std::vector<Token> tokens;

@@ -6,11 +6,6 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/parser/parser.hpp"
-#include <iostream>
-#include <utility>
-#include <sstream>
-#include <memory>
-#include <vector>
 
 std::vector<AST::StmtPtr> Parser::parse() {
     std::vector<AST::StmtPtr> stmts;
