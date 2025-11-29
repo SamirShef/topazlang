@@ -23,6 +23,7 @@ var classParser =
     [ "parse_if_else_stmt", "classParser.html#a1fee8ad7e05a3de414f2b548e102040d", null ],
     [ "parse_l_and_expr", "classParser.html#ac23cdc70263553f1a8f5a2bf01caa770", null ],
     [ "parse_l_or_expr", "classParser.html#a1438271fe63fe661f7e43ce92119bcea", null ],
+    [ "parse_module_stmt", "classParser.html#ade9a1a6479be241eb294b2b04747ea86", null ],
     [ "parse_multiplicative_expr", "classParser.html#ad46509f9d3366981b886adbbef7476f5", null ],
     [ "parse_primary_expr", "classParser.html#a2cdd6289b4951d4fadf3f5110586569a", null ],
     [ "parse_return_stmt", "classParser.html#a2f0a39989801cd360c54855bf6ad2e26", null ],

@@ -153,6 +153,15 @@ private:
      * @return ContinueStmt
      */
     AST::StmtPtr parse_continue_stmt();
+
+    /**
+     * @brief Method for parsing of module definition
+     *
+     * This method sets the syntax for module definition, creates the AST element of the ModuleStmt and returns it
+     *
+     * @return ModuleStmt
+     */
+    AST::StmtPtr parse_module_stmt();
     
     /**
      * @brief Method for parsing expressions

@@ -19,6 +19,7 @@ var token_8hpp =
       [ "TOK_WHILE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aa75ee6e7bd8eaf3b787c97626e78bf71", null ],
       [ "TOK_CONTINUE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0affbfe5b931ad9f0f8faca8c86920ba5e", null ],
       [ "TOK_BREAK", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a04cce60407d14c674a9bcf3d8f4876ec", null ],
+      [ "TOK_MODULE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a9a3e8e6f46d08c4b7dc6190131c51b39", null ],
       [ "TOK_PUB", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aec23add3bdb85cd243458ae806ef10be", null ],
       [ "TOK_PRIV", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a5334f4d1a5e8bc2d1e5781ff5e93d4fb", null ],
       [ "TOK_CONST", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ac6e2af1f642b1310b927ff0e1a58f003", null ],

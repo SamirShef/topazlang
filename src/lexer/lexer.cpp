@@ -23,7 +23,7 @@ std::vector<Token> Lexer::tokenize() {
                 tokens.push_back(tokenize_op());
             }
         }
-        else if (isalpha(c)) {
+        else if (isalpha(c) || c == '_') {
             tokens.push_back(tokenize_id());
         }
         else if (isdigit(c)) {

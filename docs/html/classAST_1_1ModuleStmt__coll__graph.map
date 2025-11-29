@@ -1,0 +1,5 @@
+<map id="AST::ModuleStmt" name="AST::ModuleStmt">
+<area shape="rect" id="Node000001" title="Statement of module definition." alt="" coords="5,80,130,107"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="26,5,109,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,48,70,80,65,80,65,48"/>
+</map>
