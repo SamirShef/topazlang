@@ -50,7 +50,7 @@ var classSemanticAnalyzer =
     [ "functions", "classSemanticAnalyzer.html#a37b363effef94bb6a59956ed0a969d38", null ],
     [ "functions_ret_types", "classSemanticAnalyzer.html#afc5ce31ea67f44866b4f0bf2d7977404", null ],
     [ "implicitly_cast_allowed_types", "classSemanticAnalyzer.html#a1e49c40308de04a59d0d4e323acd8cf2", null ],
-    [ "modules", "classSemanticAnalyzer.html#ab1a75a16f9e5be8f6c431466a8b34b30", null ],
+    [ "modules", "classSemanticAnalyzer.html#a25253e0175468fae09a3aa277710de14", null ],
     [ "modules_stack", "classSemanticAnalyzer.html#a9866eb6b066416f818a37d5479416c1e", null ],
     [ "stmts", "classSemanticAnalyzer.html#a253a8c665966d9fa1dd8bf475b0b2859", null ],
     [ "variables", "classSemanticAnalyzer.html#ae4f1a48bac4f2396499fa3658eebdb9c", null ]

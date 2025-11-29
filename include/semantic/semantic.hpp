@@ -66,7 +66,7 @@ private:
         std::map<std::string, std::pair<AST::AccessModifier, Value>> variables;                         /**< Global variables table in module */
         std::map<std::string, std::pair<AST::AccessModifier, std::unique_ptr<FunctionInfo>>> functions; /**< Functions table in module */
     };
-    std::map<std::string, ModuleInfo> modules;                                  /**< Modules table */
+    std::map<std::string, ModuleInfo*> modules;                                 /**< Modules table */
     std::stack<ModuleInfo*> modules_stack;                                      /**< Stack to modules */
 
     /**
@@ -436,7 +436,7 @@ private:
      * @brief Method for getting mangled name
      *
      * This method returns mangled name based passed object name and SemanticAnalyzer::current_path.
-     * Names of parts of path separated '-' (if current part of path is module) or '.' (if current part of path is class)
+     * Names of parts of path separated '-' (if current part of path is module) or '#' (if current part of path is class)
      *
      * @param base_name Based name for mangling
      *

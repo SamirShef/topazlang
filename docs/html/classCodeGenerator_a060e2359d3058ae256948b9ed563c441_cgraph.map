@@ -1,7 +1,9 @@
 <map id="CodeGenerator::generate_var_expr" name="CodeGenerator::generate_var_expr">
-<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for variable expressions." alt="" coords="5,5,173,48"/>
-<area shape="rect" id="Node000002" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="221,13,337,40"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,24,205,24,205,29,173,29"/>
-<area shape="rect" id="Node000003" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="385,5,552,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="337,24,370,24,370,29,337,29"/>
+<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for variable expressions." alt="" coords="5,35,173,77"/>
+<area shape="rect" id="Node000002" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="221,5,356,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,41,205,36,206,41,174,46"/>
+<area shape="rect" id="Node000003" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="230,72,346,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,66,215,72,215,77,173,71"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="404,64,571,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="347,83,388,83,388,88,347,88"/>
 </map>

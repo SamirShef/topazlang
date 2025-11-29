@@ -32,6 +32,22 @@ private:
     std::stack<llvm::Type*> functions_ret_types;                                /**< Stack of functions return types */
     std::stack<std::pair<llvm::BasicBlock*, llvm::BasicBlock*>> loop_blocks;    /**< Stack of branches into cycles. First for 'break', second for 'continue' */
 
+    /**
+     * @brief Structure of part of path to object
+     */
+    struct PathPart {
+        std::string name;                                                       /**< Name of part */
+
+        /**
+         * @brief Object from path (module or class)
+         */
+        enum Object {
+            OBJ_MODULE,
+            OBJ_CLASS,
+        } object;
+    };
+    std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
+
 public:
     CodeGenerator(std::vector<AST::StmtPtr>& s, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), file_name(fn) {
         variables.push({});
@@ -175,6 +191,15 @@ private:
     void generate_continue_stmt(AST::ContinueStmt& cs);
 
     /**
+     * @brief Method for generating LLVM IR code for module definition
+     *
+     * This method generating LLVM IR code for module definition
+     *
+     * @param ms Module definition statement
+     */
+    void generate_module_stmt(AST::ModuleStmt& ms);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
@@ -272,4 +297,16 @@ private:
      * @return Casted value
      */
     llvm::Value *implicitly_cast(llvm::Value *val, llvm::Type *expected_type);
+
+    /**
+     * @brief Method for getting mangled name
+     *
+     * This method returns mangled name based passed object name and CodeGenerator::current_path.
+     * Names of parts of path separated '-' (if current part of path is module) or '#' (if current part of path is class)
+     *
+     * @param base_name Based name for mangling
+     *
+     * @return Mangled name
+     */
+    std::string get_mangled_name(std::string base_name);
 };

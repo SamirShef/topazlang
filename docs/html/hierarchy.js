@@ -22,6 +22,7 @@ var hierarchy =
     [ "Lexer", "classLexer.html", null ],
     [ "SemanticAnalyzer::ModuleInfo", "structSemanticAnalyzer_1_1ModuleInfo.html", null ],
     [ "Parser", "classParser.html", null ],
+    [ "CodeGenerator::PathPart", "structCodeGenerator_1_1PathPart.html", null ],
     [ "SemanticAnalyzer::PathPart", "structSemanticAnalyzer_1_1PathPart.html", null ],
     [ "SemanticAnalyzer", "classSemanticAnalyzer.html", null ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
