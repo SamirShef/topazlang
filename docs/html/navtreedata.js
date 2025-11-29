@@ -64,7 +64,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93",
-"structAST_1_1Type.html#a13b52014ce5b39ab6d87c9c9b5b2a2a2"
+"structAST_1_1Argument.html#aeeb6cc58c8e9af6fafc024212b841b79"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

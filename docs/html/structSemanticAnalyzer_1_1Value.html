@@ -90,21 +90,22 @@ Collaboration diagram for SemanticAnalyzer::Value:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9fab0d127544c3bccfd0383980f1795" id="r_ad9fab0d127544c3bccfd0383980f1795"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9fab0d127544c3bccfd0383980f1795">Value</a> (<a class="el" href="structAST_1_1Type.html">AST::Type</a> t, <a class="el" href="structAST_1_1Value.html">AST::Value</a> v, bool il)</td></tr>
+<tr class="memitem:a1051fee45fe7ace56ad3848864dd6feb" id="r_a1051fee45fe7ace56ad3848864dd6feb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1051fee45fe7ace56ad3848864dd6feb">Value</a> (<a class="el" href="structAST_1_1Type.html">AST::Type</a> t, <a class="el" href="structAST_1_1Value.html">AST::Value</a> v, bool vu, bool il)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae1bfcb5415e580fc10bd1e83a9e616e6" id="r_ae1bfcb5415e580fc10bd1e83a9e616e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAST_1_1Type.html">AST::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1bfcb5415e580fc10bd1e83a9e616e6">type</a></td></tr>
 <tr class="memitem:a269644f152b5699896e0010c24c913f6" id="r_a269644f152b5699896e0010c24c913f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAST_1_1Value.html">AST::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a269644f152b5699896e0010c24c913f6">value</a></td></tr>
+<tr class="memitem:a5b2d510473f8d6c0d5707d6c4820bf56" id="r_a5b2d510473f8d6c0d5707d6c4820bf56"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b2d510473f8d6c0d5707d6c4820bf56">is_value_unknown</a></td></tr>
 <tr class="memitem:a439a2afb38e3acc75b5fdeb2fada7a55" id="r_a439a2afb38e3acc75b5fdeb2fada7a55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a439a2afb38e3acc75b5fdeb2fada7a55">is_literal</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure of value. </p>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00030">30</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00039">39</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad9fab0d127544c3bccfd0383980f1795" name="ad9fab0d127544c3bccfd0383980f1795"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9fab0d127544c3bccfd0383980f1795">&#9670;&#160;</a></span>Value()</h2>
+<a id="a1051fee45fe7ace56ad3848864dd6feb" name="a1051fee45fe7ace56ad3848864dd6feb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1051fee45fe7ace56ad3848864dd6feb">&#9670;&#160;</a></span>Value()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,6 +126,11 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>vu</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>il</em></span>&#160;)</td>
         </tr>
       </table>
@@ -135,7 +141,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00035">35</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00045">45</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 
 </div>
 </div>
@@ -153,7 +159,24 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Is the value the result of an operation on literals </p>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00033">33</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00043">43</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a5b2d510473f8d6c0d5707d6c4820bf56" name="a5b2d510473f8d6c0d5707d6c4820bf56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2d510473f8d6c0d5707d6c4820bf56">&#9670;&#160;</a></span>is_value_unknown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SemanticAnalyzer::Value::is_value_unknown</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Is the value the unknown at the compilation time (for example I/O value) </p>
+
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00042">42</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 
 </div>
 </div>
@@ -170,7 +193,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Type of value </p>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00031">31</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00040">40</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 
 </div>
 </div>
@@ -187,7 +210,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Primitive value </p>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00032">32</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00041">41</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 
 </div>
 </div>

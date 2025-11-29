@@ -15,6 +15,15 @@ private:
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
 
+    /**
+     * @brief Current space (in global, in module or in function)
+     */
+    enum Space {
+        SPACE_GLOBAL,
+        SPACE_MODULE,
+        SPACE_FUNCTION,
+    } current_space;
+
     std::map<AST::TypeValue, std::vector<AST::TypeValue>> implicitly_cast_allowed_types {
         {AST::TYPE_BOOL, {}},
         {AST::TYPE_CHAR, {AST::TYPE_SHORT, AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
@@ -30,9 +39,10 @@ private:
     struct Value {
         AST::Type type;                                                         /**< Type of value */
         AST::Value value;                                                       /**< Primitive value */
+        bool is_value_unknown;                                                  /**< Is the value the unknown at the compilation time (for example I/O value) */
         bool is_literal;                                                        /**< Is the value the result of an operation on literals */
 
-        Value(AST::Type t, AST::Value v, bool il) : type(t), value(v), is_literal(il) {}
+        Value(AST::Type t, AST::Value v, bool vu, bool il) : type(t), value(v), is_value_unknown(vu), is_literal(il) {}
     };
 
     std::stack<std::map<std::string, Value>> variables;                         /**< View scope of the variables table */
@@ -50,13 +60,30 @@ private:
     unsigned depth_of_loops;                                                    /**< Depth of loops */
 
     /**
-     * @brief Current space (in global, in module or in function)
+     * @brief Structure of information about module
      */
-    enum Space {
-        SPACE_GLOBAL,
-        SPACE_MODULE,
-        SPACE_FUNCTION,
-    } current_space;
+    struct ModuleInfo {
+        std::map<std::string, std::pair<AST::AccessModifier, Value>> variables;                         /**< Global variables table in module */
+        std::map<std::string, std::pair<AST::AccessModifier, std::unique_ptr<FunctionInfo>>> functions; /**< Functions table in module */
+    };
+    std::map<std::string, ModuleInfo> modules;                                  /**< Modules table */
+    std::stack<ModuleInfo*> modules_stack;                                      /**< Stack to modules */
+
+    /**
+     * @brief Structure of part of path to object
+     */
+    struct PathPart {
+        std::string name;                                                       /**< Name of part */
+
+        /**
+         * @brief Object from path (module or class)
+         */
+        enum Object {
+            OBJ_MODULE,
+            OBJ_CLASS,
+        } object;
+    };
+    std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
 
 public:
     SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn), depth_of_loops(0) {
@@ -86,8 +113,9 @@ private:
      * This method analyze variable declaration
      *
      * @param vds Variable declaration statement for analyzing
+     * @param is_func_arg Flag that indicates that a variable is an argument to a function
      */
-    void analyze_var_decl_stmt(AST::VarDeclStmt& vds);
+    void analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func_arg = false);
 
     /**
      * @brief Method for analyze variable assignment
@@ -180,6 +208,15 @@ private:
      * @param cs Continue statement
      */
     void analyze_continue_stmt(AST::ContinueStmt& cs);
+
+    /**
+     * @brief Method for analyze module definition
+     *
+     * This method analyze module definition
+     *
+     * @param ms Module definition statement
+     */
+    void analyze_module_stmt(AST::ModuleStmt& ms);
 
     /**
      * @brief Method for analyze expression
@@ -394,4 +431,16 @@ private:
      * @return Evaluating value
      */
     double unary_two_variants(Value value, TokenType op, uint32_t line);
+
+    /**
+     * @brief Method for getting mangled name
+     *
+     * This method returns mangled name based passed object name and SemanticAnalyzer::current_path.
+     * Names of parts of path separated '-' (if current part of path is module) or '.' (if current part of path is class)
+     *
+     * @param base_name Based name for mangling
+     *
+     * @return Mangled name
+     */
+    std::string get_mangled_name(std::string base_name);
 };

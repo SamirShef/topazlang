@@ -192,7 +192,10 @@ AST::Argument Parser::parse_argument() {
 
 AST::StmtPtr Parser::parse_return_stmt() {
     Token first_token = peek(-1);
-    AST::ExprPtr ret_expr = parse_expr();
+    AST::ExprPtr ret_expr = nullptr;
+    if (peek().type != TOK_OP_SEMICOLON) {
+        ret_expr = parse_expr();
+    }
     return std::make_unique<AST::ReturnStmt>(std::move(ret_expr), first_token.line);
 }
 
