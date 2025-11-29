@@ -1,0 +1,21 @@
+module math {
+    priv fun _pow(x: double, power: int) -> double {
+        if (power == 0) {
+            return 1;
+        }
+        
+        let double res = 1;
+        for let int i = 0, i < power, i++ {
+            res *= x;
+        }
+        return x;
+    }
+    
+    pub fun pow(x: double, power: int) -> double {
+        return _pow(x, power);
+    }
+}
+
+fun main() -> int {
+    return 0;
+}

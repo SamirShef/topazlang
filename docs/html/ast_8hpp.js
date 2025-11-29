@@ -29,8 +29,14 @@ var ast_8hpp =
     [ "AST::ForCycleStmt", "classAST_1_1ForCycleStmt.html", "classAST_1_1ForCycleStmt" ],
     [ "AST::BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
     [ "AST::ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
+    [ "AST::ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
     [ "AST::ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "AST::StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
+    [ "AST::AccessModifier", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905", [
+      [ "AST::ACCESS_NONE", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a986c767df896091338b31140729b83bd", null ],
+      [ "AST::ACCESS_PRIVATE", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a04c5f499da1606eca7768456fdb477c2", null ],
+      [ "AST::ACCESS_PUBLIC", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a0794ae4f9b94408f280b24fe71ab6d58", null ]
+    ] ],
     [ "AST::TypeValue", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd", [
       [ "AST::TYPE_BOOL", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e", null ],
       [ "AST::TYPE_CHAR", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261", null ],

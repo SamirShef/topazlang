@@ -29,8 +29,14 @@ var namespaceAST =
     [ "ForCycleStmt", "classAST_1_1ForCycleStmt.html", "classAST_1_1ForCycleStmt" ],
     [ "BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
     [ "ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
+    [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
     [ "ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
+    [ "AccessModifier", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905", [
+      [ "ACCESS_NONE", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a986c767df896091338b31140729b83bd", null ],
+      [ "ACCESS_PRIVATE", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a04c5f499da1606eca7768456fdb477c2", null ],
+      [ "ACCESS_PUBLIC", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905a0794ae4f9b94408f280b24fe71ab6d58", null ]
+    ] ],
     [ "TypeValue", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbd", [
       [ "TYPE_BOOL", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdabcde2edbbf9bd105b59cc9f19ef1dc9e", null ],
       [ "TYPE_CHAR", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda703c01b3c8077a211a6a8808a7be0261", null ],

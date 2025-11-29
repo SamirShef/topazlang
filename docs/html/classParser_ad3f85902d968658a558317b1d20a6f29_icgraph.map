@@ -14,13 +14,16 @@
 <area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="328,206,265,206,265,200,328,201"/>
 <area shape="rect" id="Node000009" href="$classParser.html#a1fee8ad7e05a3de414f2b548e102040d" title="Method for parsing of control flow operators (aka if&#45;else)." alt="" coords="110,240,288,267"/>
 <area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="377,217,296,243,289,245,287,239,294,237,375,212"/>
-<area shape="rect" id="Node000010" href="$classParser.html#a12957ed845e7c2263543daae50fbe692" title="Method for parsing of while cycle." alt="" coords="131,291,267,333"/>
-<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="391,222,349,258,296,293,269,305,266,301,294,288,346,254,388,218"/>
+<area shape="rect" id="Node000010" href="$classParser.html#ade9a1a6479be241eb294b2b04747ea86" title="Method for parsing of module definition." alt="" coords="108,291,290,317"/>
+<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="392,222,350,259,296,293,291,295,289,291,294,288,347,255,388,218"/>
+<area shape="rect" id="Node000011" href="$classParser.html#a12957ed845e7c2263543daae50fbe692" title="Method for parsing of while cycle." alt="" coords="131,341,267,384"/>
+<area shape="poly" id="edge15_Node000003_Node000011" title=" " alt="" coords="398,224,358,284,329,316,296,344,268,358,266,354,294,339,326,312,354,281,394,221"/>
 <area shape="rect" id="Node000005" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,5,55,32"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="133,21,55,21,55,16,133,16"/>
 <area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="293,95,296,96,358,138,401,179,398,183,355,142,294,101,291,99"/>
 <area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="311,151,391,178,389,183,309,156"/>
 <area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="280,183,343,184,343,189,280,189"/>
 <area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="232,232,294,213,342,200,344,205,296,219,234,237"/>
-<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="253,282,294,264,340,235,380,206,383,211,343,240,296,269,255,287"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="239,283,294,264,341,236,381,206,384,211,344,240,296,269,241,288"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="259,333,294,315,325,289,353,259,393,207,397,210,357,263,329,293,296,320,261,338"/>
 </map>

@@ -80,6 +80,7 @@ Classes</h2></td></tr>
 <tr class="memitem:Value" id="r_Value"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAST_1_1Value.html">Value</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for describing the value.  <a href="structAST_1_1Value.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Argument" id="r_Argument"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAST_1_1Argument.html">Argument</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure for describing the argument (in function or method).  <a href="structAST_1_1Argument.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Stmt" id="r_Stmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Stmt.html">Stmt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of statement.  <a href="classAST_1_1Stmt.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Expr" id="r_Expr"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Expr.html">Expr</a></td></tr>
@@ -132,6 +133,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of break.  <a href="classAST_1_1BreakStmt.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ContinueStmt" id="r_ContinueStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1ContinueStmt.html">ContinueStmt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of break.  <a href="classAST_1_1ContinueStmt.html#details">More...</a><br /></td></tr>
+<tr class="memitem:ModuleStmt" id="r_ModuleStmt"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1ModuleStmt.html">ModuleStmt</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statement of module definition.  <a href="classAST_1_1ModuleStmt.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -157,6 +160,11 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="memdesc:a9c58ec4096a73a8a3427c29077b6fbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type values enum.  <a href="#a9c58ec4096a73a8a3427c29077b6fbbd">More...</a><br /></td></tr>
+<tr class="memitem:a5b4bfc22f3a6a35e350a9c73f6a34905" id="r_a5b4bfc22f3a6a35e350a9c73f6a34905"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b4bfc22f3a6a35e350a9c73f6a34905">AccessModifier</a> { <a class="el" href="#a5b4bfc22f3a6a35e350a9c73f6a34905a986c767df896091338b31140729b83bd">ACCESS_NONE</a>
+, <a class="el" href="#a5b4bfc22f3a6a35e350a9c73f6a34905a04c5f499da1606eca7768456fdb477c2">ACCESS_PRIVATE</a>
+, <a class="el" href="#a5b4bfc22f3a6a35e350a9c73f6a34905a0794ae4f9b94408f280b24fe71ab6d58">ACCESS_PUBLIC</a>
+ }</td></tr>
+<tr class="memdesc:a5b4bfc22f3a6a35e350a9c73f6a34905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access modifier for statements.  <a href="#a5b4bfc22f3a6a35e350a9c73f6a34905">More...</a><br /></td></tr>
 </table>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="ac38b07a345d71eb09bc357f69bee649e" name="ac38b07a345d71eb09bc357f69bee649e"></a>
@@ -171,7 +179,7 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00109">109</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00121">121</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -187,11 +195,34 @@ Enumerations</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00108">108</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00120">120</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
 <a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="a5b4bfc22f3a6a35e350a9c73f6a34905" name="a5b4bfc22f3a6a35e350a9c73f6a34905"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b4bfc22f3a6a35e350a9c73f6a34905">&#9670;&#160;</a></span>AccessModifier</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a5b4bfc22f3a6a35e350a9c73f6a34905">AST::AccessModifier</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Access modifier for statements. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5b4bfc22f3a6a35e350a9c73f6a34905a986c767df896091338b31140729b83bd" name="a5b4bfc22f3a6a35e350a9c73f6a34905a986c767df896091338b31140729b83bd"></a>ACCESS_NONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5b4bfc22f3a6a35e350a9c73f6a34905a04c5f499da1606eca7768456fdb477c2" name="a5b4bfc22f3a6a35e350a9c73f6a34905a04c5f499da1606eca7768456fdb477c2"></a>ACCESS_PRIVATE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5b4bfc22f3a6a35e350a9c73f6a34905a0794ae4f9b94408f280b24fe71ab6d58" name="a5b4bfc22f3a6a35e350a9c73f6a34905a0794ae4f9b94408f280b24fe71ab6d58"></a>ACCESS_PUBLIC&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00092">92</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a9c58ec4096a73a8a3427c29077b6fbbd" name="a9c58ec4096a73a8a3427c29077b6fbbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c58ec4096a73a8a3427c29077b6fbbd">&#9670;&#160;</a></span>TypeValue</h2>
 

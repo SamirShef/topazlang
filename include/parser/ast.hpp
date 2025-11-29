@@ -76,11 +76,23 @@ namespace AST {
         Value(std::string v)        : value(v) {}
     };
 
+    /**
+     * @brief Structure for describing the argument (in function or method)
+     */
     struct Argument {
-        std::string name;
-        Type type;
+        std::string name;                                       /**< Name of argument */
+        Type type;                                              /**< Type of argument */
 
         Argument(std::string n, Type t) : name(n), type(t) {}
+    };
+
+    /**
+     * @brief Access modifier for statements
+     */
+    enum AccessModifier {
+        ACCESS_NONE,
+        ACCESS_PRIVATE,
+        ACCESS_PUBLIC,
     };
     
     /**
@@ -88,7 +100,7 @@ namespace AST {
      */
     class Stmt {
     public:
-        uint32_t line;                      /**< Line coordinate */
+        uint32_t line;                                          /**< Line coordinate */
 
         Stmt(uint32_t l) : line(l) {}
         virtual ~Stmt() = default;
@@ -99,7 +111,7 @@ namespace AST {
      */
     class Expr {
     public:
-        uint32_t line;                      /**< Line coordinate */
+        uint32_t line;                                          /**< Line coordinate */
 
         Expr(uint32_t l) : line(l) {}
         virtual ~Expr() = default;
@@ -115,8 +127,8 @@ namespace AST {
      */
     class Literal : public Expr {
     public:
-        Type type;                          /**< Type of literal */
-        Value value;                        /**< Value of literal */
+        Type type;                                              /**< Type of literal */
+        Value value;                                            /**< Value of literal */
 
         Literal(Type t, Value v, uint32_t l) : type(t), value(v), Expr(l) {}
         ~Literal() override = default;
@@ -257,11 +269,12 @@ namespace AST {
      */
     class VarDeclStmt : public Stmt {
     public:
+        AccessModifier access;                                  /**< Access modifier */
         Type type;                                              /**< Variable type */
         ExprPtr expr;                                           /**< Variable initialization expression (maybe nullptr) */
         std::string name;                                       /**< Variable name */
 
-        VarDeclStmt(Type t, ExprPtr e, std::string n, uint32_t l) : type(t), expr(std::move(e)), name(n), Stmt(l) {}
+        VarDeclStmt(AccessModifier am, Type t, ExprPtr e, std::string n, uint32_t l) : access(am), type(t), expr(std::move(e)), name(n), Stmt(l) {}
         ~VarDeclStmt() override = default;
     };
 
@@ -282,12 +295,13 @@ namespace AST {
      */
     class FuncDeclStmt : public Stmt {
     public:
+        AccessModifier access;                                  /**< Access modifier */
         std::string name;                                       /**< Function name */
         std::vector<Argument> args;                             /**< Functions arguments */
         Type ret_type;                                          /**< Function return type */
         std::vector<StmtPtr> block;                             /**< Function block */
 
-        FuncDeclStmt(std::string n, std::vector<Argument> a, Type rt, std::vector<StmtPtr> b, uint32_t l) : name(n), args(std::move(a)), ret_type(rt), block(std::move(b)), Stmt(l) {}
+        FuncDeclStmt(AccessModifier am, std::string n, std::vector<Argument> a, Type rt, std::vector<StmtPtr> b, uint32_t l) : access(am), name(n), args(std::move(a)), ret_type(rt), block(std::move(b)), Stmt(l) {}
         ~FuncDeclStmt() override = default;
     };
 
@@ -370,6 +384,7 @@ namespace AST {
     class BreakStmt : public Stmt {
     public:
         BreakStmt(uint32_t l) : Stmt(l) {}
+        ~BreakStmt() override = default;
     };
 
     /**
@@ -378,5 +393,19 @@ namespace AST {
     class ContinueStmt : public Stmt {
     public:
         ContinueStmt(uint32_t l) : Stmt(l) {}
+        ~ContinueStmt() override = default;
+    };
+
+    /**
+     * @brief Statement of module definition
+     */
+    class ModuleStmt : public Stmt {
+    public:
+        std::string file_name;                                  /**< Name of file with this module */
+        std::string name;                                       /**< Name of module */
+        std::vector<StmtPtr> block;                             /**< Block of members */
+
+        ModuleStmt(std::string fn, std::string n, std::vector<StmtPtr> b, uint32_t l) : file_name(fn), name(n), block(std::move(b)), Stmt(l) {}
+        ~ModuleStmt() override = default;
     };
 }

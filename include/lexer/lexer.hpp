@@ -38,6 +38,7 @@ private:
         {"do", TOK_DO},
         {"continue", TOK_CONTINUE},
         {"break", TOK_BREAK},
+        {"module", TOK_MODULE},
         {"pub", TOK_PUB},
         {"priv", TOK_PRIV},
         {"const", TOK_CONST},

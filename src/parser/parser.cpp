@@ -21,8 +21,17 @@ void Parser::reset() {
     pos = 0;
 }
 
+AST::AccessModifier current_access;
+
 AST::StmtPtr Parser::parse_stmt(bool from_for) {
     AST::StmtPtr stmt = nullptr;
+    current_access = AST::ACCESS_NONE;
+    if (match(TOK_PUB)) {
+        current_access = AST::ACCESS_PUBLIC;
+    }
+    else if (match(TOK_PRIV)) {
+        current_access = AST::ACCESS_NONE;
+    }
     
     if (match(TOK_LET)) {
         stmt = parse_var_decl_stmt();
@@ -80,6 +89,9 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
             consume_semicolon();
         }
     }
+    else if (match(TOK_MODULE)) {
+        stmt = parse_module_stmt();
+    }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
@@ -98,7 +110,7 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     if (match(TOK_OP_EQ)) {
         expr = parse_expr();
     }
-    return std::make_unique<AST::VarDeclStmt>(type, std::move(expr), name, first_token.line);
+    return std::make_unique<AST::VarDeclStmt>(current_access, type, std::move(expr), name, first_token.line);
 }
 
 AST::StmtPtr Parser::parse_var_asgn_stmt() {
@@ -145,7 +157,7 @@ AST::StmtPtr Parser::parse_func_decl_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-    return std::make_unique<AST::FuncDeclStmt>(name, std::move(args), ret_type, std::move(block), first_token.line);
+    return std::make_unique<AST::FuncDeclStmt>(current_access, name, std::move(args), ret_type, std::move(block), first_token.line);
 }
 
 AST::StmtPtr Parser::parse_func_call_stmt() {
@@ -253,6 +265,19 @@ AST::StmtPtr Parser::parse_break_stmt() {
 AST::StmtPtr Parser::parse_continue_stmt() {
     Token first_token = peek(-1);
     return std::make_unique<AST::ContinueStmt>(first_token.line);
+}
+
+AST::StmtPtr Parser::parse_module_stmt() {
+    Token first_token = peek(-1);
+    std::stringstream ss;
+    ss << "Expected module name.\nToken \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
+    std::string name = consume(TOK_ID, ss.str(), peek().line).value;
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_stmt());
+    }
+    return std::make_unique<AST::ModuleStmt>(first_token.file_name, name, std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
@@ -374,6 +399,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
     Token token = peek();
     switch (token.type) {
         case TOK_OP_LPAREN: {
+            pos++;
             AST::ExprPtr expr = parse_expr();
             consume(TOK_OP_RPAREN, "Expected ')'. You forgot to specify the closing ')'", token.line);
             return expr;

@@ -106,7 +106,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     functions_ret_types.push(ret_type);
     functions.emplace(fds.name, new FunctionInfo{.ret_type=ret_type, .args=std::move(fds.args), .block=std::move(fds.block)});
     for (auto& arg : functions.at(fds.name)->args) {
-        analyze_var_decl_stmt(*std::make_unique<AST::VarDeclStmt>(arg.type, nullptr, arg.name, fds.line));
+        analyze_var_decl_stmt(*std::make_unique<AST::VarDeclStmt>(AST::ACCESS_NONE, arg.type, nullptr, arg.name, fds.line));
     }
     bool have_ret_in_global = false;
     for (auto& stmt : functions.at(fds.name)->block) {

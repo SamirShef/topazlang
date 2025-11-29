@@ -30,6 +30,7 @@ typedef enum : uint8_t {
     TOK_WHILE,                              /**< 'while' keyword for `while` cycle definition */
     TOK_CONTINUE,                           /**< 'continue' keyword for jump to next cycle iteration */
     TOK_BREAK,                              /**< 'break' keyword for break cycle execution */
+    TOK_MODULE,                             /**< 'module' keyword for module defintion */
     TOK_PUB,                                /**< 'pub' keyword for declare some statement with global visiblity */
     TOK_PRIV,                               /**< 'priv' keyword for declare some statement with local visiblity */
     TOK_CONST,                              /**< 'const' keyword */

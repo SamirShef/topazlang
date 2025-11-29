@@ -102,7 +102,7 @@ Collaboration diagram for AST::FuncDeclStmt:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac5b0bcce75127be1c6b970e39e34a350" id="r_ac5b0bcce75127be1c6b970e39e34a350"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5b0bcce75127be1c6b970e39e34a350">FuncDeclStmt</a> (std::string n, std::vector&lt; <a class="el" href="structAST_1_1Argument.html">Argument</a> &gt; a, <a class="el" href="structAST_1_1Type.html">Type</a> rt, std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">StmtPtr</a> &gt; b, uint32_t l)</td></tr>
+<tr class="memitem:ade6b0729a15afb21dedbd3f9d32c842f" id="r_ade6b0729a15afb21dedbd3f9d32c842f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade6b0729a15afb21dedbd3f9d32c842f">FuncDeclStmt</a> (<a class="el" href="namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905">AccessModifier</a> am, std::string n, std::vector&lt; <a class="el" href="structAST_1_1Argument.html">Argument</a> &gt; a, <a class="el" href="structAST_1_1Type.html">Type</a> rt, std::vector&lt; <a class="el" href="namespaceAST.html#a754934be305d4cff6e00494a146bee6a">StmtPtr</a> &gt; b, uint32_t l)</td></tr>
 <tr class="memitem:a9c3680fc8aa6e9404719e1d3447a19f2" id="r_a9c3680fc8aa6e9404719e1d3447a19f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c3680fc8aa6e9404719e1d3447a19f2">~FuncDeclStmt</a> () override=default</td></tr>
 <tr class="inherit_header pub_methods_classAST_1_1Stmt"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classAST_1_1Stmt')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classAST_1_1Stmt.html">AST::Stmt</a></td></tr>
 <tr class="memitem:a9e417ea5c4ae6a49bcdc44057eaeac52 inherit pub_methods_classAST_1_1Stmt" id="r_a9e417ea5c4ae6a49bcdc44057eaeac52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST_1_1Stmt.html#a9e417ea5c4ae6a49bcdc44057eaeac52">Stmt</a> (uint32_t l)</td></tr>
@@ -110,6 +110,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a4a203899e9755406dce5f111cced91e1" id="r_a4a203899e9755406dce5f111cced91e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905">AccessModifier</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a203899e9755406dce5f111cced91e1">access</a></td></tr>
 <tr class="memitem:ae8c461b1295c0bfec58d1f9d615a04bc" id="r_ae8c461b1295c0bfec58d1f9d615a04bc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8c461b1295c0bfec58d1f9d615a04bc">name</a></td></tr>
 <tr class="memitem:a07f03a1aae8fc9500cfdc7b172fdae47" id="r_a07f03a1aae8fc9500cfdc7b172fdae47"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structAST_1_1Argument.html">Argument</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07f03a1aae8fc9500cfdc7b172fdae47">args</a></td></tr>
 <tr class="memitem:a2a10c9f7a2626bbc6837cc61b031285e" id="r_a2a10c9f7a2626bbc6837cc61b031285e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structAST_1_1Type.html">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a10c9f7a2626bbc6837cc61b031285e">ret_type</a></td></tr>
@@ -120,10 +121,10 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Statement of functions declaration. </p>
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00283">283</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00296">296</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac5b0bcce75127be1c6b970e39e34a350" name="ac5b0bcce75127be1c6b970e39e34a350"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5b0bcce75127be1c6b970e39e34a350">&#9670;&#160;</a></span>FuncDeclStmt()</h2>
+<a id="ade6b0729a15afb21dedbd3f9d32c842f" name="ade6b0729a15afb21dedbd3f9d32c842f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade6b0729a15afb21dedbd3f9d32c842f">&#9670;&#160;</a></span>FuncDeclStmt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,6 +135,11 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">AST::FuncDeclStmt::FuncDeclStmt </td>
           <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905">AccessModifier</a></td>          <td class="paramname"><span class="paramname"><em>am</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
         </tr>
         <tr>
@@ -164,12 +170,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00290">290</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00304">304</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classAST_1_1FuncDeclStmt_ac5b0bcce75127be1c6b970e39e34a350_cgraph.png" border="0" usemap="#aclassAST_1_1FuncDeclStmt_ac5b0bcce75127be1c6b970e39e34a350_cgraph" loading="lazy" alt=""/></div>
-<map name="aclassAST_1_1FuncDeclStmt_ac5b0bcce75127be1c6b970e39e34a350_cgraph" id="aclassAST_1_1FuncDeclStmt_ac5b0bcce75127be1c6b970e39e34a350_cgraph">
+<div class="center"><img src="classAST_1_1FuncDeclStmt_ade6b0729a15afb21dedbd3f9d32c842f_cgraph.png" border="0" usemap="#aclassAST_1_1FuncDeclStmt_ade6b0729a15afb21dedbd3f9d32c842f_cgraph" loading="lazy" alt=""/></div>
+<map name="aclassAST_1_1FuncDeclStmt_ade6b0729a15afb21dedbd3f9d32c842f_cgraph" id="aclassAST_1_1FuncDeclStmt_ade6b0729a15afb21dedbd3f9d32c842f_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,152,48"/>
 <area shape="rect" href="classAST_1_1Stmt.html#a9e417ea5c4ae6a49bcdc44057eaeac52" title=" " alt="" coords="200,13,318,40"/>
 <area shape="poly" title=" " alt="" coords="152,24,184,24,184,29,152,29"/>
@@ -204,6 +210,23 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a4a203899e9755406dce5f111cced91e1" name="a4a203899e9755406dce5f111cced91e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a203899e9755406dce5f111cced91e1">&#9670;&#160;</a></span>access</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905">AccessModifier</a> AST::FuncDeclStmt::access</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Access modifier </p>
+
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00298">298</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a07f03a1aae8fc9500cfdc7b172fdae47" name="a07f03a1aae8fc9500cfdc7b172fdae47"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a07f03a1aae8fc9500cfdc7b172fdae47">&#9670;&#160;</a></span>args</h2>
 
@@ -217,7 +240,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Functions arguments </p>
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00286">286</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00300">300</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -234,7 +257,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Function block </p>
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00288">288</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00302">302</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +274,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Function name </p>
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00285">285</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00299">299</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +291,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <p>Function return type </p>
 
-<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00287">287</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ast_8hpp_source.html#l00301">301</a> of file <a class="el" href="ast_8hpp_source.html">ast.hpp</a>.</p>
 
 </div>
 </div>
