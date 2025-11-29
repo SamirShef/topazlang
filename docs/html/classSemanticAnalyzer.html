@@ -88,6 +88,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a21f3fdba4d12d6ce62ef375321edc598" id="r_a21f3fdba4d12d6ce62ef375321edc598"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21f3fdba4d12d6ce62ef375321edc598">analyze</a> ()</td></tr>
 <tr class="memdesc:a21f3fdba4d12d6ce62ef375321edc598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method for analyze all statements.  <br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-types" class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:aadb74064b958702605c992002635b417" id="r_aadb74064b958702605c992002635b417"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadb74064b958702605c992002635b417">Space</a> { <a class="el" href="#aadb74064b958702605c992002635b417ab920cc13e80b4b56373d4f1f611bfbad">SPACE_GLOBAL</a>
+, <a class="el" href="#aadb74064b958702605c992002635b417a40f1b85e4800eb877f177b91e997ce90">SPACE_MODULE</a>
+, <a class="el" href="#aadb74064b958702605c992002635b417a434ddc2c86dd881ff437578c10fa7126">SPACE_FUNCTION</a>
+ }</td></tr>
+<tr class="memdesc:aadb74064b958702605c992002635b417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current space (in global, in module or in function).  <a href="#aadb74064b958702605c992002635b417">More...</a><br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aa097e555d59d18da97e2341996f4f93e" id="r_aa097e555d59d18da97e2341996f4f93e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa097e555d59d18da97e2341996f4f93e">analyze_stmt</a> (<a class="el" href="classAST_1_1Stmt.html">AST::Stmt</a> &amp;stmt)</td></tr>
@@ -160,11 +168,44 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a37b363effef94bb6a59956ed0a969d38" id="r_a37b363effef94bb6a59956ed0a969d38"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::unique_ptr&lt; <a class="el" href="structSemanticAnalyzer_1_1FunctionInfo.html">FunctionInfo</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37b363effef94bb6a59956ed0a969d38">functions</a></td></tr>
 <tr class="memitem:afc5ce31ea67f44866b4f0bf2d7977404" id="r_afc5ce31ea67f44866b4f0bf2d7977404"><td class="memItemLeft" align="right" valign="top">std::stack&lt; <a class="el" href="structAST_1_1Type.html">AST::Type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc5ce31ea67f44866b4f0bf2d7977404">functions_ret_types</a></td></tr>
 <tr class="memitem:a33466ba85c4d9840c84e4e8913d03488" id="r_a33466ba85c4d9840c84e4e8913d03488"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33466ba85c4d9840c84e4e8913d03488">depth_of_loops</a></td></tr>
+<tr class="memitem:ac0edbd6872d0993bfa9baf47ba3728fb" id="r_ac0edbd6872d0993bfa9baf47ba3728fb"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="#aadb74064b958702605c992002635b417">SemanticAnalyzer::Space</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0edbd6872d0993bfa9baf47ba3728fb">current_space</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00013">13</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Member Enumeration Documentation</h2>
+<a id="aadb74064b958702605c992002635b417" name="aadb74064b958702605c992002635b417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb74064b958702605c992002635b417">&#9670;&#160;</a></span>Space</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#aadb74064b958702605c992002635b417">SemanticAnalyzer::Space</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Current space (in global, in module or in function). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aadb74064b958702605c992002635b417ab920cc13e80b4b56373d4f1f611bfbad" name="aadb74064b958702605c992002635b417ab920cc13e80b4b56373d4f1f611bfbad"></a>SPACE_GLOBAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aadb74064b958702605c992002635b417a40f1b85e4800eb877f177b91e997ce90" name="aadb74064b958702605c992002635b417a40f1b85e4800eb877f177b91e997ce90"></a>SPACE_MODULE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aadb74064b958702605c992002635b417a434ddc2c86dd881ff437578c10fa7126" name="aadb74064b958702605c992002635b417a434ddc2c86dd881ff437578c10fa7126"></a>SPACE_FUNCTION&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00055">55</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+
+</div>
+</div>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a27e7018cbb7449f8f2e4387ff127b922" name="a27e7018cbb7449f8f2e4387ff127b922"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27e7018cbb7449f8f2e4387ff127b922">&#9670;&#160;</a></span>SemanticAnalyzer()</h2>
 
@@ -192,7 +233,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00053">53</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8hpp_source.html#l00062">62</a> of file <a class="el" href="semantic_8hpp_source.html">semantic.hpp</a>.</p>
 
 </div>
 </div>
@@ -414,7 +455,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed binary expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00305">305</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00326">326</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -690,7 +731,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00268">268</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00289">289</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -830,7 +871,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00274">274</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00295">295</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -970,7 +1011,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00230">230</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00251">251</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1247,7 +1288,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00280">280</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00301">301</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1523,7 +1564,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00246">246</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00267">267</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1800,7 +1841,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed function calling (if have) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00434">434</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00455">455</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2076,7 +2117,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00151">151</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00169">169</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2352,7 +2393,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00097">97</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00115">115</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2628,7 +2669,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00193">193</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00214">214</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -2905,7 +2946,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed literal </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00301">301</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00322">322</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -3033,7 +3074,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00177">177</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00195">195</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3586,7 +3627,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed unary expression </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00385">385</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00406">406</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -3862,7 +3903,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00076">76</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00094">94</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4138,7 +4179,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00056">56</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00074">74</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4415,7 +4456,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of passed variable (if have) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00424">424</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00445">445</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4557,7 +4598,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00214">214</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00235">235</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4851,7 +4892,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00697">697</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00718">718</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -4911,7 +4952,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Common type between two passed types </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00683">683</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00704">704</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5061,7 +5102,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Default value by passed type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00629">629</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00650">650</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5204,7 +5245,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Info about function </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00664">664</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00685">685</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -5340,7 +5381,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating function returned value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00459">459</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00480">480</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5617,7 +5658,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating function returned value or nullptr if does not have 'return' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00574">574</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00595">595</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -5894,7 +5935,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating function returned value or nullptr if does not have 'return' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00596">596</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00617">617</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -6171,7 +6212,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating function returned value or nullptr if does not have 'return' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00504">504</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00525">525</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -6448,7 +6489,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating function returned value or nullptr if does not have 'return' </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00549">549</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00570">570</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -6725,7 +6766,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structSemanticAnalyzer_1_1Value.html" title="Structure of value.">Value</a> of variable </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00652">652</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00673">673</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -6863,7 +6904,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if there is a common type for the two passed types, otherwise false </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00672">672</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00693">693</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -7011,7 +7052,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluating value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00783">783</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="semantic_8cpp_source.html#l00804">804</a> of file <a class="el" href="semantic_8cpp_source.html">semantic.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -7028,6 +7069,28 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ac0edbd6872d0993bfa9baf47ba3728fb" name="ac0edbd6872d0993bfa9baf47ba3728fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0edbd6872d0993bfa9baf47ba3728fb">&#9670;&#160;</a></span>current_space</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#aadb74064b958702605c992002635b417">SemanticAnalyzer::Space</a> SemanticAnalyzer::current_space</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a33466ba85c4d9840c84e4e8913d03488" name="a33466ba85c4d9840c84e4e8913d03488"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a33466ba85c4d9840c84e4e8913d03488">&#9670;&#160;</a></span>depth_of_loops</h2>
 

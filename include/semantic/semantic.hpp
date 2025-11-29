@@ -49,6 +49,15 @@ private:
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
     unsigned depth_of_loops;                                                    /**< Depth of loops */
 
+    /**
+     * @brief Current space (in global, in module or in function)
+     */
+    enum Space {
+        SPACE_GLOBAL,
+        SPACE_MODULE,
+        SPACE_FUNCTION,
+    } current_space;
+
 public:
     SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn), depth_of_loops(0) {
         variables.push({});

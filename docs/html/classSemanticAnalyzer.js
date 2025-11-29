@@ -2,6 +2,11 @@ var classSemanticAnalyzer =
 [
     [ "Value", "structSemanticAnalyzer_1_1Value.html", "structSemanticAnalyzer_1_1Value" ],
     [ "FunctionInfo", "structSemanticAnalyzer_1_1FunctionInfo.html", "structSemanticAnalyzer_1_1FunctionInfo" ],
+    [ "Space", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417", [
+      [ "SPACE_GLOBAL", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417ab920cc13e80b4b56373d4f1f611bfbad", null ],
+      [ "SPACE_MODULE", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417a40f1b85e4800eb877f177b91e997ce90", null ],
+      [ "SPACE_FUNCTION", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417a434ddc2c86dd881ff437578c10fa7126", null ]
+    ] ],
     [ "SemanticAnalyzer", "classSemanticAnalyzer.html#a27e7018cbb7449f8f2e4387ff127b922", null ],
     [ "analyze", "classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598", null ],
     [ "analyze_binary_expr", "classSemanticAnalyzer.html#af0f7909d4707f3ae5a0c27097b305eaf", null ],
@@ -34,6 +39,7 @@ var classSemanticAnalyzer =
     [ "get_variable_value", "classSemanticAnalyzer.html#a3e2fe962e5b0a40e8030ce7f25d72489", null ],
     [ "has_common_type", "classSemanticAnalyzer.html#a75f8b13e4c05c3440492a1fd09976c06", null ],
     [ "unary_two_variants", "classSemanticAnalyzer.html#aedd2a6febd49a0c5840fc2aaf32032de", null ],
+    [ "current_space", "classSemanticAnalyzer.html#ac0edbd6872d0993bfa9baf47ba3728fb", null ],
     [ "depth_of_loops", "classSemanticAnalyzer.html#a33466ba85c4d9840c84e4e8913d03488", null ],
     [ "file_name", "classSemanticAnalyzer.html#a6f678271de88b1a0b32fac7dc2cafc12", null ],
     [ "functions", "classSemanticAnalyzer.html#a37b363effef94bb6a59956ed0a969d38", null ],

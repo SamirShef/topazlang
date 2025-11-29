@@ -19,27 +19,45 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
         analyze_var_decl_stmt(*vds);
     }
     else if (auto vas = dynamic_cast<AST::VarAsgnStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "Assignment of variable cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_var_asgn_stmt(*vas);
     }
     else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&stmt)) {
         analyze_func_decl_stmt(*fds);
     }
     else if (auto fcs = dynamic_cast<AST::FuncCallStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "Calling of function cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_func_call_stmt(*fcs);
     }
     else if (auto rs = dynamic_cast<AST::ReturnStmt*>(&stmt)) {
         analyze_return_stmt(*rs);
     }
     else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "Control flow cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_if_else_stmt(*ies);
     }
     else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "While loop cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_while_cycle_stmt(*wcs);
     }
     else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "Do-while loop cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_do_while_cycle_stmt(*dwcs);
     }
     else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&stmt)) {
+        if (current_space != SPACE_FUNCTION) {
+            throw_exception(SUB_SEMANTIC, "For loop cannot be in global or module space", stmt.line, file_name);
+        }
         analyze_for_cycle_stmt(*fcs);
     }
     else if (auto bs = dynamic_cast<AST::BreakStmt*>(&stmt)) {
@@ -175,6 +193,9 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
 }
 
 void SemanticAnalyzer::analyze_return_stmt(AST::ReturnStmt& rs) {
+    if (functions_ret_types.empty()) {
+        throw_exception(SUB_SEMANTIC, "\033[0m'return'\033[31m statement must be in a function", rs.line, file_name);
+    }
     if (rs.expr != nullptr) {
         Value val = analyze_expr(*rs.expr);
         if (!has_common_type(val.type, functions_ret_types.top())) {
