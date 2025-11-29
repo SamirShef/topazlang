@@ -20,7 +20,9 @@ var hierarchy =
     ] ],
     [ "SemanticAnalyzer::FunctionInfo", "structSemanticAnalyzer_1_1FunctionInfo.html", null ],
     [ "Lexer", "classLexer.html", null ],
+    [ "SemanticAnalyzer::ModuleInfo", "structSemanticAnalyzer_1_1ModuleInfo.html", null ],
     [ "Parser", "classParser.html", null ],
+    [ "SemanticAnalyzer::PathPart", "structSemanticAnalyzer_1_1PathPart.html", null ],
     [ "SemanticAnalyzer", "classSemanticAnalyzer.html", null ],
     [ "AST::Stmt", "classAST_1_1Stmt.html", [
       [ "AST::BreakStmt", "classAST_1_1BreakStmt.html", null ],

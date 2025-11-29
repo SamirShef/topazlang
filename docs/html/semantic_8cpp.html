@@ -150,7 +150,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">Value(type, <span class="keyword">static_cast&lt;</span>needed_type<span class="keyword">&gt;</span>(unary_two_variants(val, op, ue.line)), val.is_literal)</div>
+<b>Value:</b><div class="fragment"><div class="line">Value(type, <span class="keyword">static_cast&lt;</span>needed_type<span class="keyword">&gt;</span>(unary_two_variants(val, op, ue.line)), val.is_value_unknown, val.is_literal)</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -172,7 +172,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">Value(output_type, <span class="keyword">static_cast&lt;</span>type<span class="keyword">&gt;</span>(binary_two_variants(left_val, right_val, op, be.line)), left_val.is_literal &amp;&amp; right_val.is_literal)</div>
+<b>Value:</b><div class="fragment"><div class="line">Value(output_type, <span class="keyword">static_cast&lt;</span>type<span class="keyword">&gt;</span>(binary_two_variants(left_val, right_val, op, be.line)), left_val.is_value_unknown || right_val.is_value_unknown, left_val.is_literal &amp;&amp; right_val.is_literal)</div>
 </div><!-- fragment -->
 </div>
 </div>
