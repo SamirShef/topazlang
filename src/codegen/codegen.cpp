@@ -47,6 +47,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto cs = dynamic_cast<AST::ContinueStmt*>(&stmt)) {
         generate_continue_stmt(*cs);
     }
+    else if (auto ms = dynamic_cast<AST::ModuleStmt*>(&stmt)) {
+        generate_module_stmt(*ms);
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -63,20 +66,20 @@ void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {
     }
     llvm::Value *var = nullptr;
     if (variables.size() == 1) {
-        var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), vds.name);
+        var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), get_mangled_name(vds.name));
     }
     else {
-        var = builder.CreateAlloca(type, nullptr, vds.name + ".alloca");
+        var = builder.CreateAlloca(type, nullptr, get_mangled_name(vds.name) + ".alloca");
         builder.CreateStore(val, var);
     }
-    variables.top().emplace(vds.name, var);
+    variables.top().emplace(get_mangled_name(vds.name), var);
 }
 
 void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     llvm::Value *var_inst = nullptr;
     auto vars = variables;
     while (!vars.empty()) {
-        auto vars_it = vars.top().find(vas.name);
+        auto vars_it = vars.top().find(get_mangled_name(vas.name));
         if (vars_it != vars.top().end()) {
             var_inst = vars_it->second;
         }
@@ -98,20 +101,20 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
         args.push_back(type_to_llvm(fds.args[i].type));
     }
     llvm::FunctionType *func_type = llvm::FunctionType::get(ret_type, args, false);
-    llvm::Function *func = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, fds.name, *module);
+    llvm::Function *func = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, get_mangled_name(fds.name), *module);
     
     llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, "entry", func);
     builder.SetInsertPoint(entry);
     
     variables.push({});
-    functions.emplace(fds.name, func);
+    functions.emplace(get_mangled_name(fds.name), func);
     functions_ret_types.push(ret_type);
     size_t index = 0;
     for (llvm::Argument& arg : func->args()) {
-        arg.setName(fds.args[index].name);
-        llvm::AllocaInst* arg_alloca = builder.CreateAlloca(arg.getType(), nullptr, fds.args[index].name);
+        arg.setName(get_mangled_name(fds.args[index].name));
+        llvm::AllocaInst* arg_alloca = builder.CreateAlloca(arg.getType(), nullptr, get_mangled_name(fds.args[index].name));
         builder.CreateStore(&arg, arg_alloca);
-        variables.top().emplace(fds.args[index].name, arg_alloca);
+        variables.top().emplace(get_mangled_name(fds.args[index].name), arg_alloca);
         index++;
     }
     bool have_ret_in_global = false;
@@ -129,13 +132,13 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
 }
 
 void CodeGenerator::generate_func_call_stmt(AST::FuncCallStmt& fcs) {
-    llvm::Function *func = functions.at(fcs.name);
+    llvm::Function *func = functions.at(get_mangled_name(fcs.name));
     std::vector<llvm::Value*> args;
     for (auto& arg : fcs.args) {
         args.push_back(generate_expr(*arg));
     }
 
-    builder.CreateCall(func, args, fcs.name + ".call");
+    builder.CreateCall(func, args, get_mangled_name(fcs.name) + ".call");
 }
 
 void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
@@ -272,6 +275,16 @@ void CodeGenerator::generate_break_stmt(AST::BreakStmt& bs) {
 
 void CodeGenerator::generate_continue_stmt(AST::ContinueStmt& cs) {
     builder.CreateBr(loop_blocks.top().second);
+}
+
+void CodeGenerator::generate_module_stmt(AST::ModuleStmt& ms) {
+    current_path.push(PathPart{.name=ms.name, .object=PathPart::OBJ_MODULE});
+
+    for (auto& stmt : ms.block) {
+        generate_stmt(*stmt);
+    }
+
+    current_path.pop();
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
@@ -425,7 +438,7 @@ llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
 llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
     auto vars = variables;
     while (!vars.empty()) {
-        auto vars_it = vars.top().find(ve.name);
+        auto vars_it = vars.top().find(get_mangled_name(ve.name));
         if (vars_it != vars.top().end()) {
             llvm::Type* type = nullptr;
             if (auto global = llvm::dyn_cast<llvm::GlobalVariable>(vars_it->second)) {
@@ -434,7 +447,7 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
             else if (auto local = llvm::dyn_cast<llvm::AllocaInst>(vars_it->second)) {
                 type = local->getAllocatedType();
             }
-            return builder.CreateLoad(type, vars_it->second, ve.name + ".load");
+            return builder.CreateLoad(type, vars_it->second, get_mangled_name(ve.name) + ".load");
         }
         vars.pop();
     }
@@ -444,13 +457,13 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
 }
 
 llvm::Value *CodeGenerator::generate_func_call_expr(AST::FuncCallExpr& fce) {
-    llvm::Function *func = functions.at(fce.name);
+    llvm::Function *func = functions.at(get_mangled_name(fce.name));
     std::vector<llvm::Value*> args;
     for (auto& arg : fce.args) {
         args.push_back(generate_expr(*arg));
     }
 
-    return builder.CreateCall(func, args, fce.name + ".call");
+    return builder.CreateCall(func, args, get_mangled_name(fce.name) + ".call");
 }
 
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
@@ -528,4 +541,20 @@ llvm::Value *CodeGenerator::implicitly_cast(llvm::Value *val, llvm::Type *expect
         return builder.CreateSIToFP(val, expected_type, "sitofp.tmp");
     }
     return nullptr;
+}
+
+std::string CodeGenerator::get_mangled_name(std::string base_name) {
+    std::string res;
+    auto path = current_path;
+    while (!path.empty()) {
+        PathPart part = path.top();
+        if (part.object == PathPart::OBJ_MODULE) {
+            res = part.name + "-" + res;
+        }
+        else {
+            res = part.name + "#" + res;
+        }
+        path.pop();
+    }
+    return res + base_name;
 }

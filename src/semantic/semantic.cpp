@@ -333,6 +333,7 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
         throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name);
     }
     ModuleInfo module;
+    modules.emplace(get_mangled_name(ms.name), &module);
     modules_stack.push(&module);
     current_path.push(PathPart{.name=ms.name, .object=PathPart::OBJ_MODULE});
     for (auto& stmt : ms.block) {
@@ -912,7 +913,7 @@ std::string SemanticAnalyzer::get_mangled_name(std::string base_name) {
             res = part.name + "-" + res;
         }
         else {
-            res = part.name + "." + res;
+            res = part.name + "#" + res;
         }
         path.pop();
     }

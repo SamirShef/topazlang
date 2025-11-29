@@ -16,8 +16,6 @@ module math {
     }
 }
 
-module math {}
-
 fun pow(x: double, power: int)  -> double {
     return 42;
 }
