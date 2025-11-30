@@ -401,11 +401,12 @@ namespace AST {
      */
     class ModuleStmt : public Stmt {
     public:
+        AccessModifier access;                                  /**< Access modifier */
         std::string file_name;                                  /**< Name of file with this module */
         std::string name;                                       /**< Name of module */
         std::vector<StmtPtr> block;                             /**< Block of members */
 
-        ModuleStmt(std::string fn, std::string n, std::vector<StmtPtr> b, uint32_t l) : file_name(fn), name(n), block(std::move(b)), Stmt(l) {}
+        ModuleStmt(AccessModifier am, std::string fn, std::string n, std::vector<StmtPtr> b, uint32_t l) : access(am), file_name(fn), name(n), block(std::move(b)), Stmt(l) {}
         ~ModuleStmt() override = default;
     };
 }

@@ -280,7 +280,7 @@ AST::StmtPtr Parser::parse_module_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-    return std::make_unique<AST::ModuleStmt>(first_token.file_name, name, std::move(block), first_token.line);
+    return std::make_unique<AST::ModuleStmt>(current_access, first_token.file_name, name, std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {

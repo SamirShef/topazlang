@@ -323,6 +323,12 @@ void SemanticAnalyzer::analyze_continue_stmt(AST::ContinueStmt& cs) {
 }
 
 void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
+    if (current_space != SPACE_MODULE && ms.access != AST::ACCESS_NONE) {
+        std::stringstream ss;
+        ss << "Module \033[0m'" << ms.name << "'\033[31m cannot have access modifier outside the module";
+        throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name);
+    }
+    
     Space previous_space = current_space;
     current_space = SPACE_MODULE;
 
