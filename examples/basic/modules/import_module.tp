@@ -1,0 +1,7 @@
+use math;                                                       // from module.tp
+
+fun main() -> int {
+    let int sqr = math.pow(2, 2);
+    
+    return 0;
+}

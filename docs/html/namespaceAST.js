@@ -18,6 +18,7 @@ var namespaceAST =
     [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
     [ "VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
     [ "FuncCallExpr", "classAST_1_1FuncCallExpr.html", "classAST_1_1FuncCallExpr" ],
+    [ "ChainObjects", "classAST_1_1ChainObjects.html", "classAST_1_1ChainObjects" ],
     [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
     [ "VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
     [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
@@ -30,6 +31,7 @@ var namespaceAST =
     [ "BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
     [ "ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
     [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
+    [ "UseModuleStmt", "classAST_1_1UseModuleStmt.html", "classAST_1_1UseModuleStmt" ],
     [ "ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "AccessModifier", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905", [

@@ -33,6 +33,7 @@ typedef enum : uint8_t {
     TOK_MODULE,                             /**< 'module' keyword for module defintion */
     TOK_PUB,                                /**< 'pub' keyword for declare some statement with global visiblity */
     TOK_PRIV,                               /**< 'priv' keyword for declare some statement with local visiblity */
+    TOK_USE,                                /**< 'use' keyword for import module */
     TOK_CONST,                              /**< 'const' keyword */
     TOK_RETURN,                             /**< 'return' keyword */
 

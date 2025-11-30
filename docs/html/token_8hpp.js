@@ -22,6 +22,7 @@ var token_8hpp =
       [ "TOK_MODULE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a9a3e8e6f46d08c4b7dc6190131c51b39", null ],
       [ "TOK_PUB", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aec23add3bdb85cd243458ae806ef10be", null ],
       [ "TOK_PRIV", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a5334f4d1a5e8bc2d1e5781ff5e93d4fb", null ],
+      [ "TOK_USE", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a1ca6f5235a9a49c7447eea3f31875cbb", null ],
       [ "TOK_CONST", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ac6e2af1f642b1310b927ff0e1a58f003", null ],
       [ "TOK_RETURN", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0af8893308d51b51856d01c2c6e1239af6", null ],
       [ "TOK_ID", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a7ab6a53757cfe2a0fc35ee646bd1cbeb", null ],

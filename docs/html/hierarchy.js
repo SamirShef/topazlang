@@ -4,6 +4,7 @@ var hierarchy =
     [ "CodeGenerator", "classCodeGenerator.html", null ],
     [ "AST::Expr", "classAST_1_1Expr.html", [
       [ "AST::BinaryExpr", "classAST_1_1BinaryExpr.html", null ],
+      [ "AST::ChainObjects", "classAST_1_1ChainObjects.html", null ],
       [ "AST::FuncCallExpr", "classAST_1_1FuncCallExpr.html", null ],
       [ "AST::Literal", "classAST_1_1Literal.html", [
         [ "AST::BoolLiteral", "classAST_1_1BoolLiteral.html", null ],
@@ -35,6 +36,7 @@ var hierarchy =
       [ "AST::IfElseStmt", "classAST_1_1IfElseStmt.html", null ],
       [ "AST::ModuleStmt", "classAST_1_1ModuleStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
+      [ "AST::UseModuleStmt", "classAST_1_1UseModuleStmt.html", null ],
       [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", null ],
       [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ],
       [ "AST::WhileCycleStmt", "classAST_1_1WhileCycleStmt.html", null ]

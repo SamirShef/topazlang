@@ -18,6 +18,7 @@ var ast_8hpp =
     [ "AST::UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
     [ "AST::VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
     [ "AST::FuncCallExpr", "classAST_1_1FuncCallExpr.html", "classAST_1_1FuncCallExpr" ],
+    [ "AST::ChainObjects", "classAST_1_1ChainObjects.html", "classAST_1_1ChainObjects" ],
     [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
     [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
     [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
@@ -30,6 +31,7 @@ var ast_8hpp =
     [ "AST::BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
     [ "AST::ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
     [ "AST::ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
+    [ "AST::UseModuleStmt", "classAST_1_1UseModuleStmt.html", "classAST_1_1UseModuleStmt" ],
     [ "AST::ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "AST::StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "AST::AccessModifier", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905", [

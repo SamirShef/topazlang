@@ -16,7 +16,7 @@ module math {
     }
 }
 
-fun pow(x: double, power: int)  -> double {
+fun pow(x: double, power: int)  -> double {                     // Not conflicted with math.pow()
     return 42;
 }
 
