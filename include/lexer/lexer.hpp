@@ -41,6 +41,7 @@ private:
         {"module", TOK_MODULE},
         {"pub", TOK_PUB},
         {"priv", TOK_PRIV},
+        {"use", TOK_USE},
         {"const", TOK_CONST},
         {"return", TOK_RETURN}
     };

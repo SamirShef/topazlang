@@ -1,78 +1,85 @@
 <map id="Parser::consume" name="Parser::consume">
-<area shape="rect" id="Node000001" title="Method for verifying the type of the current token." alt="" coords="3050,307,3170,334"/>
-<area shape="rect" id="Node000002" href="$classParser.html#a00a360d758c76e9448d638d9a8003653" title="Method for skipping semicolon in the end of statement." alt="" coords="2586,256,2773,283"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3034,309,3002,304,2773,280,2773,274,3002,299,3035,304"/>
-<area shape="rect" id="Node000006" href="$classParser.html#a1be977573be54d572f1ece29da880715" title="Method for parsing of do&#45;while cycle." alt="" coords="120,263,278,306"/>
-<area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="3098,294,3084,259,3064,220,3036,182,3000,152,2958,129,2920,115,2884,109,2850,108,2775,115,2681,120,618,120,476,117,416,125,344,152,292,197,223,265,220,261,288,193,342,147,415,120,476,112,618,115,2681,115,2774,109,2849,103,2885,104,2921,110,2960,124,3004,148,3040,179,3068,217,3089,257,3103,292"/>
-<area shape="rect" id="Node000007" href="$classParser.html#acf01d3553049bf8d4f2b3883d6a75cb3" title="Method for parsing of for cycle." alt="" coords="103,492,295,519"/>
-<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="3098,349,3045,442,3004,501,2954,562,2896,619,2831,666,2796,684,2759,698,2721,707,2681,710,618,710,579,703,529,687,414,633,302,570,221,522,224,517,304,566,416,628,531,682,580,698,618,704,2681,704,2720,701,2758,693,2794,679,2829,661,2893,614,2950,558,2999,498,3040,439,3093,346"/>
-<area shape="rect" id="Node000008" href="$classParser.html#a7771b29d78844845898c9d14a2eb8f0b" title="Method for parsing of functions declaration." alt="" coords="133,132,264,175"/>
-<area shape="poly" id="edge23_Node000001_Node000008" title=" " alt="" coords="3104,292,3095,241,3077,178,3064,146,3047,115,3026,86,3000,62,2960,36,2923,19,2888,10,2853,8,2776,14,2681,19,618,19,539,21,478,28,418,43,344,70,282,100,231,134,228,130,279,96,342,65,417,38,477,23,539,15,618,14,2681,14,2776,8,2853,3,2889,5,2925,14,2963,31,3004,58,3030,83,3051,112,3068,143,3082,176,3100,240,3109,291"/>
-<area shape="rect" id="Node000009" href="$classParser.html#a1fee8ad7e05a3de414f2b548e102040d" title="Method for parsing of control flow operators (aka if&#45;else)." alt="" coords="110,583,288,610"/>
-<area shape="poly" id="edge24_Node000001_Node000009" title=" " alt="" coords="3111,350,3105,415,3088,500,3075,547,3057,592,3033,635,3004,674,2967,713,2932,744,2897,768,2862,786,2824,798,2782,806,2681,811,618,811,552,804,487,787,426,761,368,729,317,696,273,663,213,612,216,608,276,659,320,692,371,725,428,756,489,782,553,799,618,806,2681,806,2782,801,2823,793,2860,781,2894,764,2928,740,2963,709,3000,671,3029,632,3052,590,3070,545,3083,499,3099,414,3105,349"/>
-<area shape="rect" id="Node000010" href="$classParser.html#ade9a1a6479be241eb294b2b04747ea86" title="Method for parsing of module definition." alt="" coords="108,371,290,398"/>
-<area shape="poly" id="edge25_Node000001_Node000010" title=" " alt="" coords="3073,301,3003,263,2908,220,2854,201,2797,186,2739,175,2681,171,618,171,579,178,530,196,414,254,302,321,222,373,219,368,299,317,412,249,528,191,578,173,618,166,2681,166,2739,170,2798,180,2855,196,2910,215,3006,258,3075,297"/>
-<area shape="rect" id="Node000011" href="$classParser.html#a12957ed845e7c2263543daae50fbe692" title="Method for parsing of while cycle." alt="" coords="131,714,267,756"/>
-<area shape="poly" id="edge50_Node000001_Node000011" title=" " alt="" coords="3109,349,3099,450,3079,586,3065,655,3048,717,3027,768,3004,802,2966,834,2929,854,2893,866,2857,870,2777,867,2681,862,618,862,564,859,510,851,405,824,312,790,242,759,245,755,314,785,406,819,511,846,565,853,618,856,2681,856,2778,861,2857,865,2892,861,2927,850,2963,830,3000,799,3023,765,3043,715,3059,654,3073,585,3093,450,3104,349"/>
-<area shape="rect" id="Node000012" href="$classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f" title="Method for parsing of function argument." alt="" coords="2351,54,2511,80"/>
-<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="3102,292,3091,248,3072,195,3043,143,3023,120,3001,101,2963,85,2911,73,2848,65,2779,61,2635,60,2512,65,2511,59,2635,55,2779,55,2849,60,2912,68,2965,80,3003,97,3027,116,3047,140,3077,193,3097,247,3107,291"/>
-<area shape="rect" id="Node000013" href="$classParser.html#a18c10cd8d8d56740d593928d610ccb4e" title="Method for parsing of functions calling." alt="" coords="792,358,924,400"/>
-<area shape="poly" id="edge21_Node000001_Node000013" title=" " alt="" coords="3035,338,2873,364,2777,374,2681,378,1263,378,924,381,924,375,1263,372,2681,372,2777,369,2873,359,3035,333"/>
-<area shape="rect" id="Node000014" href="$classParser.html#a2cdd6289b4951d4fadf3f5110586569a" title="Method for parsing expression as &#39;primary&#39;." alt="" coords="2821,424,3002,451"/>
-<area shape="poly" id="edge26_Node000001_Node000014" title=" " alt="" coords="3080,345,3003,396,2945,426,2942,422,3001,391,3077,341"/>
-<area shape="rect" id="Node000026" href="$classParser.html#a4e39379d0213f8f2cb8b10abe8110d77" title="Method for parsing of variable declaration." alt="" coords="764,307,952,334"/>
-<area shape="poly" id="edge49_Node000001_Node000026" title=" " alt="" coords="3034,323,2681,323,1263,323,953,323,953,318,1263,318,2681,318,3034,318"/>
-<area shape="rect" id="Node000003" href="$classParser.html#a3d00146966af6a3a29f843ac2c05ef23" title="Method for parsing only one statement." alt="" coords="343,396,475,423"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2571,272,2186,272,857,272,761,276,686,287,614,308,524,343,472,370,430,398,427,394,469,365,522,338,613,303,685,281,760,270,856,267,2186,267,2571,267"/>
-<area shape="rect" id="Node000004" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="149,422,248,448"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="328,422,249,432,248,427,327,417"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="359,391,225,308,227,304,362,386"/>
-<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="378,433,248,494,246,489,375,428"/>
-<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="383,385,342,329,293,265,213,177,217,174,297,261,347,326,387,382"/>
-<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="395,438,353,490,297,545,242,585,239,580,293,541,349,486,391,435"/>
-<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="327,411,250,401,251,396,328,406"/>
-<area shape="poly" id="edge15_Node000003_Node000011" title=" " alt="" coords="401,439,359,529,297,635,265,679,232,715,228,712,260,675,293,632,354,526,396,437"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,422,55,448"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="133,438,55,438,55,432,133,432"/>
-<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="264,311,394,394,391,398,261,316"/>
-<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="231,482,360,421,362,426,233,487"/>
-<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="247,184,297,237,362,325,405,395,400,398,358,328,293,241,243,188"/>
-<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="221,571,293,517,346,466,388,422,392,425,350,470,297,521,224,575"/>
-<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="305,386,358,393,357,398,304,391"/>
-<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="221,700,256,657,293,608,355,503,396,422,401,425,359,506,297,611,260,660,225,703"/>
-<area shape="poly" id="edge18_Node000012_Node000008" title=" " alt="" coords="2335,70,1941,70,618,70,540,71,480,75,420,84,344,102,294,117,249,134,247,129,293,112,342,96,419,79,479,69,540,65,618,64,1941,64,2335,64"/>
-<area shape="poly" id="edge22_Node000013_Node000003" title=" " alt="" coords="777,387,476,408,476,403,777,382"/>
-<area shape="rect" id="Node000015" href="$classParser.html#a065a423e45b55d6760c1c2d871d34055" title="Method for parsing expression as &#39;unary&#39;." alt="" coords="2594,475,2765,502"/>
-<area shape="poly" id="edge27_Node000014_Node000015" title=" " alt="" coords="2833,458,2744,477,2743,472,2832,452"/>
-<area shape="rect" id="Node000016" href="$classParser.html#ad46509f9d3366981b886adbbef7476f5" title="Method for parsing expression as &#39;multiplicative&#39;." alt="" coords="2324,475,2538,502"/>
-<area shape="poly" id="edge28_Node000015_Node000016" title=" " alt="" coords="2579,491,2539,491,2539,486,2579,486"/>
-<area shape="rect" id="Node000017" href="$classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa" title="Method for parsing expression as &#39;additive&#39;." alt="" coords="2093,475,2276,502"/>
-<area shape="poly" id="edge29_Node000016_Node000017" title=" " alt="" coords="2308,491,2276,491,2276,486,2308,486"/>
-<area shape="rect" id="Node000018" href="$classParser.html#a9539499c0db5a3d7045952e7919d3a65" title="Method for parsing expression as &#39;comparation&#39;." alt="" coords="1835,475,2045,502"/>
-<area shape="poly" id="edge30_Node000017_Node000018" title=" " alt="" coords="2077,491,2045,491,2045,486,2077,486"/>
-<area shape="rect" id="Node000019" href="$classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf" title="Method for parsing expression as &#39;equality&#39;." alt="" coords="1604,475,1787,502"/>
-<area shape="poly" id="edge31_Node000018_Node000019" title=" " alt="" coords="1820,491,1788,491,1788,486,1820,486"/>
-<area shape="rect" id="Node000020" href="$classParser.html#a1438271fe63fe661f7e43ce92119bcea" title="Method for parsing expression as &#39;logical or&#39;." alt="" coords="1397,475,1556,502"/>
-<area shape="poly" id="edge32_Node000019_Node000020" title=" " alt="" coords="1589,491,1557,491,1557,486,1589,486"/>
-<area shape="rect" id="Node000021" href="$classParser.html#ac23cdc70263553f1a8f5a2bf01caa770" title="Method for parsing expression as &#39;logical and&#39;." alt="" coords="1179,475,1349,502"/>
-<area shape="poly" id="edge33_Node000020_Node000021" title=" " alt="" coords="1381,491,1349,491,1349,486,1381,486"/>
-<area shape="rect" id="Node000022" href="$classParser.html#a077a7024f238711664ff68ebf79e320b" title="Method for parsing expressions." alt="" coords="1000,475,1131,502"/>
-<area shape="poly" id="edge34_Node000021_Node000022" title=" " alt="" coords="1164,491,1132,491,1132,486,1164,486"/>
-<area shape="poly" id="edge38_Node000022_Node000006" title=" " alt="" coords="1055,461,1042,422,1021,376,991,332,972,313,951,297,909,276,866,258,775,234,681,222,587,220,496,226,413,237,277,265,276,260,412,232,496,221,587,215,681,217,776,229,868,253,911,271,953,293,976,309,995,328,1026,374,1047,420,1060,460"/>
-<area shape="poly" id="edge39_Node000022_Node000007" title=" " alt="" coords="1029,512,993,528,953,542,856,559,756,568,657,569,561,565,388,545,260,522,261,517,388,540,561,560,657,564,756,563,855,554,951,536,991,523,1027,507"/>
-<area shape="poly" id="edge41_Node000022_Node000009" title=" " alt="" coords="1042,515,1003,546,979,561,953,572,864,597,772,614,679,624,588,628,420,624,287,612,288,607,420,619,588,623,679,619,771,609,863,592,951,567,976,556,999,542,1039,510"/>
-<area shape="poly" id="edge48_Node000022_Node000011" title=" " alt="" coords="1051,517,1011,570,984,597,953,620,865,664,771,697,675,720,579,735,487,743,402,746,267,743,268,738,402,741,486,738,578,730,674,715,770,692,863,659,951,615,981,593,1007,566,1047,513"/>
-<area shape="poly" id="edge40_Node000022_Node000013" title=" " alt="" coords="1034,468,995,441,951,415,923,402,925,398,953,410,998,436,1037,463"/>
-<area shape="poly" id="edge42_Node000022_Node000014" title=" " alt="" coords="1136,469,1179,460,1326,440,1475,435,2432,435,2820,435,2820,440,2432,440,1475,440,1327,445,1180,466,1137,474"/>
-<area shape="rect" id="Node000023" href="$classParser.html#ad3f85902d968658a558317b1d20a6f29" title="Method for creating compound assignment operator and returns expression of assignment." alt="" coords="773,424,943,467"/>
-<area shape="poly" id="edge35_Node000022_Node000023" title=" " alt="" coords="984,474,943,466,944,461,985,469"/>
-<area shape="rect" id="Node000024" href="$classParser.html#a344bfeffa418a8f4604ccc632cbd93d5" title="Method for parsing of variable assignment." alt="" coords="523,432,716,459"/>
-<area shape="poly" id="edge45_Node000022_Node000024" title=" " alt="" coords="984,493,879,491,763,482,669,462,670,457,764,476,879,486,984,488"/>
-<area shape="rect" id="Node000025" href="$classParser.html#a2f0a39989801cd360c54855bf6ad2e26" title="Method for parsing of &#39;return&#39;." alt="" coords="533,512,706,539"/>
-<area shape="poly" id="edge43_Node000022_Node000025" title=" " alt="" coords="1015,510,952,526,888,533,823,536,706,534,706,529,823,531,888,528,952,520,1014,505"/>
-<area shape="poly" id="edge46_Node000022_Node000026" title=" " alt="" coords="1048,463,1009,404,982,374,951,348,928,337,930,332,953,344,986,370,1013,401,1052,460"/>
-<area shape="poly" id="edge36_Node000023_Node000024" title=" " alt="" coords="757,448,716,448,716,443,757,443"/>
-<area shape="poly" id="edge37_Node000024_Node000003" title=" " alt="" coords="522,432,475,424,476,418,523,427"/>
-<area shape="poly" id="edge44_Node000025_Node000003" title=" " alt="" coords="578,507,434,426,436,421,581,502"/>
-<area shape="poly" id="edge47_Node000026_Node000003" title=" " alt="" coords="749,338,640,356,524,379,454,398,452,393,523,374,639,350,748,333"/>
+<area shape="rect" id="Node000001" title="Method for verifying the type of the current token." alt="" coords="3248,577,3369,604"/>
+<area shape="rect" id="Node000002" href="$classParser.html#a00a360d758c76e9448d638d9a8003653" title="Method for skipping semicolon in the end of statement." alt="" coords="2805,628,2991,655"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="3234,607,3201,612,2992,636,2991,630,3200,607,3233,602"/>
+<area shape="rect" id="Node000006" href="$classParser.html#a1be977573be54d572f1ece29da880715" title="Method for parsing of do&#45;while cycle." alt="" coords="120,120,278,163"/>
+<area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="3305,562,3302,485,3288,379,3275,321,3256,263,3231,208,3198,158,3134,84,3103,58,3070,39,3035,24,2996,15,2951,10,2899,8,618,8,563,11,508,20,402,51,309,88,240,122,238,117,307,83,400,45,507,15,563,6,618,3,2899,3,2952,4,2997,10,3037,19,3073,34,3106,54,3138,81,3202,154,3235,205,3261,261,3280,320,3293,378,3307,484,3310,562"/>
+<area shape="rect" id="Node000007" href="$classParser.html#acf01d3553049bf8d4f2b3883d6a75cb3" title="Method for parsing of for cycle." alt="" coords="103,464,295,491"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="3284,617,3247,648,3202,676,3121,712,3056,735,2987,746,2899,749,618,749,558,742,513,723,477,694,446,659,385,579,345,540,294,505,268,494,270,489,296,500,348,536,389,576,450,656,480,690,515,718,560,737,618,744,2899,744,2987,741,3054,730,3119,708,3199,671,3244,643,3281,613"/>
+<area shape="rect" id="Node000008" href="$classParser.html#a7771b29d78844845898c9d14a2eb8f0b" title="Method for parsing of functions declaration." alt="" coords="133,696,264,739"/>
+<area shape="poly" id="edge23_Node000001_Node000008" title=" " alt="" coords="3307,620,3299,672,3281,738,3268,772,3250,804,3228,834,3202,859,3164,885,3128,901,3094,910,3060,912,2988,907,2899,901,618,901,538,902,475,899,415,886,342,856,302,830,266,799,214,741,218,737,270,795,305,826,344,851,416,881,476,894,539,897,618,896,2899,896,2988,901,3060,907,3093,904,3126,896,3161,881,3199,855,3224,831,3246,801,3263,770,3276,736,3294,671,3302,619"/>
+<area shape="rect" id="Node000009" href="$classParser.html#a1fee8ad7e05a3de414f2b548e102040d" title="Method for parsing of control flow operators (aka if&#45;else)." alt="" coords="110,220,288,247"/>
+<area shape="poly" id="edge24_Node000001_Node000009" title=" " alt="" coords="3301,562,3292,503,3273,425,3243,342,3222,301,3198,264,3133,177,3103,142,3072,113,3039,89,3000,73,2954,62,2899,59,618,59,581,64,533,78,421,124,309,179,227,222,224,217,307,174,418,120,532,73,580,59,618,53,2899,53,2955,57,3002,67,3041,85,3076,109,3107,138,3137,174,3203,261,3227,299,3248,340,3278,424,3297,502,3307,561"/>
+<area shape="rect" id="Node000010" href="$classParser.html#ade9a1a6479be241eb294b2b04747ea86" title="Method for parsing of module definition." alt="" coords="108,515,290,541"/>
+<area shape="poly" id="edge25_Node000001_Node000010" title=" " alt="" coords="3301,620,3288,655,3267,696,3238,736,3202,768,3161,790,3125,803,3091,810,3058,811,2987,805,2899,800,618,800,538,804,473,809,443,808,411,801,378,788,341,767,322,750,311,731,304,710,293,685,206,543,211,540,297,683,309,708,316,729,326,746,345,763,381,784,413,796,443,802,473,804,538,799,618,795,2899,795,2987,800,3058,806,3090,804,3123,798,3159,785,3199,763,3235,732,3262,693,3283,653,3296,618"/>
+<area shape="rect" id="Node000011" href="$classParser.html#a12957ed845e7c2263543daae50fbe692" title="Method for parsing of while cycle." alt="" coords="131,296,267,339"/>
+<area shape="poly" id="edge55_Node000001_Node000011" title=" " alt="" coords="3295,564,3248,460,3212,394,3166,326,3112,262,3081,234,3049,209,3015,189,2978,173,2940,163,2899,160,618,160,584,164,541,175,438,212,332,258,246,298,244,293,330,253,436,207,540,170,583,159,618,155,2899,155,2941,158,2980,168,3017,184,3052,205,3085,230,3115,259,3170,323,3216,391,3253,458,3299,562"/>
+<area shape="rect" id="Node000012" href="$classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f" title="Method for parsing of function argument." alt="" coords="2591,835,2752,861"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="3306,620,3295,665,3276,720,3246,774,3226,798,3202,818,3167,834,3119,845,3062,853,2998,857,2867,859,2752,855,2752,850,2867,854,2998,852,3061,848,3118,840,3165,829,3199,814,3222,794,3242,771,3271,718,3290,664,3300,618"/>
+<area shape="rect" id="Node000013" href="$classParser.html#a18c10cd8d8d56740d593928d610ccb4e" title="Method for parsing of functions calling." alt="" coords="792,565,924,608"/>
+<area shape="poly" id="edge21_Node000001_Node000013" title=" " alt="" coords="3233,593,2899,593,1263,593,924,590,924,585,1263,588,2899,588,3233,588"/>
+<area shape="rect" id="Node000014" href="$classParser.html#a3f785bba6b6aa7b4d6bb228089eddbc3" title="Method for parsing expresion as chain of objects." alt="" coords="3039,425,3200,452"/>
+<area shape="poly" id="edge26_Node000001_Node000014" title=" " alt="" coords="3287,566,3250,519,3225,494,3199,473,3164,455,3167,450,3202,468,3229,491,3253,516,3291,563"/>
+<area shape="rect" id="Node000015" href="$classParser.html#a2cdd6289b4951d4fadf3f5110586569a" title="Method for parsing expression as &#39;primary&#39;." alt="" coords="2807,451,2988,477"/>
+<area shape="poly" id="edge51_Node000001_Node000015" title=" " alt="" coords="3277,570,3241,545,3199,524,3146,506,3092,492,2989,475,2989,469,3093,487,3148,501,3201,519,3244,541,3280,566"/>
+<area shape="rect" id="Node000027" href="$classParser.html#a4e39379d0213f8f2cb8b10abe8110d77" title="Method for parsing of variable declaration." alt="" coords="764,515,952,541"/>
+<area shape="poly" id="edge54_Node000001_Node000027" title=" " alt="" coords="3233,578,3079,555,2989,546,2899,543,1263,543,952,535,953,530,1263,537,2899,537,2990,541,3080,550,3233,573"/>
+<area shape="rect" id="Node000028" href="$classParser.html#a2fb85ae62cac170b715af062db225d72" title="Method for parsing of import the module." alt="" coords="2326,683,2536,709"/>
+<area shape="poly" id="edge52_Node000001_Node000028" title=" " alt="" coords="3265,613,3201,636,3112,657,3021,674,2838,694,2671,702,2536,702,2536,697,2671,697,2838,689,3020,668,3111,652,3200,631,3263,608"/>
+<area shape="rect" id="Node000003" href="$classParser.html#a3d00146966af6a3a29f843ac2c05ef23" title="Method for parsing only one statement." alt="" coords="343,464,475,491"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2789,645,2433,648,856,648,759,646,683,637,610,615,522,576,491,557,462,534,421,493,424,489,466,530,494,552,525,571,612,610,685,632,760,641,857,643,2432,643,2789,640"/>
+<area shape="rect" id="Node000004" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="149,413,248,440"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="335,462,248,441,249,436,337,457"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="397,450,383,403,362,344,332,281,293,222,259,190,223,165,226,161,262,186,297,218,336,278,366,342,388,402,402,449"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="328,489,296,489,295,484,328,483"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="392,505,311,602,226,697,222,694,307,599,388,502"/>
+<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="392,451,353,377,326,336,293,298,253,270,215,250,218,245,256,265,297,294,330,332,358,374,397,449"/>
+<area shape="poly" id="edge13_Node000003_Node000010" title=" " alt="" coords="364,498,290,518,289,512,362,493"/>
+<area shape="poly" id="edge15_Node000003_Node000011" title=" " alt="" coords="368,457,290,399,219,341,222,337,293,395,371,453"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,413,55,440"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="133,429,55,429,55,424,133,424"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="273,170,297,194,322,229,343,267,376,345,398,415,409,463,403,464,392,416,371,347,338,269,317,232,293,198,269,174"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="311,466,343,466,343,472,310,471"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="222,682,308,580,390,489,394,493,312,583,226,685"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="275,253,297,270,338,320,371,375,394,425,407,463,402,465,389,427,366,377,334,323,293,274,271,257"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="244,507,342,482,343,487,245,512"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="252,346,333,407,398,462,394,466,329,411,248,350"/>
+<area shape="poly" id="edge18_Node000012_Node000008" title=" " alt="" coords="2576,851,2186,851,618,851,477,851,417,842,342,818,307,802,274,782,222,741,225,737,278,778,310,798,344,814,418,837,478,846,618,845,2186,845,2576,845"/>
+<area shape="poly" id="edge22_Node000013_Node000003" title=" " alt="" coords="776,580,656,561,588,547,523,529,476,512,436,494,438,489,478,507,524,524,590,542,657,556,777,575"/>
+<area shape="poly" id="edge27_Node000014_Node000015" title=" " alt="" coords="3024,452,2989,456,2989,451,3023,447"/>
+<area shape="rect" id="Node000016" href="$classParser.html#a065a423e45b55d6760c1c2d871d34055" title="Method for parsing expression as &#39;unary&#39;." alt="" coords="2586,416,2757,443"/>
+<area shape="poly" id="edge28_Node000015_Node000016" title=" " alt="" coords="2791,450,2757,445,2758,440,2792,445"/>
+<area shape="rect" id="Node000017" href="$classParser.html#ad46509f9d3366981b886adbbef7476f5" title="Method for parsing expression as &#39;multiplicative&#39;." alt="" coords="2324,416,2538,443"/>
+<area shape="poly" id="edge29_Node000016_Node000017" title=" " alt="" coords="2571,432,2539,432,2539,427,2571,427"/>
+<area shape="rect" id="Node000018" href="$classParser.html#a18674235dfa1beaa9c6ef05fdf38daaa" title="Method for parsing expression as &#39;additive&#39;." alt="" coords="2093,416,2276,443"/>
+<area shape="poly" id="edge30_Node000017_Node000018" title=" " alt="" coords="2308,432,2276,432,2276,427,2308,427"/>
+<area shape="rect" id="Node000019" href="$classParser.html#a9539499c0db5a3d7045952e7919d3a65" title="Method for parsing expression as &#39;comparation&#39;." alt="" coords="1835,416,2045,443"/>
+<area shape="poly" id="edge31_Node000018_Node000019" title=" " alt="" coords="2077,432,2045,432,2045,427,2077,427"/>
+<area shape="rect" id="Node000020" href="$classParser.html#a88061fa4e6787a2d1b9f66fa865dfdbf" title="Method for parsing expression as &#39;equality&#39;." alt="" coords="1604,416,1787,443"/>
+<area shape="poly" id="edge32_Node000019_Node000020" title=" " alt="" coords="1820,432,1788,432,1788,427,1820,427"/>
+<area shape="rect" id="Node000021" href="$classParser.html#a1438271fe63fe661f7e43ce92119bcea" title="Method for parsing expression as &#39;logical or&#39;." alt="" coords="1397,416,1556,443"/>
+<area shape="poly" id="edge33_Node000020_Node000021" title=" " alt="" coords="1589,432,1557,432,1557,427,1589,427"/>
+<area shape="rect" id="Node000022" href="$classParser.html#ac23cdc70263553f1a8f5a2bf01caa770" title="Method for parsing expression as &#39;logical and&#39;." alt="" coords="1179,416,1349,443"/>
+<area shape="poly" id="edge34_Node000021_Node000022" title=" " alt="" coords="1381,432,1349,432,1349,427,1381,427"/>
+<area shape="rect" id="Node000023" href="$classParser.html#a077a7024f238711664ff68ebf79e320b" title="Method for parsing expressions." alt="" coords="1000,389,1131,416"/>
+<area shape="poly" id="edge35_Node000022_Node000023" title=" " alt="" coords="1164,419,1132,414,1132,409,1165,413"/>
+<area shape="poly" id="edge39_Node000023_Node000006" title=" " alt="" coords="1053,376,1038,340,1017,298,987,256,950,222,910,197,868,176,779,144,685,124,591,114,500,111,416,114,278,130,277,124,415,109,500,106,592,108,686,119,780,139,870,171,913,193,954,218,991,253,1021,295,1043,338,1058,374"/>
+<area shape="poly" id="edge40_Node000023_Node000007" title=" " alt="" coords="1035,382,996,357,951,337,900,326,859,325,764,337,551,390,254,466,253,461,549,384,763,332,859,320,901,321,953,332,999,352,1038,377"/>
+<area shape="poly" id="edge42_Node000023_Node000009" title=" " alt="" coords="1048,377,1009,321,982,294,951,272,907,251,861,234,766,209,669,196,572,191,480,194,396,202,263,222,262,217,395,196,480,189,572,186,669,190,767,204,863,229,909,246,953,267,986,290,1013,318,1052,374"/>
+<area shape="poly" id="edge50_Node000023_Node000011" title=" " alt="" coords="1042,379,1002,342,978,325,951,312,859,286,763,270,666,264,571,265,481,271,398,281,268,304,267,299,397,276,480,266,571,260,666,259,763,265,860,280,953,307,980,320,1006,338,1045,375"/>
+<area shape="poly" id="edge41_Node000023_Node000013" title=" " alt="" coords="1053,431,1014,493,986,526,954,556,925,571,923,567,950,551,982,523,1009,490,1048,428"/>
+<area shape="poly" id="edge43_Node000023_Node000014" title=" " alt="" coords="1147,392,1299,382,1475,376,2673,376,2778,381,2883,392,3055,422,3054,427,2883,398,2778,386,2673,381,1475,381,1299,387,1147,398"/>
+<area shape="poly" id="edge44_Node000023_Node000015" title=" " alt="" coords="1105,421,1141,438,1180,452,1261,470,1326,477,1475,477,2432,477,2633,474,2807,466,2807,472,2633,479,2433,483,1475,483,1325,483,1260,476,1179,457,1139,443,1103,426"/>
+<area shape="rect" id="Node000024" href="$classParser.html#ad3f85902d968658a558317b1d20a6f29" title="Method for creating compound assignment operator and returns expression of assignment." alt="" coords="773,347,943,389"/>
+<area shape="poly" id="edge36_Node000023_Node000024" title=" " alt="" coords="984,392,943,385,944,380,985,387"/>
+<area shape="rect" id="Node000025" href="$classParser.html#a344bfeffa418a8f4604ccc632cbd93d5" title="Method for parsing of variable assignment." alt="" coords="523,413,716,440"/>
+<area shape="poly" id="edge47_Node000023_Node000025" title=" " alt="" coords="985,410,716,424,716,419,984,404"/>
+<area shape="rect" id="Node000026" href="$classParser.html#a2f0a39989801cd360c54855bf6ad2e26" title="Method for parsing of &#39;return&#39;." alt="" coords="533,464,706,491"/>
+<area shape="poly" id="edge45_Node000023_Node000026" title=" " alt="" coords="985,421,952,427,706,467,706,462,952,421,984,415"/>
+<area shape="poly" id="edge48_Node000023_Node000027" title=" " alt="" coords="1042,429,1002,464,953,498,911,517,909,512,951,494,999,460,1039,425"/>
+<area shape="poly" id="edge37_Node000024_Node000025" title=" " alt="" coords="758,395,678,415,676,410,757,390"/>
+<area shape="poly" id="edge38_Node000025_Node000003" title=" " alt="" coords="547,447,468,466,467,461,545,442"/>
+<area shape="poly" id="edge46_Node000026_Node000003" title=" " alt="" coords="518,480,475,480,475,475,518,475"/>
+<area shape="poly" id="edge49_Node000027_Node000003" title=" " alt="" coords="748,526,639,519,523,505,465,494,466,489,524,500,639,513,748,521"/>
+<area shape="poly" id="edge53_Node000028_Node000003" title=" " alt="" coords="2311,699,1941,699,857,699,760,705,681,712,645,712,607,705,567,691,522,666,498,648,478,626,446,577,424,528,412,492,417,490,429,526,450,574,482,623,502,644,525,662,569,686,608,700,645,706,681,707,759,699,856,693,1941,693,2311,693"/>
 </map>

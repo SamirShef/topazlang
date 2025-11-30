@@ -262,6 +262,17 @@ namespace AST {
         ~FuncCallExpr() override = default;
     };
 
+    /**
+     * @brief Chain of objects expression container
+     */
+    class ChainObjects : public Expr {
+    public:
+        std::vector<ExprPtr> chain;                             /**< Chain of objects (as expressions) */
+
+        ChainObjects(std::vector<ExprPtr> c, uint32_t l) : chain(std::move(c)), Expr(l) {}
+        ~ChainObjects() override = default;
+    };
+
     // STATEMENTS
 
     /**
@@ -408,5 +419,16 @@ namespace AST {
 
         ModuleStmt(AccessModifier am, std::string fn, std::string n, std::vector<StmtPtr> b, uint32_t l) : access(am), file_name(fn), name(n), block(std::move(b)), Stmt(l) {}
         ~ModuleStmt() override = default;
+    };
+
+    /**
+     * @brief Statement of import the module
+     */
+    class UseModuleStmt : public Stmt {
+    public:
+        std::vector<std::string> path;                          /**< Path to importing object */
+
+        UseModuleStmt(std::vector<std::string> p, uint32_t l) : path(std::move(p)), Stmt(l) {}
+        ~UseModuleStmt() override = default;
     };
 }

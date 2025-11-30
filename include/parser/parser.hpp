@@ -162,6 +162,15 @@ private:
      * @return ModuleStmt
      */
     AST::StmtPtr parse_module_stmt();
+
+    /**
+     * @brief Method for parsing of import the module
+     *
+     * This method sets the syntax for import the module, creates the AST element of the UseModuleStmt and returns it
+     *
+     * @return UseModuleStmt
+     */
+    AST::StmtPtr parse_use_module_stmt();
     
     /**
      * @brief Method for parsing expressions
@@ -243,6 +252,15 @@ private:
      * @return Parsed expression as 'primary'
      */
     AST::ExprPtr parse_primary_expr();
+
+    /**
+     * @brief Method for parsing expresion as chain of objects
+     *
+     * This method parsing all expressions as chain of objects. Elements of chain separated of '.' (for example: obj1.obj2)
+     *
+     * @return Parsed expression as chain of objects
+     */
+    AST::ExprPtr parse_obj_chain();
 
     /**
      * @brief Method for getting token from tokens by parser pos and passed offset

@@ -19,6 +19,7 @@ var annotated_dup =
       [ "UnaryExpr", "classAST_1_1UnaryExpr.html", "classAST_1_1UnaryExpr" ],
       [ "VarExpr", "classAST_1_1VarExpr.html", "classAST_1_1VarExpr" ],
       [ "FuncCallExpr", "classAST_1_1FuncCallExpr.html", "classAST_1_1FuncCallExpr" ],
+      [ "ChainObjects", "classAST_1_1ChainObjects.html", "classAST_1_1ChainObjects" ],
       [ "VarDeclStmt", "classAST_1_1VarDeclStmt.html", "classAST_1_1VarDeclStmt" ],
       [ "VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", "classAST_1_1VarAsgnStmt" ],
       [ "FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", "classAST_1_1FuncDeclStmt" ],
@@ -30,7 +31,8 @@ var annotated_dup =
       [ "ForCycleStmt", "classAST_1_1ForCycleStmt.html", "classAST_1_1ForCycleStmt" ],
       [ "BreakStmt", "classAST_1_1BreakStmt.html", "classAST_1_1BreakStmt" ],
       [ "ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
-      [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ]
+      [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
+      [ "UseModuleStmt", "classAST_1_1UseModuleStmt.html", "classAST_1_1UseModuleStmt" ]
     ] ],
     [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],
     [ "Lexer", "classLexer.html", "classLexer" ],
