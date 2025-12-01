@@ -23,9 +23,12 @@ var classSemanticAnalyzer =
     [ "analyze_if_else_stmt", "classSemanticAnalyzer.html#a2c40e832f07d8a8d7c68b9504dcfaff5", null ],
     [ "analyze_literal_expr", "classSemanticAnalyzer.html#aa16a8cc4020aa3aec83f5b1e77862651", null ],
     [ "analyze_module_stmt", "classSemanticAnalyzer.html#aaf0a7282f676f7df4c3c6df5041bbd18", null ],
+    [ "analyze_obj_chain_expr", "classSemanticAnalyzer.html#a26a7b4888ca9adc309024ca79f40a53e", null ],
+    [ "analyze_obj_from_chain", "classSemanticAnalyzer.html#ae38b7fe227c98c916d10811c25a08ba3", null ],
     [ "analyze_return_stmt", "classSemanticAnalyzer.html#a0bf5e17816e2b3c7006c3d4d2034feea", null ],
     [ "analyze_stmt", "classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e", null ],
     [ "analyze_unary_expr", "classSemanticAnalyzer.html#a0caa4b637c6553d460aceb21b95c3263", null ],
+    [ "analyze_use_module_stmt", "classSemanticAnalyzer.html#a3e0bae04a4e62a1d20d1aa1ea36e5ae5", null ],
     [ "analyze_var_asgn_stmt", "classSemanticAnalyzer.html#a32b7d6c326238d687184c3740ab1540a", null ],
     [ "analyze_var_decl_stmt", "classSemanticAnalyzer.html#a31d91f7c0bc5bc6ca0210c471e097f99", null ],
     [ "analyze_var_expr", "classSemanticAnalyzer.html#af81519f8fc509217f8c7f9acb3808e4c", null ],
@@ -51,7 +54,8 @@ var classSemanticAnalyzer =
     [ "functions_ret_types", "classSemanticAnalyzer.html#afc5ce31ea67f44866b4f0bf2d7977404", null ],
     [ "implicitly_cast_allowed_types", "classSemanticAnalyzer.html#a1e49c40308de04a59d0d4e323acd8cf2", null ],
     [ "modules", "classSemanticAnalyzer.html#a25253e0175468fae09a3aa277710de14", null ],
-    [ "modules_stack", "classSemanticAnalyzer.html#a9866eb6b066416f818a37d5479416c1e", null ],
+    [ "modules_stack", "classSemanticAnalyzer.html#abc91c64120001e50a5dca903619b8b56", null ],
+    [ "names_of_imported_modules", "classSemanticAnalyzer.html#aa7ada2b4a690c78d3380a005555c1b8d", null ],
     [ "stmts", "classSemanticAnalyzer.html#a253a8c665966d9fa1dd8bf475b0b2859", null ],
     [ "variables", "classSemanticAnalyzer.html#ae4f1a48bac4f2396499fa3658eebdb9c", null ]
 ];

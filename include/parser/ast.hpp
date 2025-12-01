@@ -17,17 +17,18 @@ namespace AST {
      * @brief Type values enum
      */
     enum TypeValue {
-        TYPE_BOOL,                               /**< 'bool' type */
-        TYPE_CHAR,                               /**< 'char' type */
-        TYPE_SHORT,                              /**< 'short' type */
-        TYPE_INT,                                /**< 'int' type */
-        TYPE_LONG,                               /**< 'long' type */
-        TYPE_FLOAT,                              /**< 'float' type */
-        TYPE_DOUBLE,                             /**< 'double' type */
-        TYPE_NOTH,                               /**< 'noth' type (only for functions) */
-        TYPE_STRING_LIT,                         /**< String literal type */
-        TYPE_TRAIT,                              /**< Trait type */
-        TYPE_CLASS,                              /**< Class type */
+        TYPE_BOOL,                              /**< 'bool' type */
+        TYPE_CHAR,                              /**< 'char' type */
+        TYPE_SHORT,                             /**< 'short' type */
+        TYPE_INT,                               /**< 'int' type */
+        TYPE_LONG,                              /**< 'long' type */
+        TYPE_FLOAT,                             /**< 'float' type */
+        TYPE_DOUBLE,                            /**< 'double' type */
+        TYPE_NOTH,                              /**< 'noth' type (only for functions) */
+        TYPE_STRING_LIT,                        /**< String literal type */
+        TYPE_TRAIT,                             /**< Trait type */
+        TYPE_CLASS,                             /**< Class type */
+        TYPE_MODULE,                            /**< Module (is not a type) */
     };
     
     /**

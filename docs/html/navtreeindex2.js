@@ -1,5 +1,10 @@
 var NAVTREEINDEX2 =
 {
+"namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdaf29dbf4bea00cc670c581adfc9b0525a":[0,0,0,35,9],
+"namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafcedc79364097b92f6e4f95379b13842":[0,0,0,35,10],
+"namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb":[0,0,0,35,7],
+"namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd5b36ecd4e3aa791be3b679cecb4193":[0,0,0,35,2],
+"namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e":[0,0,0,32],
 "namespacemembers.html":[0,1,0],
 "namespacemembers_enum.html":[0,1,2],
 "namespacemembers_eval.html":[0,1,3],
@@ -74,8 +79,8 @@ var NAVTREEINDEX2 =
 "structSemanticAnalyzer_1_1FunctionInfo.html#a5c2531664a626b2afa3e1ef9bf4938f7":[1,0,4,1,2],
 "structSemanticAnalyzer_1_1FunctionInfo.html#a71769ba7e8833fb3ca430ade6a256b42":[1,0,4,1,0],
 "structSemanticAnalyzer_1_1ModuleInfo.html":[1,0,4,2],
-"structSemanticAnalyzer_1_1ModuleInfo.html#a3758b2acc9d318f0ae0dc8a7059d7c87":[1,0,4,2,0],
-"structSemanticAnalyzer_1_1ModuleInfo.html#a82f093395b5ea69d840a4ec0719c59e5":[1,0,4,2,1],
+"structSemanticAnalyzer_1_1ModuleInfo.html#a69e052e52df28cd3b7a6b519cba3956d":[1,0,4,2,1],
+"structSemanticAnalyzer_1_1ModuleInfo.html#a7da3324898bea860ef84197763dd9a88":[1,0,4,2,0],
 "structSemanticAnalyzer_1_1PathPart.html":[1,0,4,3],
 "structSemanticAnalyzer_1_1PathPart.html#a3534cac15b82d0806bd10ffdc1e50da4":[1,0,4,3,1],
 "structSemanticAnalyzer_1_1PathPart.html#a68905783269e396a3c9391a573d6842b":[1,0,4,3,0],

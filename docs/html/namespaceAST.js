@@ -50,6 +50,7 @@ var namespaceAST =
       [ "TYPE_NOTH", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafd10eb5402bb60b56aa8b726633d3ecb", null ],
       [ "TYPE_STRING_LIT", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda19fe37a233dbc22cab69415e53d1b0f6", null ],
       [ "TYPE_TRAIT", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdaf29dbf4bea00cc670c581adfc9b0525a", null ],
-      [ "TYPE_CLASS", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafcedc79364097b92f6e4f95379b13842", null ]
+      [ "TYPE_CLASS", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbdafcedc79364097b92f6e4f95379b13842", null ],
+      [ "TYPE_MODULE", "namespaceAST.html#a9c58ec4096a73a8a3427c29077b6fbbda2d4773a05f5c3dbfe808d3da5a9195a5", null ]
     ] ]
 ];
