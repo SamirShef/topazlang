@@ -30,7 +30,7 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
         current_access = AST::ACCESS_PUBLIC;
     }
     else if (match(TOK_PRIV)) {
-        current_access = AST::ACCESS_NONE;
+        current_access = AST::ACCESS_PRIVATE;
     }
     
     if (match(TOK_LET)) {
@@ -108,6 +108,7 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
 
 AST::StmtPtr Parser::parse_var_decl_stmt() {
     Token first_token = peek(-1);
+    AST::AccessModifier access = current_access;
     AST::Type type = consume_type();
     std::stringstream ss;
     ss << "Expected variable name. Token \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
@@ -116,7 +117,7 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
     if (match(TOK_OP_EQ)) {
         expr = parse_expr();
     }
-    return std::make_unique<AST::VarDeclStmt>(current_access, type, std::move(expr), name, first_token.line);
+    return std::make_unique<AST::VarDeclStmt>(access, type, std::move(expr), name, first_token.line);
 }
 
 AST::StmtPtr Parser::parse_var_asgn_stmt() {
@@ -136,6 +137,7 @@ AST::StmtPtr Parser::parse_var_asgn_stmt() {
 
 AST::StmtPtr Parser::parse_func_decl_stmt() {
     Token first_token = peek(-1);
+    AST::AccessModifier access = current_access;
     std::stringstream ss;
     ss << "Expected function name. Token \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
     std::string name = consume(TOK_ID, ss.str(), peek().line).value;
@@ -163,7 +165,7 @@ AST::StmtPtr Parser::parse_func_decl_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-    return std::make_unique<AST::FuncDeclStmt>(current_access, name, std::move(args), ret_type, std::move(block), first_token.line);
+    return std::make_unique<AST::FuncDeclStmt>(access, name, std::move(args), ret_type, std::move(block), first_token.line);
 }
 
 AST::StmtPtr Parser::parse_func_call_stmt() {
@@ -278,6 +280,7 @@ AST::StmtPtr Parser::parse_continue_stmt() {
 
 AST::StmtPtr Parser::parse_module_stmt() {
     Token first_token = peek(-1);
+    AST::AccessModifier access = current_access;
     std::stringstream ss;
     ss << "Expected module name. Token \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
     std::string name = consume(TOK_ID, ss.str(), peek().line).value;
@@ -286,7 +289,7 @@ AST::StmtPtr Parser::parse_module_stmt() {
     while (!match(TOK_OP_RBRACE)) {
         block.push_back(parse_stmt());
     }
-    return std::make_unique<AST::ModuleStmt>(current_access, first_token.file_name, name, std::move(block), first_token.line);
+    return std::make_unique<AST::ModuleStmt>(access, first_token.file_name, name, std::move(block), first_token.line);
 }
 
 AST::StmtPtr Parser::parse_use_module_stmt() {
@@ -441,7 +444,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
                 }
                 if (match(TOK_OP_DOT)) {
                     pos = c_pos - 2;                            // return to the identifier
-                    return parse_obj_chain();
+                    return parse_obj_chain_expr();
                 }
                 return std::make_unique<AST::FuncCallExpr>(token.value, std::move(args), token.line);
             }
@@ -450,7 +453,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
             }
             else if (match(TOK_OP_DOT)) {
                 pos -= 2;                                       // return to the identifier
-                return parse_obj_chain();
+                return parse_obj_chain_expr();
             }
             return std::make_unique<AST::VarExpr>(token.value, token.line);
         case TOK_CHARACTER_LIT:
@@ -484,7 +487,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
     }
 }
 
-AST::ExprPtr Parser::parse_obj_chain() {
+AST::ExprPtr Parser::parse_obj_chain_expr() {
     Token first_token = peek();
     std::vector<AST::ExprPtr> chain;
     do {

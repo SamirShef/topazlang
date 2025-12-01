@@ -260,7 +260,7 @@ private:
      *
      * @return Parsed expression as chain of objects
      */
-    AST::ExprPtr parse_obj_chain();
+    AST::ExprPtr parse_obj_chain_expr();
 
     /**
      * @brief Method for getting token from tokens by parser pos and passed offset

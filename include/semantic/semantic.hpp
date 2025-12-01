@@ -63,11 +63,12 @@ private:
      * @brief Structure of information about module
      */
     struct ModuleInfo {
-        std::map<std::string, std::pair<AST::AccessModifier, Value>> variables;                         /**< Global variables table in module */
-        std::map<std::string, std::pair<AST::AccessModifier, std::unique_ptr<FunctionInfo>>> functions; /**< Functions table in module */
+        std::map<std::string, std::pair<AST::AccessModifier, ModuleInfo*>> modules;     /**< Submodules into module */
+        std::map<std::string, std::pair<AST::AccessModifier, std::string>> functions;   /**< Functions table in module */
     };
     std::map<std::string, ModuleInfo*> modules;                                 /**< Modules table */
-    std::stack<ModuleInfo*> modules_stack;                                      /**< Stack to modules */
+    std::stack<std::string> modules_stack;                                      /**< Stack of names of modules */
+    std::vector<std::string> names_of_imported_modules;                         /**< Names of already imported modules */
 
     /**
      * @brief Structure of part of path to object
@@ -219,6 +220,15 @@ private:
     void analyze_module_stmt(AST::ModuleStmt& ms);
 
     /**
+     * @brief Method for analyze import the module
+     *
+     * This method analyze import the module. If module already imported, then throwing exception
+     *
+     * @param ums Importing module
+     */
+    void analyze_use_module_stmt(AST::UseModuleStmt& ums);
+    
+    /**
      * @brief Method for analyze expression
      *
      * This method analyze passed expression and returns value of it
@@ -283,6 +293,29 @@ private:
      * @return Value of passed function calling (if have)
      */
     Value analyze_func_call_expr(AST::FuncCallExpr& fce);
+
+    /**
+     * @brief Method for analyze chain of objects expression
+     *
+     * This method checking all expressions in path from chain
+     *
+     * @param co Chain of objects expression for evaluating
+     *
+     * @return Value of passed chain of objects
+     */
+    Value analyze_obj_chain_expr(AST::ChainObjects& co);
+
+    /**
+     * @brief Method for analyze object from chain of objects expression
+     *
+     * This method analyzing passed object expression by passed target value
+     *
+     * @param target Value of target object
+     * @param obj Expression of object for analyzing
+     *
+     * @return Value of passed object expression
+     */
+    Value analyze_obj_from_chain(Value target, AST::Expr& obj);
 
     /**
      * @brief Method for evaluating and returning function returned value

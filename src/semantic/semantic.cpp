@@ -69,6 +69,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto ms = dynamic_cast<AST::ModuleStmt*>(&stmt)) {
         analyze_module_stmt(*ms);
     }
+    else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
+        analyze_use_module_stmt(*ums);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -338,17 +341,21 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
         ss << "Module \033[0m'" << ms.name << "'\033[31m already exists";
         throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name);
     }
-    ModuleInfo module;
-    modules.emplace(get_mangled_name(ms.name), &module);
-    modules_stack.push(&module);
+    modules.emplace(get_mangled_name(ms.name), new ModuleInfo());
+    ModuleInfo *module = modules.find(get_mangled_name(ms.name))->second;
+    modules_stack.push(get_mangled_name(ms.name));
     current_path.push(PathPart{.name=ms.name, .object=PathPart::OBJ_MODULE});
     for (auto& stmt : ms.block) {
-        analyze_stmt(*stmt);
-        if (auto vds = dynamic_cast<AST::VarDeclStmt*>(&*stmt)) {
-            module.variables.emplace(vds->name, std::make_pair(vds->access, *get_variable_value(vds->name)));
+        if (auto sms = dynamic_cast<AST::ModuleStmt*>(&*stmt)) {
+            analyze_module_stmt(*sms);
+            module->modules.emplace(sms->name, std::make_pair(sms->access, new ModuleInfo()));
+            ModuleInfo *submodule = module->modules.find(sms->name)->second.second;
+            submodule->functions = modules.find(get_mangled_name(sms->name))->second->functions;
+            submodule->modules = modules.find(get_mangled_name(sms->name))->second->modules;
         }
         else if (auto fds = dynamic_cast<AST::FuncDeclStmt*>(&*stmt)) {
-            module.functions.emplace(fds->name, std::make_pair(fds->access, get_function_info(fds->name)));
+            module->functions.emplace(fds->name, std::make_pair(fds->access, get_mangled_name(fds->name)));
+            analyze_func_decl_stmt(*fds);
         }
     }
     current_path.pop();
@@ -356,6 +363,34 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
     variables.pop();
     
     current_space = previous_space;
+}
+
+void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
+    std::string all_name;
+    for (size_t i = 0; i < ums.path.size(); i++) {
+        all_name += ums.path[i];
+        if (i != ums.path.size() - 1) {
+            all_name += "-";
+        }
+    }
+    bool found = false;
+    for (auto& module : modules) {
+        if (module.first.find(all_name) != std::string::npos) {
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        std::stringstream ss;
+        ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
+        throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+    }
+    if (std::find(names_of_imported_modules.begin(), names_of_imported_modules.end(), all_name) != names_of_imported_modules.end()) {
+        std::stringstream ss;
+        ss << "Module \033[0m'" << ums.path[ums.path.size() - 1] << "'\033[31m already imported";
+        throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+    }
+    names_of_imported_modules.push_back(all_name);
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {
@@ -373,6 +408,9 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {
     }
     else if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&expr)) {
         return analyze_func_call_expr(*fce);
+    }
+    else if (auto oce = dynamic_cast<AST::ChainObjects*>(&expr)) {
+        return analyze_obj_chain_expr(*oce);
     }
     else {
         throw_exception(SUB_SEMANTIC, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
@@ -513,6 +551,9 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_unary_expr(AST::UnaryExpr& ue)
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_var_expr(AST::VarExpr& ve) {
     std::unique_ptr<Value> var = get_variable_value(ve.name);
     if (var == nullptr) {
+        if (modules.find(get_mangled_name(ve.name)) != modules.end()) {
+            return Value(AST::Type(AST::TYPE_MODULE, get_mangled_name(ve.name)), get_mangled_name(ve.name), true, false);
+        }
         std::stringstream ss;
         ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
         throw_exception(SUB_SEMANTIC, ss.str(), ve.line, file_name);
@@ -543,6 +584,66 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
         index++;
     }
     return get_function_return_value(func, fce);
+}
+
+SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_chain_expr(AST::ChainObjects& co) {
+    Value value = analyze_expr(*co.chain[0]);                   // Value of target object
+    for (size_t i = 1; i < co.chain.size(); i++) {
+        value = analyze_obj_from_chain(value, *co.chain[i]);
+    }
+    return value;
+}
+
+SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_from_chain(Value target, AST::Expr& obj) {
+    if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&obj)) {
+        if (target.type.type == AST::TYPE_MODULE) {
+            ModuleInfo *info = modules.find(target.type.name)->second;
+            if (info == nullptr) {
+                std::stringstream ss;
+                ss << "Module \033[0m'" << target.type.name << "'\033[31m does not exists";
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+            }
+            if (info->functions.find(fce->name) == info->functions.end()) {
+                std::stringstream ss;
+                ss << "Function \033[0m'" << fce->name << "'\033[31m does not exists in module \033[0m'" << target.type.name << "'\033[31m";
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+            }
+            if (info->functions.at(fce->name).first != AST::ACCESS_PUBLIC) {
+                std::stringstream ss;
+                ss << "Function \033[0m'" << fce->name << "'\033[31m in module \033[0m'" << target.type.name << "'\033[31m is private member";
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+            }
+            current_path.push(PathPart{target.type.name, SemanticAnalyzer::PathPart::OBJ_MODULE});
+            Value value = analyze_func_call_expr(*fce);
+            current_path.pop();
+            return value;
+        }
+    }
+    else if (auto ve = dynamic_cast<AST::VarExpr*>(&obj)) {
+        ModuleInfo *info = modules.find(target.type.name)->second;
+        if (info == nullptr) {
+            std::stringstream ss;
+            ss << "Module \033[0m'" << target.type.name << "'\033[31m does not exists";
+            throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+        }
+        if (info->modules.find(ve->name) != info->modules.end()) {
+            if (info->modules.at(ve->name).first != AST::ACCESS_PUBLIC) {
+                std::stringstream ss;
+                ss << "Module \033[0m'" << ve->name << "'\033[31m in module \033[0m'" << target.type.name << "'\033[31m is private member";
+                throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name);
+            }
+            target.type.name += "-" + ve->name;
+            return target;
+        }
+        std::stringstream ss;
+        ss << "Module \033[0m'" << ve->name << "'\033[31m does not exists in module \033[0m'" << target.type.name << "'\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name);
+    }
+    else {
+        std::stringstream ss;
+        ss << "Module \033[0m'" << target.type.name << "'\033[31m does not have passed object type";
+        throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+    }
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce) {
