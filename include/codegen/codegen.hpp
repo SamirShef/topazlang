@@ -200,6 +200,15 @@ private:
     void generate_module_stmt(AST::ModuleStmt& ms);
 
     /**
+     * @brief Method for generating LLVM IR code for import the module
+     *
+     * This method generating LLVM IR code for import the module
+     *
+     * @param ums Importing module
+     */
+    void generate_use_module_stmt(AST::UseModuleStmt& ums);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
@@ -262,6 +271,17 @@ private:
      * @return Generated LLVM value
      */
     llvm::Value *generate_func_call_expr(AST::FuncCallExpr& fce);
+
+    /**
+     * @brief Method for generating LLVM IR code for chain of objects expression
+     *
+     * This method generating LLVM IR code for all expressions in path from chain
+     *
+     * @param co Chain of objects expression for generating
+     *
+     * @return Generated LLVM value
+     */
+    llvm::Value *generate_obj_chain_expr(AST::ChainObjects& co);
 
     /**
      * @brief Method for converting AST::Type to llvm::Type

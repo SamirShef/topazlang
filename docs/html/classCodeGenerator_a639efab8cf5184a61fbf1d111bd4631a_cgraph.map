@@ -1,37 +1,40 @@
 <map id="CodeGenerator::generate_return_stmt" name="CodeGenerator::generate_return_stmt">
-<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="5,173,173,216"/>
-<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,269,420,296"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,214,270,261,268,266,146,219"/>
+<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="5,169,173,212"/>
+<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="221,299,420,325"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,210,281,289,279,294,130,215"/>
 <area shape="rect" id="Node000005" href="$classCodeGenerator.html#abd24d8c33d521ec58c14e4a1be5e26bd" title="Method for implicitly cast value to expected type." alt="" coords="683,5,884,32"/>
-<area shape="poly" id="edge22_Node000001_Node000005" title=" " alt="" coords="171,170,467,92,708,33,709,39,469,97,172,175"/>
+<area shape="poly" id="edge24_Node000001_Node000005" title=" " alt="" coords="172,167,467,92,708,34,710,39,469,97,174,172"/>
 <area shape="rect" id="Node000003" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="468,107,635,149"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,267,400,225,467,178,508,155,511,159,469,182,403,229,349,271"/>
-<area shape="rect" id="Node000006" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="932,253,1048,280"/>
-<area shape="poly" id="edge21_Node000002_Node000006" title=" " alt="" coords="343,266,398,238,432,224,467,213,531,203,595,200,660,201,723,207,839,225,929,246,927,251,838,230,723,212,660,206,595,205,531,209,469,219,434,229,400,242,345,271"/>
-<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="468,437,635,480"/>
-<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="330,295,379,356,415,392,457,427,454,431,412,396,375,359,326,298"/>
-<area shape="rect" id="Node000010" href="$classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="468,228,635,271"/>
-<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="417,266,452,261,453,266,418,271"/>
-<area shape="rect" id="Node000012" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="468,295,635,337"/>
-<area shape="poly" id="edge15_Node000002_Node000012" title=" " alt="" coords="367,294,453,308,452,313,366,299"/>
-<area shape="rect" id="Node000013" href="$classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441" title="Method for generating LLVM IR code for variable expressions." alt="" coords="468,371,635,413"/>
-<area shape="poly" id="edge18_Node000002_Node000013" title=" " alt="" coords="352,294,492,361,490,366,349,299"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="480,152,469,158,398,210,342,260,339,256,395,206,467,154,477,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,296,392,241,428,208,466,178,507,154,509,159,470,182,431,212,396,245,342,300"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="941,253,1058,280"/>
+<area shape="poly" id="edge23_Node000002_Node000006" title=" " alt="" coords="334,296,389,251,426,227,467,209,533,195,600,188,668,189,735,196,855,219,947,245,945,250,854,224,734,201,668,195,601,194,534,200,469,215,429,232,392,255,337,300"/>
+<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="700,459,867,501"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="335,324,392,360,469,396,580,435,685,464,684,469,579,440,467,401,390,364,332,328"/>
+<area shape="rect" id="Node000010" href="$classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="468,224,635,267"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="369,295,460,269,461,274,370,301"/>
+<area shape="rect" id="Node000012" href="$classCodeGenerator.html#a8776bef4d5d767cf54392beba082283f" title="Method for generating LLVM IR code for chain of objects expression." alt="" coords="468,483,635,525"/>
+<area shape="poly" id="edge15_Node000002_Node000012" title=" " alt="" coords="334,324,388,388,427,427,470,462,487,473,484,477,466,466,423,431,385,392,330,327"/>
+<area shape="rect" id="Node000013" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="468,291,635,333"/>
+<area shape="poly" id="edge17_Node000002_Node000013" title=" " alt="" coords="421,318,452,318,452,324,421,324"/>
+<area shape="rect" id="Node000014" href="$classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441" title="Method for generating LLVM IR code for variable expressions." alt="" coords="700,392,867,435"/>
+<area shape="poly" id="edge20_Node000002_Node000014" title=" " alt="" coords="383,323,469,343,685,390,684,395,467,348,382,329"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="479,152,470,158,430,190,394,224,339,288,335,284,390,221,427,186,466,154,476,148"/>
 <area shape="rect" id="Node000004" href="$classCodeGenerator.html#a2a19b027eaf6660fa103734b7b4d039a" title="Method for getting comon type between two types." alt="" coords="716,56,851,99"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="635,107,700,93,701,98,636,112"/>
 <area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="579,104,626,72,682,42,700,35,702,40,684,46,629,76,582,108"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="636,121,693,123,757,130,822,143,885,166,911,181,935,200,971,239,968,243,931,204,908,185,883,170,821,148,756,135,693,128,636,127"/>
-<area shape="rect" id="Node000007" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="1096,245,1263,288"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1048,264,1081,264,1081,269,1048,269"/>
-<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="514,439,467,416,432,390,400,362,347,309,351,305,403,358,435,386,469,411,516,434"/>
-<area shape="rect" id="Node000009" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="716,443,851,485"/>
-<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="636,458,700,459,700,465,636,463"/>
-<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="636,250,916,261,916,266,636,255"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="636,122,693,124,756,131,822,144,885,166,913,181,939,200,979,240,976,244,935,205,910,186,883,170,821,149,755,136,692,130,636,128"/>
+<area shape="rect" id="Node000007" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="1115,245,1282,288"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1058,264,1099,264,1099,269,1058,269"/>
+<area shape="poly" id="edge9_Node000008_Node000002" title=" " alt="" coords="726,461,606,425,467,377,376,335,378,330,469,372,607,420,727,456"/>
+<area shape="rect" id="Node000009" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="932,425,1067,468"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="867,464,916,457,917,462,868,470"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="636,247,925,261,925,266,636,252"/>
 <area shape="rect" id="Node000011" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="712,275,855,317"/>
-<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="636,264,698,276,696,281,635,269"/>
-<area shape="poly" id="edge14_Node000011_Node000006" title=" " alt="" coords="855,283,916,274,917,280,855,289"/>
-<area shape="poly" id="edge16_Node000012_Node000002" title=" " alt="" coords="467,298,435,293,436,288,468,293"/>
-<area shape="poly" id="edge17_Node000012_Node000006" title=" " alt="" coords="636,331,692,338,754,341,820,338,883,327,924,310,959,287,962,292,926,314,884,332,820,344,754,346,691,343,635,336"/>
-<area shape="poly" id="edge20_Node000013_Node000006" title=" " alt="" coords="636,391,692,388,755,381,820,368,883,347,928,320,964,289,967,293,931,325,885,352,822,373,756,386,693,393,636,396"/>
-<area shape="poly" id="edge19_Node000013_Node000009" title=" " alt="" coords="624,411,702,436,700,441,622,417"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="636,261,698,275,697,280,635,266"/>
+<area shape="poly" id="edge14_Node000011_Node000006" title=" " alt="" coords="855,284,926,274,927,279,856,289"/>
+<area shape="poly" id="edge16_Node000012_Node000008" title=" " alt="" coords="635,493,684,488,684,493,636,498"/>
+<area shape="poly" id="edge18_Node000013_Node000002" title=" " alt="" coords="468,306,436,306,436,300,468,301"/>
+<area shape="poly" id="edge19_Node000013_Node000006" title=" " alt="" coords="636,327,692,335,754,339,819,337,883,327,928,309,966,287,969,291,930,314,884,332,820,343,754,344,691,340,636,333"/>
+<area shape="poly" id="edge22_Node000014_Node000006" title=" " alt="" coords="848,389,882,371,934,331,974,290,978,294,937,335,885,376,850,394"/>
+<area shape="poly" id="edge21_Node000014_Node000009" title=" " alt="" coords="868,424,917,431,916,437,867,429"/>
 </map>
