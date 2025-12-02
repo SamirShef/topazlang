@@ -50,6 +50,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto ms = dynamic_cast<AST::ModuleStmt*>(&stmt)) {
         generate_module_stmt(*ms);
     }
+    else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
+        // No processing is needed
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
     }
@@ -303,6 +306,9 @@ llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
     else if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&expr)) {
         return generate_func_call_expr(*fce);
     }
+    else if (auto oce = dynamic_cast<AST::ChainObjects*>(&expr)) {
+        return generate_obj_chain_expr(*oce);
+    }
     else {
         throw_exception(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
     }
@@ -464,6 +470,23 @@ llvm::Value *CodeGenerator::generate_func_call_expr(AST::FuncCallExpr& fce) {
     }
 
     return builder.CreateCall(func, args, get_mangled_name(fce.name) + ".call");
+}
+
+llvm::Value *CodeGenerator::generate_obj_chain_expr(AST::ChainObjects& co) {
+    llvm::Value *value = nullptr;                               // Value of target object
+    size_t current_path_size = current_path.size();
+    for (size_t i = 0; i < co.chain.size(); i++) {
+        if (auto ve = dynamic_cast<AST::VarExpr*>(&*co.chain[i])) {
+            current_path.push({ve->name, PathPart::OBJ_MODULE});
+        }
+        else if (auto fce = dynamic_cast<AST::FuncCallExpr*>(&*co.chain[i])) {
+            value = generate_func_call_expr(*fce);
+        }
+    }
+    for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
+        current_path.pop();
+    }
+    return value;
 }
 
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {

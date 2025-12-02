@@ -8,7 +8,7 @@ module math {
         for let int i = 0, i < power, i++ {
             res *= x;
         }
-        return x;
+        return res;
     }
     
     pub fun pow(x: double, power: int) -> double {

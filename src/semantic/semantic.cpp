@@ -591,6 +591,9 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_chain_expr(AST::ChainObjec
     for (size_t i = 1; i < co.chain.size(); i++) {
         value = analyze_obj_from_chain(value, *co.chain[i]);
     }
+    if (value.type.type == AST::TYPE_MODULE) {
+        throw_exception(SUB_SEMANTIC, "Cannot specify module as expression", co.line, file_name);
+    }
     return value;
 }
 
@@ -652,6 +655,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
         variables.top().emplace(func->args[i].name, analyze_expr(*fce.args[i]));
     }
     for (auto& stmt : func->block) {
+        analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             Value val =  analyze_expr(*rs->expr);
             variables.pop();
