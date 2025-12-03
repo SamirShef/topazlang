@@ -5,6 +5,7 @@
  */
 
 #include "../../include/exception/exception.hpp"
+#include <llvm/IR/Value.h>
 #include "../../include/codegen/codegen.hpp"
 
 void CodeGenerator::generate() {
@@ -127,8 +128,16 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
         }
         generate_stmt(*stmt);
     }
-    if (!have_ret_in_global && fds.ret_type.type == AST::TYPE_NOTH) {
-        builder.CreateRetVoid();
+    if (!have_ret_in_global) {
+        if (fds.ret_type.type == AST::TYPE_NOTH) {
+            builder.CreateRetVoid();
+        }
+        else if (fds.ret_type.type <= AST::TYPE_DOUBLE) {
+            builder.CreateRet(llvm::Constant::getNullValue(type_to_llvm(fds.ret_type)));
+        }
+        else {
+            throw_exception(SUB_CODEGEN, "Not all paths return a value", fds.line, file_name);
+        }
     }
     variables.pop();
     functions_ret_types.pop();
