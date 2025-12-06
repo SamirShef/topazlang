@@ -37,10 +37,23 @@ int main(int argc, const char *argv[]) {
         std::cerr << "\033[33mUsage: topazc \"path/to/src.tp\"\033[0m\n";
         return 1;
     }
+    
 
     std::ifstream file(argv[1]);
     if (!file.is_open()) {
         std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\033[0m\n";
+        return 1;
+    }
+
+    std::filesystem::path libs_path = "libs";
+    if (std::filesystem::exists(libs_path)) {
+        if (!std::filesystem::is_directory(libs_path)) {
+            std::cerr << "\033[31mCompilation error: Directory with libraries does not exists!\033[0m\n";
+            return 1;
+        }
+    }
+    else {
+        std::cerr << "\033[31mCompilation error: Directory with libraries does not exists!\033[0m\n";
         return 1;
     }
     
@@ -86,8 +99,10 @@ int main(int argc, const char *argv[]) {
     #endif
     const std::string object_path = executable_path + obj_ext;
 
-    std::string content = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-    Lexer lexer(content, file_path.string());
+    std::ostringstream content;
+    content << file.rdbuf();
+    file.close();
+    Lexer lexer(content.str(), file_path.string());
     std::vector<Token> tokens = lexer.tokenize();
     if (print_tokens) {
         std::cout << "\033[1m\033[32mTokens:\033[0m\n";
@@ -100,6 +115,7 @@ int main(int argc, const char *argv[]) {
     std::vector<AST::StmtPtr> stmts_for_semantic = parser.parse();
 
     SemanticAnalyzer semantic(stmts_for_semantic, file_path.string());
+    semantic.set_libs_path(std::filesystem::absolute(libs_path));
     semantic.analyze();
     
     parser.reset();

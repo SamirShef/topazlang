@@ -5,6 +5,7 @@
  */
 
 #include "../parser/ast.hpp"
+#include <filesystem>
 #include <vector>
 #include <memory>
 #include <stack>
@@ -12,7 +13,9 @@
 
 class SemanticAnalyzer {
 private:
+    std::string libs_path;                                                      /**< Absolute path to the Topaz libraries */
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
+    std::string path_to_current_dir;                                            /**< Absolute path to the directory which contains current Topaz source code file */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
 
     /**
@@ -55,7 +58,7 @@ private:
         std::vector<AST::Argument> args;                                        /**< Function arguments */
         std::vector<AST::StmtPtr> block;                                        /**< Function block */
     };
-    std::map<std::string, std::unique_ptr<FunctionInfo>> functions;             /**< Functions table */
+    std::map<std::string, std::shared_ptr<FunctionInfo>> functions;             /**< Functions table */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
     unsigned depth_of_loops;                                                    /**< Depth of loops */
 
@@ -67,7 +70,6 @@ private:
         std::map<std::string, std::pair<AST::AccessModifier, std::string>> functions;   /**< Functions table in module */
     };
     std::map<std::string, ModuleInfo*> modules;                                 /**< Modules table */
-    std::stack<std::string> modules_stack;                                      /**< Stack of names of modules */
     std::vector<std::string> names_of_imported_modules;                         /**< Names of already imported modules */
 
     /**
@@ -88,7 +90,18 @@ private:
 
 public:
     SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn), depth_of_loops(0) {
+        std::filesystem::path file_path = std::filesystem::absolute(fn);
+        path_to_current_dir = file_path.parent_path().string();
         variables.push({});
+    }
+
+    /**
+     * @brief Method for setting absolute path to the path to libraries
+     *
+     * @param path Absolute path to the libraries
+     */
+    void set_libs_path(std::string path) {
+        libs_path = path;
     }
 
     /**
@@ -97,6 +110,24 @@ public:
      * This method analyze all statements to semantic errors. If have error, then throwing exception
      */
     void analyze();
+
+    /**
+     * @brief Method for getting modules from semantic
+     *
+     * @return Table of modules
+     */
+    std::map<std::string, ModuleInfo*> get_modules() const {
+        return modules;
+    }
+
+    /**
+     * @brief Method for getting functions from semantic
+     *
+     * @return Table of functions
+     */
+    std::map<std::string, std::shared_ptr<FunctionInfo>> get_functions() const {
+        return functions;
+    }
 
 private:
     /**
@@ -476,4 +507,15 @@ private:
      * @return Mangled name
      */
     std::string get_mangled_name(std::string base_name);
+
+    /**
+     * @brief Method for getting resolved name by mangled name
+     *
+     * This method returns resolved name by passed mangled name
+     *
+     * @param mangled_name Mangled name for resolving
+     *
+     * @return Vector to PathPart
+     */
+    std::vector<PathPart> get_resolved_name(std::string mangled_name);
 };

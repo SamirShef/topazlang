@@ -6,7 +6,11 @@
 
 #include "../../include/exception/exception.hpp"
 #include "../../include/semantic/semantic.hpp"
+#include "../../include/parser/parser.hpp"
+#include "../../include/lexer/lexer.hpp"
 #include <algorithm>
+#include <iostream>
+#include <fstream>
 
 void SemanticAnalyzer::analyze() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -205,18 +209,7 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
         ss << "Function \033[0m'" << fcs.name << "'\033[31m expected " << functions.at(get_mangled_name(fcs.name))->args.size() << " arguments, but got " << fcs.args.size();
         throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
     }
-    variables.push({});
-    size_t index = 0;
-    for (auto& arg : fcs.args) {
-        AST::Type arg_type = analyze_expr(*arg).type;
-        if (!has_common_type(arg_type, functions.at(get_mangled_name(fcs.name))->args[index].type)) {
-            std::stringstream ss;
-            ss << "Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << functions.at(get_mangled_name(fcs.name))->args[index].type.to_str() << "'\033[31m";
-            throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
-        }
-        index++;
-    }
-    variables.pop();
+    analyze_func_call_expr(*std::make_unique<AST::FuncCallExpr>(fcs.name, std::move(fcs.args), fcs.line));
 }
 
 void SemanticAnalyzer::analyze_return_stmt(AST::ReturnStmt& rs) {
@@ -343,7 +336,6 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
     }
     modules.emplace(get_mangled_name(ms.name), new ModuleInfo());
     ModuleInfo *module = modules.find(get_mangled_name(ms.name))->second;
-    modules_stack.push(get_mangled_name(ms.name));
     current_path.push(PathPart{.name=ms.name, .object=PathPart::OBJ_MODULE});
     for (auto& stmt : ms.block) {
         if (auto sms = dynamic_cast<AST::ModuleStmt*>(&*stmt)) {
@@ -359,7 +351,6 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
         }
     }
     current_path.pop();
-    modules_stack.pop();
     variables.pop();
     
     current_space = previous_space;
@@ -374,20 +365,101 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
         }
     }
     bool found = false;
-    for (auto& module : modules) {
-        if (module.first.find(all_name) != std::string::npos) {
-            found = true;
-            break;
-        }
+    if (modules.find(all_name) != modules.end()) {
+        found = true;
     }
     if (!found) {
-        std::stringstream ss;
-        ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+        std::filesystem::path path_to_mod_without_ext;
+        for (size_t i = 0; i < ums.path.size(); i++) {
+            path_to_mod_without_ext += "/" + ums.path[i];
+        }
+        std::filesystem::path path_to_mod_without_ext_in_libs = libs_path + path_to_mod_without_ext.string();
+        std::string path_to_mod_without_ext_in_libs_as_str = path_to_mod_without_ext_in_libs.string();
+        std::ifstream file;
+        if (std::filesystem::is_directory(path_to_mod_without_ext_in_libs_as_str)/*  && std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp").is_open() */) {
+            if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
+                file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                if (!file.is_open()) {
+                    std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\033[0m\n";
+                    exit(1);
+                }
+                std::ostringstream content;
+                content << file.rdbuf();
+                file.close();
+                Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                std::vector<Token> tokens = lex.tokenize();
+                Parser parser(tokens);
+                std::vector<AST::StmtPtr> stmts = parser.parse();
+                SemanticAnalyzer semantic(stmts, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                semantic.analyze();
+                std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
+                if (modules.find(all_name) == modules.end()) {
+                    std::stringstream ss;
+                    ss << "File \033[0m'" << path_to_mod_without_ext_in_libs_as_str + "/main.tp" << "'\033[31m does not have a module with name \033[0m'" << all_name << "'\033[31m inside";
+                    throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+                }
+                size_t current_path_size = current_path.size();
+                for (auto& module : modules) {
+                    this->modules.emplace(module.first, module.second);
+                    std::vector<PathPart> resolved_name = get_resolved_name(module.first);
+                    current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
+                    auto functions = semantic.get_functions();
+                    for (auto& func : module.second->functions) {
+                        this->functions.emplace(get_mangled_name(func.first), std::move(functions.at(get_mangled_name(func.first))));
+                    }
+                }
+                for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
+                    current_path.pop();
+                }
+            }
+        }
+        else {
+            std::string path_to_file;
+            for (const auto& entry : std::filesystem::recursive_directory_iterator(libs_path)) {
+                if (entry.path().filename() == ums.path.back() + ".tp" && !std::filesystem::is_directory(entry.path())) {
+                    path_to_file = entry.path();
+                    file = std::ifstream(path_to_file);
+                    break;
+                }
+            }
+            if (!file.is_open()) {
+                std::stringstream ss;
+                ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
+                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+            }
+            std::ostringstream content;
+            content << file.rdbuf();
+            file.close();
+            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp");
+            std::vector<Token> tokens = lex.tokenize();
+            Parser parser(tokens);
+            std::vector<AST::StmtPtr> stmts = parser.parse();
+            SemanticAnalyzer semantic(stmts, path_to_mod_without_ext_in_libs_as_str + ".tp");
+            semantic.analyze();
+            std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
+            if (modules.find(all_name) == modules.end()) {
+                std::stringstream ss;
+                ss << "File \033[0m'" << path_to_file << "'\033[31m does not have a module with name \033[0m'" << all_name << "'\033[31m inside";
+                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+            }
+            size_t current_path_size = current_path.size();
+            for (auto& module : modules) {
+                this->modules.emplace(module.first, module.second);
+                std::vector<PathPart> resolved_name = get_resolved_name(module.first);
+                current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
+                auto functions = semantic.get_functions();
+                for (auto& func : module.second->functions) {
+                    this->functions.emplace(get_mangled_name(func.first), std::move(functions.at(get_mangled_name(func.first))));
+                }
+            }
+            for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
+                current_path.pop();
+            }
+        }
     }
     if (std::find(names_of_imported_modules.begin(), names_of_imported_modules.end(), all_name) != names_of_imported_modules.end()) {
         std::stringstream ss;
-        ss << "Module \033[0m'" << ums.path[ums.path.size() - 1] << "'\033[31m already imported";
+        ss << "Module \033[0m'" << ums.path.back() << "'\033[31m already imported";
         throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
     }
     names_of_imported_modules.push_back(all_name);
@@ -427,7 +499,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_binary_expr(AST::BinaryExpr& b
     
     AST::Type left_type = left_val.type;
     AST::Type right_type = right_val.type;
-    
+
     AST::Type output_type = get_common_type(left_type, right_type, be.line);
     
     if (left_type.type >= AST::TYPE_BOOL && left_type.type <= AST::TYPE_DOUBLE && right_type.type > AST::TYPE_DOUBLE ||
@@ -651,20 +723,25 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_from_chain(Value target, A
 
 SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce) {
     variables.push({});
+    functions_ret_types.push(func->ret_type);
     for (size_t i = 0; i < fce.args.size(); i++) {
-        variables.top().emplace(func->args[i].name, analyze_expr(*fce.args[i]));
+        Value val = analyze_expr(*fce.args[i]);
+        val.type = func->args[i].type;
+        variables.top().emplace(func->args[i].name, val);
     }
     for (auto& stmt : func->block) {
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             Value val =  analyze_expr(*rs->expr);
             variables.pop();
+            functions_ret_types.pop();
             return val;
         }
         else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
             Value *val = get_function_return_value_from_if_else(*ies);
             if (val != nullptr) {
                 variables.pop();
+                functions_ret_types.pop();
                 return *val;
             }
         }
@@ -672,6 +749,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
             Value *val = get_function_return_value_from_while_cycle(*wcs);
             if (val != nullptr) {
                 variables.pop();
+                functions_ret_types.pop();
                 return *val;
             }
         }
@@ -679,6 +757,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
             Value *val = get_function_return_value_from_do_while_cycle(*dwcs);
             if (val != nullptr) {
                 variables.pop();
+                functions_ret_types.pop();
                 return *val;
             }
         }
@@ -686,6 +765,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
             Value *val = get_function_return_value_from_for_cycle(*fcs);
             if (val != nullptr) {
                 variables.pop();
+                functions_ret_types.pop();
                 return *val;
             }
         }
@@ -699,6 +779,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
     Value cond_val = analyze_expr(*ies.cond);
     if (cond_val.is_literal && !cond_val.is_value_unknown && std::get<bool>(cond_val.value.value) == true) {
         for (auto& stmt : ies.then_block) {
+            analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
                 return &val;
@@ -719,6 +800,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
     }
     else if (cond_val.is_literal && !cond_val.is_value_unknown && std::get<bool>(cond_val.value.value) == false) {
         for (auto& stmt : ies.else_block) {
+            analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
                 return &val;
@@ -744,6 +826,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_
     Value cond_val = analyze_expr(*wcs.cond);
     if (cond_val.is_literal && !cond_val.is_value_unknown && std::get<bool>(cond_val.value.value) == true) {
         for (auto& stmt : wcs.block) {
+            analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
                 return &val;
@@ -767,6 +850,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_do_while_cycle(AST::DoWhileCycleStmt& dwcs) {
     for (auto& stmt : dwcs.block) {
+        analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             static Value val = analyze_expr(*rs->expr);
             return &val;
@@ -793,6 +877,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_for_cy
     Value cond_val = analyze_expr(*fcs.cond);
     if (cond_val.is_literal && !cond_val.is_value_unknown && std::get<bool>(cond_val.value.value) == true) {
         for (auto& stmt : fcs.block) {
+            analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
                 variables.pop();
@@ -895,49 +980,49 @@ double SemanticAnalyzer::binary_two_variants(Value left, Value right, TokenType 
     
     double left_val = 0;
     double right_val = 0;
-    switch (left.type.type) {
-        case AST::TYPE_BOOL:
+    switch (left.value.value.index()) {
+        case 0:
             left_val = std::get<0>(left.value.value);
             break;
-        case AST::TYPE_CHAR:
+        case 1:
             left_val = std::get<1>(left.value.value);
             break;
-        case AST::TYPE_SHORT:
+        case 2:
             left_val = std::get<2>(left.value.value);
             break;
-        case AST::TYPE_INT:
+        case 3:
             left_val = std::get<3>(left.value.value);
             break;
-        case AST::TYPE_LONG:
+        case 4:
             left_val = std::get<4>(left.value.value);
             break;
-        case AST::TYPE_FLOAT:
+        case 5:
             left_val = std::get<5>(left.value.value);
             break;
-        case AST::TYPE_DOUBLE:
+        case 6:
             left_val = std::get<6>(left.value.value);
             break;
     }
-    switch (right.type.type) {
-        case AST::TYPE_BOOL:
+    switch (right.value.value.index()) {
+        case 0:
             right_val = std::get<0>(right.value.value);
             break;
-        case AST::TYPE_CHAR:
+        case 1:
             right_val = std::get<1>(right.value.value);
             break;
-        case AST::TYPE_SHORT:
+        case 2:
             right_val = std::get<2>(right.value.value);
             break;
-        case AST::TYPE_INT:
+        case 3:
             right_val = std::get<3>(right.value.value);
             break;
-        case AST::TYPE_LONG:
+        case 4:
             right_val = std::get<4>(right.value.value);
             break;
-        case AST::TYPE_FLOAT:
+        case 5:
             right_val = std::get<5>(right.value.value);
             break;
-        case AST::TYPE_DOUBLE:
+        case 6:
             right_val = std::get<6>(right.value.value);
             break;
     }
@@ -1029,4 +1114,24 @@ std::string SemanticAnalyzer::get_mangled_name(std::string base_name) {
         path.pop();
     }
     return res + base_name;
+}
+
+std::vector<SemanticAnalyzer::PathPart> SemanticAnalyzer::get_resolved_name(std::string mangled_name) {
+    std::vector<PathPart> res;
+    std::string name;
+    for (const char c : mangled_name) {
+        if (c == '-') {
+            res.push_back({name, SemanticAnalyzer::PathPart::OBJ_MODULE});
+            name = "";
+        }
+        else if (c == '#') {
+            res.push_back({name, SemanticAnalyzer::PathPart::OBJ_CLASS});
+            name = "";
+        }
+        else {
+            name += c;
+        }
+    }
+    res.push_back({name, SemanticAnalyzer::PathPart::OBJ_MODULE});
+    return res;
 }
