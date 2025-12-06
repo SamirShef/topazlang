@@ -21,3 +21,5 @@ else()
     llvm_map_components_to_libnames(LLVM_LIBS all)
     target_link_libraries(topazc PRIVATE ${LLVM_LIBS})
 endif()
+
+file(COPY libs DESTINATION ${CMAKE_BINARY_DIR})
