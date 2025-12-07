@@ -84,7 +84,7 @@
 <area shape="poly" id="edge71_Node000025_Node000021" title=" " alt="" coords="552,1339,559,1268,579,1166,595,1111,618,1056,646,1004,682,957,694,947,697,951,686,961,651,1007,622,1058,600,1113,584,1168,564,1268,558,1340"/>
 <area shape="rect" id="Node000026" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="694,1757,874,1784"/>
 <area shape="poly" id="edge50_Node000025_Node000026" title=" " alt="" coords="558,1383,565,1451,585,1546,601,1597,623,1648,651,1695,686,1737,701,1748,698,1752,682,1741,647,1698,618,1650,596,1599,580,1547,560,1452,552,1384"/>
-<area shape="rect" id="Node000060" href="$classSemanticAnalyzer.html#a1e4d00b2a999e66f243869261829b7eb" title="Method for getting functions from semantic." alt="" coords="707,1875,861,1917"/>
+<area shape="rect" id="Node000060" href="$classSemanticAnalyzer.html#ab5cb6f2aedcfa0890fbdd2f942c6e5c3" title="Method for getting functions from semantic." alt="" coords="707,1875,861,1917"/>
 <area shape="poly" id="edge72_Node000025_Node000060" title=" " alt="" coords="559,1382,575,1484,602,1627,620,1701,640,1768,662,1824,686,1861,696,1869,692,1873,682,1864,658,1826,635,1770,615,1702,597,1628,570,1484,554,1383"/>
 <area shape="rect" id="Node000061" href="$classSemanticAnalyzer.html#a57d9de3d16ba8d3bbf99c50a75bf5a4a" title="Method for getting modules from semantic." alt="" coords="707,1311,861,1353"/>
 <area shape="poly" id="edge74_Node000025_Node000061" title=" " alt="" coords="636,1348,691,1341,692,1346,637,1353"/>

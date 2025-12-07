@@ -57,8 +57,10 @@ private:
         AST::Type ret_type;                                                     /**< Function return type */
         std::vector<AST::Argument> args;                                        /**< Function arguments */
         std::vector<AST::StmtPtr> block;                                        /**< Function block */
+
+        FunctionInfo(AST::Type rt, std::vector<AST::Argument> a, std::vector<AST::StmtPtr> b) : ret_type(rt), args(std::move(a)), block(std::move(b)) {}
     };
-    std::map<std::string, std::shared_ptr<FunctionInfo>> functions;             /**< Functions table */
+    std::map<std::string, std::vector<std::shared_ptr<FunctionInfo>>> functions;/**< Functions table (name, candidates) */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
     unsigned depth_of_loops;                                                    /**< Depth of loops */
 
@@ -118,7 +120,7 @@ public:
      *
      * @return Table of functions
      */
-    std::map<std::string, std::shared_ptr<FunctionInfo>> get_functions() const {
+    std::map<std::string, std::vector<std::shared_ptr<FunctionInfo>>> get_functions() const {
         return functions;
     }
 
@@ -351,7 +353,7 @@ private:
      *
      * @return Evaluating function returned value
      */
-    Value get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce);
+    Value get_function_return_value(std::shared_ptr<FunctionInfo> func, AST::FuncCallExpr& fce);
 
     /**
      * @brief Method for evaluating and returning function returned value from control flow operators
@@ -425,15 +427,15 @@ private:
     std::unique_ptr<Value> get_variable_value(std::string name);
 
     /**
-     * @brief Method for getting info about function from functions table
+     * @brief Method for getting function candidates from functions table
      *
-     * This method getting info about function from functions table and returns it. If function not found, then returning null
+     * This method getting function candidates from functions table and returns it. If function not found, then returning empty vector
      *
      * @param name Name of function
      *
-     * @return Info about function
+     * @return Candidates
      */
-    FunctionInfo *get_function_info(std::string name);
+    std::vector<std::shared_ptr<FunctionInfo>> get_function_candidates(std::string name);
 
     /**
      * @brief Method for determining whether two types have a common type
