@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Method for analyze import the module." alt="" coords="5,1698,186,1741"/>
 <area shape="rect" id="Node000002" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="239,706,419,733"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,1698,111,1535,140,1282,159,1147,181,1021,205,913,231,833,246,807,263,782,299,742,303,745,267,785,250,810,236,835,210,914,186,1022,164,1148,145,1283,116,1536,101,1698"/>
-<area shape="rect" id="Node000005" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="1455,624,1572,650"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="1455,624,1572,650"/>
 <area shape="poly" id="edge98_Node000001_Node000005" title=" " alt="" coords="96,1698,110,1497,139,1172,158,998,180,833,204,692,231,587,261,482,284,379,304,283,328,196,343,157,361,121,384,90,410,64,442,42,481,26,525,16,577,13,1086,13,1183,8,1263,3,1299,7,1335,19,1371,39,1409,71,1423,89,1436,113,1458,174,1475,248,1489,330,1506,491,1514,608,1508,609,1501,492,1484,331,1470,249,1453,175,1431,115,1419,92,1405,75,1368,43,1333,23,1298,13,1262,9,1183,13,1086,18,577,18,526,22,482,31,445,47,414,68,388,94,366,124,348,159,333,197,309,284,289,381,266,483,236,588,209,693,185,834,163,998,144,1173,115,1497,101,1698"/>
 <area shape="rect" id="Node000022" href="$classSemanticAnalyzer.html#a05278441ecd1fb69c765fd15fd4cb248" title="Method for getting mangled name." alt="" coords="1240,616,1394,658"/>
 <area shape="poly" id="edge42_Node000001_Node000022" title=" " alt="" coords="104,1697,175,1557,235,1453,309,1337,396,1215,496,1094,551,1036,609,981,669,930,732,884,760,867,786,856,833,846,882,840,942,825,1063,782,1178,727,1228,697,1273,666,1276,670,1231,701,1180,731,1065,787,943,830,883,845,834,851,788,861,763,872,735,889,672,934,612,985,555,1040,500,1097,400,1218,313,1340,239,1456,180,1560,109,1699"/>
@@ -14,7 +14,7 @@
 <area shape="poly" id="edge44_Node000001_Node000041" title=" " alt="" coords="103,1741,115,1799,139,1878,156,1921,178,1963,204,2002,236,2037,241,2041,237,2045,232,2040,200,2005,174,1965,152,1923,134,1880,110,1800,97,1742"/>
 <area shape="rect" id="Node000042" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="279,1546,378,1573"/>
 <area shape="poly" id="edge45_Node000001_Node000042" title=" " alt="" coords="127,1696,294,1580,297,1584,130,1700"/>
-<area shape="rect" id="Node000077" href="$classSemanticAnalyzer.html#a0050c54e1a086550119aba81f8ffb29f" title=" " alt="" coords="234,2117,424,2160"/>
+<area shape="rect" id="Node000077" href="$classSemanticAnalyzer.html#a0c210cdd8d833f46230d136e023cb033" title=" " alt="" coords="234,2117,424,2160"/>
 <area shape="poly" id="edge97_Node000001_Node000077" title=" " alt="" coords="101,1741,109,1810,131,1907,148,1960,171,2011,200,2060,236,2103,238,2106,234,2109,232,2107,195,2063,166,2014,143,1961,126,1908,104,1811,96,1742"/>
 <area shape="rect" id="Node000078" href="$classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="274,1866,384,1893"/>
 <area shape="poly" id="edge99_Node000001_Node000078" title=" " alt="" coords="130,1739,297,1855,294,1860,127,1744"/>

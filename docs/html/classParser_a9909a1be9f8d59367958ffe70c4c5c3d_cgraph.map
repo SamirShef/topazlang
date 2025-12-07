@@ -3,7 +3,7 @@
 <area shape="rect" id="Node000002" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="242,29,337,56"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,40,226,40,226,45,194,45"/>
 <area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="263,30,258,21,261,11,272,5,289,3,308,5,318,12,315,16,306,10,289,8,274,10,265,14,263,20,267,28"/>
-<area shape="rect" id="Node000003" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="385,29,501,56"/>
+<area shape="rect" id="Node000003" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="385,29,501,56"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="337,40,369,40,369,45,337,45"/>
 <area shape="rect" id="Node000004" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="549,21,717,64"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="502,40,534,40,534,45,502,45"/>

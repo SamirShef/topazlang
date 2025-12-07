@@ -1,6 +1,6 @@
 var classParser =
 [
-    [ "Parser", "classParser.html#abc8f9ebc6d42b34014a0011ec7951652", null ],
+    [ "Parser", "classParser.html#ac709bc42367bb29c14c01385060b182b", null ],
     [ "consume", "classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d", null ],
     [ "consume_semicolon", "classParser.html#a00a360d758c76e9448d638d9a8003653", null ],
     [ "consume_type", "classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe", null ],
@@ -37,6 +37,7 @@ var classParser =
     [ "peek", "classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3", null ],
     [ "reset", "classParser.html#af9229801acbc514a95c290833db99864", null ],
     [ "ttype_to_tvalue", "classParser.html#ae5709805b09bb75a192f232f58b579a5", null ],
+    [ "is_debug", "classParser.html#a79a8952b5ea2d6db7d52d4786b04e9c3", null ],
     [ "pos", "classParser.html#a555cedebfa75c5c2c4e9e014ab8f759f", null ],
     [ "tokens", "classParser.html#a247983c66efec033f5dab3d57a71baf9", null ],
     [ "tokens_count", "classParser.html#aba68ea149a82220afc0902aa34963731", null ]

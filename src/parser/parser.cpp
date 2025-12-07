@@ -101,7 +101,7 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
-        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name, is_debug);
     }
     return stmt;
 }
@@ -483,7 +483,7 @@ AST::ExprPtr Parser::parse_primary_expr() {
         default:
             std::stringstream ss;
             ss << "Expected expression, but got \033[0m'" << peek().value << "'\033[31m. Please check expression to mistakes";
-            throw_exception(SUB_PARSER, ss.str(), token.line, token.file_name);
+            throw_exception(SUB_PARSER, ss.str(), token.line, token.file_name, is_debug);
     }
 }
 
@@ -519,7 +519,7 @@ Token Parser::peek(int32_t rpos) const {
     if (pos + rpos >= tokens_count || pos + rpos < 0) {
         std::stringstream ss;
         ss << "Index out of range: " << pos + rpos << '/' << tokens_count;
-        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+        throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name, is_debug);
     }
     return tokens[pos + rpos];
 }
@@ -537,7 +537,7 @@ Token Parser::consume(TokenType type, std::string err_msg, uint32_t line) {
     if (match(type)) {
         return token;
     }
-    throw_exception(SUB_PARSER, err_msg, line, token.file_name);
+    throw_exception(SUB_PARSER, err_msg, line, token.file_name, is_debug);
 }
 
 AST::Type Parser::consume_type() {
@@ -566,7 +566,7 @@ AST::Type Parser::consume_type() {
         default: {
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists type";
-            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name, is_debug);
         }
     }
 }
@@ -604,7 +604,7 @@ AST::TypeValue Parser::ttype_to_tvalue(TokenType type) {
         default:
             std::stringstream ss;
             ss << "Token \033[0m'" << peek().value << "'\033[31m is not type. Please replase it to exists types";
-            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), peek().line, peek().file_name, is_debug);
     }
 }
 
@@ -638,7 +638,7 @@ AST::ExprPtr Parser::create_compound_asgn_operator(std::string var_name) {
         default: {
             std::stringstream ss;
             ss << "Unsupported compound assignment operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
-            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name, is_debug);
         }
     }
 }
@@ -654,7 +654,7 @@ AST::ExprPtr Parser::create_inc_dec_operator(std::string var_name) {
         default: {
             std::stringstream ss;
             ss << "Unsupported increment/decrement operator: \033[0m'" << token.value << "'\033[31m. Please check your Topaz compiler version and fix the problematic section of the code";
-            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name);
+            throw_exception(SUB_PARSER, ss.str(), token.line, peek().file_name, is_debug);
         }
     }
 }

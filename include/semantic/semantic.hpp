@@ -17,6 +17,7 @@ private:
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
     std::string path_to_current_dir;                                            /**< Absolute path to the directory which contains current Topaz source code file */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
+    bool is_debug;                                                              /**< Flag for debug exception */
 
     /**
      * @brief Current space (in global, in module or in function)
@@ -93,7 +94,7 @@ private:
     std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
 
 public:
-    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn) : stmts(s), libs_path(lp), file_name(fn), depth_of_loops(0) {
+    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn, bool id) : stmts(s), libs_path(lp), file_name(fn), depth_of_loops(0), is_debug(id) {
         std::filesystem::path file_path = std::filesystem::absolute(fn);
         path_to_current_dir = file_path.parent_path().string();
         variables.push({});

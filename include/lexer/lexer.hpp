@@ -45,9 +45,10 @@ private:
         {"const", TOK_CONST},
         {"return", TOK_RETURN}
     };
+    bool is_debug;                                              /**< Flag for debug exception */
 
 public:
-    Lexer(std::string src, std::string fn) : source(src), source_len(src.length()), pos(0), line(1), column(1), file_name(fn) {}
+    Lexer(std::string src, std::string fn, bool id) : source(src), source_len(src.length()), pos(0), line(1), column(1), file_name(fn), is_debug(id) {}
 
     /**
      * @brief Method for tokenizing source code

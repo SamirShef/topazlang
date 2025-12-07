@@ -9,7 +9,7 @@ var classSemanticAnalyzer =
       [ "SPACE_MODULE", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417a40f1b85e4800eb877f177b91e997ce90", null ],
       [ "SPACE_FUNCTION", "classSemanticAnalyzer.html#aadb74064b958702605c992002635b417a434ddc2c86dd881ff437578c10fa7126", null ]
     ] ],
-    [ "SemanticAnalyzer", "classSemanticAnalyzer.html#a0050c54e1a086550119aba81f8ffb29f", null ],
+    [ "SemanticAnalyzer", "classSemanticAnalyzer.html#a0c210cdd8d833f46230d136e023cb033", null ],
     [ "analyze", "classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598", null ],
     [ "analyze_binary_expr", "classSemanticAnalyzer.html#af0f7909d4707f3ae5a0c27097b305eaf", null ],
     [ "analyze_break_stmt", "classSemanticAnalyzer.html#a077692a8de8929e231f9a4542dd0c60f", null ],
@@ -57,6 +57,7 @@ var classSemanticAnalyzer =
     [ "functions", "classSemanticAnalyzer.html#a6cc3c6bba882ed08d83c2d8562a3b87c", null ],
     [ "functions_ret_types", "classSemanticAnalyzer.html#afc5ce31ea67f44866b4f0bf2d7977404", null ],
     [ "implicitly_cast_allowed_types", "classSemanticAnalyzer.html#a1e49c40308de04a59d0d4e323acd8cf2", null ],
+    [ "is_debug", "classSemanticAnalyzer.html#a11776d30f83a9e238fc14801eaa91d49", null ],
     [ "libs_path", "classSemanticAnalyzer.html#a9752d32395ff84b7ae7f66815203e672", null ],
     [ "modules", "classSemanticAnalyzer.html#a25253e0175468fae09a3aa277710de14", null ],
     [ "names_of_imported_modules", "classSemanticAnalyzer.html#aa7ada2b4a690c78d3380a005555c1b8d", null ],

@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,1063,278,300,284,301,100,1064"/>
 <area shape="rect" id="Node000005" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="2843,388,2938,415"/>
 <area shape="poly" id="edge44_Node000001_Node000005" title=" " alt="" coords="176,1083,486,1083,2560,1083,2612,1077,2658,1060,2699,1034,2734,999,2765,958,2791,911,2813,860,2832,806,2859,694,2875,587,2883,495,2886,430,2891,430,2889,496,2880,587,2864,695,2837,807,2818,862,2796,913,2769,961,2738,1003,2702,1038,2661,1065,2613,1082,2561,1088,486,1088,176,1088"/>
-<area shape="rect" id="Node000006" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="2986,211,3102,237"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="2986,211,3102,237"/>
 <area shape="poly" id="edge45_Node000001_Node000006" title=" " alt="" coords="176,1100,321,1122,404,1130,486,1133,2732,1133,2749,1131,2766,1125,2798,1102,2828,1066,2856,1019,2882,961,2906,897,2948,752,2982,600,3008,456,3037,253,3042,253,3013,457,2987,601,2953,753,2911,898,2887,963,2861,1021,2832,1069,2801,1106,2768,1130,2751,1137,2732,1139,486,1139,403,1135,320,1127,176,1105"/>
 <area shape="rect" id="Node000003" href="$classParser.html#ac23cdc70263553f1a8f5a2bf01caa770" title="Method for parsing expression as &#39;logical and&#39;." alt="" coords="403,309,572,336"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="345,283,419,302,417,308,344,289"/>

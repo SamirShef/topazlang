@@ -16,9 +16,10 @@ private:
     std::vector<Token> tokens;                                  /**< Tokens (from Lexer) */
     size_t tokens_count;                                        /**< Count of tokens */
     uint32_t pos;                                               /**< Current position in tokens */
+    bool is_debug;                                              /**< Flag for debug exception */
 
 public:
-    Parser(std::vector<Token> t) : tokens(t), tokens_count(t.size()), pos(0) {}
+    Parser(std::vector<Token> t, bool id) : tokens(t), tokens_count(t.size()), pos(0), is_debug(id) {}
 
     /**
      * @brief Method for parsing tokens into AST tree

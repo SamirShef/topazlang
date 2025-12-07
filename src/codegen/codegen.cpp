@@ -59,7 +59,7 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
         generate_use_module_stmt(*ums);
     }
     else {
-        throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
+        throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
 }
 
@@ -74,20 +74,20 @@ void CodeGenerator::generate_var_decl_stmt(AST::VarDeclStmt& vds) {
     }
     llvm::Value *var = nullptr;
     if (variables.size() == 1) {
-        var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), get_mangled_name(vds.name));
+        var = new llvm::GlobalVariable(*module, type, vds.type.is_const, llvm::GlobalValue::ExternalLinkage, llvm::dyn_cast<llvm::Constant>(val), vds.name);
     }
     else {
-        var = builder.CreateAlloca(type, nullptr, get_mangled_name(vds.name) + ".alloca");
+        var = builder.CreateAlloca(type, nullptr, vds.name + ".alloca");
         builder.CreateStore(val, var);
     }
-    variables.top().emplace(get_mangled_name(vds.name), var);
+    variables.top().emplace(vds.name, var);
 }
 
 void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     llvm::Value *var_inst = nullptr;
     auto vars = variables;
     while (!vars.empty()) {
-        auto vars_it = vars.top().find(get_mangled_name(vas.name));
+        auto vars_it = vars.top().find(vas.name);
         if (vars_it != vars.top().end()) {
             var_inst = vars_it->second;
         }
@@ -96,7 +96,7 @@ void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     if (var_inst == nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
-        throw_exception(SUB_CODEGEN, ss.str(), vas.line, file_name);
+        throw_exception(SUB_CODEGEN, ss.str(), vas.line, file_name, is_debug);
     }
     builder.CreateStore(generate_expr(*vas.expr), var_inst);
 }
@@ -104,25 +104,66 @@ void CodeGenerator::generate_var_asgn_stmt(AST::VarAsgnStmt& vas) {
 void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
     llvm::Type *ret_type = type_to_llvm(fds.ret_type);
     std::vector<llvm::Type*> args;
+    std::string func_name = get_mangled_name(fds.name);
     size_t args_count = fds.args.size();
     for (size_t i = 0; i < args_count; i++) {
         args.push_back(type_to_llvm(fds.args[i].type));
+        switch (fds.args[i].type.type) {
+            case AST::TYPE_BOOL:
+                func_name += ".bool";
+                break;
+            case AST::TYPE_CHAR:
+                func_name += ".char";
+                break;
+            case AST::TYPE_SHORT:
+                func_name += ".short";
+                break;
+            case AST::TYPE_INT:
+                func_name += ".int";
+                break;
+            case AST::TYPE_LONG:
+                func_name += ".long";
+                break;
+            case AST::TYPE_FLOAT:
+                func_name += ".float";
+                break;
+            case AST::TYPE_DOUBLE:
+                func_name += ".double";
+                break;
+            case AST::TYPE_TRAIT:
+                func_name += ".T_" + fds.args[i].type.name;
+                break;
+            case AST::TYPE_CLASS:
+                func_name += ".C_" + fds.args[i].type.name;
+                break;
+        }
+        if (fds.args[i].type.is_const) {
+            func_name += "_const";
+        }
+        if (fds.args[i].type.is_ptr) {
+            func_name += "_ptr";
+        }
     }
     llvm::FunctionType *func_type = llvm::FunctionType::get(ret_type, args, false);
-    llvm::Function *func = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, get_mangled_name(fds.name), *module);
+    llvm::Function *func = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, func_name, *module);
     
     llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, "entry", func);
     builder.SetInsertPoint(entry);
     
     variables.push({});
-    functions.emplace(get_mangled_name(fds.name), func);
+    if (functions.find(get_mangled_name(fds.name)) == functions.end()) {
+        functions.emplace(get_mangled_name(fds.name), std::vector<llvm::Function*>{func});
+    }
+    else {
+        functions.at(get_mangled_name(fds.name)).push_back(func);
+    }
     functions_ret_types.push(ret_type);
     size_t index = 0;
     for (llvm::Argument& arg : func->args()) {
-        arg.setName(get_mangled_name(fds.args[index].name));
-        llvm::AllocaInst* arg_alloca = builder.CreateAlloca(arg.getType(), nullptr, get_mangled_name(fds.args[index].name));
+        arg.setName(fds.args[index].name);
+        llvm::AllocaInst *arg_alloca = builder.CreateAlloca(arg.getType(), nullptr, fds.args[index].name);
         builder.CreateStore(&arg, arg_alloca);
-        variables.top().emplace(get_mangled_name(fds.args[index].name), arg_alloca);
+        variables.top().emplace(fds.args[index].name, arg_alloca);
         index++;
     }
     bool have_ret_in_global = false;
@@ -140,7 +181,7 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
             builder.CreateRet(llvm::Constant::getNullValue(type_to_llvm(fds.ret_type)));
         }
         else {
-            throw_exception(SUB_CODEGEN, "Not all paths return a value", fds.line, file_name);
+            throw_exception(SUB_CODEGEN, "Not all paths return a value", fds.line, file_name, is_debug);
         }
     }
     variables.pop();
@@ -148,13 +189,50 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
 }
 
 void CodeGenerator::generate_func_call_stmt(AST::FuncCallStmt& fcs) {
-    llvm::Function *func = functions.at(get_mangled_name(fcs.name));
+    std::vector<llvm::Function*> function_candidates = functions.at(get_mangled_name(fcs.name));
     std::vector<llvm::Value*> args;
     for (auto& arg : fcs.args) {
         args.push_back(generate_expr(*arg));
     }
 
-    builder.CreateCall(func, args, get_mangled_name(fcs.name) + ".call");
+    size_t last_score = SIZE_MAX;
+    size_t best_candidate_index = 0;
+    size_t candidate_index = 0;
+    for (auto& candidate : function_candidates) {
+        auto candidate_args_it = candidate->args();
+        size_t score = 0;
+        size_t index = 0;
+        for (auto& arg : candidate_args_it) {
+            llvm::Type *candidate_arg_type = arg.getType();
+            llvm::Type *calling_arg_type = generate_expr(*fcs.args[index])->getType();
+
+            if (candidate_arg_type != calling_arg_type) {
+                if (candidate_arg_type->isIntegerTy() && calling_arg_type->isIntegerTy()) {
+                    score++;
+                }
+                else if (candidate_arg_type->isFloatingPointTy() && calling_arg_type->isFloatingPointTy()) {
+                    score++;
+                }
+                else if (candidate_arg_type->isFloatingPointTy() && calling_arg_type->isIntegerTy()) {
+                    score += 2;
+                }
+                else {
+                    score += 99;
+                }
+            }
+
+            index++;
+        }
+
+        if (score <= last_score) {
+            best_candidate_index = candidate_index;
+            last_score = score;
+        }
+
+        candidate_index++;
+    }
+
+    builder.CreateCall(function_candidates[best_candidate_index], args, function_candidates[best_candidate_index]->getName() + ".call");
 }
 
 void CodeGenerator::generate_return_stmt(AST::ReturnStmt& rs) {
@@ -252,12 +330,12 @@ void CodeGenerator::generate_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) {
 }
 
 void CodeGenerator::generate_for_cycle_stmt(AST::ForCycleStmt& fcs) {
-    llvm::Function* parent = builder.GetInsertBlock()->getParent();
-    llvm::BasicBlock* indexator_bb = llvm::BasicBlock::Create(context, "for.indexator", parent);
-    llvm::BasicBlock* cond_bb = llvm::BasicBlock::Create(context, "for.cond", parent);
-    llvm::BasicBlock* iteration_bb = llvm::BasicBlock::Create(context, "for.iteration", parent);
-    llvm::BasicBlock* body_bb = llvm::BasicBlock::Create(context, "for.body", parent);
-    llvm::BasicBlock* exit_bb = llvm::BasicBlock::Create(context, "for.exit", parent);
+    llvm::Function *parent = builder.GetInsertBlock()->getParent();
+    llvm::BasicBlock *indexator_bb = llvm::BasicBlock::Create(context, "for.indexator", parent);
+    llvm::BasicBlock *cond_bb = llvm::BasicBlock::Create(context, "for.cond", parent);
+    llvm::BasicBlock *iteration_bb = llvm::BasicBlock::Create(context, "for.iteration", parent);
+    llvm::BasicBlock *body_bb = llvm::BasicBlock::Create(context, "for.body", parent);
+    llvm::BasicBlock *exit_bb = llvm::BasicBlock::Create(context, "for.exit", parent);
 
     builder.CreateBr(indexator_bb);
     builder.SetInsertPoint(indexator_bb);
@@ -265,7 +343,7 @@ void CodeGenerator::generate_for_cycle_stmt(AST::ForCycleStmt& fcs) {
 
     builder.CreateBr(cond_bb);
     builder.SetInsertPoint(cond_bb);
-    llvm::Value* condition_value = generate_expr(*fcs.cond);
+    llvm::Value *condition_value = generate_expr(*fcs.cond);
 
     builder.CreateCondBr(condition_value, body_bb, exit_bb);
     builder.SetInsertPoint(body_bb);
@@ -324,11 +402,11 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
             std::ostringstream content;
             content << file.rdbuf();
             file.close();
-            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp", is_debug);
             std::vector<Token> tokens = lex.tokenize();
-            Parser parser(tokens);
+            Parser parser(tokens, is_debug);
             std::vector<AST::StmtPtr> stmts = parser.parse();
-            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp", is_debug);
             semantic.analyze();
             std::map<std::string, SemanticAnalyzer::ModuleInfo*> modules = semantic.get_modules();
             size_t current_path_size = current_path.size();
@@ -361,16 +439,16 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
         if (!file.is_open()) {
             std::stringstream ss;
             ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
-            throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
         }
         std::ostringstream content;
         content << file.rdbuf();
         file.close();
-        Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp");
+        Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp", is_debug);
         std::vector<Token> tokens = lex.tokenize();
-        Parser parser(tokens);
+        Parser parser(tokens, is_debug);
         std::vector<AST::StmtPtr> stmts = parser.parse();
-        SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp");
+        SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp", is_debug);
         semantic.analyze();
         std::map<std::string, SemanticAnalyzer::ModuleInfo*> modules = semantic.get_modules();
         size_t current_path_size = current_path.size();
@@ -412,7 +490,7 @@ llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
         return generate_obj_chain_expr(*oce);
     }
     else {
-        throw_exception(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
+        throw_exception(SUB_CODEGEN, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name, is_debug);
     }
 }
 
@@ -440,7 +518,7 @@ llvm::Value *CodeGenerator::generate_literal_expr(AST::Literal& lit) {
                 return str_var;
             }
         default:
-            throw_exception(SUB_CODEGEN, "An unsupported literal type was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", lit.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported literal type was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", lit.line, file_name, is_debug);
     }
 }
 
@@ -520,12 +598,12 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
         case TOK_OP_L_OR:
             return builder.CreateLogicalAnd(left, right, "lor.tmp");
         default:
-            throw_exception(SUB_CODEGEN, "An unsupported binary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", be.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported binary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", be.line, file_name, is_debug);
     }
 }
 
 llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
-    llvm::Value* value = generate_expr(*ue.expr);
+    llvm::Value *value = generate_expr(*ue.expr);
     
     switch (ue.op.type) {
         case TOK_OP_MINUS:
@@ -539,16 +617,16 @@ llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
             }
             return builder.CreateICmpEQ(value, builder.getInt32(0), "lnot.tmp");
         default:
-            throw_exception(SUB_CODEGEN, "An unsupported unary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", ue.line, file_name);
+            throw_exception(SUB_CODEGEN, "An unsupported unary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", ue.line, file_name, is_debug);
     }
 }
 
 llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
     auto vars = variables;
     while (!vars.empty()) {
-        auto vars_it = vars.top().find(get_mangled_name(ve.name));
+        auto vars_it = vars.top().find(ve.name);
         if (vars_it != vars.top().end()) {
-            llvm::Type* type = nullptr;
+            llvm::Type *type = nullptr;
             if (auto global = llvm::dyn_cast<llvm::GlobalVariable>(vars_it->second)) {
                 type = global->getValueType();
                 if (functions_ret_types.empty()) {
@@ -558,23 +636,60 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
             else if (auto local = llvm::dyn_cast<llvm::AllocaInst>(vars_it->second)) {
                 type = local->getAllocatedType();
             }
-            return builder.CreateLoad(type, vars_it->second, get_mangled_name(ve.name) + ".load");
+            return builder.CreateLoad(type, vars_it->second, ve.name + ".load");
         }
         vars.pop();
     }
     std::stringstream ss;
     ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
-    throw_exception(SUB_CODEGEN, ss.str(), ve.line, file_name);
+    throw_exception(SUB_CODEGEN, ss.str(), ve.line, file_name, is_debug);
 }
 
 llvm::Value *CodeGenerator::generate_func_call_expr(AST::FuncCallExpr& fce) {
-    llvm::Function *func = functions.at(get_mangled_name(fce.name));
+    auto function_candidates = functions.at(get_mangled_name(fce.name));
     std::vector<llvm::Value*> args;
     for (auto& arg : fce.args) {
         args.push_back(generate_expr(*arg));
     }
 
-    return builder.CreateCall(func, args, get_mangled_name(fce.name) + ".call");
+    size_t last_score = SIZE_MAX;
+    size_t best_candidate_index = 0;
+    size_t candidate_index = 0;
+    for (auto& candidate : function_candidates) {
+        auto candidate_args_it = candidate->args();
+        size_t score = 0;
+        size_t index = 0;
+        for (auto& arg : candidate_args_it) {
+            llvm::Type *candidate_arg_type = arg.getType();
+            llvm::Type *calling_arg_type = generate_expr(*fce.args[index])->getType();
+
+            if (candidate_arg_type != calling_arg_type) {
+                if (candidate_arg_type->isIntegerTy() && calling_arg_type->isIntegerTy()) {
+                    score++;
+                }
+                else if (candidate_arg_type->isFloatingPointTy() && calling_arg_type->isFloatingPointTy()) {
+                    score++;
+                }
+                else if (candidate_arg_type->isFloatingPointTy() && calling_arg_type->isIntegerTy()) {
+                    score += 2;
+                }
+                else {
+                    score += 99;
+                }
+            }
+
+            index++;
+        }
+
+        if (score <= last_score) {
+            best_candidate_index = candidate_index;
+            last_score = score;
+        }
+
+        candidate_index++;
+    }
+
+    return builder.CreateCall(function_candidates[best_candidate_index], args, function_candidates[best_candidate_index]->getName() + ".call");
 }
 
 llvm::Value *CodeGenerator::generate_obj_chain_expr(AST::ChainObjects& co) {
@@ -613,7 +728,7 @@ llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
         case AST::TYPE_NOTH:
             return llvm::Type::getVoidTy(context);
         default:
-            throw_exception(SUB_CODEGEN, "Unsupported type", -1, file_name);
+            throw_exception(SUB_CODEGEN, "Unsupported type", -1, file_name, is_debug);
     }
 }
 
