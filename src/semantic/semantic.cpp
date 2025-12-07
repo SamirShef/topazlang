@@ -96,9 +96,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     AST::Type var_type = vds.type;
     Value var_val = Value(var_type, get_default_val_by_type(var_type, vds.line), false, false);
     if (vds.expr != nullptr) {
-        Value val = analyze_expr(*vds.expr);
-        var_val.value = val.value;
-        var_val.is_value_unknown = val.is_value_unknown;
+        var_val = analyze_expr(*vds.expr);
     }
     if (is_func_arg) {
         var_val.is_value_unknown = true;
@@ -108,6 +106,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
         ss << "Type mismatch: an expression of the type \033[0m'" << var_val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << var_type.to_str() << "'\033[31m";
         throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name);
     }
+    var_val = implicitly_cast(var_val, var_type, vds.line);
     variables.top().emplace(vds.name, var_val);
 }
 
@@ -376,7 +375,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
         std::filesystem::path path_to_mod_without_ext_in_libs = libs_path + path_to_mod_without_ext.string();
         std::string path_to_mod_without_ext_in_libs_as_str = path_to_mod_without_ext_in_libs.string();
         std::ifstream file;
-        if (std::filesystem::is_directory(path_to_mod_without_ext_in_libs_as_str)/*  && std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp").is_open() */) {
+        if (std::filesystem::is_directory(path_to_mod_without_ext_in_libs_as_str)) {
             if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
                 file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
                 if (!file.is_open()) {
@@ -390,7 +389,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
                 std::vector<Token> tokens = lex.tokenize();
                 Parser parser(tokens);
                 std::vector<AST::StmtPtr> stmts = parser.parse();
-                SemanticAnalyzer semantic(stmts, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
                 semantic.analyze();
                 std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
                 if (modules.find(all_name) == modules.end()) {
@@ -434,7 +433,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
             std::vector<Token> tokens = lex.tokenize();
             Parser parser(tokens);
             std::vector<AST::StmtPtr> stmts = parser.parse();
-            SemanticAnalyzer semantic(stmts, path_to_mod_without_ext_in_libs_as_str + ".tp");
+            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp");
             semantic.analyze();
             std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
             if (modules.find(all_name) == modules.end()) {
@@ -650,12 +649,14 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
         AST::Type arg_type = analyze_expr(*arg).type;
         if (!has_common_type(arg_type, func->args[index].type)) {
             std::stringstream ss;
-            ss << "Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << func->args[index].type.to_str() << "'\033[31m";
+            ss << "In the " << index + 1 << "th argument: Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << func->args[index].type.to_str() << "'\033[31m";
             throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
         }
         index++;
     }
-    return get_function_return_value(func, fce);
+    functions_ret_types.push(func->ret_type);
+    Value ret_val = get_function_return_value(func, fce);
+    return ret_val;
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_chain_expr(AST::ChainObjects& co) {
@@ -733,6 +734,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             Value val =  analyze_expr(*rs->expr);
+            val = implicitly_cast(val, functions_ret_types.top(), rs->line);
             variables.pop();
             functions_ret_types.pop();
             return val;
@@ -782,6 +784,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
             analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
+                val = implicitly_cast(val, functions_ret_types.top(), rs->line);
                 return &val;
             }
             else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
@@ -803,6 +806,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
             analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
+                val = implicitly_cast(val, functions_ret_types.top(), rs->line);
                 return &val;
             }
             else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
@@ -829,6 +833,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_
             analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
+                val = implicitly_cast(val, functions_ret_types.top(), rs->line);
                 return &val;
             }
             else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
@@ -853,6 +858,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_do_whi
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             static Value val = analyze_expr(*rs->expr);
+            val = implicitly_cast(val, functions_ret_types.top(), rs->line);
             return &val;
         }
         else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
@@ -880,6 +886,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_for_cy
             analyze_stmt(*stmt);
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
+                val = implicitly_cast(val, functions_ret_types.top(), rs->line);
                 variables.pop();
                 return &val;
             }
@@ -971,6 +978,62 @@ AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uin
     std::stringstream ss;
     ss << "Type mismatch: there is no common type for \033[0m'" << left.to_str() << "'\033[31m and \033[0m'" << right.to_str() << "'\033[31m";
     throw_exception(SUB_SEMANTIC, ss.str(), line, file_name);
+}
+
+SemanticAnalyzer::Value SemanticAnalyzer::implicitly_cast(Value val, AST::Type type, uint32_t line) {
+    AST::Type output_type = get_common_type(val.type, type, line);
+    Value res = Value(output_type, 0, val.is_value_unknown, val.is_literal);
+
+    double val_from_variant = 0;
+    switch (val.value.value.index()) {
+        case 0:
+            val_from_variant = std::get<0>(val.value.value);
+            break;
+        case 1:
+            val_from_variant = std::get<1>(val.value.value);
+            break;
+        case 2:
+            val_from_variant = std::get<2>(val.value.value);
+            break;
+        case 3:
+            val_from_variant = std::get<3>(val.value.value);
+            break;
+        case 4:
+            val_from_variant = std::get<4>(val.value.value);
+            break;
+        case 5:
+            val_from_variant = std::get<5>(val.value.value);
+            break;
+        case 6:
+            val_from_variant = std::get<6>(val.value.value);
+            break;
+    }
+    switch (type.type) {
+        #define VALUE(type) static_cast<type>(val_from_variant)
+        case AST::TYPE_BOOL:
+            res.value.value = VALUE(bool);
+            break;
+        case AST::TYPE_CHAR:
+            res.value.value = VALUE(char);
+            break;
+        case AST::TYPE_SHORT:
+            res.value.value = VALUE(short);
+            break;
+        case AST::TYPE_INT:
+            res.value.value = VALUE(int);
+            break;
+        case AST::TYPE_LONG:
+            res.value.value = VALUE(long);
+            break;
+        case AST::TYPE_FLOAT:
+            res.value.value = VALUE(float);
+            break;
+        case AST::TYPE_DOUBLE:
+            res.value.value = VALUE(double);
+            break;
+    }
+
+    return res;
 }
 
 double SemanticAnalyzer::binary_two_variants(Value left, Value right, TokenType op, uint32_t line) {
@@ -1121,17 +1184,17 @@ std::vector<SemanticAnalyzer::PathPart> SemanticAnalyzer::get_resolved_name(std:
     std::string name;
     for (const char c : mangled_name) {
         if (c == '-') {
-            res.push_back({name, SemanticAnalyzer::PathPart::OBJ_MODULE});
+            res.push_back({name, PathPart::OBJ_MODULE});
             name = "";
         }
         else if (c == '#') {
-            res.push_back({name, SemanticAnalyzer::PathPart::OBJ_CLASS});
+            res.push_back({name, PathPart::OBJ_CLASS});
             name = "";
         }
         else {
             name += c;
         }
     }
-    res.push_back({name, SemanticAnalyzer::PathPart::OBJ_MODULE});
+    res.push_back({name, PathPart::OBJ_MODULE});
     return res;
 }

@@ -76,60 +76,84 @@ $(function(){initNavTree('codegen_8cpp.html','',''); });
 <p><a class="el" href="codegen_8hpp.html" title="Header file for defining compiler code generator.">codegen.hpp</a> implementation  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="exception_8hpp_source.html">../../include/exception/exception.hpp</a>&quot;</code><br />
-<code>#include &lt;llvm/IR/Value.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="semantic_8hpp_source.html">../../include/semantic/semantic.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="codegen_8hpp_source.html">../../include/codegen/codegen.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="parser_8hpp_source.html">../../include/parser/parser.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lexer_8hpp_source.html">../../include/lexer/lexer.hpp</a>&quot;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for codegen.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="codegen_8cpp__incl.png" border="0" usemap="#a_2mnt_2disk__ext4__0_2topazlang_2src_2codegen_2codegen_8cpp" loading="lazy" alt=""/></div>
 <map name="a_2mnt_2disk__ext4__0_2topazlang_2src_2codegen_2codegen_8cpp" id="a_2mnt_2disk__ext4__0_2topazlang_2src_2codegen_2codegen_8cpp">
-<area shape="rect" title="codegen.hpp implementation" alt="" coords="113,5,294,48"/>
-<area shape="rect" href="exception_8hpp.html" title="Header file for defining thrown exceptions by the compiler." alt="" coords="20,96,166,139"/>
-<area shape="poly" title=" " alt="" coords="179,50,132,88,129,84,176,46"/>
-<area shape="rect" title=" " alt="" coords="147,187,257,213"/>
-<area shape="poly" title=" " alt="" coords="206,49,205,171,200,171,201,49"/>
-<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="895,96,1034,139"/>
-<area shape="poly" title=" " alt="" coords="295,36,880,104,880,109,294,41"/>
-<area shape="rect" title=" " alt="" coords="5,336,66,363"/>
-<area shape="poly" title=" " alt="" coords="81,140,58,188,43,259,38,321,33,320,38,258,53,186,76,138"/>
-<area shape="rect" title=" " alt="" coords="68,187,121,213"/>
-<area shape="poly" title=" " alt="" coords="96,139,96,171,91,171,91,139"/>
-<area shape="poly" title=" " alt="" coords="895,126,626,149,452,167,273,189,273,184,452,162,626,144,895,121"/>
-<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="281,187,398,213"/>
-<area shape="poly" title=" " alt="" coords="895,129,684,153,413,189,412,184,683,148,894,124"/>
-<area shape="rect" title=" " alt="" coords="422,187,606,213"/>
-<area shape="poly" title=" " alt="" coords="895,134,601,186,600,181,894,128"/>
-<area shape="rect" title=" " alt="" coords="630,187,788,213"/>
-<area shape="poly" title=" " alt="" coords="900,142,765,184,763,179,898,137"/>
-<area shape="rect" title=" " alt="" coords="811,187,956,213"/>
-<area shape="poly" title=" " alt="" coords="946,141,909,177,905,174,942,137"/>
-<area shape="rect" title=" " alt="" coords="980,187,1112,213"/>
-<area shape="poly" title=" " alt="" coords="988,137,1025,174,1021,177,984,141"/>
-<area shape="rect" title=" " alt="" coords="1137,187,1265,213"/>
-<area shape="poly" title=" " alt="" coords="1026,137,1150,179,1148,184,1025,142"/>
-<area shape="rect" title=" " alt="" coords="1289,187,1409,213"/>
-<area shape="poly" title=" " alt="" coords="1035,131,1274,180,1273,186,1034,136"/>
-<area shape="rect" title=" " alt="" coords="1433,187,1539,213"/>
-<area shape="poly" title=" " alt="" coords="1035,126,1418,184,1417,189,1034,131"/>
-<area shape="rect" title=" " alt="" coords="1564,187,1617,213"/>
-<area shape="poly" title=" " alt="" coords="1035,120,1260,140,1403,158,1548,184,1547,189,1402,163,1260,145,1035,125"/>
-<area shape="rect" title=" " alt="" coords="1640,187,1687,213"/>
-<area shape="poly" title=" " alt="" coords="1035,118,1147,123,1293,135,1457,154,1626,184,1625,189,1456,159,1292,140,1146,129,1035,123"/>
-<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="68,261,190,288"/>
-<area shape="poly" title=" " alt="" coords="304,216,181,258,179,253,302,211"/>
-<area shape="rect" title=" " alt="" coords="214,261,278,288"/>
-<area shape="poly" title=" " alt="" coords="325,216,276,254,273,250,322,212"/>
-<area shape="rect" title=" " alt="" coords="303,261,363,288"/>
-<area shape="poly" title=" " alt="" coords="341,214,338,246,333,245,336,214"/>
-<area shape="rect" title=" " alt="" coords="387,261,455,288"/>
-<area shape="poly" title=" " alt="" coords="355,212,397,249,394,253,352,216"/>
-<area shape="rect" title=" " alt="" coords="479,261,536,288"/>
-<area shape="poly" title=" " alt="" coords="370,211,466,253,464,257,368,216"/>
-<area shape="rect" title=" " alt="" coords="560,261,618,288"/>
-<area shape="poly" title=" " alt="" coords="385,211,546,258,544,263,383,216"/>
-<area shape="poly" title=" " alt="" coords="114,291,65,329,62,324,111,286"/>
-<area shape="rect" title=" " alt="" coords="95,336,163,363"/>
-<area shape="poly" title=" " alt="" coords="132,289,132,320,126,320,126,289"/>
+<area shape="rect" title="codegen.hpp implementation" alt="" coords="457,5,639,48"/>
+<area shape="rect" href="exception_8hpp.html" title="Header file for defining thrown exceptions by the compiler." alt="" coords="14,96,160,139"/>
+<area shape="poly" title=" " alt="" coords="457,46,175,98,174,93,456,40"/>
+<area shape="rect" href="semantic_8hpp.html" title="Header file for defining semantic analyzer." alt="" coords="476,96,620,139"/>
+<area shape="poly" title=" " alt="" coords="551,48,551,81,545,81,545,48"/>
+<area shape="rect" title=" " alt="" coords="607,187,689,213"/>
+<area shape="poly" title=" " alt="" coords="586,47,612,67,634,95,648,133,652,171,646,171,643,135,630,97,609,71,583,51"/>
+<area shape="rect" href="codegen_8hpp.html" title="Header file for defining compiler code generator." alt="" coords="921,96,1060,139"/>
+<area shape="poly" title=" " alt="" coords="640,44,906,97,905,102,639,49"/>
+<area shape="rect" href="parser_8hpp.html" title="Header file for defining parser." alt="" coords="326,96,452,139"/>
+<area shape="poly" title=" " alt="" coords="512,51,441,91,438,86,510,46"/>
+<area shape="rect" href="lexer_8hpp.html" title="Header file for defining the lexer." alt="" coords="184,96,302,139"/>
+<area shape="poly" title=" " alt="" coords="477,51,317,97,316,92,476,46"/>
+<area shape="rect" title=" " alt="" coords="1085,104,1150,131"/>
+<area shape="poly" title=" " alt="" coords="639,29,731,36,840,48,957,67,1073,93,1079,95,1078,101,1071,99,956,72,839,53,730,41,639,35"/>
+<area shape="rect" title=" " alt="" coords="71,336,132,363"/>
+<area shape="poly" title=" " alt="" coords="91,139,102,321,97,321,85,139"/>
+<area shape="rect" title=" " alt="" coords="5,187,59,213"/>
+<area shape="poly" title=" " alt="" coords="75,141,51,175,47,172,70,138"/>
+<area shape="rect" href="ast_8hpp.html" title="Header file for defining AST tree elements." alt="" coords="415,187,532,213"/>
+<area shape="poly" title=" " alt="" coords="531,141,497,177,493,173,527,137"/>
+<area shape="rect" title=" " alt="" coords="615,261,684,288"/>
+<area shape="poly" title=" " alt="" coords="559,138,576,173,598,212,628,248,624,252,594,215,571,176,554,140"/>
+<area shape="rect" title=" " alt="" coords="279,261,337,288"/>
+<area shape="poly" title=" " alt="" coords="477,140,388,167,353,179,335,189,319,216,312,247,307,245,314,214,331,185,351,174,386,162,475,135"/>
+<area shape="poly" title=" " alt="" coords="575,137,622,175,619,179,572,141"/>
+<area shape="rect" title=" " alt="" coords="713,187,767,213"/>
+<area shape="poly" title=" " alt="" coords="598,137,700,179,698,184,596,142"/>
+<area shape="rect" title=" " alt="" coords="345,187,391,213"/>
+<area shape="poly" title=" " alt="" coords="503,142,407,184,404,180,501,137"/>
+<area shape="rect" href="token_8hpp.html" title="Header file for defining the token." alt="" coords="134,261,256,288"/>
+<area shape="poly" title=" " alt="" coords="425,216,259,260,257,254,424,211"/>
+<area shape="rect" title=" " alt="" coords="526,261,591,288"/>
+<area shape="poly" title=" " alt="" coords="490,212,534,249,531,253,486,216"/>
+<area shape="rect" title=" " alt="" coords="360,261,421,288"/>
+<area shape="poly" title=" " alt="" coords="461,216,418,253,415,249,457,212"/>
+<area shape="poly" title=" " alt="" coords="505,211,605,252,603,257,503,216"/>
+<area shape="poly" title=" " alt="" coords="446,216,352,257,350,252,443,211"/>
+<area shape="rect" title=" " alt="" coords="445,261,502,288"/>
+<area shape="poly" title=" " alt="" coords="476,214,476,246,471,246,471,214"/>
+<area shape="poly" title=" " alt="" coords="180,291,131,329,128,324,177,286"/>
+<area shape="rect" title=" " alt="" coords="160,336,229,363"/>
+<area shape="poly" title=" " alt="" coords="197,289,197,320,192,320,192,289"/>
+<area shape="poly" title=" " alt="" coords="921,132,547,190,546,185,920,127"/>
+<area shape="poly" title=" " alt="" coords="927,142,782,188,781,183,925,137"/>
+<area shape="poly" title=" " alt="" coords="921,124,695,143,553,162,407,189,406,184,552,157,694,138,920,119"/>
+<area shape="rect" title=" " alt="" coords="1200,187,1384,213"/>
+<area shape="poly" title=" " alt="" coords="1062,135,1231,180,1229,185,1060,140"/>
+<area shape="rect" title=" " alt="" coords="1408,187,1565,213"/>
+<area shape="poly" title=" " alt="" coords="1061,134,1074,136,1393,183,1392,189,1073,141,1060,139"/>
+<area shape="rect" title=" " alt="" coords="1589,187,1734,213"/>
+<area shape="poly" title=" " alt="" coords="1061,134,1074,136,1212,155,1322,164,1432,171,1574,184,1573,189,1432,176,1321,169,1212,161,1073,141,1060,139"/>
+<area shape="rect" title=" " alt="" coords="1758,187,1890,213"/>
+<area shape="poly" title=" " alt="" coords="1061,134,1074,136,1259,158,1406,165,1553,169,1742,184,1742,189,1553,175,1405,170,1259,163,1073,141,1060,139"/>
+<area shape="rect" title=" " alt="" coords="1914,187,2043,213"/>
+<area shape="poly" title=" " alt="" coords="1061,134,1074,136,1198,152,1303,161,1484,166,1666,168,1774,173,1899,184,1899,189,1773,178,1666,173,1484,171,1303,166,1197,157,1073,141,1060,139"/>
+<area shape="rect" title=" " alt="" coords="790,187,911,213"/>
+<area shape="poly" title=" " alt="" coords="956,142,887,181,884,176,953,137"/>
+<area shape="rect" title=" " alt="" coords="936,187,1046,213"/>
+<area shape="poly" title=" " alt="" coords="993,139,993,171,988,171,988,139"/>
+<area shape="rect" title=" " alt="" coords="1070,187,1176,213"/>
+<area shape="poly" title=" " alt="" coords="1026,137,1091,176,1088,181,1023,142"/>
+<area shape="poly" title=" " alt="" coords="413,137,451,174,447,178,409,141"/>
+<area shape="poly" title=" " alt="" coords="358,141,291,189,220,252,216,248,288,185,355,137"/>
+<area shape="poly" title=" " alt="" coords="222,141,204,162,191,187,186,217,190,246,184,247,181,217,185,186,200,159,218,137"/>
+<area shape="poly" title=" " alt="" coords="254,138,299,246,294,248,249,140"/>
+<area shape="poly" title=" " alt="" coords="276,137,337,176,334,180,274,142"/>
 </map>
 </div>
 </div>

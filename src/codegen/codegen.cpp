@@ -5,8 +5,12 @@
  */
 
 #include "../../include/exception/exception.hpp"
-#include <llvm/IR/Value.h>
+#include "../../include/semantic/semantic.hpp"
 #include "../../include/codegen/codegen.hpp"
+#include "../../include/parser/parser.hpp"
+#include "../../include/lexer/lexer.hpp"
+#include <filesystem>
+#include <fstream>
 
 void CodeGenerator::generate() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -52,7 +56,7 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
         generate_module_stmt(*ms);
     }
     else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
-        // No processing is needed
+        generate_use_module_stmt(*ums);
     }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
@@ -297,6 +301,91 @@ void CodeGenerator::generate_module_stmt(AST::ModuleStmt& ms) {
     }
 
     current_path.pop();
+}
+
+void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
+    std::string all_name;
+    for (size_t i = 0; i < ums.path.size(); i++) {
+        all_name += ums.path[i];
+        if (i != ums.path.size() - 1) {
+            all_name += "-";
+        }
+    }
+    std::filesystem::path path_to_mod_without_ext;
+    for (size_t i = 0; i < ums.path.size(); i++) {
+        path_to_mod_without_ext += "/" + ums.path[i];
+    }
+    std::filesystem::path path_to_mod_without_ext_in_libs = libs_path + path_to_mod_without_ext.string();
+    std::string path_to_mod_without_ext_in_libs_as_str = path_to_mod_without_ext_in_libs.string();
+    std::ifstream file;
+    if (std::filesystem::is_directory(path_to_mod_without_ext_in_libs_as_str)) {
+        if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
+            file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+            std::ostringstream content;
+            content << file.rdbuf();
+            file.close();
+            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+            std::vector<Token> tokens = lex.tokenize();
+            Parser parser(tokens);
+            std::vector<AST::StmtPtr> stmts = parser.parse();
+            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+            semantic.analyze();
+            std::map<std::string, SemanticAnalyzer::ModuleInfo*> modules = semantic.get_modules();
+            size_t current_path_size = current_path.size();
+            for (auto& module : modules) {
+                std::vector<PathPart> resolved_name = get_resolved_name(module.first);
+                current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
+                auto functions = semantic.get_functions();
+                for (auto& func : module.second->functions) {
+                    auto func_at_functions = functions.at(get_mangled_name(func.first));
+                    generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, func.first,
+                                            std::move(func_at_functions->args), func_at_functions->ret_type, std::move(func_at_functions->block), -1));
+                }
+            }
+            for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
+                current_path.pop();
+            }
+        }
+    }
+    else {
+        std::string path_to_file;
+        for (const auto& entry : std::filesystem::recursive_directory_iterator(libs_path)) {
+            if (entry.path().filename() == ums.path.back() + ".tp" && !std::filesystem::is_directory(entry.path())) {
+                path_to_file = entry.path();
+                file = std::ifstream(path_to_file);
+                break;
+            }
+        }
+        if (!file.is_open()) {
+            std::stringstream ss;
+            ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
+            throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+        }
+        std::ostringstream content;
+        content << file.rdbuf();
+        file.close();
+        Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp");
+        std::vector<Token> tokens = lex.tokenize();
+        Parser parser(tokens);
+        std::vector<AST::StmtPtr> stmts = parser.parse();
+        SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp");
+        semantic.analyze();
+        std::map<std::string, SemanticAnalyzer::ModuleInfo*> modules = semantic.get_modules();
+        size_t current_path_size = current_path.size();
+        for (auto& module : modules) {
+            std::vector<PathPart> resolved_name = get_resolved_name(module.first);
+            current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
+            auto functions = semantic.get_functions();
+            for (auto& func : module.second->functions) {
+                auto func_at_functions = functions.at(get_mangled_name(func.first));
+                generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, get_mangled_name(func.first),
+                                        std::move(func_at_functions->args), func_at_functions->ret_type, std::move(func_at_functions->block), -1));
+            }
+        }
+        for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
+            current_path.pop();
+        }
+    }
 }
 
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
@@ -589,4 +678,24 @@ std::string CodeGenerator::get_mangled_name(std::string base_name) {
         path.pop();
     }
     return res + base_name;
+}
+
+std::vector<CodeGenerator::PathPart> CodeGenerator::get_resolved_name(std::string mangled_name) {
+    std::vector<PathPart> res;
+    std::string name;
+    for (const char c : mangled_name) {
+        if (c == '-') {
+            res.push_back({name, PathPart::OBJ_MODULE});
+            name = "";
+        }
+        else if (c == '#') {
+            res.push_back({name, PathPart::OBJ_CLASS});
+            name = "";
+        }
+        else {
+            name += c;
+        }
+    }
+    res.push_back({name, PathPart::OBJ_MODULE});
+    return res;
 }
