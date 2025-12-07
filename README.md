@@ -15,3 +15,4 @@ Where `path/to/src.tp` is relative path to source
 2) `--ir` - printing generated LLVM IR code
 3) `--obj` - compiling source to object file
 4) `--path` - compiling source to executable into passed after this option path (for example: `topazc source.tp --path build/main`)
+5) `--debug` - printing debug information (from which compiler subsystem thrown exception)
