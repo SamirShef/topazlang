@@ -16,6 +16,6 @@ fun main() -> int {
     let float sum  = add(1.1f, 2);
     let float sum2 = add(1.1f, 2.2f);
     let int   sum3 = add(1, 2);
-    let double sqr = std.math.pow(3, 2);
+    let double sqr = std.math.pow(3.0, 2.2);
     return 0;
 }

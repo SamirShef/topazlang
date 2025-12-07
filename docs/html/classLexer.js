@@ -1,6 +1,6 @@
 var classLexer =
 [
-    [ "Lexer", "classLexer.html#ad2e35c5bb50087adbf7a6f9079de4b68", null ],
+    [ "Lexer", "classLexer.html#aec2d505f925f5e1aec42c165dea7b8b2", null ],
     [ "advance", "classLexer.html#a73509f24c44f3bb079f97353e6f07b2b", null ],
     [ "get_escape_sequence", "classLexer.html#a1b25efc22ae7e4235aa007185a885c0d", null ],
     [ "peek", "classLexer.html#ad7efb4516f546ec49416043fa87cb910", null ],
@@ -13,6 +13,7 @@ var classLexer =
     [ "tokenize_string_lit", "classLexer.html#a23f4e2fe208765d7a603d78f508705ad", null ],
     [ "column", "classLexer.html#a9eb1851ebd89e05cc5c836eb85bbc844", null ],
     [ "file_name", "classLexer.html#a15a7c44b97312d91763623a1be94192c", null ],
+    [ "is_debug", "classLexer.html#a545a13284fda67e7a82c173df3de63c8", null ],
     [ "keywords", "classLexer.html#af5689576de97edddfc3cd362d8b39cd2", null ],
     [ "line", "classLexer.html#a4c408c06ceac593df3db1977f917dfa4", null ],
     [ "pos", "classLexer.html#a60c66b1d2adfcb162c8da9c15f6a033d", null ],

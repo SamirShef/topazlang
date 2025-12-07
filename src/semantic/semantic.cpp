@@ -24,7 +24,7 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     }
     else if (auto vas = dynamic_cast<AST::VarAsgnStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "Assignment of variable cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "Assignment of variable cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_var_asgn_stmt(*vas);
     }
@@ -33,7 +33,7 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     }
     else if (auto fcs = dynamic_cast<AST::FuncCallStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "Calling of function cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "Calling of function cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_func_call_stmt(*fcs);
     }
@@ -42,25 +42,25 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     }
     else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "Control flow cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "Control flow cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_if_else_stmt(*ies);
     }
     else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "While loop cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "While loop cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_while_cycle_stmt(*wcs);
     }
     else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "Do-while loop cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "Do-while loop cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_do_while_cycle_stmt(*dwcs);
     }
     else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&stmt)) {
         if (current_space != SPACE_FUNCTION) {
-            throw_exception(SUB_SEMANTIC, "For loop cannot be in global or module space", stmt.line, file_name);
+            throw_exception(SUB_SEMANTIC, "For loop cannot be in global or module space", stmt.line, file_name, is_debug);
         }
         analyze_for_cycle_stmt(*fcs);
     }
@@ -77,7 +77,7 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
         analyze_use_module_stmt(*ums);
     }
     else {
-        throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name);
+        throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
 }
 
@@ -85,13 +85,13 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     if (current_space != SPACE_MODULE && vds.access != AST::ACCESS_NONE) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vds.name << "'\033[31m cannot have access modifier outside the module";
-        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
     }
     std::unique_ptr<Value> value = get_variable_value(vds.name);
     if (value != nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vds.name << "'\033[31m already exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
     }
     AST::Type var_type = vds.type;
     Value var_val = Value(var_type, get_default_val_by_type(var_type, vds.line), false, false);
@@ -104,7 +104,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     if (!has_common_type(var_val.type, var_type)) {
         std::stringstream ss;
         ss << "Type mismatch: an expression of the type \033[0m'" << var_val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << var_type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
     }
     var_val = implicitly_cast(var_val, var_type, vds.line);
     variables.top().emplace(vds.name, var_val);
@@ -115,27 +115,34 @@ void SemanticAnalyzer::analyze_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     if (var_val == nullptr) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vas.name << "'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name, is_debug);
     }
     if (var_val->type.is_const) {
         std::stringstream ss;
         ss << "Variable \033[0m'" << vas.name << "'\033[31m is a constant";
-        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name, is_debug);
     }
     AST::Type var_type = var_val->type;
     Value new_val = analyze_expr(*vas.expr);
     if (!has_common_type(new_val.type, var_type)) {
         std::stringstream ss;
         ss << "Type mismatch: an expression of the type \033[0m'" << new_val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << var_type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name, is_debug);
     }
 }
 
 void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     if (current_space != SPACE_MODULE && fds.access != AST::ACCESS_NONE) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fds.name << "'\033[31m cannot have access modifier outside the module";
-        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
+        ss << "Function \033[0m'" << fds.ret_type.to_str() << ' ' << get_mangled_name(fds.name) << '(';
+        for (size_t i = 0; i < fds.args.size(); i++) {
+            ss << fds.args[i].type.to_str();
+            if (i < fds.args.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << ")'\033[31m cannot have access modifier outside the module";
+        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name, is_debug);
     }
     
     Space previous_space = current_space;
@@ -166,7 +173,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
         }
         if (!ok) {
             std::stringstream ss;
-            ss << "Function \033[0m'" << fds.ret_type.to_str() << ' ' << fds.name << '(';
+            ss << "Function \033[0m'" << fds.ret_type.to_str() << ' ' << get_mangled_name(fds.name) << '(';
             for (size_t i = 0; i < fds.args.size(); i++) {
                 ss << fds.args[i].type.to_str();
                 if (i < fds.args.size() - 1) {
@@ -174,7 +181,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
                 }
             }
             ss << ")'\033[31m already exists";
-            throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name, is_debug);
         }
     }
     AST::Type ret_type = fds.ret_type;
@@ -224,7 +231,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     if (!have_ret_in_global && ret_type.type != AST::TYPE_NOTH) {
         std::stringstream ss;
         ss << "Non-nothing function must be have return statement in the global space in the body of function. Please add or move return statement to the global space in the body of function";
-        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name, is_debug);
     }
     functions_ret_types.pop();
     variables.pop();
@@ -236,8 +243,15 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
     auto func_candidates = get_function_candidates(get_mangled_name(fcs.name));
     if (func_candidates.empty()) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fcs.name << "'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+        ss << "Function \033[0m'" << get_mangled_name(fcs.name) << '(';
+        for (size_t i = 0; i < fcs.args.size(); i++) {
+            ss << analyze_expr(*fcs.args[i]).type.to_str();
+            if (i < fcs.args.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << ")'\033[31m does not exists";
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug);
     }
     bool found = false;
     size_t coincidences = 0;
@@ -258,9 +272,10 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
     }
     if (!found) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fcs.name << "'\033[31m does not have needed candidate.\nExists candidates:\n\033[0m";
+        ss << "Function \033[0m'" << get_mangled_name(fcs.name) << "'\033[31m does not have needed candidate.\nExists candidates:\n\033[0m";
+        size_t index = 0;
         for (auto& candidate : func_candidates) {
-            ss << candidate->ret_type.to_str() << ' ' << fcs.name << '(';
+            ss << candidate->ret_type.to_str() << ' ' << get_mangled_name(fcs.name) << '(';
             for (size_t i = 0; i < candidate->args.size(); i++) {
                 ss << candidate->args[i].type.to_str();
                 if (i < candidate->args.size() - 1) {
@@ -268,28 +283,32 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
                 }
             }
             ss << ')';
+            if (index < func_candidates.size() - 1) {
+                ss << '\n';
+            }
+            index++;
         }
-        ss << "\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name); 
+        ss << "\b\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug); 
     }
     analyze_func_call_expr(*std::make_unique<AST::FuncCallExpr>(fcs.name, std::move(fcs.args), fcs.line));
 }
 
 void SemanticAnalyzer::analyze_return_stmt(AST::ReturnStmt& rs) {
     if (functions_ret_types.empty()) {
-        throw_exception(SUB_SEMANTIC, "\033[0m'return'\033[31m statement must be in a function", rs.line, file_name);
+        throw_exception(SUB_SEMANTIC, "\033[0m'return'\033[31m statement must be in a function", rs.line, file_name, is_debug);
     }
     if (rs.expr != nullptr) {
         Value val = analyze_expr(*rs.expr);
         if (!has_common_type(val.type, functions_ret_types.top())) {
             std::stringstream ss;
             ss << "Type mismatch: an expression of the type \033[0m'" << val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << functions_ret_types.top().to_str() << "'\033[31m";
-            throw_exception(SUB_SEMANTIC, ss.str(), rs.line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), rs.line, file_name, is_debug);
         }
     }
     else {
         if (functions_ret_types.top().type != AST::TYPE_NOTH) {
-            throw_exception(SUB_SEMANTIC, "Nothing-type function cannot return values", rs.line, file_name);
+            throw_exception(SUB_SEMANTIC, "Nothing-type function cannot return values", rs.line, file_name, is_debug);
         }
     }
 }
@@ -299,7 +318,7 @@ void SemanticAnalyzer::analyze_if_else_stmt(AST::IfElseStmt& ies) {
     if (cond_val.type.type != AST::TYPE_BOOL) {
         std::stringstream ss;
         ss << "Type mismatch: the condition of the \033[0m'if'\033[31m operator must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), ies.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ies.line, file_name, is_debug);
     }
     variables.push({});
     for (auto& stmt : ies.then_block) {
@@ -320,7 +339,7 @@ void SemanticAnalyzer::analyze_while_cycle_stmt(AST::WhileCycleStmt& wcs) {
     if (cond_val.type.type != AST::TYPE_BOOL) {
         std::stringstream ss;
         ss << "Type mismatch: the condition of the \033[0m'while'\033[31m cycle must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), wcs.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), wcs.line, file_name, is_debug);
     }
     variables.push({});
     depth_of_loops++;
@@ -336,7 +355,7 @@ void SemanticAnalyzer::analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) 
     if (cond_val.type.type != AST::TYPE_BOOL) {
         std::stringstream ss;
         ss << "Type mismatch: the condition of the \033[0m'do-while'\033[31m cycle must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), dwcs.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), dwcs.line, file_name, is_debug);
     }
     variables.push({});
     depth_of_loops++;
@@ -349,7 +368,7 @@ void SemanticAnalyzer::analyze_do_while_cycle_stmt(AST::DoWhileCycleStmt& dwcs) 
 
 void SemanticAnalyzer::analyze_for_cycle_stmt(AST::ForCycleStmt& fcs) {
     if (!dynamic_cast<AST::VarDeclStmt*>(&*fcs.indexator) && !dynamic_cast<AST::VarAsgnStmt*>(&*fcs.indexator)) {
-        throw_exception(SUB_SEMANTIC, "Indexator statement in \033[0m'for'\033[31m cycle must be a variable definition/assignment", fcs.indexator->line, file_name);
+        throw_exception(SUB_SEMANTIC, "Indexator statement in \033[0m'for'\033[31m cycle must be a variable definition/assignment", fcs.indexator->line, file_name, is_debug);
     }
     
     variables.push({});
@@ -358,7 +377,7 @@ void SemanticAnalyzer::analyze_for_cycle_stmt(AST::ForCycleStmt& fcs) {
     if (cond_val.type.type != AST::TYPE_BOOL) {
         std::stringstream ss;
         ss << "Type mismatch: the condition of the \033[0m'for'\033[31m cycle must be of type \033[0m'bool'\033[31m, but got \033[0m'" << cond_val.type.to_str() << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug);
     }
     analyze_stmt(*fcs.iteration);
     depth_of_loops++;
@@ -371,13 +390,13 @@ void SemanticAnalyzer::analyze_for_cycle_stmt(AST::ForCycleStmt& fcs) {
 
 void SemanticAnalyzer::analyze_break_stmt(AST::BreakStmt& bs) {
     if (depth_of_loops == 0) {
-        throw_exception(SUB_SEMANTIC, "\033[0m'break'\033[31m statement must be in a cycle", bs.line, file_name);
+        throw_exception(SUB_SEMANTIC, "\033[0m'break'\033[31m statement must be in a cycle", bs.line, file_name, is_debug);
     }
 }
 
 void SemanticAnalyzer::analyze_continue_stmt(AST::ContinueStmt& cs) {
     if (depth_of_loops == 0) {
-        throw_exception(SUB_SEMANTIC, "\033[0m'continue'\033[31m statement must be in a cycle", cs.line, file_name);
+        throw_exception(SUB_SEMANTIC, "\033[0m'continue'\033[31m statement must be in a cycle", cs.line, file_name, is_debug);
     }
 }
 
@@ -385,7 +404,7 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
     if (current_space != SPACE_MODULE && ms.access != AST::ACCESS_NONE) {
         std::stringstream ss;
         ss << "Module \033[0m'" << ms.name << "'\033[31m cannot have access modifier outside the module";
-        throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name, is_debug);
     }
     
     Space previous_space = current_space;
@@ -395,7 +414,7 @@ void SemanticAnalyzer::analyze_module_stmt(AST::ModuleStmt& ms) {
     if (modules.find(get_mangled_name(ms.name)) != modules.end()) {
         std::stringstream ss;
         ss << "Module \033[0m'" << ms.name << "'\033[31m already exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ms.line, file_name, is_debug);
     }
     modules.emplace(get_mangled_name(ms.name), new ModuleInfo());
     ModuleInfo *module = modules.find(get_mangled_name(ms.name))->second;
@@ -443,22 +462,22 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
             if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
                 file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
                 if (!file.is_open()) {
-                    throw_exception(SUB_SEMANTIC, "Error openning file: does not exist!", ums.line, file_name);
+                    throw_exception(SUB_SEMANTIC, "Error openning file: does not exist!", ums.line, file_name, is_debug);
                 }
                 std::ostringstream content;
                 content << file.rdbuf();
                 file.close();
-                Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + "/main.tp", is_debug);
                 std::vector<Token> tokens = lex.tokenize();
-                Parser parser(tokens);
+                Parser parser(tokens, is_debug);
                 std::vector<AST::StmtPtr> stmts = parser.parse();
-                SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp");
+                SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + "/main.tp", is_debug);
                 semantic.analyze();
                 std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
                 if (modules.find(all_name) == modules.end()) {
                     std::stringstream ss;
                     ss << "File \033[0m'" << path_to_mod_without_ext_in_libs_as_str + "/main.tp" << "'\033[31m does not have a module with name \033[0m'" << all_name << "'\033[31m inside";
-                    throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+                    throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
                 }
                 size_t current_path_size = current_path.size();
                 for (auto& module : modules) {
@@ -487,22 +506,22 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
             if (!file.is_open()) {
                 std::stringstream ss;
                 ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
-                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
             }
             std::ostringstream content;
             content << file.rdbuf();
             file.close();
-            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp");
+            Lexer lex(content.str(), path_to_mod_without_ext_in_libs_as_str + ".tp", is_debug);
             std::vector<Token> tokens = lex.tokenize();
-            Parser parser(tokens);
+            Parser parser(tokens, is_debug);
             std::vector<AST::StmtPtr> stmts = parser.parse();
-            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp");
+            SemanticAnalyzer semantic(stmts, libs_path, path_to_mod_without_ext_in_libs_as_str + ".tp", is_debug);
             semantic.analyze();
             std::map<std::string, ModuleInfo*> modules = semantic.get_modules();
             if (modules.find(all_name) == modules.end()) {
                 std::stringstream ss;
                 ss << "File \033[0m'" << path_to_file << "'\033[31m does not have a module with name \033[0m'" << all_name << "'\033[31m inside";
-                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
             }
             size_t current_path_size = current_path.size();
             for (auto& module : modules) {
@@ -522,7 +541,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
     if (std::find(names_of_imported_modules.begin(), names_of_imported_modules.end(), all_name) != names_of_imported_modules.end()) {
         std::stringstream ss;
         ss << "Module \033[0m'" << ums.path.back() << "'\033[31m already imported";
-        throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
     }
     names_of_imported_modules.push_back(all_name);
 }
@@ -547,7 +566,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {
         return analyze_obj_chain_expr(*oce);
     }
     else {
-        throw_exception(SUB_SEMANTIC, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name);
+        throw_exception(SUB_SEMANTIC, "An unsupported expression was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", expr.line, file_name, is_debug);
     }
 }
 
@@ -568,14 +587,14 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_binary_expr(AST::BinaryExpr& b
         right_type.type >= AST::TYPE_BOOL && right_type.type <= AST::TYPE_DOUBLE && left_type.type > AST::TYPE_DOUBLE) {
         std::stringstream ss;
         ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
-        throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name, is_debug);
     }
     else {
         if (left_type.type == AST::TYPE_STRING_LIT && right_type.type == AST::TYPE_STRING_LIT) {
             if (be.op.type != TOK_OP_PLUS) {
                 std::stringstream ss;
                 ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
-                throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name, is_debug);
             }
             return Value(AST::Type(AST::TYPE_STRING_LIT, "string"), std::get<7>(left_val.value.value) + std::get<7>(right_val.value.value), left_val.is_value_unknown || right_val.is_value_unknown, left_val.is_literal && right_val.is_literal);
         }
@@ -591,7 +610,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_binary_expr(AST::BinaryExpr& b
                     (left_type.type > AST::TYPE_DOUBLE || right_type.type > AST::TYPE_DOUBLE)) {
                     std::stringstream ss;
                     ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
-                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);
+                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name, is_debug);
                 }
             case TOK_OP_EQ_EQ:
             case TOK_OP_NOT_EQ_EQ:
@@ -605,14 +624,14 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_binary_expr(AST::BinaryExpr& b
                 if (be.op.type > TOK_OP_NOT_EQ_EQ && (left_type.type > AST::TYPE_DOUBLE || left_type.type == AST::TYPE_BOOL || right_type.type > AST::TYPE_DOUBLE || right_type.type == AST::TYPE_BOOL)) {
                     std::stringstream ss;
                     ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
-                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);
+                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name, is_debug);
                 }
             case TOK_OP_L_AND:
             case TOK_OP_L_OR:
                 if (be.op.type >= TOK_OP_L_AND && be.op.type <= TOK_OP_L_OR && (left_type.type != AST::TYPE_BOOL || right_type.type != AST::TYPE_BOOL)) {
                     std::stringstream ss;
                     ss << "Type mismatch: it is not possible to use the binary \033[0m'" << be.op.value <<"'\033[31m operator with \033[0m'" << left_type.to_str() << "'\033[31m and \033[0m'" << right_type.to_str() <<"'\033[31m types";
-                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name);
+                    throw_exception(SUB_SEMANTIC, ss.str(), be.line, file_name, is_debug);
                 }
                 if (left_val.is_value_unknown || right_val.is_value_unknown) {
                     return Value(output_type, 0, left_val.is_value_unknown || right_val.is_value_unknown, left_val.is_literal && right_val.is_literal);
@@ -653,13 +672,13 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_unary_expr(AST::UnaryExpr& ue)
             if (ue.op.type == TOK_OP_MINUS && (type.type > AST::TYPE_DOUBLE || type.type == AST::TYPE_BOOL)) {
                 std::stringstream ss;
                 ss << "Type mismatch: it is not possible to use the unary \033[0m'" << ue.op.value <<"'\033[31m operator with \033[0m'" << type.to_str() << "'\033[31m type";
-                throw_exception(SUB_SEMANTIC, ss.str(), ue.line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), ue.line, file_name, is_debug);
             }
         case TOK_OP_L_NOT:
             if (ue.op.type == TOK_OP_L_NOT && type.type != AST::TYPE_BOOL) {
                 std::stringstream ss;
                 ss << "Type mismatch: it is not possible to use the unary \033[0m'" << ue.op.value <<"'\033[31m operator with \033[0m'" << type.to_str() << "'\033[31m type";
-                throw_exception(SUB_SEMANTIC, ss.str(), ue.line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), ue.line, file_name, is_debug);
             }
             switch (type.type) {
                 case AST::TYPE_BOOL:
@@ -690,7 +709,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_var_expr(AST::VarExpr& ve) {
         }
         std::stringstream ss;
         ss << "Variable \033[0m'" << ve.name << "'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), ve.line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ve.line, file_name, is_debug);
     }
     return *var;
 }
@@ -699,8 +718,15 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
     auto func_candidates = get_function_candidates(get_mangled_name(fce.name));
     if (func_candidates.empty()) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fce.name << "'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+        ss << "Function \033[0m'" << get_mangled_name(fce.name) << '(';
+        for (size_t i = 0; i < fce.args.size(); i++) {
+            ss << analyze_expr(*fce.args[i]).type.to_str();
+            if (i < fce.args.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << ")'\033[31m does not exists";
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
     }
     bool found = false;
     size_t last_score = SIZE_MAX;
@@ -748,7 +774,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
     }
     if (!found) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fce.name << '(';
+        ss << "Function \033[0m'" << get_mangled_name(fce.name) << '(';
         for (size_t i = 0; i < fce.args.size(); i++) {
             ss << analyze_expr(*fce.args[i]).type.to_str();
             if (i < fce.args.size() - 1) {
@@ -756,18 +782,23 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
             }
         }
         ss << ")'\033[31m does not have needed candidate.\nExists candidates:\n\033[0m";
+        size_t index = 0;
         for (auto& candidate : func_candidates) {
-            ss << candidate->ret_type.to_str() << ' ' << fce.name << '(';
+            ss << candidate->ret_type.to_str() << ' ' << get_mangled_name(fce.name) << '(';
             for (size_t i = 0; i < candidate->args.size(); i++) {
                 ss << candidate->args[i].type.to_str();
                 if (i < candidate->args.size() - 1) {
                     ss << ", ";
                 }
             }
-            ss << ")\n";
+            ss << ')';
+            if (index < func_candidates.size() - 1) {
+                ss << '\n';
+            }
+            index++;
         }
         ss << "\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name); 
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug); 
     }
 
     size_t index = 0;
@@ -777,7 +808,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
         if (!has_common_type(arg_type, best_candidate->args[index].type)) {
             std::stringstream ss;
             ss << "In the " << index + 1 << "th argument: Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << best_candidate->args[index].type.to_str() << "'\033[31m";
-            throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
         }
         index++;
     }
@@ -792,7 +823,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_chain_expr(AST::ChainObjec
         value = analyze_obj_from_chain(value, *co.chain[i]);
     }
     if (value.type.type == AST::TYPE_MODULE) {
-        throw_exception(SUB_SEMANTIC, "Cannot specify module as expression", co.line, file_name);
+        throw_exception(SUB_SEMANTIC, "Cannot specify module as expression", co.line, file_name, is_debug);
     }
     return value;
 }
@@ -804,17 +835,31 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_from_chain(Value target, A
             if (info == nullptr) {
                 std::stringstream ss;
                 ss << "Module \033[0m'" << target.type.name << "'\033[31m does not exists";
-                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name, is_debug);
             }
             if (info->functions.find(fce->name) == info->functions.end()) {
                 std::stringstream ss;
-                ss << "Function \033[0m'" << fce->name << "'\033[31m does not exists in module \033[0m'" << target.type.name << "'\033[31m";
-                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+                ss << "Function \033[0m'" << get_mangled_name(fce->name) << '(';
+                for (size_t i = 0; i < fce->args.size(); i++) {
+                    ss << analyze_expr(*fce->args[i]).type.to_str();
+                    if (i < fce->args.size() - 1) {
+                        ss << ", ";
+                    }
+                }
+                ss << ")'\033[31m does not exists in module \033[0m'" << target.type.name << "'\033[31m";
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name, is_debug);
             }
             if (info->functions.at(fce->name).first != AST::ACCESS_PUBLIC) {
                 std::stringstream ss;
-                ss << "Function \033[0m'" << fce->name << "'\033[31m in module \033[0m'" << target.type.name << "'\033[31m is private member";
-                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+                ss << "Function \033[0m'" << get_mangled_name(fce->name) << '(';
+                for (size_t i = 0; i < fce->args.size(); i++) {
+                    ss << analyze_expr(*fce->args[i]).type.to_str();
+                    if (i < fce->args.size() - 1) {
+                        ss << ", ";
+                    }
+                }
+                ss << ")'\033[31m in module \033[0m'" << target.type.name << "'\033[31m is private member";
+                throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name, is_debug);
             }
             current_path.push(PathPart{target.type.name, SemanticAnalyzer::PathPart::OBJ_MODULE});
             Value value = analyze_func_call_expr(*fce);
@@ -827,25 +872,25 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_from_chain(Value target, A
         if (info == nullptr) {
             std::stringstream ss;
             ss << "Module \033[0m'" << target.type.name << "'\033[31m does not exists";
-            throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name, is_debug);
         }
         if (info->modules.find(ve->name) != info->modules.end()) {
             if (info->modules.at(ve->name).first != AST::ACCESS_PUBLIC) {
                 std::stringstream ss;
                 ss << "Module \033[0m'" << ve->name << "'\033[31m in module \033[0m'" << target.type.name << "'\033[31m is private member";
-                throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name);
+                throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name, is_debug);
             }
             target.type.name += "-" + ve->name;
             return target;
         }
         std::stringstream ss;
         ss << "Module \033[0m'" << ve->name << "'\033[31m does not exists in module \033[0m'" << target.type.name << "'\033[31m";
-        throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), ve->line, file_name, is_debug);
     }
     else {
         std::stringstream ss;
         ss << "Module \033[0m'" << target.type.name << "'\033[31m does not have passed object type";
-        throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name);
+        throw_exception(SUB_SEMANTIC, ss.str(), fce->line, file_name, is_debug);
     }
 }
 
@@ -901,7 +946,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(std::shared_
     }
     std::stringstream ss;
     ss << "Not all paths returns value in function \033[0m'" << fce.name << "'\033[31m. Please add \033[0m'return'\033[31m statement into the end of the function";
-    throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+    throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
 }
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_else(AST::IfElseStmt& ies) {
@@ -1058,7 +1103,7 @@ AST::Value SemanticAnalyzer::get_default_val_by_type(AST::Type type, uint32_t li
         default:
             std::stringstream ss;
             ss << "Cannot generate default value for '" << type.to_str() << "' type";
-            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
     }
 }
 
@@ -1107,7 +1152,7 @@ AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uin
 
     std::stringstream ss;
     ss << "Type mismatch: there is no common type for \033[0m'" << left.to_str() << "'\033[31m and \033[0m'" << right.to_str() << "'\033[31m";
-    throw_exception(SUB_SEMANTIC, ss.str(), line, file_name);
+    throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::implicitly_cast(Value val, AST::Type type, uint32_t line) {
@@ -1161,6 +1206,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::implicitly_cast(Value val, AST::Type t
         case AST::TYPE_DOUBLE:
             res.value.value = VALUE(double);
             break;
+        #undef VALUE
     }
 
     return res;
@@ -1228,7 +1274,7 @@ double SemanticAnalyzer::binary_two_variants(Value left, Value right, TokenType 
             return left_val * right_val;
         case TOK_OP_DIV:
             if (!right.is_value_unknown && right_val == 0) {
-                throw_exception(SUB_SEMANTIC, "Division by zero", line, file_name);
+                throw_exception(SUB_SEMANTIC, "Division by zero", line, file_name, is_debug);
             }
             return left_val / right_val;
         case TOK_OP_MODULO:
@@ -1252,7 +1298,7 @@ double SemanticAnalyzer::binary_two_variants(Value left, Value right, TokenType 
         default:
             std::stringstream ss;
             ss << "Unsupported binary operator: \033[0m'" << op << "'";
-            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
     }
 }
 
@@ -1289,7 +1335,7 @@ double SemanticAnalyzer::unary_two_variants(Value value, TokenType op, uint32_t 
         default:
             std::stringstream ss;
             ss << "Unsupported binary operator: \033[0m'" << op << "'";
-            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name);
+            throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
     }
 }
 

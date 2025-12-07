@@ -2,8 +2,8 @@
 <area shape="rect" id="Node000001" title="Method for generating LLVM IR code for expressions." alt="" coords="5,320,205,347"/>
 <area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="253,107,420,149"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,318,173,253,210,214,251,178,290,155,293,159,254,182,213,218,177,257,123,321"/>
-<area shape="rect" id="Node000005" href="$exception_8cpp.html#a73855955d2710bc5d3154086b61a5795" title="Function for throwing exception." alt="" coords="726,261,842,288"/>
-<area shape="poly" id="edge22_Node000001_Node000005" title=" " alt="" coords="119,317,175,273,212,250,252,231,365,194,413,184,458,179,504,179,553,184,669,209,715,227,753,250,751,255,712,232,668,215,552,190,504,185,459,184,414,189,366,199,254,236,214,254,178,277,123,321"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="726,253,842,280"/>
+<area shape="poly" id="edge21_Node000001_Node000005" title=" " alt="" coords="118,317,173,272,211,248,252,231,315,216,380,208,446,207,511,210,629,226,722,246,720,251,628,231,510,215,446,212,381,213,316,221,254,236,213,253,176,276,122,322"/>
 <area shape="rect" id="Node000007" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="484,459,652,501"/>
 <area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="121,345,178,377,254,408,365,442,470,467,469,472,364,447,252,413,176,381,118,349"/>
 <area shape="rect" id="Node000009" href="$classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="253,245,420,288"/>
@@ -19,19 +19,18 @@
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="374,104,467,58,485,50,487,55,469,62,377,109"/>
 <area shape="rect" id="Node000004" href="$classCodeGenerator.html#abd24d8c33d521ec58c14e4a1be5e26bd" title="Method for implicitly cast value to expected type." alt="" coords="468,72,668,99"/>
 <area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="420,110,477,99,478,105,421,115"/>
-<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="420,121,477,123,541,130,607,143,669,166,699,183,725,204,765,247,762,251,721,208,696,187,667,170,605,148,540,135,477,128,420,127"/>
-<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="900,253,1067,296"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="843,272,884,272,884,277,843,277"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="420,122,477,124,541,131,607,144,669,166,697,181,723,200,764,240,760,244,720,205,695,186,667,170,605,149,540,136,477,130,420,128"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="900,245,1067,288"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="843,264,884,264,884,269,843,269"/>
 <area shape="poly" id="edge8_Node000007_Node000001" title=" " alt="" coords="504,461,386,430,252,389,169,356,171,351,254,384,387,425,505,455"/>
-<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="716,425,852,468"/>
-<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="652,464,700,457,701,462,652,470"/>
-<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="421,273,468,276,568,278,668,276,711,275,711,280,668,281,568,283,468,281,420,278"/>
-<area shape="rect" id="Node000010" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="497,224,639,267"/>
-<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="420,256,481,251,482,256,421,262"/>
-<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="640,252,711,262,710,267,640,258"/>
+<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="716,459,852,501"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="652,477,701,477,701,483,652,483"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="420,261,468,260,668,260,711,261,711,266,668,265,468,265,420,266"/>
+<area shape="rect" id="Node000010" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="497,275,639,317"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="421,275,482,282,481,288,420,280"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="640,284,710,274,711,279,640,289"/>
 <area shape="poly" id="edge15_Node000011_Node000007" title=" " alt="" coords="420,506,469,497,470,502,421,512"/>
 <area shape="poly" id="edge17_Node000012_Node000001" title=" " alt="" coords="252,327,220,327,220,322,252,322"/>
-<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="420,320,710,282,711,287,421,325"/>
-<area shape="poly" id="edge21_Node000013_Node000005" title=" " alt="" coords="631,389,667,371,717,334,758,297,761,301,720,338,670,376,634,394"/>
-<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="652,424,701,431,700,437,652,429"/>
+<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="420,341,539,344,604,339,668,327,712,309,750,287,753,291,714,314,669,332,605,344,539,349,420,346"/>
+<area shape="poly" id="edge20_Node000013_Node000005" title=" " alt="" coords="632,389,667,371,718,331,759,290,763,294,722,335,670,376,635,394"/>
 </map>

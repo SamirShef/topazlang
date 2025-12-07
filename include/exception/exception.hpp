@@ -27,5 +27,6 @@ enum SubsystemType {
  * @param msg Exception message
  * @param line Line where exception throwed
  * @param file_name File where exception throwed
+ * @param is_debug Flag for print debug information
  */
-void throw_exception(SubsystemType type, std::string msg, uint32_t line, std::string file_name);
+void throw_exception(SubsystemType type, std::string msg, uint32_t line, std::string file_name, bool is_debug);

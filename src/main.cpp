@@ -32,6 +32,7 @@ int main(int argc, const char *argv[]) {
     bool print_tokens = false;
     bool print_ir = false;
     bool output_is_object = false;
+    bool debug = false;
 
     if (argc < 2) {
         std::cerr << "\033[33mUsage: topazc \"path/to/src.tp\"\033[0m\n";
@@ -77,6 +78,9 @@ int main(int argc, const char *argv[]) {
             }
             executable_path = argv[++i];
         }
+        else if (strcmp(argv[i], "--debug") == 0) {
+            debug = true;
+        }
     }
 
     if (executable_path.find('.') != std::string::npos) {
@@ -102,7 +106,7 @@ int main(int argc, const char *argv[]) {
     std::ostringstream content;
     content << file.rdbuf();
     file.close();
-    Lexer lexer(content.str(), file_path.string());
+    Lexer lexer(content.str(), file_path.string(), debug);
     std::vector<Token> tokens = lexer.tokenize();
     if (print_tokens) {
         std::cout << "\033[1m\033[32mTokens:\033[0m\n";
@@ -111,16 +115,16 @@ int main(int argc, const char *argv[]) {
         }
     }
 
-    Parser parser(tokens);
+    Parser parser(tokens, debug);
     std::vector<AST::StmtPtr> stmts_for_semantic = parser.parse();
 
-    SemanticAnalyzer semantic(stmts_for_semantic, std::filesystem::absolute(libs_path), file_path.string());
+    SemanticAnalyzer semantic(stmts_for_semantic, std::filesystem::absolute(libs_path), file_path.string(), debug);
     semantic.analyze();
     
     parser.reset();
     std::vector<AST::StmtPtr> stmts_for_codegen = parser.parse();
     
-    CodeGenerator codegen(stmts_for_codegen, std::filesystem::absolute(libs_path), file_path.string());
+    CodeGenerator codegen(stmts_for_codegen, std::filesystem::absolute(libs_path), file_path.string(), debug);
     codegen.generate();
     if (print_ir) {
         if (print_tokens) {

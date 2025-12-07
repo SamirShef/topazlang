@@ -6,5 +6,5 @@ var exception_8hpp =
       [ "SUB_SEMANTIC", "exception_8hpp.html#aa8e36beae0694ef2e14ae30eaac8a0d6af5b171c032338a8d065aa4fb1305740d", null ],
       [ "SUB_CODEGEN", "exception_8hpp.html#aa8e36beae0694ef2e14ae30eaac8a0d6a6acc8700600baa154670a382e814f6c6", null ]
     ] ],
-    [ "throw_exception", "exception_8hpp.html#a73855955d2710bc5d3154086b61a5795", null ]
+    [ "throw_exception", "exception_8hpp.html#ab0d606724ba11db43d5fd0294b3d407f", null ]
 ];

@@ -25,11 +25,12 @@ private:
     std::string libs_path;                                                      /**< Absolute path to the Topaz libraries */
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
+    bool is_debug;                                                              /**< Flag for debug exception */
     llvm::LLVMContext context;                                                  /**< LLVM Context */
     llvm::IRBuilder<> builder;                                                  /**< LLVM IR Builder */
     std::unique_ptr<llvm::Module> module;                                       /**< LLVM Module (module name is relative path to the Topaz source code) */
     std::stack<std::map<std::string, llvm::Value*>> variables;                  /**< View scope of the variables table */
-    std::map<std::string, llvm::Function*> functions;                           /**< Functions table */
+    std::map<std::string, std::vector<llvm::Function*>> functions;              /**< Functions table */
     std::stack<llvm::Type*> functions_ret_types;                                /**< Stack of functions return types */
     std::stack<std::pair<llvm::BasicBlock*, llvm::BasicBlock*>> loop_blocks;    /**< Stack of branches into cycles. First for 'break', second for 'continue' */
 
@@ -50,7 +51,7 @@ private:
     std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
 
 public:
-    CodeGenerator(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), libs_path(lp), file_name(fn) {
+    CodeGenerator(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn, bool id) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), libs_path(lp), file_name(fn), is_debug(id) {
         variables.push({});
     }
 

@@ -121,8 +121,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a73855955d2710bc5d3154086b61a5795" id="r_a73855955d2710bc5d3154086b61a5795"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73855955d2710bc5d3154086b61a5795">throw_exception</a> (<a class="el" href="#aa8e36beae0694ef2e14ae30eaac8a0d6">SubsystemType</a> type, std::string msg, uint32_t line, std::string file_name)</td></tr>
-<tr class="memdesc:a73855955d2710bc5d3154086b61a5795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for throwing exception.  <br /></td></tr>
+<tr class="memitem:ab0d606724ba11db43d5fd0294b3d407f" id="r_ab0d606724ba11db43d5fd0294b3d407f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0d606724ba11db43d5fd0294b3d407f">throw_exception</a> (<a class="el" href="#aa8e36beae0694ef2e14ae30eaac8a0d6">SubsystemType</a> type, std::string msg, uint32_t line, std::string file_name, bool is_debug)</td></tr>
+<tr class="memdesc:ab0d606724ba11db43d5fd0294b3d407f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for throwing exception.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Header file for defining thrown exceptions by the compiler. </p>
@@ -158,8 +158,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a73855955d2710bc5d3154086b61a5795" name="a73855955d2710bc5d3154086b61a5795"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73855955d2710bc5d3154086b61a5795">&#9670;&#160;</a></span>throw_exception()</h2>
+<a id="ab0d606724ba11db43d5fd0294b3d407f" name="ab0d606724ba11db43d5fd0294b3d407f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0d606724ba11db43d5fd0294b3d407f">&#9670;&#160;</a></span>throw_exception()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -182,7 +182,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>&#160;)</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_debug</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -195,6 +200,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">msg</td><td>Exception message </td></tr>
     <tr><td class="paramname">line</td><td>Line where exception throwed </td></tr>
     <tr><td class="paramname">file_name</td><td>File where exception throwed </td></tr>
+    <tr><td class="paramname">is_debug</td><td>Flag for print debug information </td></tr>
   </table>
   </dd>
 </dl>
@@ -203,8 +209,8 @@ Functions</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="exception_8hpp_a73855955d2710bc5d3154086b61a5795_cgraph.png" border="0" usemap="#aexception_8hpp_a73855955d2710bc5d3154086b61a5795_cgraph" loading="lazy" alt=""/></div>
-<map name="aexception_8hpp_a73855955d2710bc5d3154086b61a5795_cgraph" id="aexception_8hpp_a73855955d2710bc5d3154086b61a5795_cgraph">
+<div class="center"><img src="exception_8hpp_ab0d606724ba11db43d5fd0294b3d407f_cgraph.png" border="0" usemap="#aexception_8hpp_ab0d606724ba11db43d5fd0294b3d407f_cgraph" loading="lazy" alt=""/></div>
+<map name="aexception_8hpp_ab0d606724ba11db43d5fd0294b3d407f_cgraph" id="aexception_8hpp_ab0d606724ba11db43d5fd0294b3d407f_cgraph">
 <area shape="rect" title="Function for throwing exception." alt="" coords="5,13,122,40"/>
 <area shape="rect" href="exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="170,5,337,48"/>
 <area shape="poly" title=" " alt="" coords="122,24,154,24,154,29,122,29"/>
