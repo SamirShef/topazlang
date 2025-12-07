@@ -62,6 +62,7 @@ private:
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
     unsigned depth_of_loops;                                                    /**< Depth of loops */
 
+public:
     /**
      * @brief Structure of information about module
      */
@@ -69,6 +70,7 @@ private:
         std::map<std::string, std::pair<AST::AccessModifier, ModuleInfo*>> modules;     /**< Submodules into module */
         std::map<std::string, std::pair<AST::AccessModifier, std::string>> functions;   /**< Functions table in module */
     };
+private:
     std::map<std::string, ModuleInfo*> modules;                                 /**< Modules table */
     std::vector<std::string> names_of_imported_modules;                         /**< Names of already imported modules */
 
@@ -89,19 +91,10 @@ private:
     std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
 
 public:
-    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string fn) : stmts(s), file_name(fn), depth_of_loops(0) {
+    SemanticAnalyzer(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn) : stmts(s), libs_path(lp), file_name(fn), depth_of_loops(0) {
         std::filesystem::path file_path = std::filesystem::absolute(fn);
         path_to_current_dir = file_path.parent_path().string();
         variables.push({});
-    }
-
-    /**
-     * @brief Method for setting absolute path to the path to libraries
-     *
-     * @param path Absolute path to the libraries
-     */
-    void set_libs_path(std::string path) {
-        libs_path = path;
     }
 
     /**
@@ -456,7 +449,7 @@ private:
     bool has_common_type(AST::Type left, AST::Type right);
     
     /**
-     * @brief Method for getting comon type between two types
+     * @brief Method for getting common type between two types
      *
      * This method getting common type between two passed types and returns it. If common type does not exist, then throwing exception
      *
@@ -467,6 +460,19 @@ private:
      * @return Common type between two passed types
      */
     AST::Type get_common_type(AST::Type left, AST::Type right, uint32_t line);
+
+    /**
+     * @brief Method for getting implicitly casted value between two values
+     *
+     * This method getting implicitly casted value between two passed values and returns it. If common type does not exist, then throwing exception
+     *
+     * @param val Value to be implicitly cast
+     * @param type Type to be implicitly cast to
+     * @param line Line coordinate in Topaz source code (for exception)
+     *
+     * @return Implicitly casted value
+     */
+    Value implicitly_cast(Value val, AST::Type type, uint32_t line);
 
     /**
      * @brief Method for evaluating binary operations on two values from std::variant

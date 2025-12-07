@@ -1,7 +1,7 @@
 var classCodeGenerator =
 [
     [ "PathPart", "structCodeGenerator_1_1PathPart.html", "structCodeGenerator_1_1PathPart" ],
-    [ "CodeGenerator", "classCodeGenerator.html#a32ea8548ee278fa4f6dd1810ef28f32c", null ],
+    [ "CodeGenerator", "classCodeGenerator.html#ad7425e46319c2aa77b5c661314396a57", null ],
     [ "generate", "classCodeGenerator.html#aef4f9c2efe63221d0060f226cd767c0f", null ],
     [ "generate_binary_expr", "classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7", null ],
     [ "generate_break_stmt", "classCodeGenerator.html#a3831f496a763b6c44f8bbf3c082ef340", null ],
@@ -27,6 +27,7 @@ var classCodeGenerator =
     [ "get_common_type", "classCodeGenerator.html#a2a19b027eaf6660fa103734b7b4d039a", null ],
     [ "get_mangled_name", "classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6", null ],
     [ "get_module", "classCodeGenerator.html#acaed752e624b67267e09a006578cafad", null ],
+    [ "get_resolved_name", "classCodeGenerator.html#a3aff8118e5dcb58777c9d994ca9cbf53", null ],
     [ "implicitly_cast", "classCodeGenerator.html#abd24d8c33d521ec58c14e4a1be5e26bd", null ],
     [ "print_ir", "classCodeGenerator.html#ad9652056bc78e567f1346b7842899a15", null ],
     [ "type_to_llvm", "classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab", null ],
@@ -36,6 +37,7 @@ var classCodeGenerator =
     [ "file_name", "classCodeGenerator.html#a63079f3cf25075ff372f61d5c37fc46e", null ],
     [ "functions", "classCodeGenerator.html#adc04cd88bd1d94afbf5d19da93b2f0ee", null ],
     [ "functions_ret_types", "classCodeGenerator.html#ac99f65479b59e19f2981f4a2eb92fc3e", null ],
+    [ "libs_path", "classCodeGenerator.html#a6fe08e1f9f72687da52dba1e1be53e73", null ],
     [ "loop_blocks", "classCodeGenerator.html#a9d9340a0a001f7b5bcfc8df0126dacd1", null ],
     [ "module", "classCodeGenerator.html#a99ee2accc36506cab4248f9089e9d89e", null ],
     [ "stmts", "classCodeGenerator.html#a7e46191a8d524d1de64cc9ba73ea7b61", null ],

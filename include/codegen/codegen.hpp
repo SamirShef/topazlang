@@ -22,6 +22,7 @@
  */
 class CodeGenerator {
 private:
+    std::string libs_path;                                                      /**< Absolute path to the Topaz libraries */
     std::string file_name;                                                      /**< Absolute path to the Topaz source code */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
     llvm::LLVMContext context;                                                  /**< LLVM Context */
@@ -49,7 +50,7 @@ private:
     std::stack<PathPart> current_path;                                          /**< Stack to current path to some object */
 
 public:
-    CodeGenerator(std::vector<AST::StmtPtr>& s, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), file_name(fn) {
+    CodeGenerator(std::vector<AST::StmtPtr>& s, std::string lp, std::string fn) : context(), builder(context), module(std::make_unique<llvm::Module>(fn, context)), stmts(s), libs_path(lp), file_name(fn) {
         variables.push({});
     }
 
@@ -329,4 +330,15 @@ private:
      * @return Mangled name
      */
     std::string get_mangled_name(std::string base_name);
+
+    /**
+     * @brief Method for getting resolved name by mangled name
+     *
+     * This method returns resolved name by passed mangled name
+     *
+     * @param mangled_name Mangled name for resolving
+     *
+     * @return Vector to PathPart
+     */
+    std::vector<PathPart> get_resolved_name(std::string mangled_name);
 };
