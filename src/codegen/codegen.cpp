@@ -547,6 +547,9 @@ llvm::Value *CodeGenerator::generate_var_expr(AST::VarExpr& ve) {
             llvm::Type* type = nullptr;
             if (auto global = llvm::dyn_cast<llvm::GlobalVariable>(vars_it->second)) {
                 type = global->getValueType();
+                if (functions_ret_types.empty()) {
+                    return global->getInitializer();
+                }
             }
             else if (auto local = llvm::dyn_cast<llvm::AllocaInst>(vars_it->second)) {
                 type = local->getAllocatedType();
