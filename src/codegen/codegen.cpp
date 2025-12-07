@@ -337,9 +337,11 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
                 current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
                 auto functions = semantic.get_functions();
                 for (auto& func : module.second->functions) {
-                    auto func_at_functions = functions.at(get_mangled_name(func.first));
-                    generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, func.first,
-                                            std::move(func_at_functions->args), func_at_functions->ret_type, std::move(func_at_functions->block), -1));
+                    auto candidates_at_functions = functions.at(get_mangled_name(func.first));
+                    for (auto& candidate : candidates_at_functions) {
+                        generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, func.first,
+                                                std::move(candidate->args), candidate->ret_type, std::move(candidate->block), -1));
+                    }
                 }
             }
             for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
@@ -377,9 +379,11 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
             current_path.push({resolved_name.back().name, PathPart::OBJ_MODULE});
             auto functions = semantic.get_functions();
             for (auto& func : module.second->functions) {
-                auto func_at_functions = functions.at(get_mangled_name(func.first));
-                generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, get_mangled_name(func.first),
-                                        std::move(func_at_functions->args), func_at_functions->ret_type, std::move(func_at_functions->block), -1));
+                auto candidates_at_functions = functions.at(get_mangled_name(func.first));
+                for (auto& candidate : candidates_at_functions) {
+                    generate_func_decl_stmt(*std::make_unique<AST::FuncDeclStmt>(func.second.first, func.first,
+                                            std::move(candidate->args), candidate->ret_type, std::move(candidate->block), -1));
+                }
             }
         }
         for (size_t i = current_path.size() - current_path_size; i > 0; i--) {

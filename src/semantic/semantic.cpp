@@ -9,7 +9,7 @@
 #include "../../include/parser/parser.hpp"
 #include "../../include/lexer/lexer.hpp"
 #include <algorithm>
-#include <iostream>
+#include <cstdint>
 #include <fstream>
 
 void SemanticAnalyzer::analyze() {
@@ -141,21 +141,57 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     Space previous_space = current_space;
     current_space = SPACE_FUNCTION;
     
-    FunctionInfo *func = get_function_info(get_mangled_name(fds.name));
-    if (func != nullptr) {
-        std::stringstream ss;
-        ss << "Function \033[0m'" << fds.name << "'\033[31m already exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
+    auto func_candidates = get_function_candidates(get_mangled_name(fds.name));
+    if (!func_candidates.empty()) {
+        bool ok = false;                                        // Can you define this function (true) or not (false)
+        for (auto& candidate : func_candidates) {
+            if (candidate->args.size() != fds.args.size()) {
+                ok = true;
+            }
+            else {
+                size_t coincidences = 0;
+                for (size_t i = 0; i < candidate->args.size(); i++) {
+                    if (candidate->args[i].type == fds.args[i].type) {
+                        coincidences++;
+                    }
+                }
+                if (coincidences == candidate->args.size()) {
+                    ok = false;
+                    break;
+                }
+                else {
+                    ok = true;
+                }
+            }
+        }
+        if (!ok) {
+            std::stringstream ss;
+            ss << "Function \033[0m'" << fds.ret_type.to_str() << ' ' << fds.name << '(';
+            for (size_t i = 0; i < fds.args.size(); i++) {
+                ss << fds.args[i].type.to_str();
+                if (i < fds.args.size() - 1) {
+                    ss << ", ";
+                }
+            }
+            ss << ")'\033[31m already exists";
+            throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name);
+        }
     }
     AST::Type ret_type = fds.ret_type;
     variables.push({});
     functions_ret_types.push(ret_type);
-    functions.emplace(get_mangled_name(fds.name), new FunctionInfo{.ret_type=ret_type, .args=std::move(fds.args), .block=std::move(fds.block)});
-    for (auto& arg : functions.at(get_mangled_name(fds.name))->args) {
+    std::shared_ptr<FunctionInfo> new_func = std::make_shared<FunctionInfo>(ret_type, std::move(fds.args), std::move(fds.block));
+    if (func_candidates.empty()) {
+        functions.emplace(get_mangled_name(fds.name), std::vector<std::shared_ptr<FunctionInfo>>{new_func});
+    }
+    else {
+        functions.at(get_mangled_name(fds.name)).push_back(new_func);
+    }
+    for (auto& arg : new_func->args) {
         analyze_var_decl_stmt(*std::make_unique<AST::VarDeclStmt>(AST::ACCESS_NONE, arg.type, nullptr, arg.name, fds.line), true);
     }
     bool have_ret_in_global = false;
-    for (auto& stmt : functions.at(get_mangled_name(fds.name))->block) {
+    for (auto& stmt : new_func->block) {
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             have_ret_in_global = true;
@@ -197,16 +233,44 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
 }
 
 void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
-    FunctionInfo *func = get_function_info(get_mangled_name(fcs.name));
-    if (func == nullptr) {
+    auto func_candidates = get_function_candidates(get_mangled_name(fcs.name));
+    if (func_candidates.empty()) {
         std::stringstream ss;
         ss << "Function \033[0m'" << fcs.name << "'\033[31m does not exists";
         throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
     }
-    if (fcs.args.size() != functions.at(get_mangled_name(fcs.name))->args.size()) {
+    bool found = false;
+    size_t coincidences = 0;
+    for (auto& candidate : func_candidates) {
+        for (size_t i = 0; i < candidate->args.size(); i++) {
+            if (fcs.args.size() != candidate->args.size()) {
+                continue;
+            }
+            Value arg_val = analyze_expr(*fcs.args[i]);
+            if (has_common_type(arg_val.type, candidate->args[i].type)) {
+                coincidences++;
+            }
+        }
+        if (coincidences == candidate->args.size()) {
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
         std::stringstream ss;
-        ss << "Function \033[0m'" << fcs.name << "'\033[31m expected " << functions.at(get_mangled_name(fcs.name))->args.size() << " arguments, but got " << fcs.args.size();
-        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name);
+        ss << "Function \033[0m'" << fcs.name << "'\033[31m does not have needed candidate.\nExists candidates:\n\033[0m";
+        for (auto& candidate : func_candidates) {
+            ss << candidate->ret_type.to_str() << ' ' << fcs.name << '(';
+            for (size_t i = 0; i < candidate->args.size(); i++) {
+                ss << candidate->args[i].type.to_str();
+                if (i < candidate->args.size() - 1) {
+                    ss << ", ";
+                }
+            }
+            ss << ')';
+        }
+        ss << "\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name); 
     }
     analyze_func_call_expr(*std::make_unique<AST::FuncCallExpr>(fcs.name, std::move(fcs.args), fcs.line));
 }
@@ -379,8 +443,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
             if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
                 file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
                 if (!file.is_open()) {
-                    std::cerr << "\033[31mCompilation error: Error openning file: does not exist!\033[0m\n";
-                    exit(1);
+                    throw_exception(SUB_SEMANTIC, "Error openning file: does not exist!", ums.line, file_name);
                 }
                 std::ostringstream content;
                 content << file.rdbuf();
@@ -633,29 +696,93 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_var_expr(AST::VarExpr& ve) {
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallExpr& fce) {
-    FunctionInfo *func = get_function_info(get_mangled_name(fce.name));
-    if (func == nullptr) {
+    auto func_candidates = get_function_candidates(get_mangled_name(fce.name));
+    if (func_candidates.empty()) {
         std::stringstream ss;
         ss << "Function \033[0m'" << fce.name << "'\033[31m does not exists";
         throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
     }
-    if (fce.args.size() != func->args.size()) {
-        std::stringstream ss;
-        ss << "Function \033[0m'" << fce.name << "'\033[31m expected " << func->args.size() << " arguments, but got " << fce.args.size();
-        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
+    bool found = false;
+    size_t last_score = SIZE_MAX;
+    size_t best_candidate_index = 0;
+    for (size_t candidate_index = 0; candidate_index < func_candidates.size(); candidate_index++) {
+        size_t score = 0;
+        size_t coincidences = 0;
+        auto candidate = func_candidates[candidate_index];
+        for (size_t i = 0; i < candidate->args.size(); i++) {
+            if (fce.args.size() != candidate->args.size()) {
+                continue;
+            }
+            Value arg_val = analyze_expr(*fce.args[i]);
+            if (has_common_type(arg_val.type, candidate->args[i].type)) {
+                if (arg_val.type != candidate->args[i].type) {
+                    if (arg_val.type.type <= AST::TYPE_LONG && candidate->args[i].type.type <= AST::TYPE_LONG) {
+                        score++;
+                    }
+                    else if (arg_val.type.type >= AST::TYPE_FLOAT && arg_val.type.type <= AST::TYPE_DOUBLE
+                          && candidate->args[i].type.type >= AST::TYPE_FLOAT && candidate->args[i].type.type <= AST::TYPE_DOUBLE) {
+                        score++;
+                    }
+                    else if (arg_val.type.type >= AST::TYPE_FLOAT && arg_val.type.type <= AST::TYPE_DOUBLE
+                          && candidate->args[i].type.type >= AST::TYPE_FLOAT && candidate->args[i].type.type <= AST::TYPE_DOUBLE) {
+                        score++;
+                    }
+                    else if (arg_val.type.type <= AST::TYPE_DOUBLE && candidate->args[i].type.type <= AST::TYPE_DOUBLE) {
+                        score += 2;
+                    }
+                }
+                coincidences++;
+            }
+            else {
+                score += 99;
+            }
+
+        }
+        if (score <= last_score) {
+            best_candidate_index = candidate_index;
+            last_score = score;
+        }
+        if (coincidences == candidate->args.size()) {
+            found = true;
+        }
     }
+    if (!found) {
+        std::stringstream ss;
+        ss << "Function \033[0m'" << fce.name << '(';
+        for (size_t i = 0; i < fce.args.size(); i++) {
+            ss << analyze_expr(*fce.args[i]).type.to_str();
+            if (i < fce.args.size() - 1) {
+                ss << ", ";
+            }
+        }
+        ss << ")'\033[31m does not have needed candidate.\nExists candidates:\n\033[0m";
+        for (auto& candidate : func_candidates) {
+            ss << candidate->ret_type.to_str() << ' ' << fce.name << '(';
+            for (size_t i = 0; i < candidate->args.size(); i++) {
+                ss << candidate->args[i].type.to_str();
+                if (i < candidate->args.size() - 1) {
+                    ss << ", ";
+                }
+            }
+            ss << ")\n";
+        }
+        ss << "\033[31m";
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name); 
+    }
+
     size_t index = 0;
+    auto best_candidate = func_candidates[best_candidate_index];
     for (auto& arg : fce.args) {
         AST::Type arg_type = analyze_expr(*arg).type;
-        if (!has_common_type(arg_type, func->args[index].type)) {
+        if (!has_common_type(arg_type, best_candidate->args[index].type)) {
             std::stringstream ss;
-            ss << "In the " << index + 1 << "th argument: Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << func->args[index].type.to_str() << "'\033[31m";
+            ss << "In the " << index + 1 << "th argument: Type mismatch: an expression of the type \033[0m'" << arg_type.to_str() << "'\033[31m, but the type is expected \033[0m'" << best_candidate->args[index].type.to_str() << "'\033[31m";
             throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name);
         }
         index++;
     }
-    functions_ret_types.push(func->ret_type);
-    Value ret_val = get_function_return_value(func, fce);
+    functions_ret_types.push(best_candidate->ret_type);
+    Value ret_val = get_function_return_value(best_candidate, fce);
     return ret_val;
 }
 
@@ -722,7 +849,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_from_chain(Value target, A
     }
 }
 
-SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(FunctionInfo *func, AST::FuncCallExpr& fce) {
+SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(std::shared_ptr<FunctionInfo> func, AST::FuncCallExpr& fce) {
     variables.push({});
     functions_ret_types.push(func->ret_type);
     for (size_t i = 0; i < fce.args.size(); i++) {
@@ -947,12 +1074,12 @@ std::unique_ptr<SemanticAnalyzer::Value> SemanticAnalyzer::get_variable_value(st
     return nullptr;
 }
 
-SemanticAnalyzer::FunctionInfo *SemanticAnalyzer::get_function_info(std::string name) {
+std::vector<std::shared_ptr<SemanticAnalyzer::FunctionInfo>> SemanticAnalyzer::get_function_candidates(std::string name) {
     auto func_it = functions.find(name);
     if (func_it != functions.end()) {
-        return &*func_it->second;
+        return func_it->second;
     }
-    return nullptr;
+    return {};
 }
 
 bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
@@ -973,6 +1100,9 @@ AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uin
 
     if (has_common_type(left, right)) {
         return AST::Type(*std::find(implicitly_cast_allowed_types[left.type].begin(), implicitly_cast_allowed_types[left.type].end(), right.type).base(), right.name, right.is_const, right.is_ptr, right.is_nullable);
+    }
+    if (has_common_type(right, left)) {
+        return AST::Type(*std::find(implicitly_cast_allowed_types[right.type].begin(), implicitly_cast_allowed_types[right.type].end(), left.type).base(), left.name, left.is_const, left.is_ptr, left.is_nullable);
     }
 
     std::stringstream ss;

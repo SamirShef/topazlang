@@ -46,6 +46,10 @@ namespace AST {
         bool operator ==(Type& other) {
             return type == other.type && name == other.name && is_const == other.is_const && is_ptr == other.is_ptr && is_nullable == other.is_nullable;
         }
+
+        bool operator !=(Type& other) {
+            return !(*this == other);
+        }
         
         /**
          * @brief Method for convert type to string
