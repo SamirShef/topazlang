@@ -9,6 +9,7 @@
 #include "../../include/parser/parser.hpp"
 #include "../../include/lexer/lexer.hpp"
 #include <algorithm>
+#include <climits>
 #include <cstdint>
 #include <fstream>
 
@@ -101,7 +102,55 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     if (is_func_arg) {
         var_val.is_value_unknown = true;
     }
-    if (!has_common_type(var_val.type, var_type)) {
+    bool ok = false;
+    if (var_type.type >= AST::TYPE_CHAR && var_type.type <= AST::TYPE_LONG &&
+        var_val.type.type >= AST::TYPE_CHAR && var_val.type.type <= AST::TYPE_LONG) {
+        if (!var_val.is_value_unknown && var_val.is_literal) {
+            double var_val_val;
+            size_t max_val;
+            switch (var_val.type.type) {
+                case AST::TYPE_CHAR:
+                    var_val_val = std::get<1>(var_val.value.value);
+                    break;
+                case AST::TYPE_SHORT:
+                    var_val_val = std::get<2>(var_val.value.value);
+                    break;
+                case AST::TYPE_INT:
+                    var_val_val = std::get<3>(var_val.value.value);
+                    break;
+                case AST::TYPE_LONG:
+                    var_val_val = std::get<4>(var_val.value.value);
+                    break;
+            }
+            switch (var_type.type) {
+                case AST::TYPE_CHAR:
+                    max_val = CHAR_MAX;
+                    break;
+                case AST::TYPE_SHORT:
+                    max_val = INT16_MAX;
+                    break;
+                case AST::TYPE_INT:
+                    max_val = INT_MAX;
+                    break;
+                case AST::TYPE_LONG:
+                    max_val = INT64_MAX;
+                    break;
+            }
+            if (var_val_val >= 0 && var_val_val <= max_val) {
+                ok = true;
+            }
+            else if (var_val_val < 0 && std::abs(var_val_val) <= max_val + 1) {
+                ok = true;
+            }
+            else {
+                std::stringstream ss;
+                ss << "Value of expression is does not fit into the variable type: \033[0m'" << var_type.to_str() << " (from " << (long)(-(max_val + 1)) << " to "
+                   << max_val << ")'\033[31m, passed value: \033[0m'" << var_val_val << "'\033[31m";
+                throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
+            }
+        }
+    }
+    if (!ok && !has_common_type(var_val.type, var_type)) {
         std::stringstream ss;
         ss << "Type mismatch: an expression of the type \033[0m'" << var_val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << var_type.to_str() << "'\033[31m";
         throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
