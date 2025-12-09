@@ -1,5 +1,110 @@
 module std {
     pub module math {
+        pub fun min(x: short, y: short) -> short {
+            if x > y {
+                return y;
+            }
+            return x;
+        }
+
+        pub fun min(x: int, y: int) -> int {
+            if x > y {
+                return y;
+            }
+            return x;
+        }
+
+        pub fun min(x: long, y: long) -> long {
+            if x > y {
+                return y;
+            }
+            return x;
+        }
+
+        pub fun min(x: float, y: float) -> float {
+            if x > y {
+                return y;
+            }
+            return x;
+        }
+
+        pub fun min(x: double, y: double) -> double {
+            if x > y {
+                return y;
+            }
+            return x;
+        }
+
+        pub fun max(x: short, y: short) -> short {
+            if x > y {
+                return x;
+            }
+            return y;
+        }
+
+        pub fun max(x: int, y: int) -> int {
+            if x > y {
+                return x;
+            }
+            return y;
+        }
+
+        pub fun max(x: long, y: long) -> long {
+            if x > y {
+                return x;
+            }
+            return y;
+        }
+
+        pub fun max(x: float, y: float) -> float {
+            if x > y {
+                return x;
+            }
+            return y;
+        }
+
+        pub fun max(x: double, y: double) -> double {
+            if x > y {
+                return x;
+            }
+            return y;
+        }
+
+        pub fun abs(x: short) -> short {
+            if x >= 0 {
+                return x;
+            }
+            return -x;
+        }
+
+        pub fun abs(x: int) -> int {
+            if x >= 0 {
+                return x;
+            }
+            return -x;
+        }
+
+        pub fun abs(x: long) -> long {
+            if x >= 0 {
+                return x;
+            }
+            return -x;
+        }
+
+        pub fun abs(x: float) -> float {
+            if x >= 0 {
+                return x;
+            }
+            return -x;
+        }
+
+        pub fun abs(x: double) -> double {
+            if x >= 0 {
+                return x;
+            }
+            return -x;
+        }
+
         priv fun _pow(x: double, power: int) -> double {
             if power == 0 {
                 return 1;
