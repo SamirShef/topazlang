@@ -436,4 +436,15 @@ namespace AST {
         UseModuleStmt(std::vector<std::string> p, uint32_t l) : path(std::move(p)), Stmt(l) {}
         ~UseModuleStmt() override = default;
     };
+
+    /**
+     * @brief Statement of unsafe context block
+     */
+    class UnsafeStmt : public Stmt {
+    public:
+        std::vector<StmtPtr> block;                             /**< Block of unsafe context */
+
+        UnsafeStmt(std::vector<StmtPtr> b, uint32_t l) : block(std::move(b)), Stmt(l) {}
+        ~UnsafeStmt() override = default;
+    };
 }

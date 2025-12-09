@@ -98,6 +98,9 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
             consume_semicolon();
         }
     }
+    else if (match(TOK_UNSAFE)) {
+        stmt = parse_unsafe_stmt();
+    }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
@@ -301,6 +304,16 @@ AST::StmtPtr Parser::parse_use_module_stmt() {
         path.push_back(consume(TOK_ID, ss.str(), peek().line).value);
     } while (match(TOK_OP_DOT));
     return std::make_unique<AST::UseModuleStmt>(std::move(path), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_unsafe_stmt() {
+    Token first_token = peek(-1);
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_stmt());
+    }
+    return std::make_unique<AST::UnsafeStmt>(std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {
@@ -543,6 +556,7 @@ Token Parser::consume(TokenType type, std::string err_msg, uint32_t line) {
 AST::Type Parser::consume_type() {
     Token token = peek();
     bool is_const = false;
+    bool is_ptr = false;
     bool is_nullable = false;
     if (match(TOK_CONST)) {
         is_const = true;
@@ -558,10 +572,13 @@ AST::Type Parser::consume_type() {
         case TOK_NOTH: {
             Token type = peek();
             pos++;
+            if (match(TOK_OP_MULT)) {
+                is_ptr = true;
+            }
             if (match(TOK_OP_QUESTION)) {
                 is_nullable = true;
             }
-            return AST::Type(ttype_to_tvalue(type.type), type.value, is_const, false, is_nullable);
+            return AST::Type(ttype_to_tvalue(type.type), type.value, is_const, is_ptr, is_nullable);
         }
         default: {
             std::stringstream ss;

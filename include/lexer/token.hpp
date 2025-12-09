@@ -36,6 +36,7 @@ typedef enum : uint8_t {
     TOK_USE,                                /**< 'use' keyword for import module */
     TOK_CONST,                              /**< 'const' keyword */
     TOK_RETURN,                             /**< 'return' keyword */
+    TOK_UNSAFE,                             /**< 'unsafe' keyword */
 
     TOK_ID,                                 /**< Identifier */
     TOK_CHARACTER_LIT,                      /**< Character literal */

@@ -36,6 +36,7 @@ var hierarchy =
       [ "AST::IfElseStmt", "classAST_1_1IfElseStmt.html", null ],
       [ "AST::ModuleStmt", "classAST_1_1ModuleStmt.html", null ],
       [ "AST::ReturnStmt", "classAST_1_1ReturnStmt.html", null ],
+      [ "AST::UnsafeStmt", "classAST_1_1UnsafeStmt.html", null ],
       [ "AST::UseModuleStmt", "classAST_1_1UseModuleStmt.html", null ],
       [ "AST::VarAsgnStmt", "classAST_1_1VarAsgnStmt.html", null ],
       [ "AST::VarDeclStmt", "classAST_1_1VarDeclStmt.html", null ],
