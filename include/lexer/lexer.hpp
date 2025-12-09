@@ -43,7 +43,8 @@ private:
         {"priv", TOK_PRIV},
         {"use", TOK_USE},
         {"const", TOK_CONST},
-        {"return", TOK_RETURN}
+        {"return", TOK_RETURN},
+        {"unsafe", TOK_UNSAFE}
     };
     bool is_debug;                                              /**< Flag for debug exception */
 

@@ -1,0 +1,7 @@
+unsafe {
+    let int *p;
+}
+
+fun main() -> int {
+    return 0;
+}
