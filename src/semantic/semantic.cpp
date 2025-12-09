@@ -10,7 +10,6 @@
 #include "../../include/lexer/lexer.hpp"
 #include <algorithm>
 #include <climits>
-#include <cstdint>
 #include <fstream>
 
 void SemanticAnalyzer::analyze() {
@@ -101,6 +100,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     }
     if (is_func_arg) {
         var_val.is_value_unknown = true;
+        var_val.is_literal = false;
     }
     bool ok = false;
     if (var_type.type >= AST::TYPE_CHAR && var_type.type <= AST::TYPE_LONG &&
@@ -337,7 +337,7 @@ void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
             }
             index++;
         }
-        ss << "\b\033[31m";
+        ss << "\033[31m";
         throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug); 
     }
     analyze_func_call_expr(*std::make_unique<AST::FuncCallExpr>(fcs.name, std::move(fcs.args), fcs.line));
@@ -861,9 +861,7 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallEx
         }
         index++;
     }
-    functions_ret_types.push(best_candidate->ret_type);
-    Value ret_val = get_function_return_value(best_candidate, fce);
-    return ret_val;
+    return get_function_return_value(best_candidate, fce);
 }
 
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_obj_chain_expr(AST::ChainObjects& co) {
@@ -949,12 +947,14 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(std::shared_
     for (size_t i = 0; i < fce.args.size(); i++) {
         Value val = analyze_expr(*fce.args[i]);
         val.type = func->args[i].type;
+        val.is_value_unknown = true;
+        val.is_literal = false;
         variables.top().emplace(func->args[i].name, val);
     }
     for (auto& stmt : func->block) {
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
-            Value val =  analyze_expr(*rs->expr);
+            Value val = analyze_expr(*rs->expr);
             val = implicitly_cast(val, functions_ret_types.top(), rs->line);
             variables.pop();
             functions_ret_types.pop();
