@@ -301,8 +301,9 @@ namespace AST {
     public:
         std::string name;                                       /**< Variable name */
         ExprPtr expr;                                           /**< New expression */
+        bool is_deref;                                          /**< Is dereference of pointer */
 
-        VarAsgnStmt(std::string n, ExprPtr e, uint32_t l) : name(n), expr(std::move(e)), Stmt(l) {}
+        VarAsgnStmt(std::string n, ExprPtr e, bool id, uint32_t l) : name(n), expr(std::move(e)), is_deref(id), Stmt(l) {}
         ~VarAsgnStmt() override = default;
     };
 

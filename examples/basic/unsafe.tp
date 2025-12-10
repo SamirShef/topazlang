@@ -1,5 +1,10 @@
+let int a = 10;
+
 unsafe {
-    let int *p;
+    let int *a_p = &a;
+    fun foo() -> int* {
+        return a;
+    }
 }
 
 fun main() -> int {

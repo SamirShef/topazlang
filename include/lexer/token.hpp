@@ -70,6 +70,7 @@ typedef enum : uint8_t {
     TOK_OP_L_NOT,                           /**< '!' (logical negative) operator */
     TOK_OP_L_AND,                           /**< '&&' (logical and) operator */
     TOK_OP_L_OR,                            /**< '||' (logical or) operator */
+    TOK_OP_REF,                             /**< '&' (reference) operator */
     TOK_OP_COMMA,                           /**< ',' operator */
     TOK_OP_DOT,                             /**< '.' operator */
     TOK_OP_COLON,                           /**< ':' operator */

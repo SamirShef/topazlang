@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <climits>
 #include <fstream>
+#include <iostream>
 
 void SemanticAnalyzer::analyze() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -76,6 +77,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
         analyze_use_module_stmt(*ums);
     }
+    else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
+        analyze_unsafe_stmt(*us);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
@@ -86,6 +90,9 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
         std::stringstream ss;
         ss << "Variable \033[0m'" << vds.name << "'\033[31m cannot have access modifier outside the module";
         throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
+    }
+    if (vds.type.is_ptr && !in_unsafe) {
+        throw_exception(SUB_SEMANTIC, "Variable with pointer type must be declared ONLY in unsafe context", vds.line, file_name, is_debug);
     }
     std::unique_ptr<Value> value = get_variable_value(vds.name);
     if (value != nullptr) {
@@ -105,7 +112,7 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     bool ok = false;
     if (var_type.type >= AST::TYPE_CHAR && var_type.type <= AST::TYPE_LONG &&
         var_val.type.type >= AST::TYPE_CHAR && var_val.type.type <= AST::TYPE_LONG) {
-        if (!var_val.is_value_unknown && var_val.is_literal) {
+        if (!var_val.is_value_unknown && var_val.is_literal && !var_type.is_ptr) {
             double var_val_val;
             size_t max_val;
             switch (var_val.type.type) {
@@ -595,6 +602,13 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
     names_of_imported_modules.push_back(all_name);
 }
 
+void SemanticAnalyzer::analyze_unsafe_stmt(AST::UnsafeStmt& us) {
+    in_unsafe = true;
+    for (auto& stmt : us.block) {
+        analyze_stmt(*stmt);
+    }
+}
+
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_expr(AST::Expr& expr) {
     if (auto lit = dynamic_cast<AST::Literal*>(&expr)) {
         return analyze_literal_expr(*lit);
@@ -728,6 +742,23 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_unary_expr(AST::UnaryExpr& ue)
                 std::stringstream ss;
                 ss << "Type mismatch: it is not possible to use the unary \033[0m'" << ue.op.value <<"'\033[31m operator with \033[0m'" << type.to_str() << "'\033[31m type";
                 throw_exception(SUB_SEMANTIC, ss.str(), ue.line, file_name, is_debug);
+            }
+        case TOK_OP_MULT:
+            if (ue.op.type == TOK_OP_MULT) {
+                if (!type.is_ptr) {
+                    throw_exception(SUB_SEMANTIC, "The dereference operator can ONLY be used for pointers", ue.line, file_name, is_debug);
+                }
+                type.is_ptr = false;
+            }
+        case TOK_OP_REF:
+            if (ue.op.type == TOK_OP_REF) {
+                if (!dynamic_cast<AST::VarExpr*>(&*ue.expr)) {
+                    throw_exception(SUB_SEMANTIC, "The reference operator can ONLY be used for objects allocated in memory", ue.line, file_name, is_debug);
+                }
+                if (val.type.is_ptr) {
+                    throw_exception(SUB_SEMANTIC, "The reference operator cannot be used for a pointer", ue.line, file_name, is_debug);
+                }
+                type.is_ptr = true;
             }
             switch (type.type) {
                 case AST::TYPE_BOOL:
@@ -1177,12 +1208,14 @@ std::vector<std::shared_ptr<SemanticAnalyzer::FunctionInfo>> SemanticAnalyzer::g
 }
 
 bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
-    if (left.type == right.type) {
+    if (left == right) {
         return true;
     }
-    if (implicitly_cast_allowed_types.find(left.type) != implicitly_cast_allowed_types.end() &&
-        std::find(implicitly_cast_allowed_types[left.type].begin(), implicitly_cast_allowed_types[left.type].end(), right.type) != implicitly_cast_allowed_types[left.type].end()) {
-        return true;
+    if (!left.is_ptr && !right.is_ptr) {
+        if (implicitly_cast_allowed_types.find(left.type) != implicitly_cast_allowed_types.end() &&
+            std::find(implicitly_cast_allowed_types[left.type].begin(), implicitly_cast_allowed_types[left.type].end(), right.type) != implicitly_cast_allowed_types[left.type].end()) {
+            return true;
+        }
     }
     return false;
 }
@@ -1378,12 +1411,22 @@ double SemanticAnalyzer::unary_two_variants(Value value, TokenType op, uint32_t 
     }
     switch (op) {
         case TOK_OP_MINUS:
+            if (value.type.is_ptr) {
+                throw_exception(SUB_SEMANTIC, "The unary operator \033[0m'-'\033[31m cannot be used for a pointer", line, file_name, is_debug);
+            }
             return -val;
         case TOK_OP_L_NOT:
+            if (value.type.is_ptr) {
+                throw_exception(SUB_SEMANTIC, "The unary operator \033[0m'!'\033[31m cannot be used for a pointer", line, file_name, is_debug);
+            }
             return static_cast<bool>(!val);
+        case TOK_OP_MULT:
+            return val;
+        case TOK_OP_REF:
+            return val;
         default:
             std::stringstream ss;
-            ss << "Unsupported binary operator: \033[0m'" << op << "'";
+            ss << "Unsupported unary operator: \033[0m'" << op << "'";
             throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
     }
 }
