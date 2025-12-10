@@ -51,7 +51,12 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
         if (!from_for) {
             consume_semicolon();
         }
-        return stmt;
+    }
+    else if (match(TOK_OP_MULT)) {
+        stmt = parse_var_asgn_stmt();
+        if (!from_for) {
+            consume_semicolon();
+        }
     }
     else if (match(TOK_FUN)) {
         stmt = parse_func_decl_stmt();
@@ -125,6 +130,12 @@ AST::StmtPtr Parser::parse_var_decl_stmt() {
 
 AST::StmtPtr Parser::parse_var_asgn_stmt() {
     Token var_token = peek(-1);
+    bool is_deref = false;
+    if (peek(-1).type == TOK_OP_MULT) {
+        var_token = peek();
+        is_deref = true;
+        pos++;
+    }
     AST::ExprPtr expr = nullptr;
     if (match(TOK_OP_EQ)) {
         expr = parse_expr();
@@ -135,7 +146,7 @@ AST::StmtPtr Parser::parse_var_asgn_stmt() {
     else {
         expr = create_inc_dec_operator(var_token.value);
     }
-    return std::make_unique<AST::VarAsgnStmt>(var_token.value, std::move(expr), var_token.line);
+    return std::make_unique<AST::VarAsgnStmt>(var_token.value, std::move(expr), is_deref, var_token.line);
 }
 
 AST::StmtPtr Parser::parse_func_decl_stmt() {
@@ -423,6 +434,12 @@ AST::ExprPtr Parser::parse_unary_expr() {
         }
         else if (match(TOK_OP_L_NOT)) {
             return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
+        }
+        else if (match(TOK_OP_MULT)) {
+            return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
+        }
+        else if (match(TOK_OP_REF)) {
+            return std::make_unique<AST::UnaryExpr>(token, parse_unary_expr(), token.line);
         }
         else {
             break;

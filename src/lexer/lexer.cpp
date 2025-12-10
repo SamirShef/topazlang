@@ -236,7 +236,7 @@ Token Lexer::tokenize_op() {
                 advance();
                 return Token(TOK_OP_L_AND, "&&", tmp_l, tmp_c, file_name);
             }
-            throw_exception(SUB_LEXER, "Operator '&' (aka bitwise and) is unsupported", line, file_name, is_debug);
+            return Token(TOK_OP_REF, "&", tmp_l, tmp_c, file_name);
         case '|':
             if (peek() == '|') {
                 advance();
