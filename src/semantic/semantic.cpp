@@ -518,7 +518,9 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
             if (std::filesystem::exists(path_to_mod_without_ext_in_libs_as_str + "/main.tp")) {
                 file = std::ifstream(path_to_mod_without_ext_in_libs_as_str + "/main.tp");
                 if (!file.is_open()) {
-                    throw_exception(SUB_SEMANTIC, "Error openning file: does not exist!", ums.line, file_name, is_debug);
+                    std::stringstream ss;
+                    ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
+                    throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
                 }
                 std::ostringstream content;
                 content << file.rdbuf();
@@ -548,6 +550,11 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
                 for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
                     current_path.pop();
                 }
+            }
+            else {
+                std::stringstream ss;
+                ss << "Module \033[0m'" << all_name << "'\033[31m does not exists";
+                throw_exception(SUB_SEMANTIC, ss.str(), ums.line, file_name, is_debug);
             }
         }
         else {
