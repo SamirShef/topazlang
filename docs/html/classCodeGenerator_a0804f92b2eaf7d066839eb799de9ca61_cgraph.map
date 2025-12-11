@@ -1,0 +1,11 @@
+<map id="CodeGenerator::generate_extern_stmt" name="CodeGenerator::generate_extern_stmt">
+<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for extern calls." alt="" coords="5,39,173,81"/>
+<area shape="rect" id="Node000002" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="224,5,360,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,44,209,38,210,43,173,49"/>
+<area shape="rect" id="Node000003" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="221,72,363,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,71,206,77,205,82,172,76"/>
+<area shape="rect" id="Node000004" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="411,80,527,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="363,91,395,91,395,96,363,96"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="575,72,743,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="528,91,560,91,560,96,528,96"/>
+</map>

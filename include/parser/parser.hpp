@@ -181,6 +181,24 @@ private:
      * @return UnsafeStmt
      */
     AST::StmtPtr parse_unsafe_stmt();
+
+    /**
+     * @brief Method for parsing of functions prototypes
+     *
+     * This method sets the syntax for function prototype declaration, creates the AST element of the FuncDeclStmt without body and returns it
+     *
+     * @return FuncDeclStmt without body
+     */
+    AST::StmtPtr parse_func_decl_proto_stmt();
+
+    /**
+     * @brief Method for parsing of declaration functions prototypes as extern
+     *
+     * This method sets the syntax for extern functions declaration, creates the AST element of the ExternStmt and returns it
+     *
+     * @return ExternStmt
+     */
+    AST::StmtPtr parse_extern_stmt();
     
     /**
      * @brief Method for parsing expressions

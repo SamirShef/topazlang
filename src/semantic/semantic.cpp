@@ -79,6 +79,9 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
         analyze_unsafe_stmt(*us);
     }
+    else if (auto es = dynamic_cast<AST::ExternStmt*>(&stmt)) {
+        analyze_extern_stmt(*es);
+    }
     else {
         throw_exception(SUB_SEMANTIC, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
@@ -342,7 +345,7 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
             }
         }
     }
-    if (!have_ret_in_global && ret_type.type != AST::TYPE_NOTH) {
+    if (!fds.block.empty() && !have_ret_in_global && ret_type.type != AST::TYPE_NOTH) {
         std::stringstream ss;
         ss << "Non-nothing function must be have return statement in the global space in the body of function. Please add or move return statement to the global space in the body of function";
         throw_exception(SUB_SEMANTIC, ss.str(), fds.line, file_name, is_debug);
@@ -670,6 +673,20 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
 void SemanticAnalyzer::analyze_unsafe_stmt(AST::UnsafeStmt& us) {
     in_unsafe = true;
     for (auto& stmt : us.block) {
+        analyze_stmt(*stmt);
+    }
+}
+
+void SemanticAnalyzer::analyze_extern_stmt(AST::ExternStmt& es) {
+    if (!in_unsafe) {
+        throw_exception(SUB_SEMANTIC, "Extern calls must be declared ONLY in unsafe context", es.line, file_name, is_debug);
+    }
+    if (std::find(allowed_langs_for_extern.begin(), allowed_langs_for_extern.end(), es.lang_name_lit) == allowed_langs_for_extern.end()) {
+        std::stringstream ss;
+        ss << "Specified language name for extern calling (\033[0m'" << es.lang_name_lit << "'\033[31m) is unsupported";
+        throw_exception(SUB_SEMANTIC, ss.str(), es.line, file_name, is_debug);
+    }
+    for (auto& stmt : es.block) {
         analyze_stmt(*stmt);
     }
 }
@@ -1089,9 +1106,12 @@ SemanticAnalyzer::Value SemanticAnalyzer::get_function_return_value(std::shared_
             }
         }
     }
-    std::stringstream ss;
-    ss << "Not all paths returns value in function \033[0m'" << fce.name << "'\033[31m. Please add \033[0m'return'\033[31m statement into the end of the function";
-    throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
+    if (!func->block.empty()) {
+        std::stringstream ss;
+        ss << "Not all paths returns value in function \033[0m'" << fce.name << "'\033[31m. Please add \033[0m'return'\033[31m statement into the end of the function";
+        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
+    }
+    return Value(func->ret_type, 0, true, false);
 }
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_else(AST::IfElseStmt& ies) {
@@ -1297,6 +1317,9 @@ bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
     if (left == right) {
         return true;
     }
+    if (left.type == AST::TYPE_STRING_LIT && right.type == AST::TYPE_CHAR && right.is_ptr) {
+        return true;
+    }
     if (!left.is_ptr && !right.is_ptr) {
         if (implicitly_cast_allowed_types.find(left.type) != implicitly_cast_allowed_types.end() &&
             std::find(implicitly_cast_allowed_types[left.type].begin(), implicitly_cast_allowed_types[left.type].end(), right.type) != implicitly_cast_allowed_types[left.type].end()) {
@@ -1308,6 +1331,10 @@ bool SemanticAnalyzer::has_common_type(AST::Type left, AST::Type right) {
 
 AST::Type SemanticAnalyzer::get_common_type(AST::Type left, AST::Type right, uint32_t line) {
     if (left.type == right.type) {
+        return left;
+    }
+
+    if (left.type == AST::TYPE_STRING_LIT && right.type == AST::TYPE_CHAR && right.is_ptr) {
         return left;
     }
 

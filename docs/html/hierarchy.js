@@ -30,6 +30,7 @@ var hierarchy =
       [ "AST::BreakStmt", "classAST_1_1BreakStmt.html", null ],
       [ "AST::ContinueStmt", "classAST_1_1ContinueStmt.html", null ],
       [ "AST::DoWhileCycleStmt", "classAST_1_1DoWhileCycleStmt.html", null ],
+      [ "AST::ExternStmt", "classAST_1_1ExternStmt.html", null ],
       [ "AST::ForCycleStmt", "classAST_1_1ForCycleStmt.html", null ],
       [ "AST::FuncCallStmt", "classAST_1_1FuncCallStmt.html", null ],
       [ "AST::FuncDeclStmt", "classAST_1_1FuncDeclStmt.html", null ],

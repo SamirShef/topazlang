@@ -61,6 +61,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
         generate_unsafe_stmt(*us);
     }
+    else if (auto es = dynamic_cast<AST::ExternStmt*>(&stmt)) {
+        generate_extern_stmt(*es);
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
@@ -171,7 +174,10 @@ void CodeGenerator::generate_func_decl_stmt(AST::FuncDeclStmt& fds) {
     }
     bool have_ret_in_global = false;
     for (auto& stmt : fds.block) {
-        if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+        if (dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
+            if (have_ret_in_global) {
+                continue;
+            }
             have_ret_in_global = true;
         }
         generate_stmt(*stmt);
@@ -476,6 +482,24 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
 void CodeGenerator::generate_unsafe_stmt(AST::UnsafeStmt& us) {
     for (auto& stmt : us.block) {
         generate_stmt(*stmt);
+    }
+}
+
+void CodeGenerator::generate_extern_stmt(AST::ExternStmt& es) {
+    for (auto& stmt : es.block) {
+        auto func = dynamic_cast<AST::FuncDeclStmt*>(&*stmt);
+        std::vector<llvm::Type*> args_types;
+        for (auto& arg : func->args) {
+            args_types.push_back(type_to_llvm(arg.type));
+        }
+        llvm::FunctionType *func_type = llvm::FunctionType::get(type_to_llvm(func->ret_type), args_types, false);
+        llvm::Function *function = llvm::Function::Create(func_type, llvm::GlobalValue::ExternalLinkage, get_mangled_name(func->name), *module);
+        if (functions.find(get_mangled_name(func->name)) == functions.end()) {
+            functions.emplace(get_mangled_name(func->name), std::vector<llvm::Function*>{function});
+        }
+        else {
+            functions.at(get_mangled_name(func->name)).push_back(function);
+        }
     }
 }
 

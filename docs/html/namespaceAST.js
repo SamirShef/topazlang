@@ -33,6 +33,7 @@ var namespaceAST =
     [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
     [ "UseModuleStmt", "classAST_1_1UseModuleStmt.html", "classAST_1_1UseModuleStmt" ],
     [ "UnsafeStmt", "classAST_1_1UnsafeStmt.html", "classAST_1_1UnsafeStmt" ],
+    [ "ExternStmt", "classAST_1_1ExternStmt.html", "classAST_1_1ExternStmt" ],
     [ "ExprPtr", "namespaceAST.html#ac38b07a345d71eb09bc357f69bee649e", null ],
     [ "StmtPtr", "namespaceAST.html#a754934be305d4cff6e00494a146bee6a", null ],
     [ "AccessModifier", "namespaceAST.html#a5b4bfc22f3a6a35e350a9c73f6a34905", [

@@ -1,0 +1,41 @@
+<map id="Parser::parse_extern_stmt" name="Parser::parse_extern_stmt">
+<area shape="rect" id="Node000001" title="Method for parsing of declaration functions prototypes as extern." alt="" coords="5,119,181,145"/>
+<area shape="rect" id="Node000002" href="$classParser.html#ad88dcbc0af782a2e534ab367d2a9f25d" title="Method for verifying the type of the current token." alt="" coords="658,195,779,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,115,267,106,372,102,485,108,541,117,595,129,648,153,691,183,688,187,645,158,593,135,540,122,484,114,372,108,268,112,180,121"/>
+<area shape="rect" id="Node000003" href="$classParser.html#af607f7632e78d630e8db694ea5db900c" title="Method for skipping the current token if its type is equal to the passed one." alt="" coords="869,296,972,323"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="110,144,156,184,226,236,313,288,360,308,409,323,468,334,530,340,652,341,764,332,853,319,854,325,765,337,653,346,530,345,468,339,407,328,358,313,311,292,223,241,153,188,107,148"/>
+<area shape="rect" id="Node000004" href="$classParser.html#ad10dee73035150b6b6d7d9ee2bdc6fe3" title="Method for getting token from tokens by parser pos and passed offset." alt="" coords="1047,245,1142,272"/>
+<area shape="poly" id="edge28_Node000001_Node000004" title=" " alt="" coords="118,116,183,84,276,47,385,16,443,6,500,3,720,3,767,5,807,11,841,21,872,36,931,76,1001,133,1025,156,1047,182,1081,230,1076,233,1043,185,1022,159,997,137,928,80,869,40,839,26,806,16,766,10,720,8,500,8,443,11,386,21,278,52,185,89,121,121"/>
+<area shape="rect" id="Node000007" href="$classParser.html#a0f1bfbe0f0eddc09739f6fe78d4ecad1" title="Method for parsing of functions prototypes." alt="" coords="229,187,360,229"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="132,143,222,178,221,183,130,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="748,219,880,286,878,291,746,224"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="779,211,999,237,1032,243,1031,248,999,243,779,216"/>
+<area shape="rect" id="Node000005" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="1190,284,1307,311"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="779,193,854,183,946,178,1046,184,1096,193,1143,207,1169,219,1192,235,1228,270,1225,274,1188,239,1166,224,1141,212,1094,198,1045,189,946,183,854,188,779,199"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="969,293,1031,274,1033,279,970,298"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="1068,246,1063,237,1066,227,1077,221,1095,219,1113,221,1123,228,1120,232,1111,226,1095,224,1079,226,1071,230,1069,236,1073,244"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="1143,268,1178,277,1177,282,1142,273"/>
+<area shape="rect" id="Node000006" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="1355,276,1522,319"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="1307,295,1339,295,1339,300,1307,300"/>
+<area shape="poly" id="edge11_Node000007_Node000002" title=" " alt="" coords="361,205,643,205,643,211,361,211"/>
+<area shape="poly" id="edge22_Node000007_Node000003" title=" " alt="" coords="321,228,360,257,409,282,468,298,529,309,651,321,764,320,854,314,854,320,764,326,651,326,528,315,466,303,407,286,358,262,318,232"/>
+<area shape="poly" id="edge27_Node000007_Node000004" title=" " alt="" coords="317,184,357,154,381,140,407,129,459,119,500,119,542,125,594,129,711,128,803,125,847,128,893,135,943,150,1000,174,1041,200,1074,231,1070,235,1038,205,998,178,941,155,891,140,846,133,803,130,711,133,594,135,541,130,500,125,459,124,409,135,384,145,360,158,320,188"/>
+<area shape="rect" id="Node000008" href="$classParser.html#a00a360d758c76e9448d638d9a8003653" title="Method for skipping semicolon in the end of statement." alt="" coords="408,144,594,171"/>
+<area shape="poly" id="edge12_Node000007_Node000008" title=" " alt="" coords="360,189,429,172,430,177,361,195"/>
+<area shape="rect" id="Node000009" href="$classParser.html#a430c9ed0b20f59316bbff5b9700ee1fe" title="Method for verifyng the Topaz type by current tokens." alt="" coords="642,397,795,424"/>
+<area shape="poly" id="edge15_Node000007_Node000009" title=" " alt="" coords="312,228,352,278,379,304,409,326,463,352,519,373,576,387,627,397,626,403,574,393,518,378,460,357,407,330,376,308,348,281,308,231"/>
+<area shape="rect" id="Node000011" href="$classParser.html#a3ce8215cac0277655aceadbd2e8a4b0f" title="Method for parsing of function argument." alt="" coords="421,245,581,272"/>
+<area shape="poly" id="edge23_Node000007_Node000011" title=" " alt="" coords="361,221,430,239,429,244,360,227"/>
+<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="562,169,644,188,643,193,561,174"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="595,154,682,158,784,167,893,183,1000,209,1058,235,1056,240,998,215,892,188,783,172,681,163,595,160"/>
+<area shape="poly" id="edge16_Node000009_Node000003" title=" " alt="" coords="757,394,793,376,817,358,841,339,866,327,868,331,844,344,820,362,796,381,759,399"/>
+<area shape="poly" id="edge17_Node000009_Node000004" title=" " alt="" coords="782,394,902,364,958,348,998,332,1036,308,1068,281,1071,285,1039,312,1000,337,960,353,904,369,783,399"/>
+<area shape="poly" id="edge18_Node000009_Node000005" title=" " alt="" coords="771,422,820,432,877,439,938,441,998,433,1063,412,1124,381,1177,348,1217,318,1221,323,1180,352,1127,386,1065,417,1000,439,938,446,876,444,819,437,770,427"/>
+<area shape="rect" id="Node000010" href="$classParser.html#ae5709805b09bb75a192f232f58b579a5" title="Method for convert type of token to type of Topaz value." alt="" coords="843,397,999,424"/>
+<area shape="poly" id="edge19_Node000009_Node000010" title=" " alt="" coords="795,408,827,408,827,413,795,413"/>
+<area shape="poly" id="edge20_Node000010_Node000004" title=" " alt="" coords="965,394,997,376,1021,355,1043,331,1076,284,1080,287,1047,334,1025,359,1001,381,968,399"/>
+<area shape="poly" id="edge21_Node000010_Node000005" title=" " alt="" coords="961,394,1192,314,1194,319,963,399"/>
+<area shape="poly" id="edge24_Node000011_Node000002" title=" " alt="" coords="561,242,643,223,644,228,562,247"/>
+<area shape="poly" id="edge26_Node000011_Node000004" title=" " alt="" coords="582,256,1031,256,1031,261,582,261"/>
+<area shape="poly" id="edge25_Node000011_Node000009" title=" " alt="" coords="523,270,687,386,684,391,520,275"/>
+</map>

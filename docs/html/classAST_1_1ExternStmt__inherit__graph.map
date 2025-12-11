@@ -1,0 +1,5 @@
+<map id="AST::ExternStmt" name="AST::ExternStmt">
+<area shape="rect" id="Node000001" title="Statement of extern calls." alt="" coords="5,80,126,107"/>
+<area shape="rect" id="Node000002" href="$classAST_1_1Stmt.html" title="Base class of statement." alt="" coords="24,5,107,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,48,68,80,63,80,63,48"/>
+</map>
