@@ -93,6 +93,9 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
     if (vds.type.is_ptr && !in_unsafe) {
         throw_exception(SUB_SEMANTIC, "Variable with pointer type must be declared ONLY in unsafe context", vds.line, file_name, is_debug);
     }
+    if (vds.type.type == AST::TYPE_NOTH && vds.type.is_ptr) {
+        throw_exception(SUB_SEMANTIC, "You can't define a variable with the type \033[0m'noth*'\033[31m - it's unsafe!", vds.line, file_name, is_debug);
+    }
     std::unique_ptr<Value> value = get_variable_value(vds.name);
     if (value != nullptr) {
         std::stringstream ss;
@@ -254,6 +257,10 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
     
     Space previous_space = current_space;
     current_space = SPACE_FUNCTION;
+
+    if (fds.ret_type.type == AST::TYPE_NOTH && fds.ret_type.is_ptr) {
+        throw_exception(SUB_SEMANTIC, "You can't define a function with the type \033[0m'noth*'\033[31m - it's unsafe!", fds.line, file_name, is_debug);
+    }
     
     auto func_candidates = get_function_candidates(get_mangled_name(fds.name));
     if (!func_candidates.empty()) {
@@ -1261,7 +1268,7 @@ AST::Value SemanticAnalyzer::get_default_val_by_type(AST::Type type, uint32_t li
             return AST::Value(0.0);
         default:
             std::stringstream ss;
-            ss << "Cannot generate default value for '" << type.to_str() << "' type";
+            ss << "Cannot generate default value for \033[0m'" << type.to_str() << "'\033[31m type";
             throw_exception(SUB_SEMANTIC, ss.str(), line, file_name, is_debug);
     }
 }

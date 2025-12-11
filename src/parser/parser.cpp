@@ -436,7 +436,7 @@ AST::ExprPtr Parser::parse_unary_expr() {
             return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
         }
         else if (match(TOK_OP_MULT)) {
-            return std::make_unique<AST::UnaryExpr>(token, parse_primary_expr(), token.line);
+            return std::make_unique<AST::UnaryExpr>(token, parse_unary_expr(), token.line);
         }
         else if (match(TOK_OP_REF)) {
             return std::make_unique<AST::UnaryExpr>(token, parse_unary_expr(), token.line);
