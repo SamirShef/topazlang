@@ -57,6 +57,7 @@ var token_8hpp =
       [ "TOK_OP_L_NOT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ab25567580aa9a3cfd384cc4dcc6890f7", null ],
       [ "TOK_OP_L_AND", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0abe3fc807c54caf4793bcc29776a9740d", null ],
       [ "TOK_OP_L_OR", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a7bd0651531d37164dadb5949ed319b93", null ],
+      [ "TOK_OP_REF", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0adc7f706fc6f578aea82e17ef2128a3f9", null ],
       [ "TOK_OP_COMMA", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0a02e3172588a00087e53962e6ccd0fd0b", null ],
       [ "TOK_OP_DOT", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0ab84bed5d7832a436cdb53759f3fa4e13", null ],
       [ "TOK_OP_COLON", "token_8hpp.html#afa91e1934f818659a4e2b0c8ce1214b0aaf1066508ebdbc9afd71b7ebabee6b57", null ],

@@ -58,6 +58,9 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
         generate_use_module_stmt(*ums);
     }
+    else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
+        generate_unsafe_stmt(*us);
+    }
     else {
         throw_exception(SUB_CODEGEN, "Unsupported statement. Please check your Topaz compiler version and fix the problematic section of the code", stmt.line, file_name, is_debug);
     }
@@ -470,6 +473,12 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
     }
 }
 
+void CodeGenerator::generate_unsafe_stmt(AST::UnsafeStmt& us) {
+    for (auto& stmt : us.block) {
+        generate_stmt(*stmt);
+    }
+}
+
 llvm::Value *CodeGenerator::generate_expr(AST::Expr& expr) {
     if (auto lit = dynamic_cast<AST::Literal*>(&expr)) {
         return generate_literal_expr(*lit);
@@ -603,6 +612,18 @@ llvm::Value *CodeGenerator::generate_binary_expr(AST::BinaryExpr& be) {
 }
 
 llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
+    llvm::Value *raw_value = nullptr;
+    auto vars = variables;
+    if (auto ve = dynamic_cast<AST::VarExpr*>(&*ue.expr)) {
+        while (!vars.empty()) {
+            auto vars_it = vars.top().find(ve->name);
+            if (vars_it != vars.top().end()) {
+                raw_value = vars_it->second;
+                break;
+            }
+            vars.pop();
+        }
+    }
     llvm::Value *value = generate_expr(*ue.expr);
     
     switch (ue.op.type) {
@@ -616,6 +637,11 @@ llvm::Value *CodeGenerator::generate_unary_expr(AST::UnaryExpr& ue) {
                 return builder.CreateFCmpOEQ(value, builder.getInt32(0), "lnot.tmp");
             }
             return builder.CreateICmpEQ(value, builder.getInt32(0), "lnot.tmp");
+        case TOK_OP_MULT:
+            return builder.CreateLoad(value->getType(), value);
+        case TOK_OP_REF: {
+            return raw_value;
+        }
         default:
             throw_exception(SUB_CODEGEN, "An unsupported unary operator was encountered during compilation. Please check your Topaz compiler version and fix the problematic section of the code", ue.line, file_name, is_debug);
     }
@@ -710,26 +736,39 @@ llvm::Value *CodeGenerator::generate_obj_chain_expr(AST::ChainObjects& co) {
 }
 
 llvm::Type *CodeGenerator::type_to_llvm(AST::Type type) {
+    llvm::Type *base_type = nullptr;
     switch (type.type) {
         case AST::TYPE_CHAR:
-            return llvm::Type::getInt8Ty(context);
+            base_type = llvm::Type::getInt8Ty(context);
+            break;
         case AST::TYPE_SHORT:
-            return llvm::Type::getInt16Ty(context);
+            base_type = llvm::Type::getInt16Ty(context);
+            break;
         case AST::TYPE_INT:
-            return llvm::Type::getInt32Ty(context);
+            base_type = llvm::Type::getInt32Ty(context);
+            break;
         case AST::TYPE_LONG:
-            return llvm::Type::getInt64Ty(context);
+            base_type = llvm::Type::getInt64Ty(context);
+            break;
         case AST::TYPE_FLOAT:
-            return llvm::Type::getFloatTy(context);
+            base_type = llvm::Type::getFloatTy(context);
+            break;
         case AST::TYPE_DOUBLE:
-            return llvm::Type::getDoubleTy(context);
+            base_type = llvm::Type::getDoubleTy(context);
+            break;
         case AST::TYPE_BOOL:
-            return llvm::Type::getInt1Ty(context);
+            base_type = llvm::Type::getInt1Ty(context);
+            break;
         case AST::TYPE_NOTH:
-            return llvm::Type::getVoidTy(context);
+            base_type = llvm::Type::getVoidTy(context);
+            break;
         default:
             throw_exception(SUB_CODEGEN, "Unsupported type", -1, file_name, is_debug);
+        }
+    if (type.is_ptr) {
+        return llvm::PointerType::get(context, 0);
     }
+    return base_type;
 }
 
 llvm::Type *CodeGenerator::get_common_type(llvm::Type *left, llvm::Type *right) {
@@ -782,6 +821,9 @@ llvm::Value *CodeGenerator::implicitly_cast(llvm::Value *val, llvm::Type *expect
     }
     else if (val_type->isIntegerTy() && expected_type->isFloatingPointTy()) {
         return builder.CreateSIToFP(val, expected_type, "sitofp.tmp");
+    }
+    else if (val_type->isPointerTy()) {
+        return builder.CreatePointerCast(val, expected_type, "ptrcast.tmp");
     }
     return nullptr;
 }

@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <climits>
 #include <fstream>
-#include <iostream>
 
 void SemanticAnalyzer::analyze() {
     for (const AST::StmtPtr& stmt : stmts) {
@@ -145,9 +144,11 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
             }
             if (var_val_val >= 0 && var_val_val <= max_val) {
                 ok = true;
+                var_val.type = var_type;
             }
             else if (var_val_val < 0 && std::abs(var_val_val) <= max_val + 1) {
                 ok = true;
+                var_val.type = var_type;
             }
             else {
                 std::stringstream ss;
@@ -180,7 +181,57 @@ void SemanticAnalyzer::analyze_var_asgn_stmt(AST::VarAsgnStmt& vas) {
     }
     AST::Type var_type = var_val->type;
     Value new_val = analyze_expr(*vas.expr);
-    if (!has_common_type(new_val.type, var_type)) {
+    bool ok = false;
+    if (var_type.type >= AST::TYPE_CHAR && var_type.type <= AST::TYPE_LONG &&
+        new_val.type.type >= AST::TYPE_CHAR && new_val.type.type <= AST::TYPE_LONG) {
+        if (!new_val.is_value_unknown && new_val.is_literal && !var_type.is_ptr) {
+            double new_val_val;
+            size_t max_val;
+            switch (new_val.type.type) {
+                case AST::TYPE_CHAR:
+                    new_val_val = std::get<1>(new_val.value.value);
+                    break;
+                case AST::TYPE_SHORT:
+                    new_val_val = std::get<2>(new_val.value.value);
+                    break;
+                case AST::TYPE_INT:
+                    new_val_val = std::get<3>(new_val.value.value);
+                    break;
+                case AST::TYPE_LONG:
+                    new_val_val = std::get<4>(new_val.value.value);
+                    break;
+            }
+            switch (var_type.type) {
+                case AST::TYPE_CHAR:
+                    max_val = CHAR_MAX;
+                    break;
+                case AST::TYPE_SHORT:
+                    max_val = INT16_MAX;
+                    break;
+                case AST::TYPE_INT:
+                    max_val = INT_MAX;
+                    break;
+                case AST::TYPE_LONG:
+                    max_val = INT64_MAX;
+                    break;
+            }
+            if (new_val_val >= 0 && new_val_val <= max_val) {
+                ok = true;
+                new_val.type = var_type;
+            }
+            else if (new_val_val < 0 && std::abs(new_val_val) <= max_val + 1) {
+                ok = true;
+                new_val.type = var_type;
+            }
+            else {
+                std::stringstream ss;
+                ss << "Value of expression is does not fit into the variable type: \033[0m'" << var_type.to_str() << " (from " << (long)(-(max_val + 1)) << " to "
+                   << max_val << ")'\033[31m, passed value: \033[0m'" << new_val_val << "'\033[31m";
+                throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name, is_debug);
+            }
+        }
+    }
+    if (!ok && !has_common_type(new_val.type, var_type)) {
         std::stringstream ss;
         ss << "Type mismatch: an expression of the type \033[0m'" << new_val.type.to_str() << "'\033[31m, but the type is expected \033[0m'" << var_type.to_str() << "'\033[31m";
         throw_exception(SUB_SEMANTIC, ss.str(), vas.line, file_name, is_debug);
@@ -1086,6 +1137,7 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_if_els
 }
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_cycle(AST::WhileCycleStmt& wcs) {
+    depth_of_loops++;
     Value cond_val = analyze_expr(*wcs.cond);
     if (cond_val.is_literal && !cond_val.is_value_unknown && std::get<bool>(cond_val.value.value) == true) {
         for (auto& stmt : wcs.block) {
@@ -1093,50 +1145,64 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_while_
             if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
                 static Value val = analyze_expr(*rs->expr);
                 val = implicitly_cast(val, functions_ret_types.top(), rs->line);
+                depth_of_loops--;
                 return &val;
             }
             else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+                depth_of_loops--;
                 return get_function_return_value_from_if_else(*ies);
             }
             else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
+                depth_of_loops--;
                 return get_function_return_value_from_while_cycle(*wcs);
             }
             else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+                depth_of_loops--;
                 return get_function_return_value_from_do_while_cycle(*dwcs);
             }
             else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&*stmt)) {
+                depth_of_loops--;
                 return get_function_return_value_from_for_cycle(*fcs);
             }
         }
     }
+    depth_of_loops--;
     return nullptr;
 }
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_do_while_cycle(AST::DoWhileCycleStmt& dwcs) {
+    depth_of_loops++;
     for (auto& stmt : dwcs.block) {
         analyze_stmt(*stmt);
         if (auto rs = dynamic_cast<AST::ReturnStmt*>(&*stmt)) {
             static Value val = analyze_expr(*rs->expr);
             val = implicitly_cast(val, functions_ret_types.top(), rs->line);
+            depth_of_loops--;
             return &val;
         }
         else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
+            depth_of_loops--;
             return get_function_return_value_from_if_else(*ies);
         }
         else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
+            depth_of_loops--;
             return get_function_return_value_from_while_cycle(*wcs);
         }
         else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
+            depth_of_loops--;
             return get_function_return_value_from_do_while_cycle(*dwcs);
         }
         else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&*stmt)) {
+            depth_of_loops--;
             return get_function_return_value_from_for_cycle(*fcs);
         }
     }
+    depth_of_loops--;
     return nullptr;
 }
 
 SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_for_cycle(AST::ForCycleStmt& fcs) {
+    depth_of_loops++;
     variables.push({});
     analyze_stmt(*fcs.indexator);
     Value cond_val = analyze_expr(*fcs.cond);
@@ -1147,27 +1213,33 @@ SemanticAnalyzer::Value *SemanticAnalyzer::get_function_return_value_from_for_cy
                 static Value val = analyze_expr(*rs->expr);
                 val = implicitly_cast(val, functions_ret_types.top(), rs->line);
                 variables.pop();
+                depth_of_loops--;
                 return &val;
             }
             else if (auto ies = dynamic_cast<AST::IfElseStmt*>(&*stmt)) {
                 variables.pop();
+                depth_of_loops--;
                 return get_function_return_value_from_if_else(*ies);
             }
             else if (auto wcs = dynamic_cast<AST::WhileCycleStmt*>(&*stmt)) {
                 variables.pop();
+                depth_of_loops--;
                 return get_function_return_value_from_while_cycle(*wcs);
             }
             else if (auto dwcs = dynamic_cast<AST::DoWhileCycleStmt*>(&*stmt)) {
                 variables.pop();
+                depth_of_loops--;
                 return get_function_return_value_from_do_while_cycle(*dwcs);
             }
             else if (auto fcs = dynamic_cast<AST::ForCycleStmt*>(&*stmt)) {
                 variables.pop();
+                depth_of_loops--;
                 return get_function_return_value_from_for_cycle(*fcs);
             }
         }
     }
     variables.pop();
+    depth_of_loops--;
     return nullptr;
 }
 
@@ -1393,7 +1465,7 @@ double SemanticAnalyzer::binary_two_variants(Value left, Value right, TokenType 
 
 double SemanticAnalyzer::unary_two_variants(Value value, TokenType op, uint32_t line) {
     double val = 0;
-    switch (value.type.type) {
+    switch (value.value.value.index()) {
         case AST::TYPE_BOOL:
             val = std::get<0>(value.value.value);
             break;
