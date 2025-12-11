@@ -1,0 +1,10 @@
+extern "C" {
+    puts(s: const char*) -> int;            // from C std
+}
+
+fun main() -> int {
+    let int a = 10;
+    let int *a_p = &a;
+    puts("Hello world!");
+    return 0;
+}

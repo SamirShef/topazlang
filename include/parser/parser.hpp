@@ -174,15 +174,6 @@ private:
     AST::StmtPtr parse_use_module_stmt();
 
     /**
-     * @brief Method for parsing of unsafe context
-     *
-     * This method sets the syntax for unsafe context, creates the AST element of the UnsafeStmt and returns it
-     *
-     * @return UnsafeStmt
-     */
-    AST::StmtPtr parse_unsafe_stmt();
-
-    /**
      * @brief Method for parsing of functions prototypes
      *
      * This method sets the syntax for function prototype declaration, creates the AST element of the FuncDeclStmt without body and returns it

@@ -439,17 +439,6 @@ namespace AST {
     };
 
     /**
-     * @brief Statement of unsafe context block
-     */
-    class UnsafeStmt : public Stmt {
-    public:
-        std::vector<StmtPtr> block;                             /**< Block of unsafe context */
-
-        UnsafeStmt(std::vector<StmtPtr> b, uint32_t l) : block(std::move(b)), Stmt(l) {}
-        ~UnsafeStmt() override = default;
-    };
-
-    /**
      * @brief Statement of extern calls
      */
     class ExternStmt : public Stmt {

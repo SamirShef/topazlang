@@ -103,9 +103,6 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
             consume_semicolon();
         }
     }
-    else if (match(TOK_UNSAFE)) {
-        stmt = parse_unsafe_stmt();
-    }
     else if (match(TOK_EXTERN)) {
         stmt = parse_extern_stmt();
     }
@@ -318,16 +315,6 @@ AST::StmtPtr Parser::parse_use_module_stmt() {
         path.push_back(consume(TOK_ID, ss.str(), peek().line).value);
     } while (match(TOK_OP_DOT));
     return std::make_unique<AST::UseModuleStmt>(std::move(path), first_token.line);
-}
-
-AST::StmtPtr Parser::parse_unsafe_stmt() {
-    Token first_token = peek(-1);
-    std::vector<AST::StmtPtr> block;
-    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m", peek().line);
-    while (!match(TOK_OP_RBRACE)) {
-        block.push_back(parse_stmt());
-    }
-    return std::make_unique<AST::UnsafeStmt>(std::move(block), first_token.line);
 }
 
 AST::StmtPtr Parser::parse_func_decl_proto_stmt() {

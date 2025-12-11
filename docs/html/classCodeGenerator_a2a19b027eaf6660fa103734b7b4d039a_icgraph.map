@@ -1,62 +1,59 @@
 <map id="CodeGenerator::get_common_type" name="CodeGenerator::get_common_type">
-<area shape="rect" id="Node000001" title="Method for getting comon type between two types." alt="" coords="1362,417,1498,459"/>
-<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="1147,417,1314,459"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1347,441,1315,441,1315,435,1347,435"/>
-<area shape="rect" id="Node000003" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="900,425,1099,451"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1131,450,1099,450,1099,444,1131,444"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="1115,426,1147,427,1147,432,1115,432"/>
-<area shape="rect" id="Node000004" href="$classCodeGenerator.html#a04d8e850d22d8a4cafd09ba20165241a" title="Method for generating LLVM IR code for do&#45;while cycle." alt="" coords="221,7,388,50"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="992,409,981,343,956,258,938,213,914,170,885,131,850,97,797,64,738,39,676,22,613,13,551,9,491,9,389,17,388,12,491,3,551,3,613,7,677,17,740,34,799,59,853,93,889,127,918,167,942,211,961,256,986,342,998,408"/>
-<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a7c17ee17c27f5b3f8d38624bb373f514" title="Method for generating LLVM IR code for for cycle." alt="" coords="221,74,388,117"/>
-<area shape="poly" id="edge23_Node000003_Node000008" title=" " alt="" coords="991,410,976,353,950,280,932,243,909,207,882,175,850,148,795,117,736,96,673,81,610,74,548,71,490,72,389,82,388,77,489,67,549,66,611,68,674,76,737,90,797,113,853,144,886,171,913,204,936,240,955,278,982,351,996,409"/>
-<area shape="rect" id="Node000011" href="$classCodeGenerator.html#a4e2f6284dbdcf560807c53c04aa4829f" title="Method for generating LLVM IR code for control flow operators." alt="" coords="221,442,388,485"/>
-<area shape="poly" id="edge30_Node000003_Node000011" title=" " alt="" coords="884,445,389,463,388,458,884,439"/>
-<area shape="rect" id="Node000014" href="$classCodeGenerator.html#a01a43875720edfc00d6e0ac6e5245c80" title="Method for generating LLVM IR code for while cycle." alt="" coords="221,509,388,551"/>
-<area shape="poly" id="edge39_Node000003_Node000014" title=" " alt="" coords="885,456,389,522,388,516,884,450"/>
-<area shape="rect" id="Node000015" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="684,577,852,619"/>
-<area shape="poly" id="edge24_Node000003_Node000015" title=" " alt="" coords="982,465,926,517,853,572,843,578,840,574,850,568,923,513,978,461"/>
-<area shape="rect" id="Node000017" href="$classCodeGenerator.html#a2e4fc8a531cca1921b87183c95dc2b42" title="Method for generating LLVM IR code for function calling." alt="" coords="684,225,852,267"/>
-<area shape="poly" id="edge28_Node000003_Node000017" title=" " alt="" coords="978,414,925,349,889,313,850,281,831,270,833,266,853,277,893,309,929,345,982,410"/>
-<area shape="rect" id="Node000018" href="$classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="684,291,852,334"/>
-<area shape="poly" id="edge31_Node000003_Node000018" title=" " alt="" coords="964,418,912,383,850,348,826,337,828,332,853,344,915,379,967,413"/>
-<area shape="rect" id="Node000019" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="684,643,852,686"/>
-<area shape="poly" id="edge33_Node000003_Node000019" title=" " alt="" coords="990,467,969,506,938,554,899,602,854,645,850,641,895,599,934,551,964,504,985,464"/>
-<area shape="rect" id="Node000020" href="$classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4" title="Method for generating LLVM IR code for variable assignment." alt="" coords="684,358,852,401"/>
-<area shape="poly" id="edge35_Node000003_Node000020" title=" " alt="" coords="929,423,852,403,853,398,930,418"/>
-<area shape="rect" id="Node000021" href="$classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478" title="Method for generating LLVM IR code for variable definition." alt="" coords="684,158,852,201"/>
-<area shape="poly" id="edge37_Node000003_Node000021" title=" " alt="" coords="984,411,964,369,935,316,896,262,850,215,833,203,836,199,853,211,900,259,939,313,969,366,989,409"/>
-<area shape="rect" id="Node000005" href="$classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf" title="Method for generating LLVM IR code for passing statement." alt="" coords="436,241,636,267"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="402,58,448,105,486,156,515,204,533,239,528,241,511,206,482,159,444,108,398,61"/>
-<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="514,229,462,154,427,113,386,76,343,53,345,48,390,72,431,109,466,151,518,226"/>
-<area shape="rect" id="Node000006" href="$classCodeGenerator.html#aef4f9c2efe63221d0060f226cd767c0f" title="Method for generating LLVM IR code." alt="" coords="221,391,388,418"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="514,281,460,331,426,358,389,382,363,393,361,388,387,377,423,354,457,327,510,277"/>
-<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="501,233,449,188,387,143,339,120,341,115,389,138,452,184,504,229"/>
-<area shape="rect" id="Node000009" href="$classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="221,325,388,367"/>
-<area shape="poly" id="edge11_Node000005_Node000009" title=" " alt="" coords="501,277,383,326,381,322,499,272"/>
-<area shape="poly" id="edge15_Node000005_Node000011" title=" " alt="" coords="525,282,503,318,472,361,434,405,390,444,387,440,430,401,468,358,499,315,521,279"/>
-<area shape="rect" id="Node000012" href="$classCodeGenerator.html#a024216bf17a95d67a25c990de720ebdb" title="Method for generating LLVM IR code for module definition." alt="" coords="221,141,388,183"/>
-<area shape="poly" id="edge17_Node000005_Node000012" title=" " alt="" coords="466,237,342,186,344,181,468,232"/>
-<area shape="rect" id="Node000013" href="$classCodeGenerator.html#a061413210a87aefbf5cb95a5b4b71072" title="Method for generating LLVM IR code for unsafe context." alt="" coords="221,207,388,250"/>
-<area shape="poly" id="edge19_Node000005_Node000013" title=" " alt="" coords="420,253,388,249,389,244,421,248"/>
-<area shape="poly" id="edge21_Node000005_Node000014" title=" " alt="" coords="530,283,511,332,481,392,441,455,417,484,390,510,387,506,413,481,437,452,477,390,506,330,525,281"/>
-<area shape="rect" id="Node000007" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="64,391,114,418"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="205,407,114,407,114,402,205,402"/>
-<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="403,123,443,153,479,185,529,238,525,242,476,188,440,157,400,127"/>
-<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="356,315,480,265,482,270,358,320"/>
-<area shape="rect" id="Node000010" href="$classCodeGenerator.html#a324ca423dff5108e88edd8eefe6d9e6b" title="Method for generating LLVM IR code for import the module." alt="" coords="5,295,173,338"/>
-<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="205,335,173,331,174,325,206,330"/>
-<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="188,300,435,265,436,271,188,305"/>
-<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="356,433,386,416,430,378,467,336,520,266,525,269,472,340,433,382,390,420,358,438"/>
-<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="396,187,515,238,513,242,394,192"/>
-<area shape="poly" id="edge20_Node000013_Node000005" title=" " alt="" coords="404,228,480,237,479,243,403,233"/>
-<area shape="poly" id="edge22_Node000014_Node000005" title=" " alt="" coords="359,500,386,483,413,457,437,428,478,366,507,308,525,267,530,269,512,310,482,368,441,431,417,460,390,487,362,504"/>
-<area shape="poly" id="edge25_Node000015_Node000003" title=" " alt="" coords="809,567,850,544,918,494,973,450,976,454,922,498,853,548,812,571"/>
-<area shape="rect" id="Node000016" href="$classCodeGenerator.html#a8776bef4d5d767cf54392beba082283f" title="Method for generating LLVM IR code for chain of objects expression." alt="" coords="452,551,620,594"/>
-<area shape="poly" id="edge26_Node000015_Node000016" title=" " alt="" coords="668,590,620,584,621,579,669,584"/>
-<area shape="poly" id="edge27_Node000016_Node000003" title=" " alt="" coords="635,556,740,535,851,505,917,477,972,449,975,454,920,482,853,510,741,540,636,561"/>
-<area shape="poly" id="edge29_Node000017_Node000005" title=" " alt="" coords="669,252,637,253,637,248,669,247"/>
-<area shape="poly" id="edge32_Node000018_Node000005" title=" " alt="" coords="669,290,591,270,593,265,670,285"/>
-<area shape="poly" id="edge34_Node000019_Node000003" title=" " alt="" coords="820,634,850,617,895,575,934,528,985,450,990,453,938,531,899,579,853,621,823,639"/>
-<area shape="poly" id="edge36_Node000020_Node000005" title=" " alt="" coords="694,354,683,348,612,307,556,270,559,266,615,303,686,344,696,349"/>
-<area shape="poly" id="edge38_Node000021_Node000005" title=" " alt="" coords="686,208,581,243,580,237,684,203"/>
+<area shape="rect" id="Node000001" title="Method for getting comon type between two types." alt="" coords="1362,392,1498,435"/>
+<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="1147,392,1314,435"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1347,416,1315,416,1315,411,1347,411"/>
+<area shape="rect" id="Node000003" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="900,400,1099,427"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1131,425,1099,425,1099,420,1131,420"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="1115,402,1147,402,1147,408,1115,407"/>
+<area shape="rect" id="Node000004" href="$classCodeGenerator.html#a04d8e850d22d8a4cafd09ba20165241a" title="Method for generating LLVM IR code for do&#45;while cycle." alt="" coords="221,12,388,55"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="992,385,980,321,955,239,937,196,913,156,885,119,850,88,796,56,737,33,675,19,611,11,549,8,490,10,389,20,388,15,490,4,549,3,612,5,676,13,738,28,798,51,853,83,889,115,918,153,942,194,960,237,985,320,997,384"/>
+<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a7c17ee17c27f5b3f8d38624bb373f514" title="Method for generating LLVM IR code for for cycle." alt="" coords="221,79,388,122"/>
+<area shape="poly" id="edge21_Node000003_Node000008" title=" " alt="" coords="991,386,977,328,951,255,933,217,910,182,883,150,850,124,815,109,766,98,708,92,642,89,507,90,389,96,389,91,507,85,642,83,708,87,767,93,817,104,853,119,886,146,914,178,937,214,956,252,982,326,996,385"/>
+<area shape="rect" id="Node000011" href="$classCodeGenerator.html#a4e2f6284dbdcf560807c53c04aa4829f" title="Method for generating LLVM IR code for control flow operators." alt="" coords="221,380,388,423"/>
+<area shape="poly" id="edge28_Node000003_Node000011" title=" " alt="" coords="884,414,388,406,389,400,884,409"/>
+<area shape="rect" id="Node000013" href="$classCodeGenerator.html#a01a43875720edfc00d6e0ac6e5245c80" title="Method for generating LLVM IR code for while cycle." alt="" coords="221,447,388,490"/>
+<area shape="poly" id="edge37_Node000003_Node000013" title=" " alt="" coords="884,425,389,464,388,459,884,420"/>
+<area shape="rect" id="Node000014" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="684,552,852,595"/>
+<area shape="poly" id="edge22_Node000003_Node000014" title=" " alt="" coords="982,441,926,493,853,548,843,554,840,549,850,543,923,489,978,437"/>
+<area shape="rect" id="Node000016" href="$classCodeGenerator.html#a2e4fc8a531cca1921b87183c95dc2b42" title="Method for generating LLVM IR code for function calling." alt="" coords="684,200,852,243"/>
+<area shape="poly" id="edge26_Node000003_Node000016" title=" " alt="" coords="978,389,925,324,889,289,850,257,831,246,833,241,853,253,893,285,929,321,982,386"/>
+<area shape="rect" id="Node000017" href="$classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="684,267,852,310"/>
+<area shape="poly" id="edge29_Node000003_Node000017" title=" " alt="" coords="964,393,912,359,850,324,826,313,828,308,853,319,915,354,967,389"/>
+<area shape="rect" id="Node000018" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="684,619,852,662"/>
+<area shape="poly" id="edge31_Node000003_Node000018" title=" " alt="" coords="990,443,969,482,938,530,899,578,854,621,850,617,895,575,934,526,964,479,985,440"/>
+<area shape="rect" id="Node000019" href="$classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4" title="Method for generating LLVM IR code for variable assignment." alt="" coords="684,334,852,376"/>
+<area shape="poly" id="edge33_Node000003_Node000019" title=" " alt="" coords="929,399,852,379,853,374,930,393"/>
+<area shape="rect" id="Node000020" href="$classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478" title="Method for generating LLVM IR code for variable definition." alt="" coords="684,134,852,176"/>
+<area shape="poly" id="edge35_Node000003_Node000020" title=" " alt="" coords="984,387,964,344,935,292,896,238,850,190,833,179,836,175,853,186,900,234,939,289,969,342,989,385"/>
+<area shape="rect" id="Node000005" href="$classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf" title="Method for generating LLVM IR code for passing statement." alt="" coords="436,234,636,260"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="402,63,447,107,485,154,514,199,532,232,528,234,510,201,481,158,443,110,399,67"/>
+<area shape="poly" id="edge8_Node000005_Node000004" title=" " alt="" coords="512,223,460,153,425,115,386,81,342,58,345,53,390,77,429,111,464,150,516,219"/>
+<area shape="rect" id="Node000006" href="$classCodeGenerator.html#aef4f9c2efe63221d0060f226cd767c0f" title="Method for generating LLVM IR code." alt="" coords="221,146,388,172"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="490,229,387,187,353,175,355,170,389,182,492,224"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="496,226,446,187,387,148,338,125,340,120,389,143,449,183,500,222"/>
+<area shape="rect" id="Node000009" href="$classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="221,196,388,239"/>
+<area shape="poly" id="edge11_Node000005_Node000009" title=" " alt="" coords="420,244,388,240,389,234,421,239"/>
+<area shape="poly" id="edge15_Node000005_Node000011" title=" " alt="" coords="519,274,464,328,428,357,390,382,387,378,425,352,460,324,515,270"/>
+<area shape="rect" id="Node000012" href="$classCodeGenerator.html#a024216bf17a95d67a25c990de720ebdb" title="Method for generating LLVM IR code for module definition." alt="" coords="221,314,388,356"/>
+<area shape="poly" id="edge17_Node000005_Node000012" title=" " alt="" coords="501,270,386,316,384,311,499,265"/>
+<area shape="poly" id="edge19_Node000005_Node000013" title=" " alt="" coords="526,275,505,314,474,360,435,407,390,449,387,445,431,404,470,357,500,311,522,273"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="64,146,114,172"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="205,162,114,162,114,156,205,156"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="403,128,478,183,528,231,525,235,475,187,400,132"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="404,219,485,230,485,236,403,224"/>
+<area shape="rect" id="Node000010" href="$classCodeGenerator.html#a324ca423dff5108e88edd8eefe6d9e6b" title="Method for generating LLVM IR code for import the module." alt="" coords="5,226,173,268"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="206,234,174,238,173,233,205,228"/>
+<area shape="poly" id="edge14_Node000010_Node000005" title=" " alt="" coords="188,248,221,248,388,248,436,247,436,253,388,254,221,254,188,253"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="352,371,387,354,456,304,511,259,514,263,460,308,389,359,354,376"/>
+<area shape="poly" id="edge18_Node000012_Node000005" title=" " alt="" coords="357,305,477,258,479,263,359,310"/>
+<area shape="poly" id="edge20_Node000013_Node000005" title=" " alt="" coords="356,438,386,421,431,380,469,335,521,259,526,262,473,338,435,384,390,425,359,443"/>
+<area shape="poly" id="edge23_Node000014_Node000003" title=" " alt="" coords="809,542,850,519,918,470,973,425,976,429,922,474,853,524,812,547"/>
+<area shape="rect" id="Node000015" href="$classCodeGenerator.html#a8776bef4d5d767cf54392beba082283f" title="Method for generating LLVM IR code for chain of objects expression." alt="" coords="452,527,620,570"/>
+<area shape="poly" id="edge24_Node000014_Node000015" title=" " alt="" coords="668,565,620,560,621,555,669,560"/>
+<area shape="poly" id="edge25_Node000015_Node000003" title=" " alt="" coords="635,531,740,511,851,480,917,453,972,425,975,430,920,458,853,486,741,516,636,537"/>
+<area shape="poly" id="edge27_Node000016_Node000005" title=" " alt="" coords="669,235,637,239,637,233,668,230"/>
+<area shape="poly" id="edge30_Node000017_Node000005" title=" " alt="" coords="668,273,614,264,615,258,669,268"/>
+<area shape="poly" id="edge32_Node000018_Node000003" title=" " alt="" coords="820,610,850,593,895,551,934,504,985,426,990,429,938,507,899,554,853,597,823,615"/>
+<area shape="poly" id="edge34_Node000019_Node000005" title=" " alt="" coords="695,329,683,324,562,263,564,258,685,319,698,325"/>
+<area shape="poly" id="edge36_Node000020_Node000005" title=" " alt="" coords="699,185,573,236,571,231,697,180"/>
 </map>

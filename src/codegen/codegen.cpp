@@ -58,9 +58,6 @@ void CodeGenerator::generate_stmt(AST::Stmt& stmt) {
     else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
         generate_use_module_stmt(*ums);
     }
-    else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
-        generate_unsafe_stmt(*us);
-    }
     else if (auto es = dynamic_cast<AST::ExternStmt*>(&stmt)) {
         generate_extern_stmt(*es);
     }
@@ -476,12 +473,6 @@ void CodeGenerator::generate_use_module_stmt(AST::UseModuleStmt& ums) {
         for (size_t i = current_path.size() - current_path_size; i > 0; i--) {
             current_path.pop();
         }
-    }
-}
-
-void CodeGenerator::generate_unsafe_stmt(AST::UnsafeStmt& us) {
-    for (auto& stmt : us.block) {
-        generate_stmt(*stmt);
     }
 }
 

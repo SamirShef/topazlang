@@ -18,7 +18,6 @@ private:
     std::string path_to_current_dir;                                            /**< Absolute path to the directory which contains current Topaz source code file */
     std::vector<AST::StmtPtr>& stmts;                                           /**< AST Tree (statements from Parser) */
     bool is_debug;                                                              /**< Flag for debug exception */
-    bool in_unsafe;                                                             /**< Flag that indicates whether we are inside an unsafe context */
 
     /**
      * @brief Current space (in global, in module or in function)
@@ -260,15 +259,6 @@ private:
      * @param ums Importing module
      */
     void analyze_use_module_stmt(AST::UseModuleStmt& ums);
-
-    /**
-     * @brief Method for analyze unsafe context
-     *
-     * This method analyze unsafe context (pointers and extern calls)
-     *
-     * @param us Unsafe context block
-     */
-    void analyze_unsafe_stmt(AST::UnsafeStmt& us);
 
     /**
      * @brief Method for analyze extern calls

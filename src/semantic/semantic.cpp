@@ -76,9 +76,6 @@ void SemanticAnalyzer::analyze_stmt(AST::Stmt& stmt) {
     else if (auto ums = dynamic_cast<AST::UseModuleStmt*>(&stmt)) {
         analyze_use_module_stmt(*ums);
     }
-    else if (auto us = dynamic_cast<AST::UnsafeStmt*>(&stmt)) {
-        analyze_unsafe_stmt(*us);
-    }
     else if (auto es = dynamic_cast<AST::ExternStmt*>(&stmt)) {
         analyze_extern_stmt(*es);
     }
@@ -92,9 +89,6 @@ void SemanticAnalyzer::analyze_var_decl_stmt(AST::VarDeclStmt& vds, bool is_func
         std::stringstream ss;
         ss << "Variable \033[0m'" << vds.name << "'\033[31m cannot have access modifier outside the module";
         throw_exception(SUB_SEMANTIC, ss.str(), vds.line, file_name, is_debug);
-    }
-    if (vds.type.is_ptr && !in_unsafe) {
-        throw_exception(SUB_SEMANTIC, "Variable with pointer type must be declared ONLY in unsafe context", vds.line, file_name, is_debug);
     }
     if (vds.type.type == AST::TYPE_NOTH && vds.type.is_ptr) {
         throw_exception(SUB_SEMANTIC, "You can't define a variable with the type \033[0m'noth*'\033[31m - it's unsafe!", vds.line, file_name, is_debug);
@@ -359,16 +353,19 @@ void SemanticAnalyzer::analyze_func_decl_stmt(AST::FuncDeclStmt& fds) {
 void SemanticAnalyzer::analyze_func_call_stmt(AST::FuncCallStmt& fcs) {
     auto func_candidates = get_function_candidates(get_mangled_name(fcs.name));
     if (func_candidates.empty()) {
-        std::stringstream ss;
-        ss << "Function \033[0m'" << get_mangled_name(fcs.name) << '(';
-        for (size_t i = 0; i < fcs.args.size(); i++) {
-            ss << analyze_expr(*fcs.args[i]).type.to_str();
-            if (i < fcs.args.size() - 1) {
-                ss << ", ";
+        func_candidates = get_function_candidates(fcs.name);
+        if (func_candidates.empty()) {
+            std::stringstream ss;
+            ss << "Function \033[0m'" << get_mangled_name(fcs.name) << '(';
+            for (size_t i = 0; i < fcs.args.size(); i++) {
+                ss << analyze_expr(*fcs.args[i]).type.to_str();
+                if (i < fcs.args.size() - 1) {
+                    ss << ", ";
+                }
             }
+            ss << ")'\033[31m does not exists";
+            throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug);
         }
-        ss << ")'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), fcs.line, file_name, is_debug);
     }
     bool found = false;
     size_t coincidences = 0;
@@ -670,17 +667,7 @@ void SemanticAnalyzer::analyze_use_module_stmt(AST::UseModuleStmt& ums) {
     names_of_imported_modules.push_back(all_name);
 }
 
-void SemanticAnalyzer::analyze_unsafe_stmt(AST::UnsafeStmt& us) {
-    in_unsafe = true;
-    for (auto& stmt : us.block) {
-        analyze_stmt(*stmt);
-    }
-}
-
 void SemanticAnalyzer::analyze_extern_stmt(AST::ExternStmt& es) {
-    if (!in_unsafe) {
-        throw_exception(SUB_SEMANTIC, "Extern calls must be declared ONLY in unsafe context", es.line, file_name, is_debug);
-    }
     if (std::find(allowed_langs_for_extern.begin(), allowed_langs_for_extern.end(), es.lang_name_lit) == allowed_langs_for_extern.end()) {
         std::stringstream ss;
         ss << "Specified language name for extern calling (\033[0m'" << es.lang_name_lit << "'\033[31m) is unsupported";
@@ -879,16 +866,19 @@ SemanticAnalyzer::Value SemanticAnalyzer::analyze_var_expr(AST::VarExpr& ve) {
 SemanticAnalyzer::Value SemanticAnalyzer::analyze_func_call_expr(AST::FuncCallExpr& fce) {
     auto func_candidates = get_function_candidates(get_mangled_name(fce.name));
     if (func_candidates.empty()) {
-        std::stringstream ss;
-        ss << "Function \033[0m'" << get_mangled_name(fce.name) << '(';
-        for (size_t i = 0; i < fce.args.size(); i++) {
-            ss << analyze_expr(*fce.args[i]).type.to_str();
-            if (i < fce.args.size() - 1) {
-                ss << ", ";
+        func_candidates = get_function_candidates(fce.name);
+        if (func_candidates.empty()) {
+            std::stringstream ss;
+            ss << "Function \033[0m'" << get_mangled_name(fce.name) << '(';
+            for (size_t i = 0; i < fce.args.size(); i++) {
+                ss << analyze_expr(*fce.args[i]).type.to_str();
+                if (i < fce.args.size() - 1) {
+                    ss << ", ";
+                }
             }
+            ss << ")'\033[31m does not exists";
+            throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
         }
-        ss << ")'\033[31m does not exists";
-        throw_exception(SUB_SEMANTIC, ss.str(), fce.line, file_name, is_debug);
     }
     bool found = false;
     size_t last_score = SIZE_MAX;

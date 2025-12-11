@@ -32,7 +32,6 @@ var classParser =
     [ "parse_return_stmt", "classParser.html#a2f0a39989801cd360c54855bf6ad2e26", null ],
     [ "parse_stmt", "classParser.html#a3d00146966af6a3a29f843ac2c05ef23", null ],
     [ "parse_unary_expr", "classParser.html#a065a423e45b55d6760c1c2d871d34055", null ],
-    [ "parse_unsafe_stmt", "classParser.html#a271a0ab6e19d3fc70bf037930ef3bf7f", null ],
     [ "parse_use_module_stmt", "classParser.html#a2fb85ae62cac170b715af062db225d72", null ],
     [ "parse_var_asgn_stmt", "classParser.html#a344bfeffa418a8f4604ccc632cbd93d5", null ],
     [ "parse_var_decl_stmt", "classParser.html#a4e39379d0213f8f2cb8b10abe8110d77", null ],
