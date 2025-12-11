@@ -3,7 +3,7 @@ let int a = 10;
 unsafe {
     let int *a_p = &a;
     fun foo() -> int* {
-        return a;
+        return a_p;
     }
 }
 

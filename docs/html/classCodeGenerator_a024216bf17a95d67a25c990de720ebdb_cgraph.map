@@ -1,166 +1,165 @@
 <map id="CodeGenerator::generate_module_stmt" name="CodeGenerator::generate_module_stmt">
-<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for module definition." alt="" coords="5,459,173,501"/>
-<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf" title="Method for generating LLVM IR code for passing statement." alt="" coords="221,467,421,493"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,486,205,486,205,492,173,491"/>
-<area shape="poly" id="edge42_Node000002_Node000001" title=" " alt="" coords="220,474,188,474,188,468,220,468"/>
+<area shape="rect" id="Node000001" title="Method for generating LLVM IR code for module definition." alt="" coords="5,492,173,535"/>
+<area shape="rect" id="Node000002" href="$classCodeGenerator.html#aaf8c034fc89eb7b76bb8bb3b5cf902bf" title="Method for generating LLVM IR code for passing statement." alt="" coords="221,500,421,527"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,519,205,520,205,525,173,525"/>
+<area shape="poly" id="edge42_Node000002_Node000001" title=" " alt="" coords="220,507,188,507,188,502,220,502"/>
 <area shape="rect" id="Node000003" href="$classCodeGenerator.html#a3831f496a763b6c44f8bbf3c082ef340" title="Method for generating LLVM IR code for break statement." alt="" coords="469,5,636,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,466,328,396,351,287,369,227,394,167,427,109,467,58,470,56,473,59,471,62,431,112,399,169,374,229,356,289,334,396,326,467"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="320,499,326,424,347,307,366,242,391,176,424,114,467,58,469,56,473,60,471,62,429,117,396,178,371,243,352,308,332,425,325,500"/>
 <area shape="rect" id="Node000004" href="$classCodeGenerator.html#a2e98f67a8caa531ad6918eb325fa071f" title="Method for generating LLVM IR code for continue statement." alt="" coords="469,72,636,115"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="322,466,334,407,361,319,380,270,404,221,433,174,467,131,478,121,482,125,471,135,437,177,409,223,385,272,366,320,340,408,327,467"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="321,499,332,435,357,339,376,284,401,230,431,178,467,132,478,122,481,126,471,135,435,181,405,233,381,286,362,340,337,437,326,500"/>
 <area shape="rect" id="Node000005" href="$classCodeGenerator.html#a04d8e850d22d8a4cafd09ba20165241a" title="Method for generating LLVM IR code for do&#45;while cycle." alt="" coords="469,525,636,568"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="350,491,455,525,453,530,349,497"/>
-<area shape="rect" id="Node000010" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="1658,1215,1774,1241"/>
-<area shape="poly" id="edge114_Node000002_Node000010" title=" " alt="" coords="324,465,342,422,371,363,413,299,439,270,467,245,545,192,580,175,614,164,688,152,783,149,1276,149,1349,159,1452,183,1550,216,1588,235,1612,254,1623,276,1634,311,1653,413,1670,546,1685,697,1705,997,1716,1199,1711,1199,1700,997,1679,698,1665,547,1648,414,1629,312,1618,278,1608,258,1585,240,1548,221,1450,188,1348,164,1276,155,783,155,689,157,615,169,582,180,548,197,471,249,442,274,417,303,376,365,346,424,329,467"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="368,525,454,539,453,544,367,530"/>
+<area shape="rect" id="Node000010" href="$exception_8cpp.html#ab0d606724ba11db43d5fd0294b3d407f" title="Function for throwing exception." alt="" coords="1658,1120,1774,1147"/>
+<area shape="poly" id="edge113_Node000002_Node000010" title=" " alt="" coords="323,499,338,451,366,382,409,309,436,274,467,245,544,191,579,174,613,162,688,151,783,149,1276,149,1349,159,1451,183,1550,216,1588,235,1612,254,1631,285,1648,324,1676,425,1695,547,1707,679,1714,811,1718,933,1718,1104,1712,1104,1712,933,1709,811,1702,679,1689,547,1670,426,1643,326,1627,287,1608,258,1585,240,1548,221,1450,188,1348,164,1276,155,783,155,688,157,614,168,581,179,547,196,471,249,440,278,413,312,371,385,343,453,328,501"/>
 <area shape="rect" id="Node000019" href="$classCodeGenerator.html#a7c17ee17c27f5b3f8d38624bb373f514" title="Method for generating LLVM IR code for for cycle." alt="" coords="469,325,636,368"/>
-<area shape="poly" id="edge28_Node000002_Node000019" title=" " alt="" coords="350,464,404,428,468,390,504,372,507,377,470,394,407,433,353,468"/>
-<area shape="rect" id="Node000020" href="$classCodeGenerator.html#a2e4fc8a531cca1921b87183c95dc2b42" title="Method for generating LLVM IR code for function calling." alt="" coords="469,659,636,701"/>
-<area shape="poly" id="edge31_Node000002_Node000020" title=" " alt="" coords="333,492,386,563,425,606,471,645,477,649,474,653,467,649,422,610,382,567,329,495"/>
-<area shape="rect" id="Node000021" href="$classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="700,903,868,945"/>
-<area shape="poly" id="edge34_Node000002_Node000021" title=" " alt="" coords="327,493,341,548,368,626,388,670,411,713,439,754,471,790,520,830,576,862,633,888,686,906,685,911,631,893,573,867,517,834,467,794,435,757,407,716,383,672,363,628,336,549,322,495"/>
+<area shape="poly" id="edge28_Node000002_Node000019" title=" " alt="" coords="340,498,394,446,430,417,468,390,502,372,504,377,470,394,433,421,398,450,343,501"/>
+<area shape="rect" id="Node000020" href="$classCodeGenerator.html#a2e4fc8a531cca1921b87183c95dc2b42" title="Method for generating LLVM IR code for function calling." alt="" coords="469,792,636,835"/>
+<area shape="poly" id="edge31_Node000002_Node000020" title=" " alt="" coords="329,526,345,573,373,641,415,714,441,748,471,778,474,781,471,785,467,782,437,751,411,717,368,643,340,575,324,528"/>
+<area shape="rect" id="Node000021" href="$classCodeGenerator.html#acad58d21bacd2d65d787cae3757ea09f" title="Method for generating LLVM IR code for function definition." alt="" coords="700,932,868,975"/>
+<area shape="poly" id="edge34_Node000002_Node000021" title=" " alt="" coords="326,527,337,587,362,676,381,724,406,773,435,817,471,857,520,892,575,919,632,937,686,949,684,954,630,942,573,924,517,897,467,861,431,821,401,775,376,727,357,678,332,588,321,528"/>
 <area shape="rect" id="Node000022" href="$classCodeGenerator.html#a4e2f6284dbdcf560807c53c04aa4829f" title="Method for generating LLVM IR code for control flow operators." alt="" coords="469,392,636,435"/>
-<area shape="poly" id="edge39_Node000002_Node000022" title=" " alt="" coords="398,464,487,437,488,443,400,469"/>
+<area shape="poly" id="edge39_Node000002_Node000022" title=" " alt="" coords="374,497,468,456,508,439,510,444,470,461,376,502"/>
 <area shape="rect" id="Node000023" href="$classCodeGenerator.html#a639efab8cf5184a61fbf1d111bd4631a" title="Method for generating LLVM IR code for &#39;return&#39;." alt="" coords="469,592,636,635"/>
-<area shape="poly" id="edge43_Node000002_Node000023" title=" " alt="" coords="341,492,398,533,470,578,480,583,478,587,468,582,395,537,338,496"/>
-<area shape="rect" id="Node000024" href="$classCodeGenerator.html#a324ca423dff5108e88edd8eefe6d9e6b" title="Method for generating LLVM IR code for import the module." alt="" coords="469,1188,636,1231"/>
-<area shape="poly" id="edge46_Node000002_Node000024" title=" " alt="" coords="329,493,542,1172,537,1174,324,495"/>
-<area shape="rect" id="Node000112" href="$classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4" title="Method for generating LLVM IR code for variable assignment." alt="" coords="469,259,636,301"/>
-<area shape="poly" id="edge104_Node000002_Node000112" title=" " alt="" coords="329,465,382,393,422,350,467,311,474,307,477,311,471,315,425,354,386,397,333,468"/>
-<area shape="rect" id="Node000113" href="$classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478" title="Method for generating LLVM IR code for variable definition." alt="" coords="469,725,636,768"/>
-<area shape="poly" id="edge107_Node000002_Node000113" title=" " alt="" coords="330,493,347,534,377,593,419,656,443,685,471,711,475,714,471,719,467,715,439,689,414,659,373,595,343,537,325,495"/>
-<area shape="rect" id="Node000114" href="$classCodeGenerator.html#a01a43875720edfc00d6e0ac6e5245c80" title="Method for generating LLVM IR code for while cycle." alt="" coords="469,459,636,501"/>
-<area shape="poly" id="edge111_Node000002_Node000114" title=" " alt="" coords="421,486,453,486,453,492,421,492"/>
-<area shape="poly" id="edge27_Node000005_Node000002" title=" " alt="" coords="501,527,413,500,414,495,503,522"/>
+<area shape="poly" id="edge43_Node000002_Node000023" title=" " alt="" coords="353,525,470,578,484,583,481,588,468,582,351,530"/>
+<area shape="rect" id="Node000024" href="$classCodeGenerator.html#a061413210a87aefbf5cb95a5b4b71072" title="Method for generating LLVM IR code for unsafe context." alt="" coords="469,659,636,701"/>
+<area shape="poly" id="edge46_Node000002_Node000024" title=" " alt="" coords="331,525,381,582,417,616,458,648,454,652,413,620,377,586,327,529"/>
+<area shape="rect" id="Node000025" href="$classCodeGenerator.html#a324ca423dff5108e88edd8eefe6d9e6b" title="Method for generating LLVM IR code for import the module." alt="" coords="469,1149,636,1192"/>
+<area shape="poly" id="edge48_Node000002_Node000025" title=" " alt="" coords="329,526,472,946,540,1134,535,1136,466,948,324,528"/>
+<area shape="rect" id="Node000114" href="$classCodeGenerator.html#a05082cba5986979629fcfca8f32370a4" title="Method for generating LLVM IR code for variable assignment." alt="" coords="469,259,636,301"/>
+<area shape="poly" id="edge103_Node000002_Node000114" title=" " alt="" coords="326,498,346,462,377,412,418,359,467,311,472,308,475,312,471,315,422,362,381,415,351,465,331,501"/>
+<area shape="rect" id="Node000115" href="$classCodeGenerator.html#a3e47d4e86f26653db541cf50acce5478" title="Method for generating LLVM IR code for variable definition." alt="" coords="469,725,636,768"/>
+<area shape="poly" id="edge106_Node000002_Node000115" title=" " alt="" coords="331,526,351,562,381,612,422,664,471,711,475,715,472,719,467,715,418,668,377,615,346,565,326,528"/>
+<area shape="rect" id="Node000116" href="$classCodeGenerator.html#a01a43875720edfc00d6e0ac6e5245c80" title="Method for generating LLVM IR code for while cycle." alt="" coords="469,459,636,501"/>
+<area shape="poly" id="edge110_Node000002_Node000116" title=" " alt="" coords="421,505,453,500,454,506,422,510"/>
+<area shape="poly" id="edge27_Node000005_Node000002" title=" " alt="" coords="468,529,436,524,437,518,469,523"/>
 <area shape="rect" id="Node000006" href="$classCodeGenerator.html#aa8660b42030fcede4fe0ef9f3751f904" title="Method for generating LLVM IR code for expressions." alt="" coords="684,445,884,472"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="610,522,732,475,734,480,612,527"/>
-<area shape="rect" id="Node000007" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="942,240,1110,283"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="799,443,852,381,889,344,930,311,974,287,977,292,933,316,893,348,856,385,803,447"/>
-<area shape="poly" id="edge26_Node000006_Node000010" title=" " alt="" coords="795,443,849,391,888,363,931,343,998,330,1085,327,1185,334,1289,351,1391,375,1484,406,1560,443,1589,464,1612,486,1628,512,1643,545,1667,629,1685,730,1698,840,1713,1052,1717,1199,1712,1200,1707,1053,1693,840,1680,731,1662,630,1638,547,1624,514,1608,490,1586,468,1557,448,1482,411,1390,380,1288,356,1184,340,1085,333,999,335,933,348,891,368,853,395,799,447"/>
-<area shape="rect" id="Node000012" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="1191,545,1358,588"/>
-<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="825,470,989,510,1176,550,1175,555,988,515,824,475"/>
+<area shape="rect" id="Node000007" href="$classCodeGenerator.html#aa7e780a48c49b350e2657968fbba71a7" title="Method for generating LLVM IR code for binary expressions." alt="" coords="942,307,1110,349"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="819,443,930,378,980,354,982,359,933,382,821,447"/>
+<area shape="poly" id="edge26_Node000006_Node000010" title=" " alt="" coords="884,460,1012,467,1156,480,1289,499,1342,512,1382,527,1460,568,1516,609,1563,660,1612,733,1638,782,1659,834,1690,939,1707,1035,1715,1104,1710,1105,1702,1035,1685,941,1654,836,1633,784,1607,736,1559,664,1513,613,1457,573,1380,532,1341,517,1288,505,1155,485,1011,472,884,465"/>
+<area shape="rect" id="Node000012" href="$classCodeGenerator.html#a2b2dc1376970c9312b31495d0058ae93" title="Method for generating LLVM IR code for function calling expressions." alt="" coords="1191,541,1358,584"/>
+<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="827,470,990,508,1176,547,1175,552,989,514,825,475"/>
 <area shape="rect" id="Node000014" href="$classCodeGenerator.html#a74f0d8b2ead2d26896b08054830e580e" title="Method for generating LLVM IR code for literals." alt="" coords="942,616,1110,659"/>
 <area shape="poly" id="edge15_Node000006_Node000014" title=" " alt="" coords="798,471,851,533,890,569,933,602,941,606,938,611,930,606,887,574,848,536,794,474"/>
 <area shape="rect" id="Node000016" href="$classCodeGenerator.html#a8776bef4d5d767cf54392beba082283f" title="Method for generating LLVM IR code for chain of objects expression." alt="" coords="942,549,1110,592"/>
 <area shape="poly" id="edge19_Node000006_Node000016" title=" " alt="" coords="814,470,933,528,959,540,957,545,931,533,811,475"/>
-<area shape="rect" id="Node000017" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="942,357,1110,400"/>
-<area shape="poly" id="edge21_Node000006_Node000017" title=" " alt="" coords="850,442,965,404,967,409,852,447"/>
-<area shape="rect" id="Node000018" href="$classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441" title="Method for generating LLVM IR code for variable expressions." alt="" coords="1191,467,1358,509"/>
-<area shape="poly" id="edge24_Node000006_Node000018" title=" " alt="" coords="884,457,998,460,1120,467,1176,472,1176,477,1120,472,997,465,884,462"/>
-<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="943,285,933,291,892,325,855,364,801,434,797,430,851,360,888,321,930,287,940,281"/>
-<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2a19b027eaf6660fa103734b7b4d039a" title="Method for getting comon type between two types." alt="" coords="1207,240,1342,283"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1110,259,1192,259,1192,264,1110,264"/>
+<area shape="rect" id="Node000017" href="$classCodeGenerator.html#abb7b71380118a168adeb168f557060e7" title="Method for generating LLVM IR code for unary expressions." alt="" coords="942,240,1110,283"/>
+<area shape="poly" id="edge21_Node000006_Node000017" title=" " alt="" coords="797,443,850,378,888,339,930,304,966,286,968,291,933,309,891,343,854,381,801,447"/>
+<area shape="rect" id="Node000018" href="$classCodeGenerator.html#a060e2359d3058ae256948b9ed563c441" title="Method for generating LLVM IR code for variable expressions." alt="" coords="1191,412,1358,455"/>
+<area shape="poly" id="edge24_Node000006_Node000018" title=" " alt="" coords="824,442,875,427,931,416,994,411,1059,410,1176,417,1175,423,1058,415,995,416,932,421,876,433,826,447"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="945,352,933,358,865,398,809,437,806,433,862,394,930,354,942,348"/>
+<area shape="rect" id="Node000008" href="$classCodeGenerator.html#a2a19b027eaf6660fa103734b7b4d039a" title="Method for getting comon type between two types." alt="" coords="1207,295,1342,337"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1110,321,1191,317,1192,323,1110,327"/>
 <area shape="rect" id="Node000009" href="$classCodeGenerator.html#abd24d8c33d521ec58c14e4a1be5e26bd" title="Method for implicitly cast value to expected type." alt="" coords="1174,683,1375,709"/>
-<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="1062,281,1095,308,1122,344,1138,380,1146,413,1147,473,1147,532,1155,563,1170,599,1185,620,1203,640,1240,671,1237,675,1199,643,1181,623,1166,601,1150,565,1142,532,1141,473,1141,414,1133,382,1118,347,1091,312,1059,285"/>
-<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="1110,280,1168,292,1212,297,1268,299,1399,301,1465,305,1526,313,1576,328,1596,338,1612,350,1623,369,1634,400,1653,490,1670,609,1684,745,1705,1015,1716,1200,1710,1200,1700,1016,1679,745,1665,610,1648,491,1629,401,1618,371,1608,354,1593,342,1574,333,1524,318,1465,310,1399,306,1268,304,1212,302,1168,297,1109,285"/>
-<area shape="rect" id="Node000011" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="1822,1207,1989,1249"/>
-<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1774,1225,1807,1225,1807,1231,1774,1231"/>
-<area shape="poly" id="edge13_Node000012_Node000006" title=" " alt="" coords="1203,547,896,478,897,473,1204,542"/>
-<area shape="rect" id="Node000013" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="1452,871,1587,913"/>
-<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="1303,586,1342,624,1383,669,1419,718,1452,768,1502,855,1497,858,1447,771,1415,721,1379,672,1338,627,1299,590"/>
-<area shape="poly" id="edge16_Node000014_Node000010" title=" " alt="" coords="1110,630,1227,634,1295,643,1366,657,1436,679,1502,710,1562,751,1588,776,1612,804,1643,854,1668,908,1686,965,1699,1021,1714,1124,1717,1199,1712,1199,1708,1125,1694,1022,1681,966,1663,910,1638,856,1608,807,1584,779,1558,755,1500,715,1434,684,1365,662,1294,648,1227,640,1110,636"/>
-<area shape="rect" id="Node000015" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="1204,768,1346,811"/>
-<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="1064,657,1226,757,1224,762,1061,661"/>
-<area shape="poly" id="edge18_Node000015_Node000010" title=" " alt="" coords="1347,781,1409,783,1480,793,1516,803,1550,816,1582,834,1612,857,1645,895,1671,940,1689,987,1703,1036,1716,1129,1718,1199,1713,1199,1711,1129,1697,1038,1684,989,1666,942,1640,898,1608,861,1580,839,1548,821,1514,808,1479,799,1409,789,1346,787"/>
-<area shape="poly" id="edge20_Node000016_Node000012" title=" " alt="" coords="1110,567,1176,566,1176,571,1110,572"/>
-<area shape="poly" id="edge22_Node000017_Node000006" title=" " alt="" coords="943,400,824,442,823,437,941,395"/>
-<area shape="poly" id="edge23_Node000017_Node000010" title=" " alt="" coords="1110,389,1241,412,1392,448,1464,469,1527,493,1578,520,1612,549,1626,572,1640,603,1662,679,1680,770,1693,870,1710,1063,1716,1199,1711,1199,1705,1064,1688,871,1675,771,1657,680,1635,604,1622,575,1608,552,1575,524,1525,498,1462,474,1390,453,1240,418,1109,394"/>
-<area shape="poly" id="edge25_Node000018_Node000010" title=" " alt="" coords="1359,496,1423,511,1491,535,1557,571,1586,594,1612,621,1637,668,1659,735,1676,816,1689,904,1708,1076,1716,1199,1710,1199,1702,1076,1684,904,1670,817,1653,736,1632,670,1608,624,1582,598,1554,575,1489,540,1421,516,1358,501"/>
-<area shape="poly" id="edge30_Node000019_Node000002" title=" " alt="" coords="470,371,399,415,344,458,341,454,396,410,467,366"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="1038,349,1088,458,1126,528,1170,594,1208,636,1246,671,1242,675,1204,640,1166,598,1121,531,1083,461,1033,351"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="1110,338,1416,386,1551,409,1611,423,1629,446,1644,477,1669,555,1688,651,1701,756,1714,961,1717,1104,1712,1105,1709,962,1696,757,1683,652,1664,557,1639,479,1625,449,1608,428,1550,414,1415,391,1109,343"/>
+<area shape="rect" id="Node000011" href="$exception_8cpp.html#ab098d167db01ca466d8f77d2f3b3d165" title="Function for converting passed subsystem type into string." alt="" coords="1822,1112,1989,1155"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1774,1131,1807,1131,1807,1136,1774,1136"/>
+<area shape="poly" id="edge13_Node000012_Node000006" title=" " alt="" coords="1201,543,898,478,899,472,1202,538"/>
+<area shape="rect" id="Node000013" href="$classCodeGenerator.html#a2a7aa6c3a988e002274226959ea43fd6" title="Method for getting mangled name." alt="" coords="1452,877,1587,920"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="1302,583,1342,621,1383,669,1420,720,1453,773,1503,862,1498,865,1448,775,1415,723,1379,672,1338,625,1298,586"/>
+<area shape="poly" id="edge16_Node000014_Node000010" title=" " alt="" coords="1110,631,1171,633,1240,638,1312,649,1382,668,1456,695,1512,721,1561,759,1612,817,1636,853,1656,892,1686,972,1705,1047,1714,1104,1709,1105,1699,1048,1681,974,1651,894,1631,856,1608,820,1557,763,1509,726,1454,700,1381,673,1311,654,1239,643,1171,638,1110,637"/>
+<area shape="rect" id="Node000015" href="$classCodeGenerator.html#ac9b488b1b0075da9a932714fe63c5cab" title="Method for converting AST::Type to llvm::Type." alt="" coords="1204,797,1346,840"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="1058,657,1233,786,1230,790,1055,661"/>
+<area shape="poly" id="edge18_Node000015_Node000010" title=" " alt="" coords="1346,807,1408,805,1478,810,1548,828,1581,843,1611,863,1638,889,1659,919,1677,951,1690,985,1707,1051,1715,1104,1710,1105,1702,1052,1685,987,1672,954,1655,922,1634,892,1608,867,1579,848,1546,833,1477,816,1408,810,1347,812"/>
+<area shape="poly" id="edge20_Node000016_Node000012" title=" " alt="" coords="1110,565,1176,563,1176,568,1110,571"/>
+<area shape="poly" id="edge22_Node000017_Node000006" title=" " alt="" coords="943,279,933,285,891,319,853,360,822,399,800,433,796,430,818,396,849,356,887,316,930,280,941,274"/>
+<area shape="poly" id="edge23_Node000017_Node000010" title=" " alt="" coords="1110,247,1228,242,1296,245,1367,254,1437,272,1503,298,1562,336,1589,360,1612,388,1627,414,1641,448,1665,532,1683,634,1696,744,1711,957,1717,1104,1711,1104,1706,957,1691,745,1677,635,1659,533,1636,449,1623,416,1607,391,1585,364,1559,341,1501,303,1435,277,1366,260,1296,250,1228,247,1110,253"/>
+<area shape="poly" id="edge25_Node000018_Node000010" title=" " alt="" coords="1359,415,1421,411,1488,416,1522,423,1555,434,1585,450,1612,471,1628,492,1643,520,1667,592,1686,681,1699,778,1713,969,1717,1104,1712,1104,1708,969,1693,779,1680,682,1662,594,1638,522,1624,495,1608,475,1582,455,1552,439,1521,428,1488,421,1421,417,1359,421"/>
+<area shape="poly" id="edge30_Node000019_Node000002" title=" " alt="" coords="470,370,431,399,395,430,340,489,336,486,391,426,428,394,467,366"/>
 <area shape="poly" id="edge29_Node000019_Node000006" title=" " alt="" coords="612,366,637,378,747,435,744,440,635,382,610,371"/>
-<area shape="poly" id="edge32_Node000020_Node000006" title=" " alt="" coords="616,656,635,645,677,606,714,563,766,484,770,487,718,566,681,610,638,649,619,660"/>
-<area shape="poly" id="edge33_Node000020_Node000013" title=" " alt="" coords="637,698,876,754,1169,820,1437,874,1436,879,1167,825,874,759,636,703"/>
-<area shape="poly" id="edge35_Node000021_Node000002" title=" " alt="" coords="725,905,666,884,598,856,529,818,497,795,467,770,439,739,415,705,375,632,346,563,329,509,334,508,351,561,380,630,419,702,443,736,471,766,500,791,532,814,601,851,668,879,727,900"/>
-<area shape="poly" id="edge37_Node000021_Node000010" title=" " alt="" coords="869,928,1045,945,1263,973,1371,992,1469,1014,1551,1039,1611,1067,1645,1096,1672,1131,1692,1167,1707,1199,1702,1201,1688,1170,1667,1134,1641,1100,1608,1072,1549,1044,1468,1019,1370,997,1262,978,1044,950,868,933"/>
-<area shape="poly" id="edge36_Node000021_Node000013" title=" " alt="" coords="868,918,1436,893,1436,898,868,923"/>
-<area shape="poly" id="edge38_Node000021_Node000015" title=" " alt="" coords="864,899,1188,810,1189,815,866,905"/>
-<area shape="poly" id="edge41_Node000022_Node000002" title=" " alt="" coords="469,431,364,463,363,458,468,426"/>
+<area shape="poly" id="edge32_Node000020_Node000006" title=" " alt="" coords="619,789,635,778,665,744,691,706,714,665,732,624,759,546,775,486,780,488,764,548,737,626,718,668,696,709,669,747,638,782,623,794"/>
+<area shape="poly" id="edge33_Node000020_Node000013" title=" " alt="" coords="637,818,1436,889,1436,894,636,823"/>
+<area shape="poly" id="edge35_Node000021_Node000002" title=" " alt="" coords="699,937,643,923,582,904,521,875,467,837,436,803,409,764,386,724,367,682,341,604,326,543,331,542,346,602,372,680,391,721,413,762,440,799,471,833,524,871,583,899,644,918,701,932"/>
+<area shape="poly" id="edge37_Node000021_Node000010" title=" " alt="" coords="868,952,1303,965,1509,975,1577,980,1611,987,1644,1011,1671,1042,1691,1075,1706,1104,1701,1107,1686,1078,1666,1046,1640,1015,1609,992,1576,986,1508,980,1303,970,868,958"/>
+<area shape="poly" id="edge36_Node000021_Node000013" title=" " alt="" coords="868,948,1099,936,1381,915,1436,908,1437,913,1382,920,1099,941,868,953"/>
+<area shape="poly" id="edge38_Node000021_Node000015" title=" " alt="" coords="864,929,1188,840,1189,845,866,934"/>
+<area shape="poly" id="edge41_Node000022_Node000002" title=" " alt="" coords="470,437,351,494,348,489,467,433"/>
 <area shape="poly" id="edge40_Node000022_Node000006" title=" " alt="" coords="637,427,698,439,697,444,636,432"/>
 <area shape="poly" id="edge44_Node000023_Node000006" title=" " alt="" coords="613,589,635,578,703,529,757,481,760,485,706,533,638,582,616,594"/>
 <area shape="poly" id="edge45_Node000023_Node000009" title=" " alt="" coords="637,625,775,647,932,668,1159,687,1159,692,931,673,774,652,636,630"/>
-<area shape="poly" id="edge76_Node000024_Node000010" title=" " alt="" coords="565,1230,610,1332,645,1395,686,1454,741,1518,792,1569,843,1609,894,1640,950,1663,1013,1680,1085,1693,1168,1703,1231,1715,1283,1728,1306,1731,1329,1729,1353,1720,1380,1703,1399,1682,1407,1659,1408,1635,1405,1609,1402,1583,1402,1557,1409,1530,1427,1505,1450,1488,1473,1480,1495,1478,1518,1480,1563,1481,1585,1475,1608,1461,1630,1439,1649,1413,1678,1357,1697,1301,1708,1256,1713,1257,1702,1303,1683,1359,1654,1416,1634,1442,1611,1465,1587,1480,1563,1486,1517,1485,1495,1484,1474,1485,1452,1493,1431,1509,1414,1533,1407,1557,1407,1583,1411,1609,1414,1635,1413,1660,1404,1685,1383,1707,1356,1725,1330,1734,1306,1736,1282,1733,1230,1720,1168,1708,1084,1698,1012,1685,949,1668,892,1644,840,1613,789,1573,737,1521,682,1458,640,1398,605,1334,560,1232"/>
-<area shape="poly" id="edge70_Node000024_Node000013" title=" " alt="" coords="567,1186,614,1129,646,1099,683,1074,746,1046,830,1020,1040,971,1260,930,1436,901,1437,907,1261,935,1041,976,832,1025,747,1051,686,1078,650,1103,618,1133,571,1189"/>
-<area shape="poly" id="edge68_Node000024_Node000021" title=" " alt="" coords="567,1186,617,1116,682,1030,749,955,753,958,686,1034,621,1119,571,1189"/>
-<area shape="rect" id="Node000025" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="694,1772,874,1799"/>
-<area shape="poly" id="edge47_Node000024_Node000025" title=" " alt="" coords="559,1230,573,1339,599,1496,617,1576,637,1650,661,1711,686,1752,699,1762,695,1766,682,1755,656,1713,632,1652,612,1578,594,1497,568,1340,554,1231"/>
-<area shape="rect" id="Node000059" href="$classSemanticAnalyzer.html#ab5cb6f2aedcfa0890fbdd2f942c6e5c3" title="Method for getting functions from semantic." alt="" coords="707,1088,861,1131"/>
-<area shape="poly" id="edge69_Node000024_Node000059" title=" " alt="" coords="592,1185,683,1140,699,1134,701,1139,685,1145,594,1190"/>
-<area shape="rect" id="Node000060" href="$classSemanticAnalyzer.html#a57d9de3d16ba8d3bbf99c50a75bf5a4a" title="Method for getting modules from semantic." alt="" coords="707,1155,861,1197"/>
-<area shape="poly" id="edge71_Node000024_Node000060" title=" " alt="" coords="636,1195,691,1187,692,1192,637,1200"/>
-<area shape="rect" id="Node000111" href="$classCodeGenerator.html#a3aff8118e5dcb58777c9d994ca9cbf53" title="Method for getting resolved name by mangled name." alt="" coords="716,1221,852,1264"/>
-<area shape="poly" id="edge72_Node000024_Node000111" title=" " alt="" coords="637,1219,701,1228,701,1233,636,1224"/>
-<area shape="rect" id="Node000062" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="734,1288,834,1315"/>
-<area shape="poly" id="edge73_Node000024_Node000062" title=" " alt="" coords="592,1229,636,1252,685,1274,720,1285,719,1290,683,1278,634,1257,590,1234"/>
-<area shape="rect" id="Node000099" href="$classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="729,1417,839,1444"/>
-<area shape="poly" id="edge77_Node000024_Node000099" title=" " alt="" coords="578,1229,760,1405,756,1408,574,1233"/>
-<area shape="rect" id="Node000026" href="$classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e" title="Method for analyze one statement." alt="" coords="1168,1772,1381,1799"/>
-<area shape="poly" id="edge48_Node000025_Node000026" title=" " alt="" coords="874,1783,1152,1783,1152,1788,874,1788"/>
-<area shape="poly" id="edge67_Node000026_Node000010" title=" " alt="" coords="1343,1769,1380,1751,1395,1736,1403,1721,1411,1704,1428,1689,1454,1675,1478,1669,1523,1668,1545,1667,1566,1664,1587,1655,1608,1638,1627,1610,1644,1568,1674,1458,1696,1344,1708,1256,1714,1257,1701,1345,1679,1459,1649,1569,1632,1612,1612,1642,1589,1660,1567,1669,1545,1673,1524,1673,1479,1674,1455,1680,1431,1693,1416,1708,1408,1723,1399,1739,1383,1756,1345,1774"/>
-<area shape="rect" id="Node000027" href="$classSemanticAnalyzer.html#a077692a8de8929e231f9a4542dd0c60f" title="Method for analyze break statement." alt="" coords="1429,1703,1610,1745"/>
-<area shape="poly" id="edge49_Node000026_Node000027" title=" " alt="" coords="1330,1769,1416,1747,1418,1752,1332,1774"/>
-<area shape="rect" id="Node000028" href="$classSemanticAnalyzer.html#a9d7b9a4712b65509237ece9e0ef197f2" title="Method for analyze continue statement." alt="" coords="1429,1769,1610,1812"/>
-<area shape="poly" id="edge51_Node000026_Node000028" title=" " alt="" coords="1382,1785,1414,1786,1414,1791,1382,1790"/>
-<area shape="rect" id="Node000029" href="$classSemanticAnalyzer.html#a828c70a109bd262852b0e0ea13e0fe98" title="Method for analyze do&#45;while cycle." alt="" coords="1429,1836,1610,1879"/>
-<area shape="poly" id="edge53_Node000026_Node000029" title=" " alt="" coords="1304,1797,1415,1833,1414,1838,1302,1802"/>
-<area shape="rect" id="Node000050" href="$classSemanticAnalyzer.html#aa9b44f3c84a3b2c547c7a91d4cf84bb4" title="Method for analyze for cycle." alt="" coords="1429,1903,1610,1945"/>
-<area shape="poly" id="edge56_Node000026_Node000050" title=" " alt="" coords="1287,1797,1340,1842,1417,1893,1414,1897,1337,1847,1284,1801"/>
-<area shape="rect" id="Node000051" href="$classSemanticAnalyzer.html#ad424f85be3d35de49d05eb848884d008" title="Method for analyze function calling." alt="" coords="1429,1969,1610,2012"/>
-<area shape="poly" id="edge59_Node000026_Node000051" title=" " alt="" coords="1287,1797,1342,1871,1383,1916,1431,1955,1438,1960,1435,1964,1428,1959,1380,1920,1338,1875,1283,1801"/>
-<area shape="rect" id="Node000052" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="1429,1519,1610,1561"/>
-<area shape="poly" id="edge61_Node000026_Node000052" title=" " alt="" coords="1373,1770,1379,1764,1395,1742,1403,1720,1403,1676,1404,1631,1411,1607,1427,1583,1451,1566,1454,1570,1431,1587,1416,1609,1409,1631,1409,1676,1408,1721,1400,1744,1383,1767,1376,1773"/>
-<area shape="rect" id="Node000055" href="$classSemanticAnalyzer.html#a2c40e832f07d8a8d7c68b9504dcfaff5" title="Method for analyze control flow operators." alt="" coords="1429,1585,1610,1628"/>
-<area shape="poly" id="edge64_Node000026_Node000055" title=" " alt="" coords="1372,1769,1380,1763,1391,1751,1398,1738,1404,1712,1409,1685,1416,1671,1427,1657,1445,1643,1464,1632,1466,1637,1448,1648,1431,1661,1421,1674,1414,1687,1409,1713,1403,1740,1395,1754,1383,1767,1375,1773"/>
-<area shape="poly" id="edge50_Node000027_Node000010" title=" " alt="" coords="1587,1700,1608,1682,1627,1649,1645,1601,1674,1478,1696,1352,1709,1257,1714,1257,1701,1352,1680,1479,1650,1602,1632,1651,1612,1686,1590,1704"/>
-<area shape="poly" id="edge52_Node000028_Node000010" title=" " alt="" coords="1595,1767,1608,1756,1630,1717,1650,1660,1666,1590,1680,1514,1700,1365,1710,1256,1715,1257,1705,1366,1685,1515,1672,1591,1655,1661,1635,1719,1612,1759,1599,1771"/>
-<area shape="poly" id="edge55_Node000029_Node000010" title=" " alt="" coords="1595,1834,1608,1822,1633,1778,1653,1712,1671,1633,1684,1547,1702,1377,1710,1256,1716,1257,1708,1378,1689,1547,1676,1634,1659,1714,1637,1780,1612,1826,1599,1838"/>
-<area shape="poly" id="edge54_Node000029_Node000026" title=" " alt="" coords="1468,1838,1365,1806,1367,1801,1470,1833"/>
-<area shape="poly" id="edge58_Node000050_Node000010" title=" " alt="" coords="1596,1900,1608,1889,1622,1867,1635,1839,1657,1765,1675,1676,1688,1579,1705,1390,1711,1257,1716,1257,1710,1390,1693,1579,1680,1677,1662,1766,1640,1840,1627,1870,1612,1892,1599,1904"/>
-<area shape="poly" id="edge57_Node000050_Node000026" title=" " alt="" coords="1482,1904,1428,1881,1368,1845,1316,1810,1319,1805,1371,1841,1431,1876,1484,1900"/>
-<area shape="poly" id="edge60_Node000051_Node000010" title=" " alt="" coords="1596,1967,1608,1956,1623,1931,1637,1899,1661,1818,1679,1719,1692,1611,1707,1402,1711,1257,1717,1257,1712,1402,1697,1611,1684,1719,1666,1819,1642,1901,1628,1934,1612,1959,1599,1971"/>
-<area shape="poly" id="edge63_Node000052_Node000010" title=" " alt="" coords="1584,1516,1608,1498,1631,1470,1650,1439,1680,1371,1698,1307,1708,1256,1713,1257,1703,1308,1685,1373,1655,1441,1635,1473,1612,1502,1588,1520"/>
-<area shape="poly" id="edge62_Node000052_Node000026" title=" " alt="" coords="1431,1563,1416,1586,1409,1608,1409,1652,1408,1697,1400,1720,1383,1743,1360,1760,1334,1770,1332,1765,1358,1755,1379,1739,1395,1718,1403,1696,1403,1652,1404,1607,1411,1583,1427,1560"/>
-<area shape="poly" id="edge66_Node000055_Node000010" title=" " alt="" coords="1594,1583,1608,1571,1636,1535,1659,1493,1677,1449,1690,1405,1706,1321,1711,1257,1717,1257,1711,1322,1696,1406,1682,1451,1664,1496,1641,1538,1612,1575,1598,1587"/>
-<area shape="poly" id="edge65_Node000055_Node000026" title=" " alt="" coords="1438,1631,1431,1636,1421,1650,1414,1663,1409,1689,1403,1716,1395,1730,1383,1743,1357,1760,1328,1770,1327,1765,1355,1755,1380,1739,1391,1727,1398,1714,1404,1688,1409,1661,1416,1647,1427,1633,1434,1627"/>
-<area shape="rect" id="Node000063" href="$classParser.html#a3d00146966af6a3a29f843ac2c05ef23" title="Method for parsing only one statement." alt="" coords="1208,1063,1341,1089"/>
-<area shape="poly" id="edge74_Node000062_Node000063" title=" " alt="" coords="834,1292,859,1284,882,1274,897,1263,906,1251,916,1239,930,1226,992,1184,1043,1156,1167,1106,1206,1092,1208,1097,1169,1110,1046,1161,995,1189,933,1230,920,1243,910,1255,901,1267,885,1278,860,1289,835,1297"/>
-<area shape="poly" id="edge75_Node000063_Node000010" title=" " alt="" coords="1341,1066,1401,1064,1470,1067,1542,1080,1578,1091,1611,1106,1640,1125,1665,1150,1702,1200,1697,1203,1661,1153,1637,1129,1608,1110,1576,1096,1541,1085,1470,1073,1401,1069,1342,1071"/>
-<area shape="rect" id="Node000100" href="$classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="1220,1417,1330,1444"/>
-<area shape="poly" id="edge78_Node000099_Node000100" title=" " alt="" coords="839,1428,1204,1428,1204,1433,839,1433"/>
-<area shape="rect" id="Node000101" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="1475,1367,1564,1393"/>
-<area shape="poly" id="edge81_Node000099_Node000101" title=" " alt="" coords="798,1443,819,1469,850,1501,889,1532,933,1555,962,1560,1017,1563,1164,1564,1308,1560,1358,1556,1380,1551,1395,1536,1402,1521,1405,1486,1407,1448,1414,1429,1427,1410,1442,1398,1459,1390,1461,1395,1445,1403,1431,1414,1418,1431,1412,1449,1411,1486,1407,1522,1399,1540,1383,1556,1358,1561,1308,1565,1164,1569,1016,1568,962,1565,931,1560,886,1536,847,1505,815,1472,793,1446"/>
-<area shape="rect" id="Node000102" href="$classLexer.html#a8e7a060feea59b6a096676f74ca9cce3" title="Method for skipping comments." alt="" coords="949,1519,1102,1545"/>
-<area shape="poly" id="edge82_Node000099_Node000102" title=" " alt="" coords="810,1442,865,1473,933,1504,952,1511,950,1516,931,1509,862,1478,807,1447"/>
-<area shape="rect" id="Node000103" href="$classLexer.html#a1831613248412010bfd02e87f9e8582d" title="Method for tokenizing character literal." alt="" coords="932,1316,1120,1343"/>
-<area shape="poly" id="edge85_Node000099_Node000103" title=" " alt="" coords="807,1414,862,1384,931,1352,950,1345,952,1350,933,1357,865,1388,810,1419"/>
-<area shape="rect" id="Node000105" href="$classLexer.html#af26984da969b4bd1dbc65d07977b4438" title="Method for tokenizing identifier token." alt="" coords="962,1468,1090,1495"/>
-<area shape="poly" id="edge89_Node000099_Node000105" title=" " alt="" coords="840,1440,947,1462,946,1468,839,1445"/>
-<area shape="rect" id="Node000106" href="$classLexer.html#a3a21d278a491d885602a77073f050b4b" title="Method for tokenizing number literal." alt="" coords="937,1620,1114,1647"/>
-<area shape="poly" id="edge92_Node000099_Node000106" title=" " alt="" coords="796,1443,848,1517,887,1561,933,1599,956,1612,954,1616,930,1604,883,1565,843,1520,791,1446"/>
-<area shape="rect" id="Node000107" href="$classLexer.html#ada8d48ea48d4aad8af8ed61965f7c3c0" title="Method for tokenizing operator." alt="" coords="960,1240,1092,1267"/>
-<area shape="poly" id="edge96_Node000099_Node000107" title=" " alt="" coords="797,1415,853,1363,930,1302,980,1272,983,1277,933,1306,857,1367,801,1419"/>
-<area shape="rect" id="Node000108" href="$classLexer.html#a23f4e2fe208765d7a603d78f508705ad" title="Method for tokenizing string literal." alt="" coords="943,1367,1109,1393"/>
-<area shape="poly" id="edge100_Node000099_Node000108" title=" " alt="" coords="839,1417,943,1395,944,1400,840,1422"/>
-<area shape="poly" id="edge79_Node000100_Node000101" title=" " alt="" coords="1330,1417,1459,1390,1460,1395,1331,1422"/>
-<area shape="poly" id="edge80_Node000101_Node000010" title=" " alt="" coords="1537,1364,1683,1249,1687,1253,1540,1368"/>
-<area shape="poly" id="edge83_Node000102_Node000100" title=" " alt="" coords="1084,1516,1119,1504,1181,1477,1234,1450,1237,1454,1183,1482,1121,1509,1086,1521"/>
-<area shape="poly" id="edge84_Node000102_Node000101" title=" " alt="" coords="1103,1541,1167,1545,1239,1541,1313,1526,1347,1513,1380,1495,1397,1477,1404,1456,1411,1433,1428,1410,1459,1392,1461,1397,1431,1414,1415,1435,1409,1457,1402,1479,1383,1499,1350,1518,1314,1531,1240,1546,1167,1550,1103,1546"/>
-<area shape="poly" id="edge88_Node000103_Node000010" title=" " alt="" coords="1051,1313,1113,1281,1167,1257,1231,1243,1297,1233,1427,1221,1547,1218,1642,1221,1642,1226,1547,1223,1427,1226,1297,1238,1232,1248,1169,1263,1115,1285,1054,1318"/>
-<area shape="poly" id="edge86_Node000103_Node000100" title=" " alt="" coords="1086,1341,1121,1352,1183,1379,1237,1407,1234,1412,1181,1384,1119,1357,1084,1346"/>
-<area shape="poly" id="edge87_Node000103_Node000101" title=" " alt="" coords="1121,1334,1382,1359,1460,1369,1459,1374,1381,1364,1120,1339"/>
-<area shape="poly" id="edge90_Node000105_Node000100" title=" " alt="" coords="1089,1466,1204,1442,1205,1448,1090,1471"/>
-<area shape="poly" id="edge91_Node000105_Node000101" title=" " alt="" coords="1090,1486,1153,1489,1227,1488,1305,1477,1344,1467,1380,1454,1395,1444,1404,1434,1413,1422,1428,1410,1459,1395,1461,1399,1431,1414,1417,1425,1408,1437,1398,1448,1383,1458,1345,1472,1306,1482,1227,1493,1153,1495,1089,1492"/>
-<area shape="poly" id="edge95_Node000106_Node000010" title=" " alt="" coords="1056,1645,1121,1671,1162,1683,1206,1692,1252,1697,1298,1694,1341,1683,1380,1661,1399,1639,1408,1616,1409,1592,1406,1567,1403,1541,1403,1514,1410,1487,1427,1461,1449,1442,1472,1433,1516,1428,1561,1425,1584,1418,1608,1403,1642,1369,1668,1329,1689,1289,1703,1255,1708,1257,1694,1291,1673,1332,1646,1372,1611,1407,1586,1423,1562,1430,1517,1433,1473,1438,1452,1447,1431,1464,1415,1489,1408,1515,1408,1540,1412,1566,1414,1592,1413,1617,1404,1642,1383,1665,1343,1688,1299,1700,1252,1702,1206,1698,1161,1688,1119,1676,1054,1650"/>
-<area shape="poly" id="edge93_Node000106_Node000100" title=" " alt="" coords="1043,1617,1118,1555,1244,1452,1247,1456,1122,1559,1046,1621"/>
-<area shape="poly" id="edge94_Node000106_Node000101" title=" " alt="" coords="1089,1645,1156,1653,1234,1653,1273,1647,1311,1637,1347,1621,1380,1599,1398,1578,1406,1556,1407,1534,1406,1510,1404,1460,1411,1435,1427,1410,1442,1398,1459,1389,1462,1394,1445,1402,1431,1414,1416,1437,1409,1461,1411,1509,1413,1534,1411,1558,1402,1581,1383,1603,1350,1626,1313,1642,1274,1653,1234,1658,1156,1658,1089,1650"/>
-<area shape="poly" id="edge99_Node000107_Node000010" title=" " alt="" coords="1091,1244,1118,1231,1134,1214,1141,1194,1148,1174,1166,1156,1228,1127,1283,1108,1334,1100,1383,1100,1433,1106,1486,1119,1611,1156,1655,1177,1691,1203,1688,1207,1652,1181,1609,1161,1485,1124,1432,1112,1383,1105,1334,1105,1284,1114,1230,1132,1170,1161,1153,1177,1146,1196,1139,1216,1122,1235,1093,1249"/>
-<area shape="poly" id="edge97_Node000107_Node000100" title=" " alt="" coords="1057,1265,1121,1302,1192,1355,1249,1405,1246,1409,1189,1359,1119,1306,1055,1270"/>
-<area shape="poly" id="edge98_Node000107_Node000101" title=" " alt="" coords="1092,1263,1226,1291,1382,1329,1469,1358,1467,1363,1381,1335,1225,1296,1091,1268"/>
-<area shape="poly" id="edge103_Node000108_Node000010" title=" " alt="" coords="1089,1364,1642,1241,1643,1247,1091,1369"/>
-<area shape="poly" id="edge101_Node000108_Node000100" title=" " alt="" coords="1096,1391,1205,1414,1204,1419,1095,1397"/>
-<area shape="poly" id="edge102_Node000108_Node000101" title=" " alt="" coords="1109,1377,1460,1377,1460,1383,1109,1383"/>
-<area shape="poly" id="edge105_Node000112_Node000006" title=" " alt="" coords="617,300,638,311,676,340,711,372,764,431,760,435,707,376,672,344,635,316,615,304"/>
-<area shape="poly" id="edge106_Node000112_Node000010" title=" " alt="" coords="636,255,717,237,814,219,919,205,1024,200,1276,200,1315,204,1364,216,1474,251,1568,287,1612,307,1623,328,1633,361,1651,457,1668,583,1682,725,1704,1007,1716,1199,1710,1199,1699,1008,1677,726,1663,583,1646,458,1627,363,1618,330,1608,311,1566,292,1472,256,1363,221,1314,210,1276,205,1025,205,919,211,814,224,718,242,637,261"/>
-<area shape="poly" id="edge108_Node000113_Node000006" title=" " alt="" coords="618,723,635,711,661,685,684,657,723,594,752,534,771,486,776,488,757,536,728,597,688,660,665,689,638,715,621,727"/>
-<area shape="poly" id="edge109_Node000113_Node000009" title=" " alt="" coords="636,741,855,731,1120,712,1159,708,1159,713,1120,717,856,736,637,746"/>
-<area shape="poly" id="edge110_Node000113_Node000015" title=" " alt="" coords="637,757,685,763,960,780,1188,786,1188,791,960,785,684,768,637,762"/>
-<area shape="poly" id="edge113_Node000114_Node000002" title=" " alt="" coords="468,474,437,474,437,468,469,469"/>
-<area shape="poly" id="edge112_Node000114_Node000006" title=" " alt="" coords="636,470,668,467,669,472,637,475"/>
+<area shape="poly" id="edge47_Node000024_Node000002" title=" " alt="" coords="516,661,468,637,403,588,351,540,354,536,406,584,470,632,518,656"/>
+<area shape="poly" id="edge75_Node000025_Node000010" title=" " alt="" coords="587,1190,632,1215,685,1235,740,1246,784,1248,828,1244,883,1235,969,1215,1040,1190,1100,1162,1155,1133,1211,1104,1271,1076,1342,1051,1429,1031,1480,1021,1521,1014,1562,1016,1611,1031,1638,1046,1662,1065,1699,1106,1695,1109,1658,1069,1635,1050,1609,1036,1561,1021,1521,1019,1481,1026,1430,1036,1344,1056,1273,1081,1213,1108,1158,1138,1102,1167,1042,1195,971,1220,884,1240,828,1250,784,1254,739,1251,684,1240,630,1220,585,1195"/>
+<area shape="poly" id="edge69_Node000025_Node000013" title=" " alt="" coords="566,1147,613,1090,646,1059,683,1035,747,1012,830,994,926,982,1028,972,1227,957,1313,948,1381,937,1438,922,1439,928,1382,943,1314,954,1228,962,1028,977,926,987,831,1000,749,1017,686,1040,649,1064,617,1093,570,1151"/>
+<area shape="poly" id="edge67_Node000025_Node000021" title=" " alt="" coords="562,1148,608,1072,642,1029,683,991,700,980,703,984,686,995,646,1033,613,1076,567,1151"/>
+<area shape="rect" id="Node000026" href="$classSemanticAnalyzer.html#a21f3fdba4d12d6ce62ef375321edc598" title="Method for analyze all statements." alt="" coords="694,1300,874,1327"/>
+<area shape="poly" id="edge49_Node000025_Node000026" title=" " alt="" coords="576,1190,624,1235,654,1258,686,1279,714,1292,712,1297,683,1284,651,1263,620,1239,572,1194"/>
+<area shape="rect" id="Node000061" href="$classSemanticAnalyzer.html#ab5cb6f2aedcfa0890fbdd2f942c6e5c3" title="Method for getting functions from semantic." alt="" coords="707,1049,861,1092"/>
+<area shape="poly" id="edge68_Node000025_Node000061" title=" " alt="" coords="592,1146,683,1102,699,1095,701,1100,685,1106,594,1151"/>
+<area shape="rect" id="Node000062" href="$classSemanticAnalyzer.html#a57d9de3d16ba8d3bbf99c50a75bf5a4a" title="Method for getting modules from semantic." alt="" coords="707,1116,861,1159"/>
+<area shape="poly" id="edge70_Node000025_Node000062" title=" " alt="" coords="636,1156,691,1148,692,1153,637,1161"/>
+<area shape="rect" id="Node000113" href="$classCodeGenerator.html#a3aff8118e5dcb58777c9d994ca9cbf53" title="Method for getting resolved name by mangled name." alt="" coords="716,1183,852,1225"/>
+<area shape="poly" id="edge71_Node000025_Node000113" title=" " alt="" coords="637,1180,701,1189,701,1195,636,1185"/>
+<area shape="rect" id="Node000064" href="$classParser.html#a46a674e4cff457fc9502b327ee9be73c" title="Method for parsing tokens into AST tree." alt="" coords="734,1369,834,1396"/>
+<area shape="poly" id="edge72_Node000025_Node000064" title=" " alt="" coords="568,1191,615,1261,648,1301,686,1337,727,1361,725,1365,683,1341,644,1305,611,1264,564,1194"/>
+<area shape="rect" id="Node000101" href="$classLexer.html#af6c1882744b6491b56538b065e1600f5" title="Method for tokenizing source code." alt="" coords="729,1800,839,1827"/>
+<area shape="poly" id="edge76_Node000025_Node000101" title=" " alt="" coords="564,1192,775,1784,770,1786,559,1193"/>
+<area shape="rect" id="Node000027" href="$classSemanticAnalyzer.html#aa097e555d59d18da97e2341996f4f93e" title="Method for analyze one statement." alt="" coords="1168,1253,1381,1280"/>
+<area shape="poly" id="edge50_Node000026_Node000027" title=" " alt="" coords="874,1302,1152,1276,1153,1281,875,1307"/>
+<area shape="poly" id="edge66_Node000027_Node000010" title=" " alt="" coords="1286,1279,1306,1313,1338,1356,1380,1399,1404,1417,1430,1431,1480,1451,1523,1460,1543,1460,1563,1455,1608,1431,1638,1404,1661,1372,1679,1335,1692,1297,1707,1222,1712,1162,1717,1163,1713,1223,1697,1298,1684,1337,1666,1374,1642,1408,1611,1436,1565,1460,1544,1465,1522,1465,1478,1456,1428,1436,1401,1421,1376,1403,1334,1359,1302,1316,1281,1282"/>
+<area shape="rect" id="Node000028" href="$classSemanticAnalyzer.html#a077692a8de8929e231f9a4542dd0c60f" title="Method for analyze break statement." alt="" coords="1429,1045,1610,1088"/>
+<area shape="poly" id="edge51_Node000027_Node000028" title=" " alt="" coords="1294,1251,1335,1218,1379,1176,1393,1155,1401,1136,1410,1117,1428,1098,1432,1094,1436,1099,1431,1102,1415,1120,1406,1138,1398,1157,1383,1179,1339,1222,1298,1255"/>
+<area shape="rect" id="Node000029" href="$classSemanticAnalyzer.html#a9d7b9a4712b65509237ece9e0ef197f2" title="Method for analyze continue statement." alt="" coords="1429,1112,1610,1155"/>
+<area shape="poly" id="edge53_Node000027_Node000029" title=" " alt="" coords="1293,1251,1351,1210,1428,1164,1440,1159,1442,1163,1431,1169,1354,1214,1296,1255"/>
+<area shape="rect" id="Node000030" href="$classSemanticAnalyzer.html#a828c70a109bd262852b0e0ea13e0fe98" title="Method for analyze do&#45;while cycle." alt="" coords="1429,1179,1610,1221"/>
+<area shape="poly" id="edge55_Node000027_Node000030" title=" " alt="" coords="1357,1250,1451,1224,1453,1229,1358,1255"/>
+<area shape="rect" id="Node000051" href="$classSemanticAnalyzer.html#aa9b44f3c84a3b2c547c7a91d4cf84bb4" title="Method for analyze for cycle." alt="" coords="1429,1245,1610,1288"/>
+<area shape="poly" id="edge58_Node000027_Node000051" title=" " alt="" coords="1382,1273,1414,1273,1414,1278,1382,1278"/>
+<area shape="rect" id="Node000052" href="$classSemanticAnalyzer.html#ad424f85be3d35de49d05eb848884d008" title="Method for analyze function calling." alt="" coords="1429,1312,1610,1355"/>
+<area shape="poly" id="edge61_Node000027_Node000052" title=" " alt="" coords="1327,1278,1425,1305,1423,1310,1326,1283"/>
+<area shape="rect" id="Node000053" href="$classSemanticAnalyzer.html#a301267c995ef9c609163d1b6afcf62a5" title="Method for analyze function declaration." alt="" coords="1429,1379,1610,1421"/>
+<area shape="poly" id="edge63_Node000027_Node000053" title=" " alt="" coords="1288,1278,1341,1321,1417,1369,1414,1374,1337,1325,1284,1282"/>
+<area shape="poly" id="edge52_Node000028_Node000010" title=" " alt="" coords="1585,1086,1661,1112,1659,1117,1583,1091"/>
+<area shape="poly" id="edge54_Node000029_Node000010" title=" " alt="" coords="1610,1131,1642,1131,1642,1136,1610,1136"/>
+<area shape="poly" id="edge57_Node000030_Node000010" title=" " alt="" coords="1583,1176,1659,1150,1661,1155,1585,1181"/>
+<area shape="poly" id="edge56_Node000030_Node000027" title=" " alt="" coords="1430,1218,1320,1250,1318,1245,1428,1213"/>
+<area shape="poly" id="edge60_Node000051_Node000010" title=" " alt="" coords="1587,1242,1608,1231,1655,1194,1692,1156,1696,1160,1658,1198,1611,1236,1589,1247"/>
+<area shape="poly" id="edge59_Node000051_Node000027" title=" " alt="" coords="1429,1261,1397,1260,1397,1255,1429,1255"/>
+<area shape="poly" id="edge62_Node000052_Node000010" title=" " alt="" coords="1591,1309,1608,1298,1640,1266,1666,1229,1701,1160,1706,1162,1671,1231,1644,1269,1611,1302,1594,1314"/>
+<area shape="poly" id="edge65_Node000053_Node000010" title=" " alt="" coords="1592,1376,1608,1365,1629,1342,1647,1316,1676,1260,1695,1206,1707,1161,1712,1163,1700,1207,1681,1262,1652,1319,1633,1345,1611,1369,1596,1380"/>
+<area shape="poly" id="edge64_Node000053_Node000027" title=" " alt="" coords="1482,1380,1428,1357,1370,1324,1319,1291,1321,1287,1373,1319,1431,1352,1484,1376"/>
+<area shape="rect" id="Node000065" href="$classParser.html#a3d00146966af6a3a29f843ac2c05ef23" title="Method for parsing only one statement." alt="" coords="1208,1421,1341,1448"/>
+<area shape="poly" id="edge73_Node000064_Node000065" title=" " alt="" coords="834,1385,1193,1423,1193,1429,834,1390"/>
+<area shape="poly" id="edge74_Node000065_Node000010" title=" " alt="" coords="1304,1446,1365,1471,1445,1492,1488,1497,1531,1496,1571,1486,1608,1466,1641,1435,1666,1398,1685,1356,1698,1312,1711,1228,1713,1162,1718,1162,1716,1228,1703,1313,1690,1358,1671,1400,1645,1438,1611,1470,1573,1491,1531,1501,1488,1503,1444,1498,1363,1476,1302,1451"/>
+<area shape="rect" id="Node000102" href="$classLexer.html#a73509f24c44f3bb079f97353e6f07b2b" title="Method for skipping current character from source code and returns it." alt="" coords="1220,1800,1330,1827"/>
+<area shape="poly" id="edge77_Node000101_Node000102" title=" " alt="" coords="839,1811,1204,1811,1204,1816,839,1816"/>
+<area shape="rect" id="Node000103" href="$classLexer.html#ad7efb4516f546ec49416043fa87cb910" title="Method for getting character from source code by lexer pos and passed offset." alt="" coords="1475,1800,1564,1827"/>
+<area shape="poly" id="edge80_Node000101_Node000103" title=" " alt="" coords="794,1826,812,1861,842,1907,883,1953,906,1973,933,1988,997,2015,1054,2032,1107,2040,1157,2039,1208,2029,1260,2012,1380,1958,1418,1932,1452,1901,1500,1838,1504,1842,1456,1904,1422,1937,1383,1962,1262,2017,1209,2035,1158,2044,1106,2045,1053,2037,995,2020,930,1993,903,1977,879,1957,838,1910,807,1864,789,1828"/>
+<area shape="rect" id="Node000104" href="$classLexer.html#a8e7a060feea59b6a096676f74ca9cce3" title="Method for skipping comments." alt="" coords="949,1851,1102,1877"/>
+<area shape="poly" id="edge81_Node000101_Node000104" title=" " alt="" coords="840,1822,944,1844,943,1849,839,1827"/>
+<area shape="rect" id="Node000105" href="$classLexer.html#a1831613248412010bfd02e87f9e8582d" title="Method for tokenizing character literal." alt="" coords="932,1699,1120,1725"/>
+<area shape="poly" id="edge84_Node000101_Node000105" title=" " alt="" coords="807,1797,862,1766,931,1735,950,1728,952,1733,933,1740,865,1771,810,1802"/>
+<area shape="rect" id="Node000107" href="$classLexer.html#af26984da969b4bd1dbc65d07977b4438" title="Method for tokenizing identifier token." alt="" coords="962,1749,1090,1776"/>
+<area shape="poly" id="edge88_Node000101_Node000107" title=" " alt="" coords="839,1799,946,1776,947,1782,840,1804"/>
+<area shape="rect" id="Node000108" href="$classLexer.html#a3a21d278a491d885602a77073f050b4b" title="Method for tokenizing number literal." alt="" coords="937,1901,1114,1928"/>
+<area shape="poly" id="edge91_Node000101_Node000108" title=" " alt="" coords="810,1825,865,1856,933,1887,952,1894,950,1899,931,1892,862,1860,807,1830"/>
+<area shape="rect" id="Node000109" href="$classLexer.html#ada8d48ea48d4aad8af8ed61965f7c3c0" title="Method for tokenizing operator." alt="" coords="960,1952,1092,1979"/>
+<area shape="poly" id="edge95_Node000101_Node000109" title=" " alt="" coords="799,1825,853,1880,891,1911,933,1938,946,1944,944,1949,930,1942,888,1915,850,1884,795,1829"/>
+<area shape="rect" id="Node000110" href="$classLexer.html#a23f4e2fe208765d7a603d78f508705ad" title="Method for tokenizing string literal." alt="" coords="943,1648,1109,1675"/>
+<area shape="poly" id="edge99_Node000101_Node000110" title=" " alt="" coords="795,1798,850,1743,888,1711,930,1684,944,1678,946,1683,933,1689,891,1716,853,1747,799,1802"/>
+<area shape="poly" id="edge78_Node000102_Node000103" title=" " alt="" coords="1330,1811,1460,1811,1460,1816,1330,1816"/>
+<area shape="poly" id="edge79_Node000103_Node000010" title=" " alt="" coords="1527,1798,1565,1727,1587,1679,1607,1628,1646,1494,1676,1360,1708,1162,1714,1163,1681,1361,1651,1495,1612,1630,1592,1681,1570,1729,1531,1801"/>
+<area shape="poly" id="edge82_Node000104_Node000102" title=" " alt="" coords="1095,1847,1204,1825,1205,1830,1096,1853"/>
+<area shape="poly" id="edge83_Node000104_Node000103" title=" " alt="" coords="1103,1858,1233,1850,1381,1836,1459,1823,1460,1828,1382,1841,1234,1856,1103,1864"/>
+<area shape="poly" id="edge87_Node000105_Node000010" title=" " alt="" coords="1120,1717,1233,1715,1297,1709,1364,1698,1430,1681,1495,1656,1555,1622,1608,1580,1629,1549,1647,1502,1663,1445,1677,1382,1698,1257,1709,1162,1714,1163,1703,1257,1682,1383,1669,1447,1652,1504,1633,1551,1612,1583,1558,1627,1497,1661,1432,1686,1365,1703,1298,1714,1233,1720,1121,1722"/>
+<area shape="poly" id="edge85_Node000105_Node000102" title=" " alt="" coords="1086,1723,1121,1735,1183,1762,1237,1790,1234,1794,1181,1767,1119,1740,1084,1728"/>
+<area shape="poly" id="edge86_Node000105_Node000103" title=" " alt="" coords="1121,1716,1246,1731,1382,1757,1431,1773,1476,1791,1474,1796,1429,1778,1381,1763,1245,1736,1120,1721"/>
+<area shape="poly" id="edge89_Node000107_Node000102" title=" " alt="" coords="1090,1773,1205,1796,1204,1802,1089,1778"/>
+<area shape="poly" id="edge90_Node000107_Node000103" title=" " alt="" coords="1090,1762,1224,1770,1382,1785,1460,1798,1459,1804,1381,1791,1224,1776,1090,1768"/>
+<area shape="poly" id="edge94_Node000108_Node000010" title=" " alt="" coords="1086,1926,1199,1944,1269,1948,1343,1947,1417,1938,1488,1918,1521,1903,1553,1885,1582,1863,1608,1837,1623,1814,1637,1784,1661,1706,1679,1610,1692,1507,1707,1304,1712,1162,1717,1163,1712,1304,1698,1507,1685,1611,1666,1707,1642,1786,1628,1817,1612,1840,1585,1867,1556,1889,1524,1908,1490,1923,1418,1943,1343,1952,1269,1954,1199,1949,1085,1931"/>
+<area shape="poly" id="edge92_Node000108_Node000102" title=" " alt="" coords="1084,1898,1119,1887,1181,1860,1234,1832,1237,1837,1183,1865,1121,1892,1086,1903"/>
+<area shape="poly" id="edge93_Node000108_Node000103" title=" " alt="" coords="1115,1904,1241,1888,1381,1860,1471,1830,1472,1835,1382,1865,1242,1893,1115,1909"/>
+<area shape="poly" id="edge98_Node000109_Node000010" title=" " alt="" coords="1068,1977,1175,2005,1245,2017,1321,2024,1398,2023,1475,2011,1511,1999,1546,1984,1578,1965,1608,1941,1618,1925,1628,1898,1647,1817,1663,1708,1678,1583,1699,1334,1710,1162,1716,1162,1704,1335,1683,1584,1669,1708,1652,1818,1633,1900,1623,1928,1612,1944,1581,1969,1548,1989,1513,2004,1476,2016,1399,2028,1320,2030,1244,2023,1174,2010,1067,1982"/>
+<area shape="poly" id="edge96_Node000109_Node000102" title=" " alt="" coords="1091,1949,1119,1938,1157,1915,1192,1888,1248,1836,1252,1840,1196,1892,1160,1919,1121,1942,1093,1954"/>
+<area shape="poly" id="edge97_Node000109_Node000103" title=" " alt="" coords="1092,1960,1154,1954,1227,1944,1305,1927,1380,1903,1441,1871,1489,1835,1493,1839,1443,1875,1382,1908,1306,1932,1228,1949,1155,1960,1092,1965"/>
+<area shape="poly" id="edge102_Node000110_Node000010" title=" " alt="" coords="1049,1645,1102,1617,1167,1589,1235,1573,1296,1568,1405,1573,1455,1573,1505,1565,1555,1543,1608,1503,1626,1479,1643,1442,1672,1345,1694,1242,1708,1161,1713,1162,1699,1243,1677,1346,1648,1444,1631,1482,1612,1507,1558,1548,1506,1570,1455,1578,1405,1578,1296,1573,1236,1578,1169,1595,1104,1622,1052,1650"/>
+<area shape="poly" id="edge100_Node000110_Node000102" title=" " alt="" coords="1093,1673,1121,1684,1160,1708,1196,1735,1252,1787,1248,1791,1192,1739,1157,1712,1119,1689,1091,1678"/>
+<area shape="poly" id="edge101_Node000110_Node000103" title=" " alt="" coords="1110,1663,1240,1681,1312,1697,1382,1720,1443,1752,1492,1788,1489,1792,1440,1757,1380,1725,1311,1702,1239,1686,1109,1669"/>
+<area shape="poly" id="edge104_Node000114_Node000006" title=" " alt="" coords="617,300,638,311,676,340,711,372,764,431,760,435,707,376,672,344,635,316,615,304"/>
+<area shape="poly" id="edge105_Node000114_Node000010" title=" " alt="" coords="636,255,717,237,814,219,919,205,1024,200,1276,200,1310,203,1355,213,1461,243,1557,279,1592,297,1612,312,1630,340,1646,377,1672,471,1690,584,1703,707,1715,944,1717,1105,1712,1105,1710,944,1698,707,1685,585,1666,472,1641,379,1625,343,1608,315,1589,301,1555,284,1459,248,1354,218,1310,209,1276,205,1025,205,919,211,814,224,718,242,637,261"/>
+<area shape="poly" id="edge107_Node000115_Node000006" title=" " alt="" coords="618,723,635,711,661,685,684,657,723,594,752,534,771,486,776,488,757,536,728,597,688,660,665,689,638,715,621,727"/>
+<area shape="poly" id="edge108_Node000115_Node000009" title=" " alt="" coords="636,741,855,731,1120,712,1159,708,1159,713,1120,717,856,736,637,746"/>
+<area shape="poly" id="edge109_Node000115_Node000015" title=" " alt="" coords="637,752,1188,807,1188,813,637,758"/>
+<area shape="poly" id="edge112_Node000116_Node000002" title=" " alt="" coords="469,486,383,499,382,494,468,481"/>
+<area shape="poly" id="edge111_Node000116_Node000006" title=" " alt="" coords="636,470,668,467,669,472,637,475"/>
 </map>

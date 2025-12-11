@@ -211,6 +211,15 @@ private:
     void generate_use_module_stmt(AST::UseModuleStmt& ums);
 
     /**
+     * @brief Method for generating LLVM IR code for unsafe context
+     *
+     * This method just generating LLVM IR code for block of statements from passed unsafe context
+     *
+     * @param us Unsafe context for generating
+     */
+    void generate_unsafe_stmt(AST::UnsafeStmt& us);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
