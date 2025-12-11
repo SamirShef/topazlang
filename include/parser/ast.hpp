@@ -448,4 +448,16 @@ namespace AST {
         UnsafeStmt(std::vector<StmtPtr> b, uint32_t l) : block(std::move(b)), Stmt(l) {}
         ~UnsafeStmt() override = default;
     };
+
+    /**
+     * @brief Statement of extern calls
+     */
+    class ExternStmt : public Stmt {
+    public:
+        std::string lang_name_lit;                              /**< Name of language from generating extern */
+        std::vector<StmtPtr> block;                             /**< Block of prototypes of functions */
+
+        ExternStmt(std::string lnl, std::vector<StmtPtr> b, uint32_t l) : lang_name_lit(lnl), block(std::move(b)), Stmt(l) {}
+        ~ExternStmt() override = default;
+    };
 }

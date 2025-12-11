@@ -30,12 +30,12 @@ private:
     } current_space;
 
     std::map<AST::TypeValue, std::vector<AST::TypeValue>> implicitly_cast_allowed_types {
-        {AST::TYPE_BOOL, {}},
-        {AST::TYPE_CHAR, {AST::TYPE_SHORT, AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
-        {AST::TYPE_SHORT, {AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
-        {AST::TYPE_INT, {AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
-        {AST::TYPE_LONG, {AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
-        {AST::TYPE_FLOAT, {AST::TYPE_DOUBLE}}
+        {AST::TYPE_BOOL, {AST::TYPE_BOOL}},
+        {AST::TYPE_CHAR, {AST::TYPE_CHAR, AST::TYPE_SHORT, AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
+        {AST::TYPE_SHORT, {AST::TYPE_SHORT, AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
+        {AST::TYPE_INT, {AST::TYPE_INT, AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
+        {AST::TYPE_LONG, {AST::TYPE_LONG, AST::TYPE_FLOAT, AST::TYPE_DOUBLE}},
+        {AST::TYPE_FLOAT, {AST::TYPE_FLOAT, AST::TYPE_DOUBLE}}
     };                                                                          /**< Type table for implicit casting */
 
     /**
@@ -65,6 +65,11 @@ private:
     std::map<std::string, std::vector<std::shared_ptr<FunctionInfo>>> functions;/**< Functions table (name, candidates) */
     std::stack<AST::Type> functions_ret_types;                                  /**< Stack of functions return types */
     unsigned depth_of_loops;                                                    /**< Depth of loops */
+    std::vector<std::string> allowed_langs_for_extern {                         /**< Allowed names of languages for extern calling */
+        "C",
+        "C++",
+        "Rust"
+    };
 
 public:
     /**
@@ -264,6 +269,15 @@ private:
      * @param us Unsafe context block
      */
     void analyze_unsafe_stmt(AST::UnsafeStmt& us);
+
+    /**
+     * @brief Method for analyze extern calls
+     *
+     * This method analyze extern calls (only in unsafe context)
+     *
+     * @param es Extern functions block
+     */
+    void analyze_extern_stmt(AST::ExternStmt& es);
     
     /**
      * @brief Method for analyze expression

@@ -33,7 +33,8 @@ var annotated_dup =
       [ "ContinueStmt", "classAST_1_1ContinueStmt.html", "classAST_1_1ContinueStmt" ],
       [ "ModuleStmt", "classAST_1_1ModuleStmt.html", "classAST_1_1ModuleStmt" ],
       [ "UseModuleStmt", "classAST_1_1UseModuleStmt.html", "classAST_1_1UseModuleStmt" ],
-      [ "UnsafeStmt", "classAST_1_1UnsafeStmt.html", "classAST_1_1UnsafeStmt" ]
+      [ "UnsafeStmt", "classAST_1_1UnsafeStmt.html", "classAST_1_1UnsafeStmt" ],
+      [ "ExternStmt", "classAST_1_1ExternStmt.html", "classAST_1_1ExternStmt" ]
     ] ],
     [ "CodeGenerator", "classCodeGenerator.html", "classCodeGenerator" ],
     [ "Lexer", "classLexer.html", "classLexer" ],

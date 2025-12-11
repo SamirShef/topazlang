@@ -106,6 +106,9 @@ AST::StmtPtr Parser::parse_stmt(bool from_for) {
     else if (match(TOK_UNSAFE)) {
         stmt = parse_unsafe_stmt();
     }
+    else if (match(TOK_EXTERN)) {
+        stmt = parse_extern_stmt();
+    }
     else {
         std::stringstream ss;
         ss << "Expected statement but got \033[0m'" << peek().value << "'\033[31m. Please check statement to mistakes";
@@ -325,6 +328,44 @@ AST::StmtPtr Parser::parse_unsafe_stmt() {
         block.push_back(parse_stmt());
     }
     return std::make_unique<AST::UnsafeStmt>(std::move(block), first_token.line);
+}
+
+AST::StmtPtr Parser::parse_func_decl_proto_stmt() {
+    Token first_token = peek();
+    std::stringstream ss;
+    ss << "Expected function name. Token \033[0m'" << peek().value << "'\033[31m is keyword or operator. Please replase it with unique identifier";
+    std::string name = consume(TOK_ID, ss.str(), peek().line).value;
+    std::vector<AST::Argument> args;
+    if (match(TOK_OP_LPAREN)) {
+        while (!match(TOK_OP_RPAREN)) {
+            args.push_back(parse_argument());
+            if (peek().type != TOK_OP_RPAREN) {
+                ss.str("");
+                ss << "Expected \033[0m','\033[31m between function arguments.\nPlease replace \033[0m'";
+                ss << args[args.size() - 1].name << ": " << args[args.size() - 1].type.to_str() << " " << peek().value << "'\033[31m with: \033[0m'"
+                   << args[args.size() - 1].name << ": " << args[args.size() - 1].type.to_str() << ", " << peek().value << "'";
+                consume(TOK_OP_COMMA, ss.str(), peek().line);
+            }
+        }
+    }
+
+    AST::Type ret_type = AST::Type(AST::TYPE_NOTH, "noth");
+    if (match(TOK_OP_NEXT)) {
+        ret_type = consume_type();
+    }
+    consume_semicolon();
+    return std::make_unique<AST::FuncDeclStmt>(AST::ACCESS_NONE, name, std::move(args), ret_type, std::vector<AST::StmtPtr>{}, first_token.line);
+}
+
+AST::StmtPtr Parser::parse_extern_stmt() {
+    Token first_token = peek(-1);
+    std::string lang_name_lit = consume(TOK_STRING_LIT, "Expected string literal (language name)", peek().line).value;
+    std::vector<AST::StmtPtr> block;
+    consume(TOK_OP_LBRACE, "Expected \033[0m'{'\033[31m", peek().line);
+    while (!match(TOK_OP_RBRACE)) {
+        block.push_back(parse_func_decl_proto_stmt());
+    }
+    return std::make_unique<AST::ExternStmt>(lang_name_lit, std::move(block), first_token.line);
 }
 
 AST::ExprPtr Parser::parse_expr() {

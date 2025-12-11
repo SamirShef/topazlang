@@ -220,6 +220,15 @@ private:
     void generate_unsafe_stmt(AST::UnsafeStmt& us);
 
     /**
+     * @brief Method for generating LLVM IR code for extern calls
+     *
+     * This method generating LLVM IR code for extern calls
+     *
+     * @param es Extern calls
+     */
+    void generate_extern_stmt(AST::ExternStmt& es);
+
+    /**
      * @brief Method for generating LLVM IR code for expressions
      *
      * This method generating LLVM IR cide for passing expression. If passed expression is unsupported by current version of compiler, then throwing exception
